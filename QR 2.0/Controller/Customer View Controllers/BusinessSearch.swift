@@ -1,0 +1,95 @@
+//
+//  BusinessSearch.swift
+//  QR 2.0
+//
+//  Created by Sebastian Barry on 5/26/20.
+//  Copyright © 2020 Sebastian Barry. All rights reserved.
+//
+
+import UIKit
+import FirebaseFirestore
+import FirebaseAuth
+import GooglePlaces
+
+class BusinessSearch: UIViewController {
+    
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
+    var businessName : String?
+    
+    //this is the button that will add a new business from the selected business to the users list
+    @IBAction func AddBusiness(_ sender: UIButton) {
+    
+        if let substituteValue = self.businessName {
+            GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer = substituteValue
+            let db = Firestore.firestore()
+            //create a new collection within the users documents
+            let collection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+            //set certain field values within the collection
+            collection.document(GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer!).setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0])
+            
+            self.navigationController?.popViewController(animated: true)
+        } else {searchController?.searchBar.placeholder = "Pick a business"}
+       
+    }
+    
+    
+ 
+    
+    
+    
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    //this is the code from google api
+          resultsViewController = GMSAutocompleteResultsViewController()
+          resultsViewController?.delegate = self
+          searchController = UISearchController(searchResultsController: resultsViewController)
+          searchController?.searchResultsUpdater = resultsViewController
+          // Put the search bar in the navigation bar.
+          searchController?.searchBar.sizeToFit()
+          navigationItem.titleView = searchController?.searchBar
+          // When UISearchController presents the results view, present it in
+          // this view controller, not one further up the chain.
+          definesPresentationContext = true
+          // Prevent the navigation bar from being hidden when searching.
+          searchController?.hidesNavigationBarDuringPresentation = false
+          searchController?.searchBar.placeholder = "Search"
+    }
+}
+
+//this extension is from the api
+extension BusinessSearch: GMSAutocompleteResultsViewControllerDelegate {
+      func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                             didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        searchController?.searchBar.placeholder = place.name
+        self.businessName = place.name
+        // Do something with the selected place.
+        //print("Place name: \(place.name)")
+        //print("Place address: \(place.formattedAddress)")
+        //print("Place attributions: \(place.attributions)")
+      }
+
+      func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                             didFailAutocompleteWithError error: Error){
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+      }
+
+      // Turn the network activity indicator on and off again.
+      func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+      }
+
+      func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+      }
+}
+    
+    
+    

@@ -67,8 +67,7 @@ class B_2Register : UIViewController {
     func InstantiateOwnerList() -> [String : Any] {
         
         let NewUser = [
-            //the order of these variables matter, as this is the way they will be arangd in the database
-            //DO NOT REARANGE
+            
             GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail, //(0)
             GlobalVariables.UserIDs.BusinessName : GlobalVariables.ActualIDs.ActualBusinessName, //(1)
             GlobalVariables.UserIDs.UserPassword: GlobalVariables.ActualIDs.ActualPassword, //(2)

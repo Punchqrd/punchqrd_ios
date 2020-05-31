@@ -47,6 +47,7 @@ class LoginScreen : UIViewController {
                     }
                     //this is where the segue logic happens
                     else {
+                        GlobalVariables.ActualIDs.CurrentUser = self.EmailTextField.text!
                         let data = dataPiece?.get(GlobalVariables.UserIDs.UserType) as! String
                         if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)} else {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
                         }

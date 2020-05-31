@@ -73,6 +73,14 @@ class CustomerHomeScreen : UIViewController{
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
   
     //add points button to add points to the user (TEMPORARY)
     //THIS is important. The business name of the business will have to be passed in through the employee

@@ -17,8 +17,26 @@ class OwnerHomeScreen : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.hidesBackButton = true
     }
     
+    @IBAction func AddEmployeeAction(_ sender: UIButton) {
+        self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeAddScreenSegue  , sender: self)
+    }
     
+    //logout the owner
+    @IBAction func LogoutButton(_ sender: UIBarButtonItem) {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+            //send the user back to the homescreen
+            
+            self.navigationController?.popToRootViewController(animated: true)
+            print("Logged out the user")
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+          
+        
+    }
 }

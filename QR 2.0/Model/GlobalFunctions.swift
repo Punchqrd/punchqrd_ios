@@ -46,15 +46,27 @@ class GlobalFunctions {
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.RedemptionNumberString : 1])
         
     }
-    
+    //reset redemption points to nothing once the user has redeemed his/her points
     static func setRedemptionToFalse (nameofUser : String?, nameofBusiness : String?) {
         let db = Firestore.firestore()
         let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.RedemptionNumberString : 0])
 
     }
-    
-    
+    //add an employee to the list of employees with respective shifts
+    static func addEmployee (nameofUser : String?, employeeName : String?, employeeEmail : String?, employeePassword : String?, workDay : String?, workShift : [String? : String?]) {
+        let db = Firestore.firestore()
+        print(nameofUser!)
+        //this makes a new collection of employees, if it already hasnt been
+        let Employeecollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.EmployeeList)
+        //set details of user ID's in the employee field
+        Employeecollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.EmployeeNameString : employeeName!, GlobalVariables.UserIDs.EmployeePasswordString : employeePassword!, GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
+        //create a new collection of employee shifts
+        print("Making collection")
+        Employeecollection.document(employeeEmail!).collection(GlobalVariables.UserIDs.EmployeeShiftCollection).document(workDay!).setData(workShift as! [String : Any])
+        
+        
+    }
    
     
     

@@ -12,7 +12,11 @@
 		17121857247EFA300060093A /* BusinessName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121856247EFA300060093A /* BusinessName.swift */; };
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
+		1772FA272481731A00AE4DD2 /* EmployeeDatecell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772FA252481731A00AE4DD2 /* EmployeeDatecell.swift */; };
+		1772FA282481731A00AE4DD2 /* EmployeeDatecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1772FA262481731A00AE4DD2 /* EmployeeDatecell.xib */; };
+		1772FA2A248175F700AE4DD2 /* ShiftCellObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */; };
 		177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */; };
+		179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179534CD2482B28200C033E6 /* WorkWeek.swift */; };
 		17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */; };
 		17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */; };
 		17C81F1B247ACA7B008DAAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C81F19247ACA7B008DAAA2 /* Main.storyboard */; };
@@ -27,6 +31,7 @@
 		17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */; };
 		17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */; };
 		17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */; };
+		17CA30C524816760006EDFEA /* AddEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */; };
 		222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +41,11 @@
 		17121856247EFA300060093A /* BusinessName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessName.swift; sourceTree = "<group>"; };
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
+		1772FA252481731A00AE4DD2 /* EmployeeDatecell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDatecell.swift; sourceTree = "<group>"; };
+		1772FA262481731A00AE4DD2 /* EmployeeDatecell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeDatecell.xib; sourceTree = "<group>"; };
+		1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftCellObject.swift; sourceTree = "<group>"; };
 		177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataProtocols.swift; sourceTree = "<group>"; };
+		179534CD2482B28200C033E6 /* WorkWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWeek.swift; sourceTree = "<group>"; };
 		17C81F10247ACA7B008DAAA2 /* QR 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +62,7 @@
 		17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeScreen.swift; sourceTree = "<group>"; };
 		17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHomeScreen.swift; sourceTree = "<group>"; };
+		17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeScreen.swift; sourceTree = "<group>"; };
 		2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */,
+				17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */,
 			);
 			path = "Owner View Controllers";
 			sourceTree = "<group>";
@@ -92,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */,
+				179534CD2482B28200C033E6 /* WorkWeek.swift */,
 			);
 			path = "Scrap Files";
 			sourceTree = "<group>";
@@ -139,6 +151,8 @@
 				17C81F2B247ACB01008DAAA2 /* GlobalVariables.swift */,
 				17121856247EFA300060093A /* BusinessName.swift */,
 				17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */,
+				1772FA252481731A00AE4DD2 /* EmployeeDatecell.swift */,
+				1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +162,7 @@
 			children = (
 				17C81F19247ACA7B008DAAA2 /* Main.storyboard */,
 				17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */,
+				1772FA262481731A00AE4DD2 /* EmployeeDatecell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17C81F36247C2263008DAAA2 /* GoogleService-Info.plist in Resources */,
+				1772FA282481731A00AE4DD2 /* EmployeeDatecell.xib in Resources */,
 				17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */,
 				17C81F20247ACA7F008DAAA2 /* LaunchScreen.storyboard in Resources */,
 				17C81F1D247ACA7F008DAAA2 /* Assets.xcassets in Resources */,
@@ -317,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */,
 				177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
 				17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */,
@@ -325,9 +342,12 @@
 				17C81F38247C3197008DAAA2 /* GlobalFunctions.swift in Sources */,
 				17C81F2C247ACB01008DAAA2 /* GlobalVariables.swift in Sources */,
 				173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */,
+				1772FA272481731A00AE4DD2 /* EmployeeDatecell.swift in Sources */,
+				1772FA2A248175F700AE4DD2 /* ShiftCellObject.swift in Sources */,
 				17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */,
 				17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */,
 				173F1701247DB44B00C67812 /* QRView.swift in Sources */,
+				17CA30C524816760006EDFEA /* AddEmployeeScreen.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,

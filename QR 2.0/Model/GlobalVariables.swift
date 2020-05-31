@@ -99,7 +99,7 @@ class GlobalVariables {
         static var saturdayIsOn : Bool?
         static var sundayIsOn : Bool?
 
-        //adding an nsdate for each day
+        //adding a string for each day
         static var mondayStartTime : String?
         static var mondayEndTime : String?
         static var tuesdayStartTime : String?
@@ -114,6 +114,10 @@ class GlobalVariables {
         static var saturdayEndTime : String?
         static var sundayStartTime : String?
         static var sundayEndTime : String?
+        
+        
+        //the value read from the qr code scanner
+        static var ActualQRData : String?
         
         
     }
@@ -131,6 +135,7 @@ class GlobalVariables {
         static let ToOwnerHomeScreen =  "OwnerHomeScreen"
         static let RedemptionSegue = "RedemptionSegue"
         static let EmployeeAddScreenSegue = "EmployeeAddScreenSegue"
+        static let EmployeeLoginSegue = "EmployeeLoginSegue"
            
        }
     

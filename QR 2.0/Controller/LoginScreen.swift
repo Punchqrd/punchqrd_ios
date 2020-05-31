@@ -49,7 +49,9 @@ class LoginScreen : UIViewController {
                     else {
                         GlobalVariables.ActualIDs.CurrentUser = self.EmailTextField.text!
                         let data = dataPiece?.get(GlobalVariables.UserIDs.UserType) as! String
-                        if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)} else {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
+                        if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)}
+                        if data == GlobalVariables.UserIDs.UserEmployee {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: self)}
+                        if data == GlobalVariables.UserIDs.UserOwner {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
                         }
                    }
                }

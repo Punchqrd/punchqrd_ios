@@ -32,6 +32,8 @@
 		17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */; };
 		17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */; };
 		17CA30C524816760006EDFEA /* AddEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */; };
+		17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846724843D610035F7CA /* ScannerScreen.swift */; };
+		17E2846F24843EFF0035F7CA /* AddPointsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846E24843EFF0035F7CA /* AddPointsScreen.swift */; };
 		222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeScreen.swift; sourceTree = "<group>"; };
 		17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHomeScreen.swift; sourceTree = "<group>"; };
 		17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeScreen.swift; sourceTree = "<group>"; };
+		17E2846724843D610035F7CA /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
+		17E2846E24843EFF0035F7CA /* AddPointsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPointsScreen.swift; sourceTree = "<group>"; };
 		2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,13 +175,31 @@
 			isa = PBXGroup;
 			children = (
 				17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */,
+				17E2846624843D190035F7CA /* Registration View Controllers */,
+				173F1703247DB84300C67812 /* Owner View Controllers */,
+				173F1702247DB82500C67812 /* Customer View Controllers */,
+				17E2846924843D660035F7CA /* Employee View Controllers */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		17E2846624843D190035F7CA /* Registration View Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				17C81F2D247ACE2E008DAAA2 /* A_Register.swift */,
 				17C81F2F247AD276008DAAA2 /* B_1Register.swift */,
 				17C81F31247AD2AB008DAAA2 /* B_2Register.swift */,
-				173F1703247DB84300C67812 /* Owner View Controllers */,
-				173F1702247DB82500C67812 /* Customer View Controllers */,
 			);
-			path = Controller;
+			path = "Registration View Controllers";
+			sourceTree = "<group>";
+		};
+		17E2846924843D660035F7CA /* Employee View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				17E2846724843D610035F7CA /* ScannerScreen.swift */,
+				17E2846E24843EFF0035F7CA /* AddPointsScreen.swift */,
+			);
+			path = "Employee View Controllers";
 			sourceTree = "<group>";
 		};
 		7060B761C14B6509BDB792EC /* Pods */ = {
@@ -333,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */,
 				179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */,
 				177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
@@ -350,6 +373,7 @@
 				17CA30C524816760006EDFEA /* AddEmployeeScreen.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
+				17E2846F24843EFF0035F7CA /* AddPointsScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,
 				17C81F30247AD276008DAAA2 /* B_1Register.swift in Sources */,
 			);

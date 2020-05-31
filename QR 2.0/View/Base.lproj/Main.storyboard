@@ -334,6 +334,22 @@
             </objects>
             <point key="canvasLocation" x="5761" y="-33"/>
         </scene>
+        <!--Scanner Screen-->
+        <scene sceneID="q1N-Az-fdH">
+            <objects>
+                <viewController id="3V0-G0-Xvl" customClass="ScannerScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qcw-HH-YCl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wZR-RG-QpP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fW2-Dq-7em"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4H7-5v-AYm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="979" y="-1395"/>
+        </scene>
         <!--Login Screen-->
         <scene sceneID="slV-wb-Iva">
             <objects>
@@ -388,6 +404,7 @@
                         <outlet property="PasswordTextField" destination="ZgH-MQ-Owi" id="NhQ-oV-wMh"/>
                         <segue destination="Pjb-C6-ViW" kind="show" identifier="CustomerHomeScreen" id="KRw-zj-nqN"/>
                         <segue destination="4zM-D4-uka" kind="show" identifier="OwnerHomeScreen" id="cuJ-rL-5Wf"/>
+                        <segue destination="3V0-G0-Xvl" kind="show" identifier="EmployeeLoginSegue" id="WlR-iH-hqg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g5Y-TT-V8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

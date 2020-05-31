@@ -41,7 +41,6 @@ class EmployeeDatecell: UITableViewCell {
             self.EndLabel.isHidden = false
             
 
-            
             if self.DayLabel.text == GlobalVariables.UserIDs.mondayString  {
                 GlobalVariables.ActualIDs.mondayIsOn = true
             }
@@ -81,8 +80,6 @@ class EmployeeDatecell: UITableViewCell {
             CheckImage.isHidden = true
         }
         
-        
-        
     }
     
     
@@ -90,9 +87,10 @@ class EmployeeDatecell: UITableViewCell {
         
         //set the global variables as the same time displayed on the picker
                if GlobalVariables.ActualIDs.mondayIsOn == true {
-                let formatter = DateFormatter()
-                formatter.dateStyle = .none
-                formatter.timeStyle = .short
+                 let formatter = DateFormatter()
+                 formatter.dateStyle = .none
+                 formatter.dateFormat = "HH:mm"
+                
                 
                 GlobalVariables.ActualIDs.mondayStartTime = formatter.string(from: self.StartPicker.date)
                 GlobalVariables.ActualIDs.mondayEndTime = formatter.string(from: self.EndPicker.date)
@@ -102,8 +100,9 @@ class EmployeeDatecell: UITableViewCell {
                if GlobalVariables.ActualIDs.tuesdayIsOn == true {
                 
                 let formatter = DateFormatter()
-                formatter.dateStyle = .none
-                formatter.timeStyle = .short
+                 formatter.dateStyle = .none
+                 formatter.dateFormat = "HH:mm"
+                
                 
                  GlobalVariables.ActualIDs.tuesdayStartTime = formatter.string(from: self.StartPicker.date)
                  GlobalVariables.ActualIDs.tuesdayEndTime = formatter.string(from: self.EndPicker.date)
@@ -111,9 +110,10 @@ class EmployeeDatecell: UITableViewCell {
                
                if GlobalVariables.ActualIDs.wednesdayIsOn == true  {
                 
-                let formatter = DateFormatter()
+               let formatter = DateFormatter()
                  formatter.dateStyle = .none
-                 formatter.timeStyle = .short
+                 formatter.dateFormat = "HH:mm"
+                
                 
                   GlobalVariables.ActualIDs.wednesdayStartTime = formatter.string(from: self.StartPicker.date)
                   GlobalVariables.ActualIDs.wednesdayEndTime = formatter.string(from: self.EndPicker.date)
@@ -121,8 +121,9 @@ class EmployeeDatecell: UITableViewCell {
                
                if GlobalVariables.ActualIDs.thursdayIsOn == true {
                    let formatter = DateFormatter()
-                   formatter.dateStyle = .none
-                   formatter.timeStyle = .short
+                    formatter.dateStyle = .none
+                    formatter.dateFormat = "HH:mm"
+                   
                    
                     GlobalVariables.ActualIDs.thursdayStartTime = formatter.string(from: self.StartPicker.date)
                     GlobalVariables.ActualIDs.thursdayEndTime = formatter.string(from: self.EndPicker.date)
@@ -130,8 +131,9 @@ class EmployeeDatecell: UITableViewCell {
                
                if GlobalVariables.ActualIDs.fridayIsOn == true {
                    let formatter = DateFormatter()
-                   formatter.dateStyle = .none
-                   formatter.timeStyle = .short
+                    formatter.dateStyle = .none
+                    formatter.dateFormat = "HH:mm"
+                   
                    
                     GlobalVariables.ActualIDs.fridayStartTime = formatter.string(from: self.StartPicker.date)
                     GlobalVariables.ActualIDs.fridayEndTime = formatter.string(from: self.EndPicker.date)
@@ -139,8 +141,9 @@ class EmployeeDatecell: UITableViewCell {
                
                if GlobalVariables.ActualIDs.saturdayIsOn == true{
                    let formatter = DateFormatter()
-                   formatter.dateStyle = .none
-                   formatter.timeStyle = .short
+                    formatter.dateStyle = .none
+                    formatter.dateFormat = "HH:mm"
+                   
                    
                     GlobalVariables.ActualIDs.saturdayStartTime = formatter.string(from: self.StartPicker.date)
                     GlobalVariables.ActualIDs.saturdayEndTime = formatter.string(from: self.EndPicker.date)
@@ -149,7 +152,8 @@ class EmployeeDatecell: UITableViewCell {
                if GlobalVariables.ActualIDs.sundayIsOn == true {
                    let formatter = DateFormatter()
                    formatter.dateStyle = .none
-                   formatter.timeStyle = .short
+                   formatter.dateFormat = "HH:mm"
+                  
                    
                     GlobalVariables.ActualIDs.sundayStartTime = formatter.string(from: self.StartPicker.date)
                     GlobalVariables.ActualIDs.sundayEndTime = formatter.string(from: self.EndPicker.date)

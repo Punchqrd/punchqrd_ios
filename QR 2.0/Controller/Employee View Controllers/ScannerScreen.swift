@@ -10,6 +10,8 @@
 import Foundation
 import UIKit
 import AVFoundation
+import FirebaseAuth
+import FirebaseFirestore
 
 
 class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -19,13 +21,8 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
         
      
         override func viewDidLoad() {
-            
-            
             super.viewDidLoad()
             setupCamera()
-            navigationController?.isToolbarHidden = true
-            navigationItem.hidesBackButton = true
-            
         }
      
     //setup the camera function
@@ -58,7 +55,7 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
                        if (self.avCaptureSession.canAddOutput(metadataOutput)) {
                         
                            self.avCaptureSession.addOutput(metadataOutput)
-                           metadataOutput.setMetadataObjectsDelegate(self as! AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
+                        metadataOutput.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
                            metadataOutput.metadataObjectTypes = [.qr]
                         
                        } else {
@@ -89,12 +86,16 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             if (avCaptureSession?.isRunning == false) {
+                self.navigationController?.isNavigationBarHidden = true
+                self.navigationItem.hidesBackButton = true
                 avCaptureSession.startRunning()
             }
         }
         
         override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
+            self.navigationController?.isNavigationBarHidden = false
+            self.navigationItem.hidesBackButton = false
             if (avCaptureSession?.isRunning == true) {
                 avCaptureSession.stopRunning()
             }
@@ -125,5 +126,54 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
         func found(code: String) {
             print(code)
             GlobalVariables.ActualIDs.ActualQRData = code
+            
+            
+            
+            let db = Firestore.firestore()
+            //fetch the document array for the user.
+            let document = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email!)!)
+                           //we not have a document
+                           document.getDocument(source: .cache) { (dataPiece, error) in
+                               if let error = error {print(error.localizedDescription)}
+                                //this is where the logic happens
+                               else {
+                                
+                                //fetch the employer business email to redirect pointer to from the current employee
+                                let employerBusinessEmail = dataPiece?.get("Employer")
+                                
+                                //fetch the employers business
+                                let employerBusinessDocument = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employerBusinessEmail as! String)
+                                
+                                //get the name
+                                employerBusinessDocument.getDocument(source: .cache) { (otherDataPiece, error) in
+                                    if let error = error {print(error.localizedDescription)}
+                                    
+                                    else {
+                                        let employerBusinessName = otherDataPiece?.get(GlobalVariables.UserIDs.BusinessName) as! String
+                                        
+                                        //check if the user exists
+                                        let document2 = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(code)
+                                        document2.getDocument { (doc, err) in
+                                            if let doc = doc, doc.exists {
+                                                
+                                                
+                                                //increment the point of the user.
+                                                GlobalFunctions.incrementPointsForUser(nameofUser: code, nameofBusiness: employerBusinessName)
+                                                //implement more logic like if the user has redemption points available.
+                                                
+                                                
+                                        
+                                            } else {
+                                                print(err?.localizedDescription)
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                                
+                                   }
+                              }
+                          
+                            self.performSegue(withIdentifier: GlobalVariables.SegueIDs.AddPointsScreeSegue, sender: self)
         }
     }

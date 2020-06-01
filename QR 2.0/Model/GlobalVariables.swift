@@ -136,6 +136,7 @@ class GlobalVariables {
         static let RedemptionSegue = "RedemptionSegue"
         static let EmployeeAddScreenSegue = "EmployeeAddScreenSegue"
         static let EmployeeLoginSegue = "EmployeeLoginSegue"
+        static let AddPointsScreeSegue = "AddPointsToEmployeeSegue"
            
        }
     

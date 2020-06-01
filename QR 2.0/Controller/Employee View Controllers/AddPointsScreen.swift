@@ -11,7 +11,11 @@ import UIKit
 
 class AddPointsScreen : UIViewController {
     
+    @IBOutlet weak var ID: UILabel!
+    
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         
         

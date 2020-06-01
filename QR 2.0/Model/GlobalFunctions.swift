@@ -63,15 +63,14 @@ class GlobalFunctions {
         Employeecollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.EmployeeNameString : employeeName!, GlobalVariables.UserIDs.EmployeePasswordString : employeePassword!, GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
         //create a new collection of employee shifts
         Employeecollection.document(employeeEmail!).collection(GlobalVariables.UserIDs.EmployeeShiftCollection).document(workDay!).setData(workShift as! [String : Any])
-        
-        
         //setup the branch for the employee as an All User. so we can access information directly from him
         let EmployeeBranch = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employeeEmail!)
-        //
         EmployeeBranch.setData(["Employer" : nameofUser!, GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
         EmployeeBranch.collection(GlobalVariables.UserIDs.EmployeeShiftCollection).document(workDay!).setData(workShift as! [String : Any])
         
     }
+    
+   
    
     
     

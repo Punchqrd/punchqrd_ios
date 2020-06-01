@@ -29,6 +29,10 @@ class BusinessSearch: UIViewController {
             //set certain field values within the collection
             collection.document(GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer!).setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0])
             
+            
+            
+            
+            
             self.navigationController?.popViewController(animated: true)
         } else {searchController?.searchBar.placeholder = "Pick a business"}
        

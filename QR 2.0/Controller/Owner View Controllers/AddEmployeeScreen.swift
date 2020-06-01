@@ -11,7 +11,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class AddEmployeeScreen : UIViewController{
+class AddEmployeeScreen : UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var ErrorLabel: UILabel!
     @IBOutlet weak var DatesTableView: UITableView!
@@ -24,7 +24,16 @@ class AddEmployeeScreen : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         populateTableViewWithCells()
+        self.NameField.delegate = self
+        self.EmailField.delegate = self
+        self.PasswordField.delegate = self
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           self.view.endEditing(true)
+           return false
+       }
+
     
     //set the labels for each cell as days of the week
     func fillDatesTableViewArray () {
@@ -48,7 +57,8 @@ class AddEmployeeScreen : UIViewController{
     //function to create said employee's shifts and whatnot.
     func createNewEmployeeShiftCollection() {
         
-        
+        //set of the same function declared in GlobalFunctions.swift to add the shift data acquired to the firestore database.
+        //these also add the shifts of the Employee to the employees attributes
         GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.mondayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.mondayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.mondayEndTime])
         
         GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.tuesdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.tuesdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.tuesdayEndTime])

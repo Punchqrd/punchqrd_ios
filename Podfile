@@ -16,4 +16,5 @@ target 'QR 2.0' do
   	pod 'GoogleMaps'
   	pod 'GooglePlaces'
 
+
 end

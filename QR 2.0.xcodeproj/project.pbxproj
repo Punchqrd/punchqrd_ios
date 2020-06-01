@@ -230,8 +230,8 @@
 				17C81F0C247ACA7B008DAAA2 /* Sources */,
 				17C81F0D247ACA7B008DAAA2 /* Frameworks */,
 				17C81F0E247ACA7B008DAAA2 /* Resources */,
-				E9874C0C984C1823D3C97011 /* [CP] Embed Pods Frameworks */,
-				211014BAAEF4D4648333E3CC /* [CP] Copy Pods Resources */,
+				346C74E4988CB140DC096009 /* [CP] Embed Pods Frameworks */,
+				AAE96E50925641DE708C050F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -292,21 +292,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		211014BAAEF4D4648333E3CC /* [CP] Copy Pods Resources */ = {
+		346C74E4988CB140DC096009 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5105951C68CBABB91B15BDDB /* [CP] Check Pods Manifest.lock */ = {
@@ -331,21 +331,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E9874C0C984C1823D3C97011 /* [CP] Embed Pods Frameworks */ = {
+		AAE96E50925641DE708C050F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

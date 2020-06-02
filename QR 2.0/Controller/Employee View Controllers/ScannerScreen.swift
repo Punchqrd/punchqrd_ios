@@ -16,164 +16,305 @@ import FirebaseFirestore
 
 class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    
+    var overlayLayer = CALayer()
+    @IBOutlet weak var LogoutButton: UIBarButtonItem!
     var avCaptureSession: AVCaptureSession!
     var avPreviewLayer: AVCaptureVideoPreviewLayer!
-        
-     
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setupCamera()
-        }
-     
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupCamera()
+    }
+    
     //setup the camera function
     func setupCamera() {
         
-                   avCaptureSession = AVCaptureSession()
-                   DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                       guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
-                           self.failed()
-                           return
-                       }
-                       let avVideoInput: AVCaptureDeviceInput
-                       
-                       do {
-                           avVideoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-                       } catch {
-                           self.failed()
-                           return
-                       }
-                       
-                       if (self.avCaptureSession.canAddInput(avVideoInput)) {
-                           self.avCaptureSession.addInput(avVideoInput)
-                       } else {
-                           self.failed()
-                           return
-                       }
-                       
-                       let metadataOutput = AVCaptureMetadataOutput()
-                       
-                       if (self.avCaptureSession.canAddOutput(metadataOutput)) {
-                        
-                           self.avCaptureSession.addOutput(metadataOutput)
-                        metadataOutput.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
-                           metadataOutput.metadataObjectTypes = [.qr]
-                        
-                       } else {
-                        
-                           self.failed()
-                           return
-                        
-                       }
-                    
-                    //layering the camera onto the screen with certain bounds
-                       self.avPreviewLayer = AVCaptureVideoPreviewLayer(session: self.avCaptureSession)
-                       self.avPreviewLayer.frame = self.view.layer.bounds
-                       self.avPreviewLayer.videoGravity = .resizeAspectFill
-                       self.view.layer.addSublayer(self.avPreviewLayer)
-                       self.avCaptureSession.startRunning()
-                    
-                   }
+        self.overlayLayer.sublayers = nil
+        
+        avCaptureSession = AVCaptureSession()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
+                self.failed()
+                return
+            }
+            let avVideoInput: AVCaptureDeviceInput
+            
+            do {
+                avVideoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+            } catch {
+                self.failed()
+                return
+            }
+            
+            if (self.avCaptureSession.canAddInput(avVideoInput)) {
+                self.avCaptureSession.addInput(avVideoInput)
+            } else {
+                self.failed()
+                return
+            }
+            
+            let metadataOutput = AVCaptureMetadataOutput()
+            
+            if (self.avCaptureSession.canAddOutput(metadataOutput)) {
+                
+                self.avCaptureSession.addOutput(metadataOutput)
+                metadataOutput.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
+                metadataOutput.metadataObjectTypes = [.qr]
+                
+            } else {
+                self.failed()
+                return
+            }
+            
+            
+            //layering the camera onto the screen with certain bounds
+            
+            self.avPreviewLayer = AVCaptureVideoPreviewLayer(session: self.avCaptureSession)
+            self.avPreviewLayer.frame = self.view.layer.bounds
+            self.avPreviewLayer.videoGravity = .resizeAspectFill
+            self.view.layer.addSublayer(self.avPreviewLayer)
+            self.avCaptureSession.startRunning()
+            
+            
+            
+            
+            
+            
+        }
     }
     
-    
-        func failed() {
-            let ac = UIAlertController(title: "Scanner not supported", message: "Please use a device with a camera. Because this device does not support scanning a code", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-            avCaptureSession = nil
-        }
+    private func addCheckMarkImage(to layer: CALayer, videoSize: CGSize) {
         
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            if (avCaptureSession?.isRunning == false) {
-                self.navigationController?.isNavigationBarHidden = true
-                self.navigationItem.hidesBackButton = true
-                avCaptureSession.startRunning()
-            }
-        }
         
-        override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            self.navigationController?.isNavigationBarHidden = false
-            self.navigationItem.hidesBackButton = false
-            if (avCaptureSession?.isRunning == true) {
-                avCaptureSession.stopRunning()
-            }
-        }
-        
-        override var prefersStatusBarHidden: Bool {
-            return true
-        }
-        
-        override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-            return .portrait
-        }
+        self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
+        self.view.layer.addSublayer(self.overlayLayer)
+        let theImage = UIImage(named: "greencheck-1")!
+        let imageLayer = CALayer()
+        let aspect: CGFloat = theImage.size.width / theImage.size.height
+        let width = videoSize.width
+        let height = width / aspect
+        imageLayer.frame = CGRect(
+            x: self.view.frame.width/2,
+            y: self.view.frame.height/2,
+            width: width,
+            height: height)
+        theImage.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
+        imageLayer.contents = theImage.cgImage
+        layer.addSublayer(imageLayer)
         
     }
-
-    extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
-        func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    
+    private func addXImage(to layer: CALayer, videoSize: CGSize) {
+        
+        self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
+        self.view.layer.addSublayer(self.overlayLayer)
+        let theImage = UIImage(named: "redx")!
+        let imageLayer = CALayer()
+        let aspect: CGFloat = theImage.size.width / theImage.size.height
+        let width = videoSize.width
+        let height = width / aspect
+        imageLayer.frame = CGRect(
+            x: self.view.frame.width/2,
+            y: self.view.frame.height/2,
+            width: width,
+            height: height)
+        imageLayer.contents = theImage.cgImage
+        layer.addSublayer(imageLayer)
+        
+    }
+    
+    private func addredeemImage(to layer: CALayer, videoSize: CGSize) {
+        
+        self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
+        self.view.layer.addSublayer(self.overlayLayer)
+        let theImage = UIImage(named: "goldheart")!
+        let imageLayer = CALayer()
+        let aspect: CGFloat = theImage.size.width / theImage.size.height
+        let width = videoSize.width
+        let height = width / aspect
+        imageLayer.frame = CGRect(
+            x: self.view.frame.width/2,
+            y: self.view.frame.height/2,
+            width: width,
+            height: height)
+        imageLayer.contents = theImage.cgImage
+        layer.addSublayer(imageLayer)
+        
+    }
+    
+    @IBAction func LogoutAction(_ sender: UIBarButtonItem) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            //send the user back to the homescreen
+            
+            self.navigationController?.popToRootViewController(animated: true)
+            print("Logged out the user")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
+    func failed() {
+        let ac = UIAlertController(title: "Scanner not supported", message: "Please use a device with a camera. Because this device does not support scanning a code", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+        avCaptureSession = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if (avCaptureSession?.isRunning == false) {
+            self.navigationController?.navigationBar.alpha = 0.15
+            self.navigationController?.navigationBar.barTintColor = .black
+            self.navigationItem.hidesBackButton = true
+            avCaptureSession.startRunning()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationItem.hidesBackButton = false
+        if (avCaptureSession?.isRunning == true) {
             avCaptureSession.stopRunning()
-            if let metadataObject = metadataObjects.first {
-                guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-                guard let stringValue = readableObject.stringValue else { return }
-                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                found(code: stringValue)
-            }
-            dismiss(animated: true)
         }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    /*
+     @IBAction func RedeemAction(_ sender: UIButton) {
+     GlobalFunctions.deleteAllPoints(nameofUser: GlobalVariables.ActualIDs.ActualQRData, nameofBusiness: GlobalVariables.ActualIDs.EmployerBusinessName)
+     GlobalFunctions.setRedemptionToFalse(nameofUser: GlobalVariables.ActualIDs.ActualQRData, nameofBusiness: GlobalVariables.ActualIDs.EmployerBusinessName)
+     setupCamera()
+     }
+     */
+    
+}
+
+extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
+    
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        avCaptureSession.stopRunning()
+        if let metadataObject = metadataObjects.first {
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let stringValue = readableObject.stringValue else { return }
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            found(code: stringValue)
+        }
+        dismiss(animated: true)
+    }
+    
+    
+    func found(code: String) {
         
-        func found(code: String) {
-            print(code)
-            GlobalVariables.ActualIDs.ActualQRData = code
-            
-            
-            
-            let db = Firestore.firestore()
-            //fetch the document array for the user.
-            let document = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email!)!)
-                           //we not have a document
-                           document.getDocument(source: .cache) { (dataPiece, error) in
-                               if let error = error {print(error.localizedDescription)}
-                                //this is where the logic happens
-                               else {
+        //create the database reference.
+        GlobalVariables.ActualIDs.ActualQRData = code //set the global variable to the code
+        let db = Firestore.firestore()
+        
+        //Direct to the Employee's field values.
+        let employeeData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email!)!)
+        //Check out the employees attributes.
+        employeeData.getDocument(source: .cache) { (dataPiece, error) in
+            if let error = error {print(error.localizedDescription)}
+            else {
+                //look up who the employees employer is..assign the email to a variable.
+                let employerBusinessEmail = dataPiece?.get("Employer")
+                //redirect to the employers field values and database collection.
+                let employerBusinessDocument = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employerBusinessEmail as! String)
+                //get the name of the business the employer owns.
+                employerBusinessDocument.getDocument(source: .cache) { (otherDataPiece, error) in
+                    if let error = error {print(error.localizedDescription)}
+                    else {
+                        //set the name of the business to a variable.
+                        let employerBusinessName = otherDataPiece?.get(GlobalVariables.UserIDs.BusinessName) as! String
+                        print(employerBusinessName)
+                        GlobalVariables.ActualIDs.EmployerBusinessName = employerBusinessName
+                        
+                        //now check if the code scanned from the QR code is a legitimate customer.
+                        let customerData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(code)
+                        customerData.getDocument { (doc, err) in
+                            if let doc = doc, doc.exists {
                                 
-                                //fetch the employer business email to redirect pointer to from the current employee
-                                let employerBusinessEmail = dataPiece?.get("Employer")
+                                //IF THE USER EXISTS: Do this logic.
                                 
-                                //fetch the employers business
-                                let employerBusinessDocument = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employerBusinessEmail as! String)
                                 
-                                //get the name
-                                employerBusinessDocument.getDocument(source: .cache) { (otherDataPiece, error) in
+                                
+                                //check if the user has 10 points
+                                let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(code).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName)
+                                customerBusinessCollection.getDocument(source: .cache) { (documentSnap, error) in
                                     if let error = error {print(error.localizedDescription)}
-                                    
                                     else {
-                                        let employerBusinessName = otherDataPiece?.get(GlobalVariables.UserIDs.BusinessName) as! String
                                         
-                                        //check if the user exists
-                                        let document2 = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(code)
-                                        document2.getDocument { (doc, err) in
-                                            if let doc = doc, doc.exists {
-                                                
-                                                
-                                                //increment the point of the user.
-                                                GlobalFunctions.incrementPointsForUser(nameofUser: code, nameofBusiness: employerBusinessName)
-                                                //implement more logic like if the user has redemption points available.
-                                                
-                                                
-                                        
-                                            } else {
-                                                print(err?.localizedDescription)
-                                            }
+                                        let totalAccruedPoints = documentSnap?.get(GlobalVariables.UserIDs.PointsString) as! Int
+                                        print(totalAccruedPoints)
+                                        //if the user has more than 10 points (is eligible for redemption)?
+                                        if totalAccruedPoints == 9 {
+                                            //if the user is eligible for redemption, then give the user a redemption point
+                                            
+                                            GlobalFunctions.deleteAllPoints(nameofUser: code, nameofBusiness: employerBusinessName)
+                                            
+                                            self.addredeemImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                            
+                                        } else if totalAccruedPoints < 9 {
+                                            
+                                            
+                                            //INCREMENT Points.
+                                            GlobalFunctions.incrementPointsForUser(nameofUser: code, nameofBusiness: employerBusinessName)
+                                            self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                            
+                                            
                                         }
                                         
+                                        
                                     }
+                                    
+                                    
                                 }
                                 
-                                   }
-                              }
-                          
-                            self.performSegue(withIdentifier: GlobalVariables.SegueIDs.AddPointsScreeSegue, sender: self)
+                                
+                                
+                            }
+                                
+                            else {
+                                //if the user does not exist, or has subsxribed to zumos, then reset the camera view
+                                self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                            }
+                        }
+                        
+                    }
+                }
+                
+            }
         }
+        
+        self.setupCamera()
     }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

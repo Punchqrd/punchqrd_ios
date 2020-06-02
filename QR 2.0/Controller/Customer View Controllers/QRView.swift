@@ -23,7 +23,7 @@ class QRView: UIViewController {
         
         //setup the image as the QR code, with input parameter as user email.
         image.image = generateQR(value: Auth.auth().currentUser?.email!)
-        self.IDLabel.text = ("Your Id: \(Auth.auth().currentUser?.email!)")
+        self.IDLabel.text = (Auth.auth().currentUser?.email!)
     }
 
     //this function creates a QR code that is visible as a uiimage

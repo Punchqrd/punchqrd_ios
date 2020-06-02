@@ -70,6 +70,11 @@ class GlobalFunctions {
         
     }
     
+    static func doesUserExist() {
+        
+        
+    }
+    
    
    
     

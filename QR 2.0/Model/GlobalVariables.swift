@@ -88,6 +88,7 @@ class GlobalVariables {
         static var ActualEmployeeEmail : String?
         static var ActualEmployeePassword : String?
         static var ActualEmployeeName : String?
+        static var EmployerBusinessName : String?
         
         
         //employee variables to check whether days have been picked

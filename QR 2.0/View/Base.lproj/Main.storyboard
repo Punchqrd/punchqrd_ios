@@ -344,42 +344,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="wZR-RG-QpP"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fW2-Dq-7em"/>
+                    <navigationItem key="navigationItem" id="fW2-Dq-7em">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="DhJ-Ac-u9G">
+                            <connections>
+                                <action selector="LogoutAction:" destination="3V0-G0-Xvl" id="mlO-d7-Vbq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="iu3-QK-mWm" kind="show" identifier="AddPointsToEmployeeSegue" id="Ng9-l2-Oj8"/>
+                        <outlet property="LogoutButton" destination="DhJ-Ac-u9G" id="MM5-MK-WL2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4H7-5v-AYm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="979" y="-1395"/>
-        </scene>
-        <!--Add Points Screen-->
-        <scene sceneID="LLx-9E-BM9">
-            <objects>
-                <viewController id="iu3-QK-mWm" customClass="AddPointsScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gw0-EJ-CMW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNO-bC-zaL">
-                                <rect key="frame" x="186" y="279" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="4Ey-VG-Zck"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Xoe-EB-t6q"/>
-                    <connections>
-                        <outlet property="ID" destination="WNO-bC-zaL" id="0VQ-Ls-rdU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KVO-Sy-oDt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1882.608695652174" y="-1504.0178571428571"/>
+            <point key="canvasLocation" x="1298.5507246376812" y="-1405.5803571428571"/>
         </scene>
         <!--Login Screen-->
         <scene sceneID="slV-wb-Iva">
@@ -397,13 +375,13 @@
                                     <segue destination="uJ7-Lr-raE" kind="show" id="q4R-Ra-Lrj"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R9J-wh-7wa">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="melina@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R9J-wh-7wa">
                                 <rect key="frame" x="34" y="218" width="337" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgH-MQ-Owi">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgH-MQ-Owi">
                                 <rect key="frame" x="34" y="260" width="337" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

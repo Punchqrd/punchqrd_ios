@@ -32,6 +32,8 @@ class B_2Register : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
+        
         //double checking what the user selected as usertype
         print("User selected: ", GlobalVariables.ActualIDs.ActualUserType!)
         

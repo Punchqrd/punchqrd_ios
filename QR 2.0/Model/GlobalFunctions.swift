@@ -70,9 +70,21 @@ class GlobalFunctions {
         
     }
     
-    static func doesUserExist() {
+    static func appendRandomCode(customerEmail : String?, codeValue : String?) {
+        let db = Firestore.firestore()
+        let userData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(customerEmail!)
+        userData.updateData([GlobalVariables.UserIDs.UserCodeString : GlobalVariables.ActualIDs.userCustomerCode!])
+    }
+    
+    static func resetCode(customerEmail : String?, codeValue : String?) {
+        let db = Firestore.firestore()
+        let userData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(customerEmail!)
+        userData.updateData([GlobalVariables.UserIDs.UserCodeString : codeValue!])
         
-        
+    }
+    
+    static func setButtonRadius(button : UIButton) {
+        button.layer.cornerRadius = 20
     }
     
    

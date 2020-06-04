@@ -15,6 +15,9 @@ target 'QR 2.0' do
 	pod 'Firebase/Auth'
   	pod 'GoogleMaps'
   	pod 'GooglePlaces'
+	pod 'MaterialComponents'
+	pod 'MaterialComponents/Buttons+Theming'
+	
 
 
 end

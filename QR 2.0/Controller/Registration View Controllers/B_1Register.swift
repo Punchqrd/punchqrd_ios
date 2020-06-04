@@ -47,6 +47,7 @@ class B_1Register : UIViewController {
             GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail!,
             GlobalVariables.UserIDs.UserPassword: GlobalVariables.ActualIDs.ActualPassword!,
             GlobalVariables.UserIDs.UserType: GlobalVariables.ActualIDs.ActualUserType!,
+            GlobalVariables.UserIDs.UserCodeString : "",
             ] as [String : Any]
         
         return NewUser

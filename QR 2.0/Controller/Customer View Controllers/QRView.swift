@@ -21,11 +21,45 @@ class QRView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //setup the image as the QR code, with input parameter as user email.
-        image.image = generateQR(value: Auth.auth().currentUser?.email!)
-        self.IDLabel.text = (Auth.auth().currentUser?.email!)
+        
+        
+        
+        
+        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let randomNumber = Int.random(in: 0...1000000)
+        GlobalFunctions.resetCode(customerEmail: Auth.auth().currentUser?.email!, codeValue: String(randomNumber))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupCodeAndView()
+    }
+    
+    func setupCodeAndView() {
+        //generate a string of random numbers
+        var randomNumberArray : [Int] = []
+        for _ in 1...10 {
+            let randomNumber = Int.random(in: 0...9)
+            randomNumberArray.append(randomNumber)
+        }
+        var finalValue = ""
+        for values in randomNumberArray {
+            finalValue.append(String(values))
+        }
+        GlobalVariables.ActualIDs.userCustomerCode = finalValue
+        GlobalFunctions.appendRandomCode(customerEmail: Auth.auth().currentUser?.email!, codeValue: GlobalVariables.ActualIDs.userCustomerCode!)
+        let codeValue = "\((Auth.auth().currentUser?.email!)!) \(finalValue)"
+        image.image = generateQR(value: codeValue)
+        self.IDLabel.text = (codeValue)
+    }
+    
+    
+   
 
+    
+    
     //this function creates a QR code that is visible as a uiimage
     func generateQR(value: String!) -> UIImage? {
     

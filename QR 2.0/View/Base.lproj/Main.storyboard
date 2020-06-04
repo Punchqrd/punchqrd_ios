@@ -6,6 +6,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-Thin.ttf">
+            <string>Poppins-Thin</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Register-->
         <scene sceneID="eh8-QU-cin">
@@ -215,66 +223,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e87-pe-pmE">
-                                <rect key="frame" x="304" y="767" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="My QR"/>
-                                <connections>
-                                    <action selector="ViewQR:" destination="Pjb-C6-ViW" eventType="touchUpInside" id="G9o-OS-rSh"/>
-                                    <segue destination="Vqe-xR-fWL" kind="popoverPresentation" popoverAnchorView="e87-pe-pmE" id="jXS-d8-QJt">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jSx-KW-6yE">
-                                <rect key="frame" x="0.0" y="107" width="414" height="579"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="655"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <sections/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kP5-Cq-xAo">
-                                <rect key="frame" x="49" y="767" width="129" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M48-nB-CiT">
+                                <rect key="frame" x="280" y="781" width="114" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search Businesses"/>
+                                <state key="normal" title="Button" image="qrButton"/>
                                 <connections>
-                                    <action selector="SearchBusinesses:" destination="Pjb-C6-ViW" eventType="touchUpInside" id="UU3-pV-J0D"/>
-                                    <segue destination="LLP-fA-b4A" kind="show" id="yKM-yO-bjA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEu-Jl-yaj">
-                                <rect key="frame" x="109" y="711" width="69" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Value"/>
-                                <connections>
-                                    <action selector="AddPoints:" destination="Pjb-C6-ViW" eventType="touchUpInside" id="o8F-vv-Qml"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYX-Qi-H29">
-                                <rect key="frame" x="270" y="711" width="86" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reset Points"/>
-                                <connections>
-                                    <action selector="DeletePoints:" destination="Pjb-C6-ViW" eventType="touchUpInside" id="fNC-fz-IHt"/>
+                                    <action selector="viewQRButton:" destination="Pjb-C6-ViW" eventType="touchUpInside" id="IBK-3v-UQJ"/>
+                                    <segue destination="Vqe-xR-fWL" kind="presentation" id="U5c-JU-FEz"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Jt3-Eo-G0D"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="XYX-3c-uYY">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="qIY-vW-1Il">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="uxk-GK-NmT">
+                            <color key="tintColor" red="0.099860005079999994" green="0.13163185120000001" blue="0.2235397398" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="searchBusinessButton:" destination="Pjb-C6-ViW" id="Qek-Ew-fI9"/>
+                                <segue destination="LLP-fA-b4A" kind="show" id="59H-Av-INb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" image="arrowshape.turn.up.left" catalog="system" id="qIY-vW-1Il">
+                            <color key="tintColor" red="0.099860005079999994" green="0.13163185120000001" blue="0.2235397398" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="LogoutButton:" destination="Pjb-C6-ViW" id="5R0-q1-sUl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="BusinessList" destination="jSx-KW-6yE" id="NnM-ZS-72E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kh-Si-mwF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4636" y="-524"/>
+            <point key="canvasLocation" x="4634.7826086956529" y="-524.33035714285711"/>
         </scene>
         <!--View-->
         <scene sceneID="r5a-nT-tDj">
@@ -363,54 +355,64 @@
         <scene sceneID="slV-wb-Iva">
             <objects>
                 <viewController id="s4K-dY-0HM" customClass="LoginScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ha4-5p-IXz">
+                    <view key="view" contentMode="scaleAspectFit" id="ha4-5p-IXz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEb-Au-F7G">
-                                <rect key="frame" x="179" y="754" width="57" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R9J-wh-7wa">
+                                <rect key="frame" x="39" y="365" width="337" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <segue destination="uJ7-Lr-raE" kind="show" id="q4R-Ra-Lrj"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="melina@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R9J-wh-7wa">
-                                <rect key="frame" x="34" y="218" width="337" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgH-MQ-Owi">
-                                <rect key="frame" x="34" y="260" width="337" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZgH-MQ-Owi">
+                                <rect key="frame" x="39" y="407" width="337" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC8-je-Ice">
-                                <rect key="frame" x="34" y="302" width="337" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC8-je-Ice">
+                                <rect key="frame" x="39" y="449" width="337" height="9"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Poppins-Thin" family="Poppins" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgp-gh-kOO">
-                                <rect key="frame" x="188" y="331" width="38" height="30"/>
+                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dgp-gh-kOO">
+                                <rect key="frame" x="39" y="466" width="337" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login"/>
+                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="LoginAction:" destination="s4K-dY-0HM" eventType="touchUpInside" id="mfI-yl-6Kx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEb-Au-F7G">
+                                <rect key="frame" x="145" y="816" width="125" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Poppins-Thin" family="Poppins" pointSize="17"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uJ7-Lr-raE" kind="show" id="q4R-Ra-Lrj"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3tR-3K-xVu"/>
                     </view>
-                    <navigationItem key="navigationItem" id="d6j-BE-H2p"/>
+                    <navigationItem key="navigationItem" id="Yjn-hE-9QI"/>
                     <connections>
                         <outlet property="EmailTextField" destination="R9J-wh-7wa" id="exN-gx-RmQ"/>
                         <outlet property="ErrorLabel" destination="RC8-je-Ice" id="qqd-Cl-J8X"/>
+                        <outlet property="LoginButton" destination="Dgp-gh-kOO" id="F6a-yB-7Fm"/>
                         <outlet property="PasswordTextField" destination="ZgH-MQ-Owi" id="NhQ-oV-wMh"/>
+                        <outlet property="RegisterButton" destination="HEb-Au-F7G" id="CAT-YD-lLg"/>
                         <segue destination="Pjb-C6-ViW" kind="show" identifier="CustomerHomeScreen" id="KRw-zj-nqN"/>
                         <segue destination="4zM-D4-uka" kind="show" identifier="OwnerHomeScreen" id="cuJ-rL-5Wf"/>
                         <segue destination="3V0-G0-Xvl" kind="show" identifier="EmployeeLoginSegue" id="WlR-iH-hqg"/>
@@ -418,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g5Y-TT-V8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165.217391304348" y="-416.51785714285711"/>
+            <point key="canvasLocation" x="1082.608695652174" y="-481.47321428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lud-qK-ofp">
@@ -428,6 +430,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9fG-FZ-rSy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -497,4 +500,9 @@
             <point key="canvasLocation" x="2793" y="717"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="qrButton" width="2100" height="1500"/>
+    </resources>
 </document>

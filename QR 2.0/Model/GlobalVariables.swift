@@ -62,6 +62,7 @@ class GlobalVariables {
         static let saturdayEndTimeString = "End"
         static let sundayStartTimeString = "Start"
         static let sundayEndTimeString = "End"
+        static let UserCodeString = "Code"
 
         static let EmployeeEmailString = "Employee Email"
         static let EmployeePasswordString = "Password"
@@ -116,6 +117,9 @@ class GlobalVariables {
         static var sundayStartTime : String?
         static var sundayEndTime : String?
         
+        
+        //the random value generated from the qr code on the customers screen
+        static var userCustomerCode : String?
         
         //the value read from the qr code scanner
         static var ActualQRData : String?

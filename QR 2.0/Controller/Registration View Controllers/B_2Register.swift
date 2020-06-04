@@ -18,22 +18,32 @@ import GoogleMaps
 //this is the OWNER view controller register class
 class B_2Register : UIViewController {
     
+    @IBOutlet weak var nameConfirmButton: UIButton!
+    @IBOutlet weak var addressConfirmButton: UIButton!
+    var confirmedAddress : Bool?
+    var confirmedName : Bool?
+    var businessName : String?
+    var businessAddress : String?
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
     let db = Firestore.firestore()
-   // @IBOutlet weak var BusinessNameTextField: UITextField!
-    //@IBOutlet weak var ZipCodeTextField: UITextField!
-    @IBOutlet weak var EmailTextField: UITextField!
-    @IBOutlet weak var PasswordTextField: UITextField!
-    @IBOutlet weak var ConfirmPasswordTextField: UITextField!
-    @IBOutlet weak var ErrorLabel : UILabel!
+    @IBOutlet weak var NameLabel : UILabel!
+    @IBOutlet weak var checkMarksLabel: UILabel!
+    @IBOutlet weak var AddressLabel: UILabel!
+    @IBOutlet weak var ConfirmButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        // Remove the background color.
+        navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         
+        // Set the shadow color.
+        navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
         //double checking what the user selected as usertype
         print("User selected: ", GlobalVariables.ActualIDs.ActualUserType!)
         
@@ -52,100 +62,105 @@ class B_2Register : UIViewController {
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.searchBar.placeholder = "Lookup your business."
     }
-
     
-    @IBAction func ConfirmData(_ sender: UIButton) {
-        
-        //the next few lines set the global data variables as the textfield user inputted data for use in data set.
-        GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
-        GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
-        //***Still need to set the address
-        SetupNewUser()
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.hidesBackButton = true
+        GlobalFunctions.setButtonRadius(button: self.ConfirmButton)
+        //instnatinate these as false when the user opens the screen
+        self.confirmedName = false
+        self.confirmedAddress = false
+        self.ConfirmButton.isHidden = true
+        self.nameConfirmButton.isHidden = true
+        self.addressConfirmButton.isHidden = true
+        self.checkMarksLabel.isHidden = true
+    }
 
+    //confirm the global variables as the business name data
+    //move to the next screen.
+    @IBAction func BusinessConfirm(_ sender: UIButton) {
+        
+        
+        if confirmedAddress == true && confirmedName == true {
+            GlobalVariables.ActualIDs.ActualBusinessName = self.businessName
+            GlobalVariables.ActualIDs.ActualZipCode = self.businessAddress
+            self.performSegue(withIdentifier: GlobalVariables.SegueIDs.PostBusinessSearchSegue, sender: self)
+        } else {self.errorLabel.text = "Please check the marks to confirm."}
         
     }
     
-    //create a new list with the new variables
-    func InstantiateOwnerList() -> [String : Any] {
-        
-        let NewUser = [
-            
-            GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail, //(0)
-            GlobalVariables.UserIDs.BusinessName : GlobalVariables.ActualIDs.ActualBusinessName, //(1)
-            GlobalVariables.UserIDs.UserPassword: GlobalVariables.ActualIDs.ActualPassword, //(2)
-            GlobalVariables.UserIDs.UserType: GlobalVariables.ActualIDs.ActualUserType, //(3)
-            GlobalVariables.UserIDs.UserZipCode: GlobalVariables.ActualIDs.ActualZipCode //(4)
-        ]
-        
-        return NewUser as [String : Any]
-        
-    }
     
-    //setup the firebase for the new owner with a list of owner variables
-    func SetupFirebaseData () {
-        db.collection(GlobalVariables.UserIDs.CollectionTitle).document("\(GlobalVariables.ActualIDs.ActualEmail!)").setData(InstantiateOwnerList()) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
-            }
+    
+    @IBAction func ConfirmNameAction(_ sender: UIButton) {
+        self.nameConfirmButton.tintColor = .green
+        self.confirmedAddress = true
+        if self.confirmedName == true {
+            self.checkMarksLabel.isHidden = true
+            self.ConfirmButton.isHidden = false
         }
     }
     
-    //setup a new user function
-    func SetupNewUser () {
-          
-          Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
-              if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
-              else {
-                print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a \(GlobalVariables.ActualIDs.ActualUserType!)")
-                self.SetupFirebaseData()
-                  self.navigationController?.popToRootViewController(animated: true)
-              }
-          }
-          
-      }
+    @IBAction func ConfirmAddress(_ sender: UIButton) {
+        self.addressConfirmButton.tintColor = .green
+        self.confirmedName = true
+        if self.confirmedAddress == true {
+            self.checkMarksLabel.isHidden = true
+            self.ConfirmButton.isHidden = false
+        }
+    }
+    
+    
+    
     
 }
 
 
 //this extension is from the api
 extension B_2Register: GMSAutocompleteResultsViewControllerDelegate {
-      func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                             didAutocompleteWith place: GMSPlace) {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
         searchController?.searchBar.text = place.name
-        GlobalVariables.ActualIDs.ActualZipCode = place.formattedAddress
-        GlobalVariables.ActualIDs.ActualBusinessName = place.name
+        self.businessAddress = place.formattedAddress
+        self.businessName = place.name
+        self.AddressLabel.text = place.formattedAddress
+        self.NameLabel.text = place.name
+        self.addressConfirmButton.tintColor = .red
+        self.nameConfirmButton.tintColor = .red
+        self.ConfirmButton.isHidden = true
+        self.confirmedName = false
+        self.confirmedAddress = false
+        self.addressConfirmButton.isHidden = false
+        self.nameConfirmButton.isHidden = false
+        self.checkMarksLabel.isHidden = false
         // Do something with the selected place.
         //print("Place name: \(place.name)")
         //print("Place address: \(place.formattedAddress)")
         //print("Place attributions: \(place.attributions)")
-      }
-
-      func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                             didFailAutocompleteWithError error: Error){
-        // TODO: handle the error.
-        print("Error: ", error.localizedDescription)
-      }
-
-      // Turn the network activity indicator on and off again.
-      func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-      }
-
-      func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-      }
     }
     
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didFailAutocompleteWithError error: Error){
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
     
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
     
-    
-    
-    
-    
-    
-    
-    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}
+
+
+
+
+
+
+
+
+
+
 

@@ -17,6 +17,8 @@
 		1772FA2A248175F700AE4DD2 /* ShiftCellObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */; };
 		177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */; };
 		179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179534CD2482B28200C033E6 /* WorkWeek.swift */; };
+		1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */; };
+		1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6E248957FD00B227B2 /* B_2_2Register.swift */; };
 		17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */; };
 		17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */; };
 		17C81F1B247ACA7B008DAAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C81F19247ACA7B008DAAA2 /* Main.storyboard */; };
@@ -65,6 +67,8 @@
 		1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftCellObject.swift; sourceTree = "<group>"; };
 		177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataProtocols.swift; sourceTree = "<group>"; };
 		179534CD2482B28200C033E6 /* WorkWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWeek.swift; sourceTree = "<group>"; };
+		1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_1Register.swift; sourceTree = "<group>"; };
+		1796CB6E248957FD00B227B2 /* B_2_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_2Register.swift; sourceTree = "<group>"; };
 		17C81F10247ACA7B008DAAA2 /* QR 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				17C81F2D247ACE2E008DAAA2 /* A_Register.swift */,
 				17C81F2F247AD276008DAAA2 /* B_1Register.swift */,
 				17C81F31247AD2AB008DAAA2 /* B_2Register.swift */,
+				1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */,
+				1796CB6E248957FD00B227B2 /* B_2_2Register.swift */,
 			);
 			path = "Registration View Controllers";
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 				17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */,
 				17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */,
 				17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */,
+				1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */,
 				17C81F38247C3197008DAAA2 /* GlobalFunctions.swift in Sources */,
 				17C81F2C247ACB01008DAAA2 /* GlobalVariables.swift in Sources */,
 				173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */,
@@ -452,6 +459,7 @@
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,
 				17C81F30247AD276008DAAA2 /* B_1Register.swift in Sources */,
+				1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,6 @@ import Firebase
 class QRView: UIViewController {
     
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var IDLabel: UILabel!
     
 
     override func viewDidLoad() {
@@ -52,7 +51,6 @@ class QRView: UIViewController {
         GlobalFunctions.appendRandomCode(customerEmail: Auth.auth().currentUser?.email!, codeValue: GlobalVariables.ActualIDs.userCustomerCode!)
         let codeValue = "\((Auth.auth().currentUser?.email!)!) \(finalValue)"
         image.image = generateQR(value: codeValue)
-        self.IDLabel.text = (codeValue)
     }
     
     

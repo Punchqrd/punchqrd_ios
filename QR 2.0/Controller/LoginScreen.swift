@@ -42,6 +42,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
+        
 
     }
     
@@ -54,6 +55,8 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         
         
     }
+    
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

@@ -63,6 +63,7 @@ class GlobalVariables {
         static let sundayStartTimeString = "Start"
         static let sundayEndTimeString = "End"
         static let UserCodeString = "Code"
+        static let AccessCodeCollectionTitle = "Access Code"
 
         static let EmployeeEmailString = "Employee Email"
         static let EmployeePasswordString = "Password"
@@ -142,6 +143,8 @@ class GlobalVariables {
         static let EmployeeAddScreenSegue = "EmployeeAddScreenSegue"
         static let EmployeeLoginSegue = "EmployeeLoginSegue"
         static let AddPointsScreeSegue = "AddPointsToEmployeeSegue"
+        static let AccessCodeSuccessSegue = "AccessCodeSuccess"
+        static let PostBusinessSearchSegue = "PostBusinessSearch"
            
        }
     

@@ -27,8 +27,11 @@ class CustomerHomeScreen : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        // Remove the background color.
+        navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
+
+        // Set the shadow color.
+        navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
         refreshTableView()
         
         
@@ -37,7 +40,7 @@ class CustomerHomeScreen : UIViewController{
     
     //what will appear in the view before it loads onto the screen
     override func viewWillAppear(_ animated: Bool) {
-        
+
         self.BusinessList.backgroundColor = .white
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.isHidden = false
@@ -195,14 +198,19 @@ extension CustomerHomeScreen: UITableViewDataSource {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+}
+
+extension UIColor {
+
+    /// Converts this `UIColor` instance to a 1x1 `UIImage` instance and returns it.
+    ///
+    /// - Returns: `self` as a 1x1 `UIImage`.
+    func as1ptImage() -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        setFill()
+        UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }

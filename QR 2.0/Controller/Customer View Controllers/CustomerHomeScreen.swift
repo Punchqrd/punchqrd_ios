@@ -27,9 +27,11 @@ class CustomerHomeScreen : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        BusinessList.delegate = self
+
         // Remove the background color.
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
-
+        
         // Set the shadow color.
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
         refreshTableView()
@@ -40,7 +42,7 @@ class CustomerHomeScreen : UIViewController{
     
     //what will appear in the view before it loads onto the screen
     override func viewWillAppear(_ animated: Bool) {
-
+        
         self.BusinessList.backgroundColor = .white
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.isHidden = false
@@ -67,6 +69,7 @@ class CustomerHomeScreen : UIViewController{
         self.BusinessList.reloadData()
         self.refresher.addTarget(self, action: #selector(CustomerHomeScreen.refresh), for: UIControl.Event.valueChanged)
         self.BusinessList.addSubview(self.refresher)
+        self.refresher.backgroundColor = .white
         
     }
     
@@ -80,10 +83,12 @@ class CustomerHomeScreen : UIViewController{
     
     //function to refresh the data on the page
     func refreshData() {
+        self.BusinessList.reloadData()
         DispatchQueue.main.async { self.BusinessList.reloadData() }
         createBusinessList()
         BusinessList.dataSource = self
         BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
+        self.refresher.endRefreshing()
     }
     
     
@@ -129,7 +134,26 @@ class CustomerHomeScreen : UIViewController{
     }
     
     
-    
+    func createBottomAlert(title : String?, message : String?, valueRemove : Int, path : IndexPath) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            GlobalFunctions.deleteBusinessFromCustomerCollection(nameOfFile: self.BusinessNamesArray[valueRemove].name)
+            self.BusinessNamesArray.remove(at: valueRemove)
+            self.BusinessList.deleteRows(at: [path], with: .fade)
+            //insert the function to delete a piece of data from the collection
+            self.BusinessList.reloadData()
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        
+        self.present(alert, animated: true)
+    }
     
     
     
@@ -153,7 +177,7 @@ class CustomerHomeScreen : UIViewController{
 }
 
 //extension for the uitable view data
-extension CustomerHomeScreen: UITableViewDataSource {
+extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     //how many cells should be present
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -166,8 +190,9 @@ extension CustomerHomeScreen: UITableViewDataSource {
         
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
         
-        
-        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.white
+        cell.selectedBackgroundView = backgroundView
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
@@ -185,23 +210,25 @@ extension CustomerHomeScreen: UITableViewDataSource {
         
     }
     
-    //function to remove data from a cell, and to swipe to delete the cell from the table
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            GlobalFunctions.deleteBusinessFromCustomerCollection(nameOfFile: BusinessNamesArray[indexPath.row].name)
-            BusinessNamesArray.remove(at: indexPath.row)
-            BusinessList.deleteRows(at: [indexPath], with: .fade)
-            //insert the function to delete a piece of data from the collection
-            self.BusinessList.reloadData()
+    
+    //disable full swipe accross cell
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            self.createBottomAlert(title: "Remove this Business?", message: "All points will be lost", valueRemove: indexPath.row, path: indexPath)
+            completionHandler(true)
         }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
         
     }
     
-    
+  
 }
 
 extension UIColor {
-
+    
     /// Converts this `UIColor` instance to a 1x1 `UIImage` instance and returns it.
     ///
     /// - Returns: `self` as a 1x1 `UIImage`.

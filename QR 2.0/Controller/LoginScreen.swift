@@ -90,6 +90,18 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
                     else {
                         GlobalVariables.ActualIDs.CurrentUser = self.EmailTextField.text!
                         let data = dataPiece?.get(GlobalVariables.UserIDs.UserType) as! String
+                        if data == GlobalVariables.UserIDs.UserDeletedType {
+                            let user = Auth.auth().currentUser
+                            user?.delete(completion: { (error) in
+                                if let error = error { print(error.localizedDescription)}
+                                else {
+                                    
+                                    self.logoutAlert(title: "The employee \(self.EmailTextField.text!) has been deleted from the system", message: nil)
+                                    self.EmailTextField.text = nil
+                                    self.PasswordTextField.text = nil
+                                }
+                            })
+                        }
                         if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)}
                         if data == GlobalVariables.UserIDs.UserEmployee {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: self)}
                         if data == GlobalVariables.UserIDs.UserOwner {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
@@ -100,7 +112,16 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
     }
     
     
-  
+  func logoutAlert(title : String?, message : String?) {
+         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+         
+         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+             alert.dismiss(animated: true, completion: nil)
+         }))
+         
+         
+         self.present(alert, animated: true)
+     }
    
     
 }

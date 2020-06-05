@@ -12,14 +12,15 @@
 		17121857247EFA300060093A /* BusinessName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121856247EFA300060093A /* BusinessName.swift */; };
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
-		1772FA272481731A00AE4DD2 /* EmployeeDatecell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772FA252481731A00AE4DD2 /* EmployeeDatecell.swift */; };
-		1772FA282481731A00AE4DD2 /* EmployeeDatecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1772FA262481731A00AE4DD2 /* EmployeeDatecell.xib */; };
-		1772FA2A248175F700AE4DD2 /* ShiftCellObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */; };
 		177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */; };
 		179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179534CD2482B28200C033E6 /* WorkWeek.swift */; };
 		1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */; };
 		1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6E248957FD00B227B2 /* B_2_2Register.swift */; };
 		1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */; };
+		1796CB75248AE3B200B227B2 /* RemoveEmployeesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB74248AE3B200B227B2 /* RemoveEmployeesScreen.swift */; };
+		1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB79248AE58900B227B2 /* EmployeeCell.swift */; };
+		1796CB7C248AE58900B227B2 /* EmployeeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1796CB7A248AE58900B227B2 /* EmployeeCell.xib */; };
+		1796CB7E248AE73700B227B2 /* EmployeeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB7D248AE73700B227B2 /* EmployeeObject.swift */; };
 		17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */; };
 		17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */; };
 		17C81F1B247ACA7B008DAAA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C81F19247ACA7B008DAAA2 /* Main.storyboard */; };
@@ -33,7 +34,6 @@
 		17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */; };
 		17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */; };
 		17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */; };
-		17CA30C524816760006EDFEA /* AddEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */; };
 		17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF1969248851EE0040059C /* Poppins-Thin.ttf */; };
 		17DF196C2488773D0040059C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DF196B2488773C0040059C /* Assets.xcassets */; };
 		17DF197E2488863C0040059C /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF196D248885DA0040059C /* Poppins-MediumItalic.ttf */; };
@@ -63,14 +63,15 @@
 		17121856247EFA300060093A /* BusinessName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessName.swift; sourceTree = "<group>"; };
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
-		1772FA252481731A00AE4DD2 /* EmployeeDatecell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDatecell.swift; sourceTree = "<group>"; };
-		1772FA262481731A00AE4DD2 /* EmployeeDatecell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeDatecell.xib; sourceTree = "<group>"; };
-		1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftCellObject.swift; sourceTree = "<group>"; };
 		177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataProtocols.swift; sourceTree = "<group>"; };
 		179534CD2482B28200C033E6 /* WorkWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWeek.swift; sourceTree = "<group>"; };
 		1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_1Register.swift; sourceTree = "<group>"; };
 		1796CB6E248957FD00B227B2 /* B_2_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_2Register.swift; sourceTree = "<group>"; };
 		1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondAddEmployeeScreen.swift; sourceTree = "<group>"; };
+		1796CB74248AE3B200B227B2 /* RemoveEmployeesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEmployeesScreen.swift; sourceTree = "<group>"; };
+		1796CB79248AE58900B227B2 /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
+		1796CB7A248AE58900B227B2 /* EmployeeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeCell.xib; sourceTree = "<group>"; };
+		1796CB7D248AE73700B227B2 /* EmployeeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeObject.swift; sourceTree = "<group>"; };
 		17C81F10247ACA7B008DAAA2 /* QR 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +87,6 @@
 		17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeScreen.swift; sourceTree = "<group>"; };
 		17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHomeScreen.swift; sourceTree = "<group>"; };
-		17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeScreen.swift; sourceTree = "<group>"; };
 		17DF1969248851EE0040059C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		17DF196B2488773C0040059C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17DF196D248885DA0040059C /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */,
-				17CA30C424816760006EDFEA /* AddEmployeeScreen.swift */,
 				1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */,
+				1796CB74248AE3B200B227B2 /* RemoveEmployeesScreen.swift */,
 			);
 			path = "Owner View Controllers";
 			sourceTree = "<group>";
@@ -197,8 +197,8 @@
 				17C81F2B247ACB01008DAAA2 /* GlobalVariables.swift */,
 				17121856247EFA300060093A /* BusinessName.swift */,
 				17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */,
-				1772FA252481731A00AE4DD2 /* EmployeeDatecell.swift */,
-				1772FA29248175F700AE4DD2 /* ShiftCellObject.swift */,
+				1796CB79248AE58900B227B2 /* EmployeeCell.swift */,
+				1796CB7D248AE73700B227B2 /* EmployeeObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 			children = (
 				17C81F19247ACA7B008DAAA2 /* Main.storyboard */,
 				17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */,
-				1772FA262481731A00AE4DD2 /* EmployeeDatecell.xib */,
+				1796CB7A248AE58900B227B2 /* EmployeeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,9 +357,9 @@
 				17DF198C2488863C0040059C /* Poppins-ExtraLightItalic.ttf in Resources */,
 				17DF19892488863C0040059C /* Poppins-SemiBold.ttf in Resources */,
 				17DF197E2488863C0040059C /* Poppins-MediumItalic.ttf in Resources */,
+				1796CB7C248AE58900B227B2 /* EmployeeCell.xib in Resources */,
 				17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */,
 				17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */,
-				1772FA282481731A00AE4DD2 /* EmployeeDatecell.xib in Resources */,
 				17DF19852488863C0040059C /* Poppins-Bold.ttf in Resources */,
 				17DF19872488863C0040059C /* Poppins-BoldItalic.ttf in Resources */,
 				17DF198A2488863C0040059C /* Poppins-Light.ttf in Resources */,
@@ -444,8 +444,11 @@
 				17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */,
 				179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */,
 				177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */,
+				1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
 				17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */,
+				1796CB7E248AE73700B227B2 /* EmployeeObject.swift in Sources */,
+				1796CB75248AE3B200B227B2 /* RemoveEmployeesScreen.swift in Sources */,
 				17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */,
 				17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */,
 				1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */,
@@ -453,12 +456,9 @@
 				17C81F2C247ACB01008DAAA2 /* GlobalVariables.swift in Sources */,
 				173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */,
 				1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */,
-				1772FA272481731A00AE4DD2 /* EmployeeDatecell.swift in Sources */,
-				1772FA2A248175F700AE4DD2 /* ShiftCellObject.swift in Sources */,
 				17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */,
 				17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */,
 				173F1701247DB44B00C67812 /* QRView.swift in Sources */,
-				17CA30C524816760006EDFEA /* AddEmployeeScreen.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,

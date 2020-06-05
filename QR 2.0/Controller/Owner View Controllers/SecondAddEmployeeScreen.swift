@@ -66,42 +66,21 @@ class SecondAddEmployeeScreen: UIViewController, UITextFieldDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         
     }
+
+        
+        
     
-    //function to create said employee's shifts and whatnot.
-    func createNewEmployeeShiftCollection() {
-        
-        //set of the same function declared in GlobalFunctions.swift to add the shift data acquired to the firestore database.
-        //these also add the shifts of the Employee to the employees attributes
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.mondayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.mondayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.mondayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.tuesdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.tuesdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.tuesdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.wednesdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.wednesdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.wednesdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.thursdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.thursdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.thursdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.fridayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.fridayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.fridayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.saturdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.saturdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.saturdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.sundayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.sundayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.sundayEndTime])
-        
-        
-        
-        
-        
-    }
     //function to add the users email and password to the authentication system
     func createNewEmployeeAsUser() {
         
         GlobalVariables.ActualIDs.ActualEmail = self.EmailField.text!
         GlobalVariables.ActualIDs.ActualUserType = GlobalVariables.UserIDs.UserEmployee
-        
+        let currentUser = Auth.auth().currentUser?.email
         Auth.auth().createUser(withEmail: self.EmailField.text!, password: self.PasswordField.text!) { (user, error) in
             if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
             else {
+                GlobalFunctions.addEmployee(nameofUser: currentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!)
                 print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a \(GlobalVariables.ActualIDs.ActualUserType!)")
-                self.createNewEmployeeShiftCollection()
                 self.backTwo()
                 
             }
@@ -111,7 +90,7 @@ class SecondAddEmployeeScreen: UIViewController, UITextFieldDelegate {
     
     func backTwo() {
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 2], animated: true)
     }
     
     @IBAction func CreateEmployee(_ sender: UIButton) {

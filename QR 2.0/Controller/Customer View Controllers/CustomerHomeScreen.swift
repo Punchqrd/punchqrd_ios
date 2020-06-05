@@ -27,10 +27,8 @@ class CustomerHomeScreen : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         BusinessList.delegate = self
-        
         // Remove the background color.
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
-        
         // Set the shadow color.
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
         refreshTableView()

@@ -15,6 +15,7 @@ import AVKit
 
 class OwnerHomeScreen : UIViewController {
     
+    @IBOutlet weak var RemoveEmployeeButton: UIButton!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var AddEmployeeButton: UIButton!
     
@@ -32,11 +33,17 @@ class OwnerHomeScreen : UIViewController {
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
         self.navigationController?.navigationBar.isHidden = false
         GlobalFunctions.setButtonRadius(button: self.AddEmployeeButton)
+        GlobalFunctions.setButtonRadius(button: self.RemoveEmployeeButton)
     }
     
     @IBAction func AddEmployeeAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeAddScreenSegue  , sender: self)
+        
     }
+    
+    @IBAction func RemoveEmployeeAction(_ sender: UIButton) {
+        
+    }
+    
     
     //logout the owner
     @IBAction func LogoutButton(_ sender: UIBarButtonItem) {

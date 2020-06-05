@@ -28,40 +28,18 @@ class GlobalVariables {
         static let CustomerBusinessCollection = "Business Collection"
         static let PointsString =  "Points"
         static let CustomerTableViewCellID = "BusinessCell"
+        static let EmployeeTableCellID = "EmployeeCell"
+        static let EmployeeNibCellID = "EmployeeCell"
         static let CustomerNibCell = "BusinessForCustomerCell"
         static let RedemptionNumberString = "Redemption Number"
         static let EmployeeList = "Employees"
-        static let EmployeeShiftCollection = "Employee Shifts"
-        static let DateViewCellForEmployeeID = "DatesCell"
-        static let ShiftCellObjectTitle = "ShiftCellObject"
-        static let EmployeeDateCelltitle = "EmployeeDatecell"
-        static let daysofWeekArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        static let startStringTime = "Start Time"
-        static let endStringTime = "End Time"
+        static let UserDeletedType = "Deleted"
         
-        //employee strings
-        static let mondayString = "Monday"
-        static let tuesdayString = "Tuesday"
-        static let wednesdayString = "Wendesday"
-        static let thursdayString = "Thursday"
-        static let fridayString = "Friday"
-        static let saturdayString = "Saturday"
-        static let sundayString = "Sunday"
+       
         
-        static let mondayStartTimeString = "Start"
-        static let mondayEndTimeString = "End"
-        static let tuesdayStartTimeString = "Start"
-        static let tuesdayEndTimeString = "End"
-        static let wednesdayStartTimeString = "Start"
-        static let wednesdayEndTimeString = "End"
-        static let thursdayStartTimeString = "Start"
-        static let thursdayEndTimeString = "End"
-        static let fridayStartTimeString = "Start"
-        static let fridayEndTimeString = "End"
-        static let saturdayStartTimeString = "Start"
-        static let saturdayEndTimeString = "End"
-        static let sundayStartTimeString = "Start"
-        static let sundayEndTimeString = "End"
+        
+        
+        
         static let UserCodeString = "Code"
         static let AccessCodeCollectionTitle = "Access Code"
 
@@ -93,31 +71,7 @@ class GlobalVariables {
         static var EmployerBusinessName : String?
         
         
-        //employee variables to check whether days have been picked
-        static var mondayIsOn : Bool?
-        static var tuesdayIsOn : Bool?
-        static var wednesdayIsOn : Bool?
-        static var thursdayIsOn : Bool?
-        static var fridayIsOn : Bool?
-        static var saturdayIsOn : Bool?
-        static var sundayIsOn : Bool?
-
-        //adding a string for each day
-        static var mondayStartTime : String?
-        static var mondayEndTime : String?
-        static var tuesdayStartTime : String?
-        static var tuesdayEndTime : String?
-        static var wednesdayStartTime : String?
-        static var wednesdayEndTime : String?
-        static var thursdayStartTime : String?
-        static var thursdayEndTime : String?
-        static var fridayStartTime : String?
-        static var fridayEndTime : String?
-        static var saturdayStartTime : String?
-        static var saturdayEndTime : String?
-        static var sundayStartTime : String?
-        static var sundayEndTime : String?
-        
+     
         
         //the random value generated from the qr code on the customers screen
         static var userCustomerCode : String?

@@ -12,7 +12,7 @@ import Firebase
 import GoogleMaps
 import GooglePlaces
 
-class B_2_2Register : UIViewController {
+class B_2_2Register : UIViewController, UITextFieldDelegate{
     
     let db = Firestore.firestore()
     @IBOutlet weak var EmailTextField: UITextField! {
@@ -38,7 +38,15 @@ class B_2_2Register : UIViewController {
     @IBOutlet weak var ErrorLabel : UILabel!
     
     override func viewDidLoad() {
+        self.EmailTextField.delegate = self
+        self.PasswordTextField.delegate = self
+        self.ConfirmPasswordTextField.delegate = self
         super.viewDidLoad()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {

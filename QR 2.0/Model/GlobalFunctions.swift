@@ -23,6 +23,20 @@ class GlobalFunctions {
             } else {print("Deleted File")}}
     }
     
+    static func deleteEmployeeFromBusiness(nameOfFile : String?){
+        let db = Firestore.firestore()
+            
+        db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameOfFile!).updateData([GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserDeletedType])
+                       
+                
+               db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.EmployeeList).document(nameOfFile!).delete()
+                   { err in if let err = err {
+                       print(err.localizedDescription)
+                   } else {print("Deleted File")}}
+       
+        
+    }
+    
     
     //increment the points of (name of business) for the (name of user) by 1.
     static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?) {
@@ -54,19 +68,16 @@ class GlobalFunctions {
 
     }
     //add an employee to the list of employees with respective shifts
-    static func addEmployee (nameofUser : String?, employeeName : String?, employeeEmail : String?, employeePassword : String?, workDay : String?, workShift : [String? : String?]) {
+    static func addEmployee (nameofUser : String?, employeeName : String?, employeeEmail : String?, employeePassword : String?) {
         let db = Firestore.firestore()
         print(nameofUser!)
         //this makes a new collection of employees, if it already hasnt been
         let Employeecollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.EmployeeList)
         //set details of user ID's in the employee field
         Employeecollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.EmployeeNameString : employeeName!, GlobalVariables.UserIDs.EmployeePasswordString : employeePassword!, GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
-        //create a new collection of employee shifts
-        Employeecollection.document(employeeEmail!).collection(GlobalVariables.UserIDs.EmployeeShiftCollection).document(workDay!).setData(workShift as! [String : Any])
-        //setup the branch for the employee as an All User. so we can access information directly from him
-        let EmployeeBranch = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employeeEmail!)
-        EmployeeBranch.setData(["Employer" : nameofUser!, GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
-        EmployeeBranch.collection(GlobalVariables.UserIDs.EmployeeShiftCollection).document(workDay!).setData(workShift as! [String : Any])
+    
+        let userCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle)
+        userCollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
         
     }
     

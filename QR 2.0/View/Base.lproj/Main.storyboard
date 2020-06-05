@@ -118,6 +118,20 @@
                                 </state>
                                 <connections>
                                     <action selector="AddEmployeeAction:" destination="4zM-D4-uka" eventType="touchUpInside" id="6H6-RA-xdd"/>
+                                    <segue destination="Z2J-K2-aI3" kind="show" id="Tfa-hY-axe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-49-iK4">
+                                <rect key="frame" x="39" y="413" width="337" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
+                                <state key="normal" title="Remove Employee">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="RemoveEmployeeAction:" destination="4zM-D4-uka" eventType="touchUpInside" id="fyz-G9-qJU"/>
+                                    <segue destination="yim-SK-ZfI" kind="show" id="2De-NR-Hi5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -134,53 +148,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="AddEmployeeButton" destination="dqJ-sd-a4V" id="grJ-Q4-T8U"/>
+                        <outlet property="RemoveEmployeeButton" destination="fqn-49-iK4" id="gtO-Nh-OjU"/>
                         <outlet property="logoutButton" destination="akH-YI-vw0" id="Vpw-pz-u63"/>
-                        <segue destination="fBQ-ps-uGu" kind="show" identifier="EmployeeAddScreenSegue" id="BcW-iP-Vaz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEw-nh-sbO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3413" y="-1756"/>
-        </scene>
-        <!--Add Employee Screen-->
-        <scene sceneID="nva-up-0EH">
-            <objects>
-                <viewController id="fBQ-ps-uGu" customClass="AddEmployeeScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="avM-Wq-0Qv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZhO-4w-y59">
-                                <rect key="frame" x="0.0" y="88" width="414" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2M7-nS-RiX">
-                                <rect key="frame" x="39" y="769" width="337" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="CreateEmployeeButton:" destination="fBQ-ps-uGu" eventType="touchUpInside" id="XpX-00-9kz"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="S5i-bF-l9D"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="qym-xX-epE"/>
-                    <connections>
-                        <outlet property="CreateButton" destination="2M7-nS-RiX" id="9eB-me-jhS"/>
-                        <outlet property="DatesTableView" destination="ZhO-4w-y59" id="eNj-0h-vZh"/>
-                        <segue destination="Z2J-K2-aI3" kind="show" identifier="AddEmployee2Segue" id="bmB-uc-TZd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rEi-hE-odr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4247.826086956522" y="-2069.1964285714284"/>
         </scene>
         <!--Second Add Employee Screen-->
         <scene sceneID="So5-D9-aUQ">
@@ -250,7 +224,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gs4-ML-AzC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5110" y="-2065"/>
+            <point key="canvasLocation" x="4452" y="-1756"/>
+        </scene>
+        <!--Remove Employees Screen-->
+        <scene sceneID="F4a-Ic-gJU">
+            <objects>
+                <viewController id="yim-SK-ZfI" customClass="RemoveEmployeesScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EWT-Hr-soJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RGg-DP-boY">
+                                <rect key="frame" x="0.0" y="88" width="414" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="k1m-Wp-jy7"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="acQ-j7-MpD"/>
+                    <connections>
+                        <outlet property="EmployeeTable" destination="RGg-DP-boY" id="BSq-Rn-5Ow"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RE6-1S-Hjy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3668.115942028986" y="-1063.3928571428571"/>
         </scene>
         <!--Customer Home Screen-->
         <scene sceneID="Bnj-Ov-fn6">
@@ -664,20 +664,20 @@
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dDb-la-NKz">
                                 <rect key="frame" x="47" y="303" width="320" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J7M-Qr-TMv">
                                 <rect key="frame" x="47" y="261" width="320" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OU1-wH-jqy">
                                 <rect key="frame" x="47" y="345" width="320" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPo-ab-3Lw">
                                 <rect key="frame" x="47" y="387" width="320" height="18"/>

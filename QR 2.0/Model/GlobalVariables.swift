@@ -145,6 +145,7 @@ class GlobalVariables {
         static let AddPointsScreeSegue = "AddPointsToEmployeeSegue"
         static let AccessCodeSuccessSegue = "AccessCodeSuccess"
         static let PostBusinessSearchSegue = "PostBusinessSearch"
+        static let EmployeeSecondScreenSegue = "AddEmployee2Segue"
            
        }
     

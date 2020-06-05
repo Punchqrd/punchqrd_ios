@@ -4,7 +4,6 @@
 //
 //  Created by Sebastian Barry on 5/25/20.
 //  Copyright © 2020 Sebastian Barry. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -28,7 +27,7 @@ class CustomerHomeScreen : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         BusinessList.delegate = self
-
+        
         // Remove the background color.
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         
@@ -155,22 +154,39 @@ class CustomerHomeScreen : UIViewController{
         self.present(alert, animated: true)
     }
     
+    //logout alert
+    func logoutAlert(title : String?, message : String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                //send the user back to the homescreen
+                self.navigationController?.popToRootViewController(animated: true)
+                print("Logged out the user")
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+            
+            
+        }))
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        
+        self.present(alert, animated: true)
+    }
+    
     
     
     //button action to logout the user
     @IBAction func LogoutButton(_ sender: UIBarButtonItem) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            //send the user back to the homescreen
-            
-            self.navigationController?.popToRootViewController(animated: true)
-            print("Logged out the user")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
-        
+        logoutAlert(title: "Logout?", message: nil)
     }
     
     
@@ -187,12 +203,16 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
-        
+        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta]
+        let randomColor = Int.random(in: 0...5)
+        cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.20)
+        cell.PointsProgressBar.progressTintColor = colorHolder[randomColor]
+        //background color on cell select (not gray)
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = backgroundView
+        
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
@@ -205,9 +225,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         if cell.PointsProgressBar.progress.isEqual(to: 0) {
             cell.Points.isHidden = false
         }
-        
         return cell
-        
     }
     
     
@@ -224,7 +242,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-  
+    
 }
 
 extension UIColor {

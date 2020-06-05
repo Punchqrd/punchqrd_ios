@@ -22,6 +22,7 @@ class BusinessForCustomerCell: UITableViewCell {
         // Initialization code
         PointsProgressBar.transform = PointsProgressBar.transform.scaledBy(x: 1, y: 5)
         
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

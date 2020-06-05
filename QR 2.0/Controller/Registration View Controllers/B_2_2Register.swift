@@ -15,9 +15,26 @@ import GooglePlaces
 class B_2_2Register : UIViewController {
     
     let db = Firestore.firestore()
-    @IBOutlet weak var EmailTextField: UITextField!
-    @IBOutlet weak var PasswordTextField: UITextField!
-    @IBOutlet weak var ConfirmPasswordTextField: UITextField!
+    @IBOutlet weak var EmailTextField: UITextField! {
+        didSet {
+            EmailTextField.tintColor = UIColor.green
+            EmailTextField.setIcon(UIImage(systemName: "person")!)
+        }
+    }
+    @IBOutlet weak var PasswordTextField: UITextField! {
+        didSet {
+            PasswordTextField.tintColor = UIColor.blue
+            PasswordTextField.setIcon(UIImage(systemName: "lock")!)
+        }
+    }
+    @IBOutlet weak var ConfirmPasswordTextField: UITextField! {
+        didSet {
+            ConfirmPasswordTextField.tintColor = UIColor.red
+            ConfirmPasswordTextField.setIcon(UIImage(systemName: "lock.fill")!)
+        }
+    }
+    
+    @IBOutlet weak var SetupButton: UIButton!
     @IBOutlet weak var ErrorLabel : UILabel!
     
     override func viewDidLoad() {
@@ -25,7 +42,8 @@ class B_2_2Register : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        GlobalFunctions.setButtonRadius(button: self.SetupButton)
+        self.navigationItem.backBarButtonItem?.tintColor = .black
     }
     
     override func viewWillDisappear(_ animated: Bool) {

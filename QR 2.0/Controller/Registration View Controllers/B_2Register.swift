@@ -73,7 +73,11 @@ class B_2Register : UIViewController {
         self.nameConfirmButton.isHidden = true
         self.addressConfirmButton.isHidden = true
         self.checkMarksLabel.isHidden = true
+        self.searchController?.searchBar.text = nil
+        
     }
+    
+    
 
     //confirm the global variables as the business name data
     //move to the next screen.
@@ -94,7 +98,7 @@ class B_2Register : UIViewController {
         self.nameConfirmButton.tintColor = .green
         self.confirmedAddress = true
         if self.confirmedName == true {
-            self.checkMarksLabel.isHidden = true
+            self.checkMarksLabel.textColor = .lightGray
             self.ConfirmButton.isHidden = false
         }
     }
@@ -103,12 +107,36 @@ class B_2Register : UIViewController {
         self.addressConfirmButton.tintColor = .green
         self.confirmedName = true
         if self.confirmedAddress == true {
-            self.checkMarksLabel.isHidden = true
+            self.checkMarksLabel.textColor = .lightGray
             self.ConfirmButton.isHidden = false
         }
     }
     
+    //alert notification
+    func cancelAlert(title : String?, message : String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+            //insert the function to delete a piece of data from the collection
+            
+            
+            alert.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        
+        self.present(alert, animated: true)
+    }
     
+    //create the notification
+    @IBAction func CancelButton(_ sender: UIButton) {
+        self.cancelAlert(title: "Cancel Process?", message: "This will take you back home")
+    }
     
     
 }
@@ -132,6 +160,7 @@ extension B_2Register: GMSAutocompleteResultsViewControllerDelegate {
         self.addressConfirmButton.isHidden = false
         self.nameConfirmButton.isHidden = false
         self.checkMarksLabel.isHidden = false
+        self.checkMarksLabel.textColor = .black
         // Do something with the selected place.
         //print("Place name: \(place.name)")
         //print("Place address: \(place.formattedAddress)")

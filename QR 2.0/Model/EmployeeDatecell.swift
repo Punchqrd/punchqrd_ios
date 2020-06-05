@@ -11,6 +11,7 @@ import UIKit
 class EmployeeDatecell: UITableViewCell {
 
     
+    @IBOutlet weak var AddTimesButton: UIButton!
     @IBOutlet weak var DayLabel: UILabel!
     @IBOutlet weak var Switch: UISwitch!
     @IBOutlet weak var StartPicker: UIDatePicker!
@@ -22,9 +23,30 @@ class EmployeeDatecell: UITableViewCell {
     
     
     override func awakeFromNib() {
+        self.StartPicker.isHidden = true
+        self.EndPicker.isHidden = true
+        self.StartLabel.isHidden = true
+        self.EndLabel.isHidden = true
+        self.CheckImage.isHidden = true
+        self.AddTimesButton.isHidden = true
         super.awakeFromNib()
+        GlobalFunctions.setButtonRadius(button: self.AddTimesButton)
+        
         // Initialization code
         
+    }
+    
+    override func prepareForReuse() {
+        // invoke superclass implementation
+        super.prepareForReuse()
+        self.StartPicker.isHidden = true
+        self.EndPicker.isHidden = true
+        self.StartLabel.isHidden = true
+        self.EndLabel.isHidden = true
+        self.CheckImage.isHidden = true
+        self.AddTimesButton.isHidden = true
+        self.Switch.isOn = false
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,6 +61,7 @@ class EmployeeDatecell: UITableViewCell {
             self.EndPicker.isHidden = false
             self.StartLabel.isHidden = false
             self.EndLabel.isHidden = false
+            self.AddTimesButton.isHidden = false
             
 
             if self.DayLabel.text == GlobalVariables.UserIDs.mondayString  {
@@ -73,11 +96,12 @@ class EmployeeDatecell: UITableViewCell {
         }
         
         else {
-            StartPicker.isHidden = true
-            EndPicker.isHidden = true
-            StartLabel.isHidden = true
-            EndLabel.isHidden = true
-            CheckImage.isHidden = true
+            self.StartPicker.isHidden = true
+            self.EndPicker.isHidden = true
+            self.StartLabel.isHidden = true
+            self.EndLabel.isHidden = true
+            self.CheckImage.isHidden = true
+            self.AddTimesButton.isHidden = true
         }
         
     }

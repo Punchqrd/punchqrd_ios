@@ -13,22 +13,25 @@ import FirebaseFirestore
 
 class AddEmployeeScreen : UIViewController, UITextFieldDelegate{
     
-    @IBOutlet weak var ErrorLabel: UILabel!
+    @IBOutlet weak var CreateButton: UIButton!
     @IBOutlet weak var DatesTableView: UITableView!
-    @IBOutlet weak var NameField: UITextField!
-    @IBOutlet weak var EmailField: UITextField!
-    @IBOutlet weak var PasswordField: UITextField!
+    
+   
     
     var DayOfWeekCellArray : [ShiftCellObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        populateTableViewWithCells()
-        self.NameField.delegate = self
-        self.EmailField.delegate = self
-        self.PasswordField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
+        // Set the shadow color.
+        navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
+        GlobalFunctions.setButtonRadius(button: self.CreateButton)
+        populateTableViewWithCells()
+
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
            self.view.endEditing(true)
            return false
@@ -48,62 +51,23 @@ class AddEmployeeScreen : UIViewController, UITextFieldDelegate{
     //funciton to populate the array, then show it to the view
     func populateTableViewWithCells() {
         fillDatesTableViewArray()
-        DatesTableView.dataSource = self
         DatesTableView.register(UINib(nibName: GlobalVariables.UserIDs.EmployeeDateCelltitle, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.DateViewCellForEmployeeID)
+        DatesTableView.dataSource = self
         DatesTableView.rowHeight = 200
         
     }
     
-    //function to create said employee's shifts and whatnot.
-    func createNewEmployeeShiftCollection() {
-        
-        //set of the same function declared in GlobalFunctions.swift to add the shift data acquired to the firestore database.
-        //these also add the shifts of the Employee to the employees attributes
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.mondayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.mondayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.mondayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.tuesdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.tuesdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.tuesdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.wednesdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.wednesdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.wednesdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.thursdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.thursdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.thursdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.fridayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.fridayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.fridayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.saturdayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.saturdayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.saturdayEndTime])
-        
-        GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.CurrentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!, workDay: GlobalVariables.UserIDs.sundayString, workShift: [GlobalVariables.UserIDs.startStringTime : GlobalVariables.ActualIDs.sundayStartTime , GlobalVariables.UserIDs.endStringTime : GlobalVariables.ActualIDs.sundayEndTime])
-       
-        
-        
-        
-       
-    }
-    
-    //function to add the users email and password to the authentication system
-    func createNewEmployeeAsUser() {
-        
-        GlobalVariables.ActualIDs.ActualEmail = self.EmailField.text!
-        GlobalVariables.ActualIDs.ActualUserType = GlobalVariables.UserIDs.UserEmployee
-        
-        Auth.auth().createUser(withEmail: self.EmailField.text!, password: self.PasswordField.text!) { (user, error) in
-                   if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
-                   else {
-                       print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a \(GlobalVariables.ActualIDs.ActualUserType!)")
-                          self.createNewEmployeeShiftCollection()
-                          self.navigationController?.popViewController(animated: true)
-
-                   }
-               }
-        
-    }
+   
     
     //button to officially create a new employee
     @IBAction func CreateEmployeeButton(_ sender: UIButton) {
-        createNewEmployeeAsUser()
+        self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeSecondScreenSegue
+            , sender: self)
     }
     
     
 }
+
 
 //extension for the table to load the employess
 extension AddEmployeeScreen : UITableViewDataSource {
@@ -115,15 +79,16 @@ extension AddEmployeeScreen : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = DatesTableView.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.DateViewCellForEmployeeID, for: indexPath) as! EmployeeDatecell
-        cell.DayLabel.text = self.DayOfWeekCellArray[indexPath.row].dayOfWeek
-        cell.StartPicker.isHidden = true
-        cell.EndPicker.isHidden = true
-        cell.StartLabel.isHidden = true
-        cell.EndLabel.isHidden = true
-        cell.CheckImage.isHidden = true
-       
         
+        let cell = DatesTableView.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.DateViewCellForEmployeeID, for: indexPath) as! EmployeeDatecell
+        
+        
+        
+        cell.DayLabel.text = self.DayOfWeekCellArray[indexPath.row].dayOfWeek
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.white
+        cell.selectedBackgroundView = backgroundView
+        print(cell.DayLabel.text)
         return cell
         
     }

@@ -12,9 +12,12 @@ import UIKit
 class ShiftCellObject {
     
     var dayOfWeek : String?
+
+    
     
     init(dayOfWeek : String?) {
         self.dayOfWeek = dayOfWeek
+       
     }
     
     

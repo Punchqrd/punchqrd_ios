@@ -78,7 +78,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: EmailTextField.text!, password: PasswordTextField.text!) { (user, error) in
             if error != nil { self.ErrorLabel.text = error?.localizedDescription }
             else {
-               
+                
                 //fetch the document array for the user.
                 let document = self.db.collection(GlobalVariables.UserIDs.CollectionTitle).document(self.EmailTextField.text!)
                 //we not have a document
@@ -96,7 +96,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
                                 if let error = error { print(error.localizedDescription)}
                                 else {
                                     
-                                    self.logoutAlert(title: "The employee \(self.EmailTextField.text!) has been deleted from the system", message: nil)
+                                    self.logoutAlert(title: "Your employee \(self.EmailTextField.text!) has been deleted from your list", message: nil)
                                     self.EmailTextField.text = nil
                                     self.PasswordTextField.text = nil
                                 }

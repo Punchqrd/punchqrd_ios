@@ -98,6 +98,14 @@ class GlobalFunctions {
         button.layer.cornerRadius = 20
     }
     
+    static func deleteEmployeeAccessCode(codeValue : String?) {
+        let db = Firestore.firestore()
+        db.collection(GlobalVariables.UserIDs.employeeCodeCollection).document(codeValue!).delete()
+                          { err in if let err = err {
+                              print(err.localizedDescription)
+                          } else {print("Deleted File")}}
+              
+    }
    
    
     

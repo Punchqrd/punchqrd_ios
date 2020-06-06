@@ -21,7 +21,7 @@ class OwnerHomeScreen : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(Auth.auth().currentUser?.email)
         navigationItem.hidesBackButton = true
     }
     

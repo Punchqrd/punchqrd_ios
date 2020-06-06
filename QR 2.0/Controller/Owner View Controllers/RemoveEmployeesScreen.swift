@@ -20,18 +20,21 @@ class RemoveEmployeesScreen : UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         EmployeeTable.delegate = self
-        self.EmployeeTable.reloadData()
+        for values in employeeArray {
+            print(values.name)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         //when the view appears, create a new list of the employees in the collection.
         print("Show list will create")
+        EmployeeTable.dataSource = self
         showList()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.employeeArray = []
+        
         print("Values have been deleted")
     }
     
@@ -54,8 +57,7 @@ class RemoveEmployeesScreen : UIViewController, UITableViewDelegate {
     }
     
     func createNewEmployeeList() {
-        print("Create new employee list is called")
-        employeeArray = []
+        self.employeeArray = []
         //access the database
         let db = Firestore.firestore()
         //specify the correct path to the collection set
@@ -68,10 +70,10 @@ class RemoveEmployeesScreen : UIViewController, UITableViewDelegate {
                     let newEmployee = EmployeeObject(name: (people.get(GlobalVariables.UserIDs.EmployeeNameString) as! String), password: (people.get(GlobalVariables.UserIDs.EmployeePasswordString) as! String), email: people.documentID)
                     self.employeeArray.append(newEmployee)
                     print(newEmployee.name!)
-                    
+                    DispatchQueue.main.async { self.EmployeeTable.reloadData() }
+                    self.EmployeeTable.reloadData()
+
                 }
-                DispatchQueue.main.async { self.EmployeeTable.reloadData() }
-                self.EmployeeTable.reloadData()
             }
         }
     }

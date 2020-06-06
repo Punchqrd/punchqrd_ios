@@ -12,91 +12,57 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class SecondAddEmployeeScreen: UIViewController, UITextFieldDelegate {
+class SecondAddEmployeeScreen: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
-    @IBOutlet weak var ErrorLabel: UILabel!
-    @IBOutlet weak var CreateEmployeeButton: UIButton!
-    @IBOutlet weak var NameField: UITextField! {
-        didSet {
-            NameField.tintColor = UIColor.green
-            NameField.setIcon(UIImage(systemName: "smiley")!)
-        }
-    }
-    @IBOutlet weak var EmailField: UITextField! {
-        didSet {
-            EmailField.tintColor = UIColor.red
-            EmailField.setIcon(UIImage(systemName: "person")!)
-        }
-    }
-    @IBOutlet weak var PasswordField: UITextField! {
-        didSet {
-            PasswordField.tintColor = UIColor.blue
-            PasswordField.setIcon(UIImage(systemName: "lock")!)
-        }
-    }
-    @IBOutlet weak var ConfirmPassWord: UITextField! {
-        didSet {
-            ConfirmPassWord.tintColor = UIColor.yellow
-            ConfirmPassWord.setIcon(UIImage(systemName: "lock.fill")!)
-        }
-    }
+    @IBOutlet weak var RandomCodeButton: UIButton!
+    @IBOutlet weak var codeLabel: UITextView!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.NameField.delegate = self
-        self.EmailField.delegate = self
-        self.PasswordField.delegate = self
-        self.ConfirmPassWord.delegate = self
-        
-        
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+        self.codeLabel.delegate = self
+        self.codeLabel.isEditable = false
+        self.RandomCodeButton.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         // Set the shadow color.
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
-        GlobalFunctions.setButtonRadius(button: self.CreateEmployeeButton)
+        GlobalFunctions.setButtonRadius(button: self.RandomCodeButton)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
+    
+    func randomString(length: Int) -> String {
+      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      return String((0..<length).map{ _ in letters.randomElement()! })
     }
+    
 
+    @IBAction func RandomCodeAction(_ sender: UIButton) {
+        self.codeLabel.text = self.randomString(length: 15)
+        self.RandomCodeButton.backgroundColor = .gray
+        self.RandomCodeButton.isEnabled = false
         
-        
-    
-    //function to add the users email and password to the authentication system
-    func createNewEmployeeAsUser() {
-        
-        GlobalVariables.ActualIDs.ActualEmail = self.EmailField.text!
-        GlobalVariables.ActualIDs.ActualUserType = GlobalVariables.UserIDs.UserEmployee
-        let currentUser = Auth.auth().currentUser?.email
-        Auth.auth().createUser(withEmail: self.EmailField.text!, password: self.PasswordField.text!) { (user, error) in
-            if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
+        //now create the code displayed in the database
+        let db = Firestore.firestore()
+        let businessUserEmail = Auth.auth().currentUser?.email!
+        let businessName = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(businessUserEmail!)
+        businessName.getDocument { (document, error) in
+            if let error = error {print(error.localizedDescription)}
             else {
-                GlobalFunctions.addEmployee(nameofUser: currentUser!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!)
-                print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a \(GlobalVariables.ActualIDs.ActualUserType!)")
-                self.backTwo()
-                
+                let employerBusinessName = document?.get(GlobalVariables.UserIDs.BusinessName)
+                //found the name
+                print(employerBusinessName)
+                //setup the new branch in the email
+                db.collection(GlobalVariables.UserIDs.employeeCodeCollection).document(self.codeLabel.text).setData([GlobalVariables.UserIDs.EmployerNameString : businessUserEmail!, GlobalVariables.UserIDs.EmployerBusinessString : employerBusinessName as! String])
             }
         }
         
+        
+        
     }
-    
-    func backTwo() {
-        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 2], animated: true)
-    }
-    
-    @IBAction func CreateEmployee(_ sender: UIButton) {
-        self.createNewEmployeeAsUser()
-    }
-    
-    
-    
 }
+

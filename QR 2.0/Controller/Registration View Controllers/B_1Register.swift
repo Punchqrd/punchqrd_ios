@@ -17,6 +17,8 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     
     let db = Firestore.firestore()
     
+    @IBOutlet weak var registerBusiness: UIButton!
+    @IBOutlet weak var employeeButton: UIButton!
     @IBOutlet weak var RegisterButton: UIButton!
     @IBOutlet weak var NameTextField: UITextField! {
         didSet {
@@ -58,6 +60,8 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         GlobalFunctions.setButtonRadius(button: self.RegisterButton)
+        self.employeeButton.layer.cornerRadius = 13
+        self.registerBusiness.layer.cornerRadius = 13
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -41,12 +41,17 @@ class GlobalVariables {
         
         
         static let UserCodeString = "Code"
-        static let AccessCodeCollectionTitle = "Access Code"
+        static let AccessCodeCollectionTitle = "Business Access Codes"
 
         static let EmployeeEmailString = "Employee Email"
         static let EmployeePasswordString = "Password"
         static let EmployeeNameString = "Name"
-
+        
+        
+        //employee codes
+        static let employeeCodeCollection = "Employee Access Codes"
+        static let EmployerNameString = "Employer Email"
+        static let EmployerBusinessString = "Employer Business"
     }
     
     
@@ -69,6 +74,7 @@ class GlobalVariables {
         static var ActualEmployeePassword : String?
         static var ActualEmployeeName : String?
         static var EmployerBusinessName : String?
+        static var EmployerBusinessEmail : String?
         
         
      
@@ -78,6 +84,9 @@ class GlobalVariables {
         
         //the value read from the qr code scanner
         static var ActualQRData : String?
+        
+       //access code given by the employer
+        static var employeeAccessCode : String?
         
         
     }
@@ -100,6 +109,7 @@ class GlobalVariables {
         static let AccessCodeSuccessSegue = "AccessCodeSuccess"
         static let PostBusinessSearchSegue = "PostBusinessSearch"
         static let EmployeeSecondScreenSegue = "AddEmployee2Segue"
+        static let FinalEmployeeRegisterSegue = "FinalEmployeeRegisterSegue"
            
        }
     

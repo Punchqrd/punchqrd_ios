@@ -10,6 +10,8 @@
 		17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */; };
 		17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */; };
 		17121857247EFA300060093A /* BusinessName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121856247EFA300060093A /* BusinessName.swift */; };
+		173B49F2248B450E00056833 /* C_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F1248B450E00056833 /* C_1Register.swift */; };
+		173B49F4248B494000056833 /* C_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F3248B494000056833 /* C_2Register.swift */; };
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
 		177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */; };
@@ -61,6 +63,8 @@
 		17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessForCustomerCell.swift; sourceTree = "<group>"; };
 		17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessForCustomerCell.xib; sourceTree = "<group>"; };
 		17121856247EFA300060093A /* BusinessName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessName.swift; sourceTree = "<group>"; };
+		173B49F1248B450E00056833 /* C_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_1Register.swift; sourceTree = "<group>"; };
+		173B49F3248B494000056833 /* C_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_2Register.swift; sourceTree = "<group>"; };
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
 		177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataProtocols.swift; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 				17C81F31247AD2AB008DAAA2 /* B_2Register.swift */,
 				1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */,
 				1796CB6E248957FD00B227B2 /* B_2_2Register.swift */,
+				173B49F1248B450E00056833 /* C_1Register.swift */,
+				173B49F3248B494000056833 /* C_2Register.swift */,
 			);
 			path = "Registration View Controllers";
 			sourceTree = "<group>";
@@ -445,10 +451,12 @@
 				179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */,
 				177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */,
 				1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */,
+				173B49F2248B450E00056833 /* C_1Register.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
 				17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */,
 				1796CB7E248AE73700B227B2 /* EmployeeObject.swift in Sources */,
 				1796CB75248AE3B200B227B2 /* RemoveEmployeesScreen.swift in Sources */,
+				173B49F4248B494000056833 /* C_2Register.swift in Sources */,
 				17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */,
 				17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */,
 				1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */,

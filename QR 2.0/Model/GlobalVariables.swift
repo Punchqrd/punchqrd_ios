@@ -34,6 +34,7 @@ class GlobalVariables {
         static let RedemptionNumberString = "Redemption Number"
         static let EmployeeList = "Employees"
         static let UserDeletedType = "Deleted"
+        static let EmployerString = "Employer"
         
        
         

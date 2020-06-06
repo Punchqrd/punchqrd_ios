@@ -77,7 +77,7 @@ class GlobalFunctions {
         Employeecollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.EmployeeNameString : employeeName!, GlobalVariables.UserIDs.EmployeePasswordString : employeePassword!, GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
     
         let userCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle)
-        userCollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
+        userCollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee, GlobalVariables.UserIDs.EmployerString : GlobalVariables.ActualIDs.EmployerBusinessName!, GlobalVariables.UserIDs.EmployerNameString : GlobalVariables.ActualIDs.EmployerBusinessEmail])
         
     }
     

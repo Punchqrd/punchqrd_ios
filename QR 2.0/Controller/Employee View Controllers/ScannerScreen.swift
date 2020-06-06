@@ -233,52 +233,60 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
             if let error = error {print(error.localizedDescription)}
             else {
                 //look up who the employees employer is..assign the email to a variable.
-                let employerBusinessEmail = dataPiece?.get("Employer")
+                let employerBusinessEmail = dataPiece?.get(GlobalVariables.UserIDs.EmployerNameString)
                 //redirect to the employers field values and database collection.
                 let employerBusinessDocument = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employerBusinessEmail as! String)
                 //get the name of the business the employer owns.
+                print(employerBusinessEmail!)
                 employerBusinessDocument.getDocument { (otherDataPiece, error) in
                     if let error = error {print(error.localizedDescription)}
                     else {
                         //set the name of the business to a variable.
-                        let employerBusinessName = otherDataPiece?.get(GlobalVariables.UserIDs.BusinessName) as! String
-                        print(employerBusinessName)
-                        GlobalVariables.ActualIDs.EmployerBusinessName = employerBusinessName
                         
-                        //now check if the code scanned from the QR code is a legitimate customer.
-                        let customerData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail))
-                        customerData.getDocument { (doc, err) in
-                            if let doc = doc, doc.exists {
-                                
-                                //IF THE USER EXISTS: Do this logic.
-                                
-                                let actualCustomerCodeInBase = doc.get(GlobalVariables.UserIDs.UserCodeString) as! String
-                                print(actualCustomerCodeInBase)
-                                if actualCustomerCodeInBase == customerCode {
+                        let employerBusinessName = otherDataPiece?.get(GlobalVariables.UserIDs.BusinessName) as? String
+                        if employerBusinessName != nil {
+                            print(employerBusinessName!)
+                            
+                            GlobalVariables.ActualIDs.EmployerBusinessName = employerBusinessName
+                            
+                            
+                            //now check if the code scanned from the QR code is a legitimate customer.
+                            let customerData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail))
+                            customerData.getDocument { (doc, err) in
+                                if let doc = doc, doc.exists {
                                     
-                                    print(true)
-                                    //check if the user has 10 points
-                                    let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail)).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName)
-                                    customerBusinessCollection.getDocument { (documentSnap, error) in
-                                        if let error = error {print(error.localizedDescription)}
-                                        else {
-                                            
-                                            let totalAccruedPoints = documentSnap?.get(GlobalVariables.UserIDs.PointsString) as! Int
-                                            print(totalAccruedPoints)
-                                            //if the user has more than 10 points (is eligible for redemption)?
-                                            if totalAccruedPoints == 10 {
-                                                //if the user is eligible for redemption, then give the user a redemption point
+                                    //IF THE USER EXISTS: Do this logic.
+                                    
+                                    let actualCustomerCodeInBase = doc.get(GlobalVariables.UserIDs.UserCodeString) as! String
+                                    print(actualCustomerCodeInBase)
+                                    if actualCustomerCodeInBase == customerCode {
+                                        
+                                        print(true)
+                                        //check if the user has 10 points
+                                        let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail)).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName!)
+                                        customerBusinessCollection.getDocument { (documentSnap, error) in
+                                            if let error = error {print(error.localizedDescription)}
+                                            else {
                                                 
-                                                GlobalFunctions.deleteAllPoints(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName)
-                                                
-                                                self.addredeemImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
-                                                
-                                            } else if totalAccruedPoints < 10 {
-                                                
-                                                
-                                                //INCREMENT Points.
-                                                GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName)
-                                                self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                                let totalAccruedPoints = documentSnap?.get(GlobalVariables.UserIDs.PointsString) as! Int
+                                                print(totalAccruedPoints)
+                                                //if the user has more than 10 points (is eligible for redemption)?
+                                                if totalAccruedPoints == 10 {
+                                                    //if the user is eligible for redemption, then give the user a redemption point
+                                                    
+                                                    GlobalFunctions.deleteAllPoints(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName)
+                                                    
+                                                    self.addredeemImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                                    
+                                                } else if totalAccruedPoints < 10 {
+                                                    
+                                                    
+                                                    //INCREMENT Points.
+                                                    GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName)
+                                                    self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                                    
+                                                    
+                                                }
                                                 
                                                 
                                             }
@@ -288,16 +296,18 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                         
                                         
                                     }
+                                }
                                     
-                                    
+                                else {
+                                    //if the user does not exist, or has subsxribed to zumos, then reset the camera view
+                                    self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
                                 }
                             }
-                                
-                            else {
-                                //if the user does not exist, or has subsxribed to zumos, then reset the camera view
-                                self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
-                            }
-                        }
+                            
+                        } else {self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))}
+                        
+                        
+                        //statement
                         
                     }
                 }

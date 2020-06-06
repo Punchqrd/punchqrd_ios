@@ -15,7 +15,10 @@ import GoogleMaps
 
 
 
+
 class CustomerHomeScreen : UIViewController{
+    
+   
     
     //refresher variable
     var refresher : UIRefreshControl!
@@ -24,6 +27,8 @@ class CustomerHomeScreen : UIViewController{
     //the array created to hold business names and points the user has added to display to the tableview
     var BusinessNamesArray : [BusinessName] = []
     
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         BusinessList.delegate = self
@@ -31,6 +36,9 @@ class CustomerHomeScreen : UIViewController{
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         // Set the shadow color.
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
+        
+        
+        
         refreshTableView()
         
         
@@ -63,23 +71,26 @@ class CustomerHomeScreen : UIViewController{
     func refreshTableView() {
         //this is the refresh list variables to enable a refresh for the UITableView
         self.refresher = UIRefreshControl()
+        refresher.tintColor = .white
         self.BusinessList.reloadData()
         self.refresher.addTarget(self, action: #selector(CustomerHomeScreen.refresh), for: UIControl.Event.valueChanged)
         self.BusinessList.addSubview(self.refresher)
-        self.refresher.backgroundColor = .white
+        
         
     }
     
     @objc func refresh()
     {
         refreshData()
-        self.BusinessList.reloadData()
         self.refresher.endRefreshing()
         
     }
     
     //function to refresh the data on the page
     func refreshData() {
+        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta]
+        let randomColor = Int.random(in: 0...5)
+        self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.6)
         self.BusinessList.reloadData()
         DispatchQueue.main.async { self.BusinessList.reloadData() }
         createBusinessList()
@@ -204,12 +215,14 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
         let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta]
         let randomColor = Int.random(in: 0...5)
-        cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.20)
+        cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
         cell.PointsProgressBar.progressTintColor = colorHolder[randomColor]
         //background color on cell select (not gray)
+        
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = backgroundView
+        cell.isUserInteractionEnabled = false
         
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name

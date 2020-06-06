@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 
 class GlobalFunctions {
@@ -25,15 +26,15 @@ class GlobalFunctions {
     
     static func deleteEmployeeFromBusiness(nameOfFile : String?){
         let db = Firestore.firestore()
-            
+        
         db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameOfFile!).updateData([GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserDeletedType])
-                       
-                
-               db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.EmployeeList).document(nameOfFile!).delete()
-                   { err in if let err = err {
-                       print(err.localizedDescription)
-                   } else {print("Deleted File")}}
-       
+        
+        
+        db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.EmployeeList).document(nameOfFile!).delete()
+            { err in if let err = err {
+                print(err.localizedDescription)
+            } else {print("Deleted File")}}
+        
         
     }
     
@@ -65,7 +66,7 @@ class GlobalFunctions {
         let db = Firestore.firestore()
         let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.RedemptionNumberString : 0])
-
+        
     }
     //add an employee to the list of employees with respective shifts
     static func addEmployee (nameofUser : String?, employeeName : String?, employeeEmail : String?, employeePassword : String?) {
@@ -75,9 +76,9 @@ class GlobalFunctions {
         let Employeecollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.EmployeeList)
         //set details of user ID's in the employee field
         Employeecollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.EmployeeNameString : employeeName!, GlobalVariables.UserIDs.EmployeePasswordString : employeePassword!, GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee])
-    
+        
         let userCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle)
-        userCollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee, GlobalVariables.UserIDs.EmployerString : GlobalVariables.ActualIDs.EmployerBusinessName!, GlobalVariables.UserIDs.EmployerNameString : GlobalVariables.ActualIDs.EmployerBusinessEmail])
+        userCollection.document(employeeEmail!).setData([GlobalVariables.UserIDs.UserType : GlobalVariables.UserIDs.UserEmployee, GlobalVariables.UserIDs.EmployerString : GlobalVariables.ActualIDs.EmployerBusinessName!, GlobalVariables.UserIDs.EmployerNameString : GlobalVariables.ActualIDs.EmployerBusinessEmail!])
         
     }
     
@@ -96,18 +97,62 @@ class GlobalFunctions {
     
     static func setButtonRadius(button : UIButton) {
         button.layer.cornerRadius = 20
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.18).cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 0.0
+        button.layer.masksToBounds = false
+        button.layer.cornerRadius = 5.0
+        
+        
+        
     }
+   
     
     static func deleteEmployeeAccessCode(codeValue : String?) {
         let db = Firestore.firestore()
         db.collection(GlobalVariables.UserIDs.employeeCodeCollection).document(codeValue!).delete()
-                          { err in if let err = err {
-                              print(err.localizedDescription)
-                          } else {print("Deleted File")}}
-              
+            { err in if let err = err {
+                print(err.localizedDescription)
+            } else {print("Deleted File")}}
+        
     }
-   
-   
+    
+    //increment the amount of times the user has scanned and other logic using co
+    static func incrementScanCountAndSetData(currentEmployee : String?, currentEmployerEmail : String?, userBeingScanned : String?) {
+        let db = Firestore.firestore()
+        let employerEmployeeCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!).collection(GlobalVariables.UserIDs.EmployeeList)
+        //increment the total scans the user has done
+        employerEmployeeCollection.document(currentEmployee!).updateData([GlobalVariables.UserIDs.TotalScansString : FieldValue.increment(Int64(1))])
+        
+        //create a branch collection for scan data (if it hasnt already been done) and add the userbeing scanned to the database along with total scans theyve receieved.
+        let scanDataCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!).collection(GlobalVariables.UserIDs.EmployeeList)
+        let employeeScanData = scanDataCollection.document(currentEmployee!).collection(GlobalVariables.UserIDs.ScanDataString).document(userBeingScanned!)
+        //check if the user exists, if it does then skip this step, otherwise add him to the system.
+        employeeScanData.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                employeeScanData.updateData([GlobalVariables.UserIDs.ScansRecievedString : FieldValue.increment(Int64(1))])
+            } else {
+                employeeScanData.setData([GlobalVariables.UserIDs.ScansRecievedString : 1])
+            }
+        }
+        //create a new branch collection for the business owner to add scanned customers.
+        let employerBusiness = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!)
+        let employerUsersScannedData = employerBusiness.collection(GlobalVariables.UserIDs.CustomersScannedCollectionTitle).document(userBeingScanned!)
+        employerUsersScannedData.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                employerUsersScannedData.updateData([GlobalVariables.UserIDs.ScansRecievedString : FieldValue.increment(Int64(1))])
+            } else {
+                employerUsersScannedData.setData([GlobalVariables.UserIDs.ScansRecievedString : 1])
+            }
+        }
+            
+            
+        
+        print(userBeingScanned!)
+    }
+    
+    
     
     
     

@@ -14,6 +14,8 @@ class GlobalVariables {
     
     //create a list of constants that can be used as ID's. All String Values.
     struct UserIDs {
+        
+        
         static let UserEmail = "User Email"
         static let UserPassword = "User Password"
         static let UserAddress = "User Address"
@@ -35,6 +37,12 @@ class GlobalVariables {
         static let EmployeeList = "Employees"
         static let UserDeletedType = "Deleted"
         static let EmployerString = "Employer"
+        static let TotalScansString = "Total Scans"
+        static let ScanDataString = "Scan Data"
+        static let ScansRecievedString = "Times Scanned"
+        static let TotalCustomerScannedString = "Total Times Scanned"
+        static let CustomersScannedCollectionTitle = "Customers"
+        static let CustomerPurchasesString = "Total Purchases"
         
        
         

@@ -47,7 +47,6 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        GlobalFunctions.setButtonRadius(button: self.RegisterButton)
         GlobalFunctions.setButtonRadius(button: self.LoginButton)
         self.navigationController?.navigationBar.isHidden = true
         PasswordTextField.text = nil

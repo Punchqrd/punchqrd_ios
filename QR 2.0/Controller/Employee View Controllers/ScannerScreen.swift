@@ -261,6 +261,10 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                     print(actualCustomerCodeInBase)
                                     if actualCustomerCodeInBase == customerCode {
                                         
+                                        print(customerEmail)
+                                        //If the code matches : Final logic
+                                        GlobalFunctions.incrementScanCountAndSetData(currentEmployee: Auth.auth().currentUser?.email!, currentEmployerEmail: (employerBusinessEmail as! String), userBeingScanned: String(customerEmail))
+                                        
                                         print(true)
                                         //check if the user has 10 points
                                         let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail)).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName!)

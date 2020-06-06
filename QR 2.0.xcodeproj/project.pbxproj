@@ -56,6 +56,7 @@
 		17DF198D2488863C0040059C /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */; };
 		17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */; };
 		17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846724843D610035F7CA /* ScannerScreen.swift */; };
+		17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDE9248C346300041577 /* RedeemConfirm.swift */; };
 		222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,7 @@
 		17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		17E2846724843D610035F7CA /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
+		17F7BDE9248C346300041577 /* RedeemConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemConfirm.swift; sourceTree = "<group>"; };
 		2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				17E2846724843D610035F7CA /* ScannerScreen.swift */,
+				17F7BDE9248C346300041577 /* RedeemConfirm.swift */,
 			);
 			path = "Employee View Controllers";
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				1796CB7E248AE73700B227B2 /* EmployeeObject.swift in Sources */,
 				1796CB75248AE3B200B227B2 /* RemoveEmployeesScreen.swift in Sources */,
 				173B49F4248B494000056833 /* C_2Register.swift in Sources */,
+				17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */,
 				17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */,
 				17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */,
 				1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */,

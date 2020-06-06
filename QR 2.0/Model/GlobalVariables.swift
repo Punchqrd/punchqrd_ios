@@ -84,6 +84,8 @@ class GlobalVariables {
         static var ActualEmployeeName : String?
         static var EmployerBusinessName : String?
         static var EmployerBusinessEmail : String?
+        static var ActualCustomer : String?
+        static var CurrentNameofBusiness : String?
         
         
      
@@ -119,6 +121,7 @@ class GlobalVariables {
         static let PostBusinessSearchSegue = "PostBusinessSearch"
         static let EmployeeSecondScreenSegue = "AddEmployee2Segue"
         static let FinalEmployeeRegisterSegue = "FinalEmployeeRegisterSegue"
+        static let RedemptionConfirmSegue = "RedemptionSegue"
            
        }
     

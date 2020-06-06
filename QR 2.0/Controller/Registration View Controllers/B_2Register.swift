@@ -152,8 +152,8 @@ extension B_2Register: GMSAutocompleteResultsViewControllerDelegate {
         self.businessName = place.name
         self.AddressLabel.text = place.formattedAddress
         self.NameLabel.text = place.name
-        self.addressConfirmButton.tintColor = .red
-        self.nameConfirmButton.tintColor = .red
+        self.addressConfirmButton.tintColor = .gray
+        self.nameConfirmButton.tintColor = .gray
         self.ConfirmButton.isHidden = true
         self.confirmedName = false
         self.confirmedAddress = false

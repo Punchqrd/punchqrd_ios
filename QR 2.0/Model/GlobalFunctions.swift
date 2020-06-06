@@ -41,9 +41,10 @@ class GlobalFunctions {
     
     //increment the points of (name of business) for the (name of user) by 1.
     static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?) {
+        let randomNumber = Int.random(in: 1...3)
         let db = Firestore.firestore()
         let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(1))])
+        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(randomNumber))])
     }
     
     //global function to delete all the points from the users (nameofUser) data base Business input as (nameofbusiness)
@@ -97,8 +98,8 @@ class GlobalFunctions {
     
     static func setButtonRadius(button : UIButton) {
         button.layer.cornerRadius = 20
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.18).cgColor
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
         button.layer.shadowOpacity = 1.0
         button.layer.shadowRadius = 0.0
         button.layer.masksToBounds = false
@@ -107,7 +108,7 @@ class GlobalFunctions {
         
         
     }
-   
+    
     
     static func deleteEmployeeAccessCode(codeValue : String?) {
         let db = Firestore.firestore()
@@ -118,7 +119,8 @@ class GlobalFunctions {
         
     }
     
-    //increment the amount of times the user has scanned and other logic using co
+    //increment the amount of times the user has scanned and other logic using code data
+    //this can create more datadfields in other parts of the data base as needed. always make sure to check if if doc exists.
     static func incrementScanCountAndSetData(currentEmployee : String?, currentEmployerEmail : String?, userBeingScanned : String?) {
         let db = Firestore.firestore()
         let employerEmployeeCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!).collection(GlobalVariables.UserIDs.EmployeeList)
@@ -129,6 +131,8 @@ class GlobalFunctions {
         let scanDataCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!).collection(GlobalVariables.UserIDs.EmployeeList)
         let employeeScanData = scanDataCollection.document(currentEmployee!).collection(GlobalVariables.UserIDs.ScanDataString).document(userBeingScanned!)
         //check if the user exists, if it does then skip this step, otherwise add him to the system.
+        
+        //IMPORTANT TO DO THIS EVERTYIME :)
         employeeScanData.getDocument { (doc, error) in
             if let doc = doc, doc.exists {
                 employeeScanData.updateData([GlobalVariables.UserIDs.ScansRecievedString : FieldValue.increment(Int64(1))])
@@ -146,8 +150,8 @@ class GlobalFunctions {
                 employerUsersScannedData.setData([GlobalVariables.UserIDs.ScansRecievedString : 1])
             }
         }
-            
-            
+        
+        
         
         print(userBeingScanned!)
     }

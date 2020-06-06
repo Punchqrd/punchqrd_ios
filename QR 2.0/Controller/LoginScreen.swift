@@ -25,7 +25,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
     let db = Firestore.firestore()
     @IBOutlet weak var EmailTextField: UITextField! {
         didSet {
-             EmailTextField.tintColor = UIColor.red
+            EmailTextField.tintColor = UIColor.red
             EmailTextField.setIcon(UIImage(systemName: "person")!)
           }
     }
@@ -43,6 +43,11 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
         
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
 
     }
     

@@ -28,15 +28,22 @@ class BusinessSearch: UIViewController {
             GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer = substituteValue
             let db = Firestore.firestore()
             //create a new collection within the users documents
-            let collection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+            let collection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer!)
             //set certain field values within the collection
-            collection.document(GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer!).setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0])
+            collection.getDocument { (doc, error) in
+                if let doc = doc, doc.exists {
+                    self.searchController?.searchBar.placeholder = "Business already added"
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                    collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0])
+                }
+                
+            }
             
             
             
             
             
-            self.navigationController?.popViewController(animated: true)
         } else {searchController?.searchBar.placeholder = "Pick a business"}
         
     }

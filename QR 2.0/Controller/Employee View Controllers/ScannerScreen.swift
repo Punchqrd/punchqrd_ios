@@ -25,6 +25,8 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.backgroundColor = .clear
         setupCamera()
     }
     
@@ -87,62 +89,88 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     
     private func addCheckMarkImage(to layer: CALayer, videoSize: CGSize) {
         
-        
+        self.overlayLayer.sublayers = nil
         self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
         self.view.layer.addSublayer(self.overlayLayer)
-        let theImage = UIImage(named: "greencheck-1")!
+        let screenSize : CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.size.width
+        let screenHeight = screenSize.size.height
+        let greenView = UIImage(color: .green, size: CGSize(width: screenWidth, height: screenHeight))
+        
+        
         let imageLayer = CALayer()
-        let aspect: CGFloat = theImage.size.width / theImage.size.height
-        let width = videoSize.width
-        let height = width / aspect
+        let width = screenWidth
+        let height = screenHeight
         imageLayer.frame = CGRect(
-            x: self.view.frame.width/2,
-            y: self.view.frame.height/2,
+            x: 0,
+            y: 0,
             width: width,
             height: height)
-        theImage.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
-        imageLayer.contents = theImage.cgImage
+        greenView!.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
+        imageLayer.contents = greenView?.cgImage
         layer.addSublayer(imageLayer)
+        
+        
         
     }
     
     private func addXImage(to layer: CALayer, videoSize: CGSize) {
         
+        
+        self.overlayLayer.sublayers = nil
         self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
         self.view.layer.addSublayer(self.overlayLayer)
-        let theImage = UIImage(named: "redx")!
+        let screenSize : CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.size.width
+        let screenHeight = screenSize.size.height
+        let greenView = UIImage(color: .red, size: CGSize(width: screenWidth, height: screenHeight))
+        
+        
         let imageLayer = CALayer()
-        let aspect: CGFloat = theImage.size.width / theImage.size.height
-        let width = videoSize.width
-        let height = width / aspect
+        let width = screenWidth
+        let height = screenHeight
         imageLayer.frame = CGRect(
-            x: self.view.frame.width/2,
-            y: self.view.frame.height/2,
+            x: 0,
+            y: 0,
             width: width,
             height: height)
-        imageLayer.contents = theImage.cgImage
+        greenView!.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
+        imageLayer.contents = greenView?.cgImage
         layer.addSublayer(imageLayer)
         
     }
     
-    private func addredeemImage(to layer: CALayer, videoSize: CGSize) {
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+    }
+    
+    /*
+    private func addredeemImage(to layer: CALayer, videoSize: CGSize, inputcolor : UIColor) {
         
+        self.overlayLayer.sublayers = nil
         self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
         self.view.layer.addSublayer(self.overlayLayer)
-        let theImage = UIImage(named: "goldheart")!
+        let screenSize : CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.size.width
+        let screenHeight = screenSize.size.height
+        let greenView = UIImage(color: inputcolor, size: CGSize(width: screenWidth, height: screenHeight))
+        
+        
         let imageLayer = CALayer()
-        let aspect: CGFloat = theImage.size.width / theImage.size.height
-        let width = videoSize.width
-        let height = width / aspect
+        let width = screenWidth
+        let height = screenHeight
         imageLayer.frame = CGRect(
-            x: self.view.frame.width/2,
-            y: self.view.frame.height/2,
+            x: 0,
+            y: 0,
             width: width,
             height: height)
-        imageLayer.contents = theImage.cgImage
+        greenView!.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
+        imageLayer.contents = greenView?.cgImage
         layer.addSublayer(imageLayer)
         
     }
+    */
     
     @IBAction func LogoutAction(_ sender: UIBarButtonItem) {
         let firebaseAuth = Auth.auth()
@@ -166,18 +194,18 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationItem.hidesBackButton = true
         if (avCaptureSession?.isRunning == false) {
-            self.navigationController?.navigationBar.alpha = 0.15
-            self.navigationController?.navigationBar.barTintColor = .black
-            self.navigationItem.hidesBackButton = true
+            
+            
             avCaptureSession.startRunning()
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.hidesBackButton = false
         if (avCaptureSession?.isRunning == true) {
             avCaptureSession.stopRunning()
         }
@@ -266,28 +294,32 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                         GlobalFunctions.incrementScanCountAndSetData(currentEmployee: Auth.auth().currentUser?.email!, currentEmployerEmail: (employerBusinessEmail as! String), userBeingScanned: String(customerEmail))
                                         
                                         print(true)
-                                        //check if the user has 10 points
+                                        //check if the user has enough points
                                         let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail)).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName!)
                                         customerBusinessCollection.getDocument { (documentSnap, error) in
                                             if let error = error {print(error.localizedDescription)}
                                             else {
                                                 
                                                 let totalAccruedPoints = documentSnap?.get(GlobalVariables.UserIDs.PointsString) as! Int
-                                                print(totalAccruedPoints)
                                                 //if the user has more than 10 points (is eligible for redemption)?
-                                                if totalAccruedPoints == 10 {
+                                                if totalAccruedPoints >= 10 {
                                                     //if the user is eligible for redemption, then give the user a redemption point
+                                                    GlobalVariables.ActualIDs.ActualCustomer = String(customerEmail)
+                                                    GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName
+                                                   
+                                                    self.performSegue(withIdentifier: GlobalVariables.SegueIDs.RedemptionSegue, sender: self)
                                                     
-                                                    GlobalFunctions.deleteAllPoints(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName)
                                                     
-                                                    self.addredeemImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
-                                                    
+
+
+
                                                 } else if totalAccruedPoints < 10 {
                                                     
                                                     
                                                     //INCREMENT Points.
                                                     GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName)
                                                     self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                                        
                                                     
                                                     
                                                 }
@@ -326,6 +358,19 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
     
 }
 
+public extension UIImage {
+    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
+    }
+}
 
 
 

@@ -402,7 +402,8 @@
                         <viewLayoutGuide key="safeArea" id="wZR-RG-QpP"/>
                     </view>
                     <navigationItem key="navigationItem" id="fW2-Dq-7em">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="DhJ-Ac-u9G">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" image="arrowshape.turn.up.left.fill" catalog="system" id="DhJ-Ac-u9G">
+                            <color key="tintColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="LogoutAction:" destination="3V0-G0-Xvl" id="mlO-d7-Vbq"/>
                             </connections>
@@ -410,11 +411,59 @@
                     </navigationItem>
                     <connections>
                         <outlet property="LogoutButton" destination="DhJ-Ac-u9G" id="MM5-MK-WL2"/>
+                        <segue destination="27G-XF-LSL" kind="show" identifier="RedemptionSegue" id="Fng-Bk-huK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4H7-5v-AYm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298.5507246376812" y="-1405.5803571428571"/>
+            <point key="canvasLocation" x="1083" y="-1503"/>
+        </scene>
+        <!--Redeem Confirm-->
+        <scene sceneID="v1I-vD-MpO">
+            <objects>
+                <viewController id="27G-XF-LSL" customClass="RedeemConfirm" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4sO-RG-dEq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjf-br-J2r">
+                                <rect key="frame" x="39" y="310" width="337" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
+                                <state key="normal" title="Redeem">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="RedeemAction:" destination="27G-XF-LSL" eventType="touchUpInside" id="uuA-G2-kmB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39Z-cb-dBl">
+                                <rect key="frame" x="39" y="483" width="337" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="ReturnAction:" destination="27G-XF-LSL" eventType="touchUpInside" id="dhL-G2-bx4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="vId-Gx-8HM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wDu-jR-Zxn"/>
+                    <connections>
+                        <outlet property="RedeemButton" destination="mjf-br-J2r" id="AQF-Y5-JlN"/>
+                        <outlet property="ReturnButton" destination="39Z-cb-dBl" id="mLG-RI-rUJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P8h-8l-sFZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1921.7391304347827" y="-1509.375"/>
         </scene>
         <!--Login Screen-->
         <scene sceneID="slV-wb-Iva">
@@ -748,8 +797,8 @@
                                     <action selector="CancelButton:" destination="e2a-Py-Its" eventType="touchUpInside" id="kjv-hm-cLB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm that this information is correct by please pressing the red marks above." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1P-Rn-Y2j">
-                                <rect key="frame" x="64" y="430" width="297" height="66"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm that this information is correct by please pressing the gray checkmarks above." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1P-Rn-Y2j">
+                                <rect key="frame" x="68" y="430" width="287" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -853,6 +902,7 @@
     </scenes>
     <resources>
         <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
+        <image name="arrowshape.turn.up.left.fill" catalog="system" width="128" height="106"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="qrButton" width="2100" height="1500"/>

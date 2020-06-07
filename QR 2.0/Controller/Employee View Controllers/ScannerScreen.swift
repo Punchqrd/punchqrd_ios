@@ -244,12 +244,9 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
     
     
     func found(code: String) {
-        print(code)
         let newValue = code.split(separator: " ")
         let customerEmail = newValue[0]
-        print(customerEmail)
         let customerCode = newValue[1]
-        print(customerCode)
         //create the database reference.
         GlobalVariables.ActualIDs.ActualQRData = code //set the global variable to the code
         let db = Firestore.firestore()
@@ -265,7 +262,6 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                 //redirect to the employers field values and database collection.
                 let employerBusinessDocument = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employerBusinessEmail as! String)
                 //get the name of the business the employer owns.
-                print(employerBusinessEmail!)
                 employerBusinessDocument.getDocument { (otherDataPiece, error) in
                     if let error = error {print(error.localizedDescription)}
                     else {
@@ -273,7 +269,6 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                         
                         let employerBusinessName = otherDataPiece?.get(GlobalVariables.UserIDs.BusinessName) as? String
                         if employerBusinessName != nil {
-                            print(employerBusinessName!)
                             
                             GlobalVariables.ActualIDs.EmployerBusinessName = employerBusinessName
                             
@@ -286,10 +281,8 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                     //IF THE USER EXISTS: Do this logic.
                                     
                                     let actualCustomerCodeInBase = doc.get(GlobalVariables.UserIDs.UserCodeString) as! String
-                                    print(actualCustomerCodeInBase)
                                     if actualCustomerCodeInBase == customerCode {
                                         
-                                        print(customerEmail)
                                         //If the code matches : Final logic
                                         GlobalFunctions.incrementScanCountAndSetData(currentEmployee: Auth.auth().currentUser?.email!, currentEmployerEmail: (employerBusinessEmail as! String), userBeingScanned: String(customerEmail))
                                         
@@ -317,7 +310,7 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                     
                                                     
                                                     //INCREMENT Points.
-                                                    GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName)
+                                                    GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
                                                     self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
                                                         
                                                     

@@ -43,7 +43,7 @@ class GlobalVariables {
         static let TotalCustomerScannedString = "Total Times Scanned"
         static let CustomersScannedCollectionTitle = "Customers"
         static let CustomerPurchasesString = "Total Purchases"
-        
+        static let BonusPointsString = "Bonus Points"
        
         
         

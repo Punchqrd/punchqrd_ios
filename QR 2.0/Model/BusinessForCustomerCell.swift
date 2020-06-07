@@ -16,6 +16,8 @@ class BusinessForCustomerCell: UITableViewCell {
     @IBOutlet weak var Points: UILabel!
     @IBOutlet weak var PointsProgressBar: UIProgressView!
     @IBOutlet weak var CheckMarkImage: UIImageView!
+    @IBOutlet weak var BonusPointsLabel: UILabel!
+    @IBOutlet weak var ActualPointsLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -115,13 +115,12 @@ class CustomerHomeScreen : UIViewController{
             else {
                 for businessNames in Businesses!.documents {
                     //this is where you can add all the businesses to the tableview
-                    let newBusinessAdded = BusinessName(inputName: businessNames.documentID, pointsAdded: businessNames.get(GlobalVariables.UserIDs.PointsString) as? Float ?? 0, redemptionCode: businessNames.get(GlobalVariables.UserIDs.RedemptionNumberString) as? Int ?? 0)
+                    let newBusinessAdded = BusinessName(inputName: businessNames.documentID, pointsAdded: businessNames.get(GlobalVariables.UserIDs.PointsString) as? Float ?? 0, redemptionCode: businessNames.get(GlobalVariables.UserIDs.RedemptionNumberString) as? Int ?? 0, bonusPoints: businessNames.get(GlobalVariables.UserIDs.BonusPointsString) as? Int ?? 0)
                     //add a new business to the array
                     print("\(newBusinessAdded.points) new points added")
                     
                     self.BusinessNamesArray.append(newBusinessAdded)
                     //setup this when reloading the data
-                    print(newBusinessAdded.name)
                 }
                 self.BusinessList.reloadData()
             }
@@ -198,6 +197,11 @@ class CustomerHomeScreen : UIViewController{
         logoutAlert(title: "Logout?", message: nil)
     }
     
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+           DispatchQueue.main.asyncAfter(
+               deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+       }
+       
     
 }
 
@@ -218,7 +222,22 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
         cell.PointsProgressBar.progressTintColor = colorHolder[randomColor]
         //background color on cell select (not gray)
+        cell.BonusPointsLabel.textColor = colorHolder[randomColor]
+        cell.BonusPointsLabel.isHidden = true
+        GlobalFunctions.setPointProgressBarRadius(bar: cell.PointsProgressBar)
+       
         
+        if self.BusinessNamesArray[indexPath.row].bonusPoints != 0 {
+            self.delay(0.2) {
+            cell.BonusPointsLabel.isHidden = false
+            cell.BonusPointsLabel.text = ("+ \(String(self.BusinessNamesArray[indexPath.row].bonusPoints))")
+        }
+            self.delay(3.0) {
+            cell.BonusPointsLabel.isHidden = true
+            //show the bonus points, then delete them forever
+            GlobalFunctions.deleteBonusPoint(user: Auth.auth().currentUser?.email, business: self.BusinessNamesArray[indexPath.row].name)
+        }
+        }
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = backgroundView
@@ -227,14 +246,14 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
-        print(self.BusinessNamesArray[indexPath.row].points/10)
-        cell.Points.text = String("\(Int(self.BusinessNamesArray[indexPath.row].points)):10")
+        cell.ActualPointsLabel.text = String((Int(self.BusinessNamesArray[indexPath.row].points)))
+        cell.ActualPointsLabel.textColor = colorHolder[randomColor]
         if cell.PointsProgressBar.progress.isEqual(to: 1) {
             cell.CheckMarkImage.isHidden = false
-            cell.Points.isHidden = true
         }
         if cell.PointsProgressBar.progress.isEqual(to: 0) {
             cell.Points.isHidden = false
+            cell.ActualPointsLabel.textColor = .black
         }
         return cell
     }

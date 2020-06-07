@@ -14,11 +14,13 @@ class BusinessName {
     var name : String
     var points : Float
     var code : Int
+    var bonusPoints : Int
     
-    init(inputName : String?, pointsAdded : Float?, redemptionCode : Int?) {
+    init(inputName : String?, pointsAdded : Float?, redemptionCode : Int?, bonusPoints : Int?) {
         self.name = inputName!
         self.code = redemptionCode!
         self.points = pointsAdded!
-
+        self.bonusPoints = bonusPoints!
+        
     }
 }

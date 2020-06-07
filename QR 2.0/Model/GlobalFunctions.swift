@@ -38,13 +38,40 @@ class GlobalFunctions {
         
     }
     
+    static func incrementPointValue(inputNumber : Int) -> Int{
+        
+        let random100 = Int.random(in: 1...50)
+        if random100 >= 48 {
+            return 10
+        } else {
+        if inputNumber == 1 {
+            var value = Int.random(in: inputNumber...5)
+            if value >= 10 {value = 9}
+            return value
+        }
+        if inputNumber == 9 {
+            return 1
+        } else {
+            var randomNumbers = Int.random(in: 1...3)
+            if randomNumbers >= 10 {randomNumbers = 9}
+            return randomNumbers
+        }
+        }
+        
+    }
     
     //increment the points of (name of business) for the (name of user) by 1.
-    static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?) {
-        let randomNumber = Int.random(in: 1...3)
+    static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?,  totalPoints : Int?) {
+        
         let db = Firestore.firestore()
+        let finalValue = self.incrementPointValue(inputNumber: totalPoints!)
+        let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+        CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : finalValue])
         let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(randomNumber))])
+        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
+        
+        
+        
     }
     
     //global function to delete all the points from the users (nameofUser) data base Business input as (nameofbusiness)
@@ -109,6 +136,18 @@ class GlobalFunctions {
         
     }
     
+    static func setPointProgressBarRadius(bar : UIProgressView) {
+        
+        bar.layer.cornerRadius = 20
+        bar.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
+        bar.layer.shadowOffset = CGSize(width: 0.0, height: 0.4)
+        bar.layer.shadowOpacity = 1.0
+        bar.layer.shadowRadius = 0.0
+        bar.layer.masksToBounds = false
+        
+        
+        
+    }
     
     static func deleteEmployeeAccessCode(codeValue : String?) {
         let db = Firestore.firestore()
@@ -157,6 +196,11 @@ class GlobalFunctions {
     }
     
     
+    static func deleteBonusPoint(user : String?, business : String?) {
+        let db = Firestore.firestore()
+        db.collection(GlobalVariables.UserIDs.CollectionTitle).document(user!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(business!).updateData([GlobalVariables.UserIDs.BonusPointsString : 0])
+        
+    }
     
     
     

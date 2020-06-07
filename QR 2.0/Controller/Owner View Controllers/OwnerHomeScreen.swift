@@ -18,6 +18,7 @@ class OwnerHomeScreen : UIViewController {
     @IBOutlet weak var RemoveEmployeeButton: UIButton!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var AddEmployeeButton: UIButton!
+    @IBOutlet weak var ScanDataButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class OwnerHomeScreen : UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         GlobalFunctions.setButtonRadius(button: self.AddEmployeeButton)
         GlobalFunctions.setButtonRadius(button: self.RemoveEmployeeButton)
+        GlobalFunctions.setButtonRadius(button: self.ScanDataButton)
     }
     
     @IBAction func AddEmployeeAction(_ sender: UIButton) {
@@ -41,6 +43,11 @@ class OwnerHomeScreen : UIViewController {
     }
     
     @IBAction func RemoveEmployeeAction(_ sender: UIButton) {
+        
+    }
+    
+    
+    @IBAction func ScanDataAction(_ sender: UIButton) {
         
     }
     

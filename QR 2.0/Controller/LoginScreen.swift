@@ -27,7 +27,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         didSet {
             EmailTextField.tintColor = UIColor.red
             EmailTextField.setIcon(UIImage(systemName: "person")!)
-          }
+        }
     }
     @IBOutlet weak var PasswordTextField: UITextField! {
         didSet {
@@ -43,12 +43,12 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
         
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +67,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         return false
     }
     
-   
+    
     //login button
     @IBAction func LoginAction(_ sender: UIButton) {
         self.view.resignFirstResponder()
@@ -82,65 +82,95 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: EmailTextField.text!, password: PasswordTextField.text!) { (user, error) in
             if error != nil { self.ErrorLabel.text = error?.localizedDescription }
             else {
-                
-                //fetch the document array for the user.
-                let document = self.db.collection(GlobalVariables.UserIDs.CollectionTitle).document(self.EmailTextField.text!)
-                //we not have a document
-                document.getDocument { (dataPiece, error) in
-                    if let error = error {self.ErrorLabel.text = error.localizedDescription
-                        print(error.localizedDescription)
+                let user = Auth.auth().currentUser
+                switch user!.isEmailVerified {
+                    
+                case true:
+                    //fetch the document array for the user.
+                    let document = self.db.collection(GlobalVariables.UserIDs.CollectionTitle).document(self.EmailTextField.text!)
+                    //we not have a document
+                    document.getDocument { (dataPiece, error) in
+                        if let error = error {self.ErrorLabel.text = error.localizedDescription
+                            print(error.localizedDescription)
+                        }
+                            //this is where the segue logic happens
+                        else {
+                            GlobalVariables.ActualIDs.CurrentUser = self.EmailTextField.text!
+                            let data = dataPiece?.get(GlobalVariables.UserIDs.UserType) as! String
+                            if data == GlobalVariables.UserIDs.UserDeletedType {
+                                let user = Auth.auth().currentUser
+                                user?.delete(completion: { (error) in
+                                    if let error = error { print(error.localizedDescription)}
+                                    else {
+                                        
+                                        self.logoutAlert(title: "Your employee \(self.EmailTextField.text!) has been deleted from your list", message: nil)
+                                        self.EmailTextField.text = nil
+                                        self.PasswordTextField.text = nil
+                                    }
+                                })
+                            }
+                            if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)}
+                            if data == GlobalVariables.UserIDs.UserEmployee {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: self)}
+                            if data == GlobalVariables.UserIDs.UserOwner {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
+                        }
                     }
-                    //this is where the segue logic happens
-                    else {
-                        GlobalVariables.ActualIDs.CurrentUser = self.EmailTextField.text!
-                        let data = dataPiece?.get(GlobalVariables.UserIDs.UserType) as! String
-                        if data == GlobalVariables.UserIDs.UserDeletedType {
-                            let user = Auth.auth().currentUser
-                            user?.delete(completion: { (error) in
-                                if let error = error { print(error.localizedDescription)}
-                                else {
-                                    
-                                    self.logoutAlert(title: "Your employee \(self.EmailTextField.text!) has been deleted from your list", message: nil)
-                                    self.EmailTextField.text = nil
-                                    self.PasswordTextField.text = nil
-                                }
-                            })
-                        }
-                        if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)}
-                        if data == GlobalVariables.UserIDs.UserEmployee {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: self)}
-                        if data == GlobalVariables.UserIDs.UserOwner {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
-                        }
-                   }
-               }
-          }
+                    
+                case false:
+                    self.verifyEmailAlert(title: "Psst", message: "Verify your account before logging in", currentuser : user!)
+                }
+                
+            }
+        }
     }
     
+  
+     func verifyEmailAlert(title : String?, message : String?, currentuser: User?) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            
+        alert.addAction(UIAlertAction(title: "Send Again", style: .default, handler: {(action) in
+            currentuser?.sendEmailVerification(completion: { (error) in
+                if let error = error {self.ErrorLabel.text = error.localizedDescription} else {
+                    
+                    self.ErrorLabel.text = "Check your email!"
+                }
+            })
+        }))
+            
+        self.present(alert, animated: true)
+        
+
+    }
+
+
+func logoutAlert(title : String?, message : String?) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
-  func logoutAlert(title : String?, message : String?) {
-         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-         
-         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
-             alert.dismiss(animated: true, completion: nil)
-         }))
-         
-         
-         self.present(alert, animated: true)
-     }
-   
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+        alert.dismiss(animated: true, completion: nil)
+    }))
     
+    
+    self.present(alert, animated: true)
+}
+
+
 }
 
 
 //extension to add images to textfield
 extension UITextField {
-func setIcon(_ image: UIImage) {
-   let iconView = UIImageView(frame:
-                  CGRect(x: 10, y: 5, width: 20, height: 20))
-   iconView.image = image
-   let iconContainerView: UIView = UIView(frame:
-                  CGRect(x: 20, y: 0, width: 30, height: 30))
-   iconContainerView.addSubview(iconView)
-   leftView = iconContainerView
-   leftViewMode = .always
-}
+    func setIcon(_ image: UIImage) {
+        let iconView = UIImageView(frame:
+            CGRect(x: 10, y: 5, width: 20, height: 20))
+        iconView.image = image
+        let iconContainerView: UIView = UIView(frame:
+            CGRect(x: 20, y: 0, width: 30, height: 30))
+        iconContainerView.addSubview(iconView)
+        leftView = iconContainerView
+        leftViewMode = .always
+    }
 }

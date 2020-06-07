@@ -114,7 +114,14 @@ class B_1Register : UIViewController, UITextFieldDelegate {
             else {
                 print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a Customer")
                 self.SetupFirebaseData()
-                self.navigationController?.popToRootViewController(animated: true)
+                Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                    if let error = error {print(error.localizedDescription)} else {
+                        self.verifyEmailAlert(title: "Check your email!", message: "We sent a link to verify your account.", currentuser: nil)
+                    }
+                })
+                
+                
+                
             }
         }
         
@@ -126,6 +133,18 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     }
     
     
+    func verifyEmailAlert(title : String?, message : String?, currentuser: String?) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+                self.navigationController?.popToRootViewController(animated: true)
+            }))
+            
+            
+            present(alert, animated: true)
+        
+
+    }
     
 }
 

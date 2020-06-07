@@ -57,6 +57,8 @@
 		17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */; };
 		17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846724843D610035F7CA /* ScannerScreen.swift */; };
 		17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDE9248C346300041577 /* RedeemConfirm.swift */; };
+		17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEB248D369F00041577 /* ScanDataFile.swift */; };
+		17F7BDEE248D3F0E00041577 /* OwnerDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */; };
 		222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +115,8 @@
 		17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		17E2846724843D610035F7CA /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
 		17F7BDE9248C346300041577 /* RedeemConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemConfirm.swift; sourceTree = "<group>"; };
+		17F7BDEB248D369F00041577 /* ScanDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataFile.swift; sourceTree = "<group>"; };
+		17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerDataObject.swift; sourceTree = "<group>"; };
 		2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */,
 				1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */,
 				1796CB74248AE3B200B227B2 /* RemoveEmployeesScreen.swift */,
+				17F7BDEB248D369F00041577 /* ScanDataFile.swift */,
 			);
 			path = "Owner View Controllers";
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */,
 				1796CB79248AE58900B227B2 /* EmployeeCell.swift */,
 				1796CB7D248AE73700B227B2 /* EmployeeObject.swift */,
+				17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -466,12 +472,14 @@
 				1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */,
 				17C81F38247C3197008DAAA2 /* GlobalFunctions.swift in Sources */,
 				17C81F2C247ACB01008DAAA2 /* GlobalVariables.swift in Sources */,
+				17F7BDEE248D3F0E00041577 /* OwnerDataObject.swift in Sources */,
 				173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */,
 				1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */,
 				17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */,
 				17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */,
 				173F1701247DB44B00C67812 /* QRView.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
+				17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */,
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,
 				17C81F30247AD276008DAAA2 /* B_1Register.swift in Sources */,

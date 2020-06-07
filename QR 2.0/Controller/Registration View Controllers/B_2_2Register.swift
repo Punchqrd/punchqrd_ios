@@ -64,13 +64,32 @@ class B_2_2Register : UIViewController, UITextFieldDelegate{
              Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
                  if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
                  else {
+                   
                    print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a \(GlobalVariables.ActualIDs.ActualUserType!)")
                    self.SetupFirebaseData()
-                     self.navigationController?.popToRootViewController(animated: true)
+                    Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                        if let error = error {print(error.localizedDescription)} else {
+                            self.verifyEmailAlert(title: "Check your email!", message: "We sent a link to verify your account.", currentuser: nil)
+                        }
+                    })
+                     
                  }
              }
              
          }
+    
+    func verifyEmailAlert(title : String?, message : String?, currentuser: String?) {
+               let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+               
+               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+                   self.navigationController?.popToRootViewController(animated: true)
+               }))
+               
+               
+               present(alert, animated: true)
+           
+
+       }
     
     //create a new list with the new variables
       func InstantiateOwnerList() -> [String : Any] {

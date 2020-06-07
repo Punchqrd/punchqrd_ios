@@ -41,7 +41,7 @@ class GlobalFunctions {
     static func incrementPointValue(inputNumber : Int) -> Int{
         
         let random100 = Int.random(in: 1...50)
-        if random100 >= 48 {
+        if random100 >= 49 {
             return 10
         } else {
         if inputNumber == 1 {
@@ -158,6 +158,8 @@ class GlobalFunctions {
         
     }
     
+    
+    
     //increment the amount of times the user has scanned and other logic using code data
     //this can create more datadfields in other parts of the data base as needed. always make sure to check if if doc exists.
     static func incrementScanCountAndSetData(currentEmployee : String?, currentEmployerEmail : String?, userBeingScanned : String?) {
@@ -191,9 +193,23 @@ class GlobalFunctions {
         }
         
         
+        //create a new branch (if it already doesnt exist) to increment the total scans a business has done
+        let employerTotalScanCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!).collection(GlobalVariables.UserIDs.ScanDataString).document(GlobalVariables.UserIDs.TotalScansString)
         
-        print(userBeingScanned!)
+        employerTotalScanCollection.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                employerTotalScanCollection.updateData([GlobalVariables.UserIDs.CustomerPurchasesString : FieldValue.increment(Int64(1))])
+            } else {
+                employerTotalScanCollection.setData([GlobalVariables.UserIDs.CustomerPurchasesString : 1])
+            }
+        }
+        
     }
+    
+    
+    
+    
+    
     
     
     static func deleteBonusPoint(user : String?, business : String?) {

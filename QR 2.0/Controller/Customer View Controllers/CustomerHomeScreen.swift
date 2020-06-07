@@ -88,8 +88,8 @@ class CustomerHomeScreen : UIViewController{
     
     //function to refresh the data on the page
     func refreshData() {
-        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta]
-        let randomColor = Int.random(in: 0...5)
+        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemPink, .systemOrange, .systemTeal]
+        let randomColor = Int.random(in: 0...8)
         self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.6)
         self.BusinessList.reloadData()
         DispatchQueue.main.async { self.BusinessList.reloadData() }
@@ -217,8 +217,8 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
-        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple]
-        let randomColor = Int.random(in: 0...7)
+        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple, .systemTeal, .systemPink, .red]
+        let randomColor = Int.random(in: 0...10)
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
         cell.PointsProgressBar.progressTintColor = colorHolder[randomColor]
         //background color on cell select (not gray)
@@ -234,7 +234,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
                 if self.BusinessNamesArray[indexPath.row].bonusPoints == 10 {
                     cell.BonusPointsLabel.text = ("+10!")
                 } else {
-                    cell.BonusPointsLabel.text = ("+ \(String(self.BusinessNamesArray[indexPath.row].bonusPoints))")
+                    cell.BonusPointsLabel.text = ("+\(String(self.BusinessNamesArray[indexPath.row].bonusPoints))")
                 }
             }
             self.delay(3.0) {

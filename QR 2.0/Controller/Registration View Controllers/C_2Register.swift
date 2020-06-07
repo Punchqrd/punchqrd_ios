@@ -83,12 +83,32 @@ class C_2Register : UIViewController, UITextFieldDelegate {
                     GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.EmployerBusinessEmail!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!)
                     //after creating the user, destroy the code
                     GlobalFunctions.deleteEmployeeAccessCode(codeValue: GlobalVariables.ActualIDs.employeeAccessCode)
-                    self.navigationController?.popToRootViewController(animated: true)
+                    //send a verificiation email
+                    Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                        if let error = error {print(error.localizedDescription)} else {
+                            self.verifyEmailAlert(title: "Check your email!", message: "We sent a link to verify your account.", currentuser: nil)
+                        }
+                    })
                 }
                 
             }
             
         }
+    
+    //function to alert the user that the email was sent to the address.
+    func verifyEmailAlert(title : String?, message : String?, currentuser: String?) {
+                  let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                  
+                  alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+                      self.navigationController?.popToRootViewController(animated: true)
+                  }))
+                  
+                  
+                  present(alert, animated: true)
+              
+
+          }
+       
         
         
         

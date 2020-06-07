@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseFirestore
+import GooglePlaces
+import GoogleMaps
 
 
 class GlobalFunctions {
@@ -44,18 +46,18 @@ class GlobalFunctions {
         if random100 >= 49 {
             return 10
         } else {
-        if inputNumber == 1 {
-            var value = Int.random(in: inputNumber...5)
-            if value >= 10 {value = 9}
-            return value
-        }
-        if inputNumber == 9 {
-            return 1
-        } else {
-            var randomNumbers = Int.random(in: 1...3)
-            if randomNumbers >= 10 {randomNumbers = 9}
-            return randomNumbers
-        }
+            if inputNumber == 1 {
+                var value = Int.random(in: inputNumber...5)
+                if value >= 10 {value = 9}
+                return value
+            }
+            if inputNumber == 9 {
+                return 1
+            } else {
+                var randomNumbers = Int.random(in: 1...3)
+                if randomNumbers >= 10 {randomNumbers = 9}
+                return randomNumbers
+            }
         }
         
     }
@@ -219,5 +221,40 @@ class GlobalFunctions {
     }
     
     
+    
+    static func employeeLocationForLogin(employeeEmployerBusinessName : String?, navigationController : UIViewController, errorLabel : UILabel!) {
+        
+        let placesClient = GooglePlaces.GMSPlacesClient()
+        // Specify the place data types to return.
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+                                                  UInt(GMSPlaceField.placeID.rawValue))!
+        placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: fields, callback: {
+          (placeLikelihoodList: Array<GMSPlaceLikelihood>?, error: Error?) in
+          if let error = error {
+            print("An error occurred: \(error.localizedDescription)")
+            return
+          }
+
+          if let placeLikelihoodList = placeLikelihoodList {
+            for likelihood in placeLikelihoodList {
+              
+                if likelihood.place.name != nil {
+                    if likelihood.place.name! == employeeEmployerBusinessName! {
+                        if likelihood.likelihood > 0.95 {
+                        navigationController.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: navigationController.self)
+                    }
+                    }
+                    
+                    
+                }
+                
+                
+                
+            }
+            errorLabel.text = "You are not in proximity of your business"
+          }
+        })
+    }
+           
     
 }

@@ -59,6 +59,7 @@
 		17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDE9248C346300041577 /* RedeemConfirm.swift */; };
 		17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEB248D369F00041577 /* ScanDataFile.swift */; };
 		17F7BDEE248D3F0E00041577 /* OwnerDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */; };
+		17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEF248D750900041577 /* PlacesObject.swift */; };
 		222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		17F7BDE9248C346300041577 /* RedeemConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemConfirm.swift; sourceTree = "<group>"; };
 		17F7BDEB248D369F00041577 /* ScanDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataFile.swift; sourceTree = "<group>"; };
 		17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerDataObject.swift; sourceTree = "<group>"; };
+		17F7BDEF248D750900041577 /* PlacesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesObject.swift; sourceTree = "<group>"; };
 		2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				1796CB79248AE58900B227B2 /* EmployeeCell.swift */,
 				1796CB7D248AE73700B227B2 /* EmployeeObject.swift */,
 				17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */,
+				17F7BDEF248D750900041577 /* PlacesObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */,
 				173B49F2248B450E00056833 /* C_1Register.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
+				17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */,
 				17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */,
 				1796CB7E248AE73700B227B2 /* EmployeeObject.swift in Sources */,
 				1796CB75248AE3B200B227B2 /* RemoveEmployeesScreen.swift in Sources */,

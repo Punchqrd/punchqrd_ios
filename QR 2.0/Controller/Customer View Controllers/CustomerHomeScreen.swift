@@ -16,8 +16,7 @@ import GoogleMaps
 
 
 
-class CustomerHomeScreen : UIViewController{
-    
+class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     //refresher variable
@@ -26,11 +25,20 @@ class CustomerHomeScreen : UIViewController{
     @IBOutlet weak var BusinessList: UITableView!
     //the array created to hold business names and points the user has added to display to the tableview
     var BusinessNamesArray : [BusinessName] = []
-    
+    let locationManager = CLLocationManager()
+
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        
+        
+        
+        
+        
+        
         BusinessList.delegate = self
         // Remove the background color.
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
@@ -47,11 +55,10 @@ class CustomerHomeScreen : UIViewController{
     
     //what will appear in the view before it loads onto the screen
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.locationManager.delegate = self
         self.BusinessList.backgroundColor = .white
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.isHidden = false
-        
         showList()
         
     }
@@ -88,9 +95,9 @@ class CustomerHomeScreen : UIViewController{
     
     //function to refresh the data on the page
     func refreshData() {
-        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemPink, .systemOrange, .systemTeal]
-        let randomColor = Int.random(in: 0...8)
-        self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.6)
+        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemPink, .systemOrange]
+        let randomColor = Int.random(in: 0...7)
+        self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
         self.BusinessList.reloadData()
         DispatchQueue.main.async { self.BusinessList.reloadData() }
         createBusinessList()
@@ -305,3 +312,4 @@ extension UIColor {
         return image
     }
 }
+

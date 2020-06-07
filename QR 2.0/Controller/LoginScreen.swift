@@ -11,14 +11,17 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import MaterialComponents
+import GooglePlaces
+import GoogleMaps
 
 
 
 
 
-class LoginScreen : UIViewController, UITextFieldDelegate {
+
+class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
     
-    
+    let locationManager = CLLocationManager()
     @IBOutlet weak var RegisterButton: UIButton!
     @IBOutlet weak var LoginButton: UIButton!
     
@@ -43,7 +46,16 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
         
-        
+        if CLLocationManager.authorizationStatus() == .notDetermined
+               {
+                   locationManager.requestWhenInUseAuthorization()
+                   locationManager.delegate = self
+                   locationManager.startUpdatingLocation()
+                   
+               }
+               
+        self.locationManager.delegate = self
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,6 +64,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.locationManager.delegate = self
         GlobalFunctions.setButtonRadius(button: self.LoginButton)
         self.navigationController?.navigationBar.isHidden = true
         PasswordTextField.text = nil
@@ -106,7 +119,14 @@ class LoginScreen : UIViewController, UITextFieldDelegate {
                                 })
                             }
                             if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)}
-                            if data == GlobalVariables.UserIDs.UserEmployee {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: self)}
+                            if data == GlobalVariables.UserIDs.UserEmployee {
+                                
+                                let businessName = dataPiece.get(GlobalVariables.UserIDs.EmployerString) as! String
+                                GlobalFunctions.employeeLocationForLogin(employeeEmployerBusinessName: businessName, navigationController: self, errorLabel: self.ErrorLabel)
+                                
+                                
+                                
+                            }
                             if data == GlobalVariables.UserIDs.UserOwner {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
                             
                         }

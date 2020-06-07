@@ -25,9 +25,12 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overlayLayer.sublayers = nil
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.backgroundColor = .clear
         setupCamera()
+
+        
     }
     
     //setup the camera function
@@ -89,7 +92,6 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     
     private func addCheckMarkImage(to layer: CALayer, videoSize: CGSize) {
         
-        self.overlayLayer.sublayers = nil
         self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
         self.view.layer.addSublayer(self.overlayLayer)
         let screenSize : CGRect = UIScreen.main.bounds
@@ -117,7 +119,6 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     private func addXImage(to layer: CALayer, videoSize: CGSize) {
         
         
-        self.overlayLayer.sublayers = nil
         self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
         self.view.layer.addSublayer(self.overlayLayer)
         let screenSize : CGRect = UIScreen.main.bounds
@@ -193,19 +194,16 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationItem.hidesBackButton = true
         if (avCaptureSession?.isRunning == false) {
-            
-            
             avCaptureSession.startRunning()
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         if (avCaptureSession?.isRunning == true) {
             avCaptureSession.stopRunning()
         }
@@ -249,25 +247,24 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
         let customerCode = newValue[1]
         //create the database reference.
         GlobalVariables.ActualIDs.ActualQRData = code //set the global variable to the code
-        let db = Firestore.firestore()
+        
         
         //Direct to the Employee's field values.
+        let db = Firestore.firestore()
         let employeeData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email!)!)
         //Check out the employees attributes.
         employeeData.getDocument { (dataPiece, error) in
-            if let error = error {print(error.localizedDescription)}
-            else {
+            if let dataPiece = dataPiece, dataPiece.exists {
                 //look up who the employees employer is..assign the email to a variable.
-                let employerBusinessEmail = dataPiece?.get(GlobalVariables.UserIDs.EmployerNameString)
+                let employerBusinessEmail = dataPiece.get(GlobalVariables.UserIDs.EmployerNameString)
                 //redirect to the employers field values and database collection.
                 let employerBusinessDocument = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(employerBusinessEmail as! String)
                 //get the name of the business the employer owns.
                 employerBusinessDocument.getDocument { (otherDataPiece, error) in
-                    if let error = error {print(error.localizedDescription)}
-                    else {
+                    if let otherDataPiece = otherDataPiece, otherDataPiece.exists {
                         //set the name of the business to a variable.
                         
-                        let employerBusinessName = otherDataPiece?.get(GlobalVariables.UserIDs.BusinessName) as? String
+                        let employerBusinessName = otherDataPiece.get(GlobalVariables.UserIDs.BusinessName) as? String
                         if employerBusinessName != nil {
                             
                             GlobalVariables.ActualIDs.EmployerBusinessName = employerBusinessName
@@ -276,6 +273,7 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                             //now check if the code scanned from the QR code is a legitimate customer.
                             let customerData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail))
                             customerData.getDocument { (doc, err) in
+                            
                                 if let doc = doc, doc.exists {
                                     
                                     //IF THE USER EXISTS: Do this logic.
@@ -286,14 +284,13 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                         //If the code matches : Final logic
                                         GlobalFunctions.incrementScanCountAndSetData(currentEmployee: Auth.auth().currentUser?.email!, currentEmployerEmail: (employerBusinessEmail as! String), userBeingScanned: String(customerEmail))
                                         
-                                        print(true)
+                                        
                                         //check if the user has enough points
                                         let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail)).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName!)
                                         customerBusinessCollection.getDocument { (documentSnap, error) in
-                                            if let error = error {print(error.localizedDescription)}
-                                            else {
-                                                
-                                                let totalAccruedPoints = documentSnap?.get(GlobalVariables.UserIDs.PointsString) as! Int
+                                            if let documentSnap = documentSnap, documentSnap.exists {
+                               
+                                                let totalAccruedPoints = documentSnap.get(GlobalVariables.UserIDs.PointsString) as! Int
                                                 //if the user has more than 10 points (is eligible for redemption)?
                                                 if totalAccruedPoints >= 10 {
                                                     //if the user is eligible for redemption, then give the user a redemption point
@@ -301,44 +298,34 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                     GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName
                                                    
                                                     self.performSegue(withIdentifier: GlobalVariables.SegueIDs.RedemptionSegue, sender: self)
-                                                    
-                                                    
-
-
-
+                                                 
                                                 } else if totalAccruedPoints < 10 {
-                                                    
-                                                    
                                                     //INCREMENT Points.
                                                     GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
                                                     self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
-                                                        
-                                                    
-                                                    
                                                 }
-                                                
-                                                
-                                            }
+                                           
+                                        }
                                             
                                             
                                         }
-                                        
                                         
                                     }
                                 }
                                     
                                 else {
                                     //if the user does not exist, or has subsxribed to zumos, then reset the camera view
+                                    
                                     self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
                                 }
                             }
                             
-                        } else {self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))}
+                        } else {self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                        }
                         
-                        
-                        //statement
-                        
+                       
                     }
+                    
                 }
                 
             }

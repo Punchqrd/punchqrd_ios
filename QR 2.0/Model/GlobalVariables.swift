@@ -101,6 +101,9 @@ class GlobalVariables {
         static var employeeAccessCode : String?
         
         
+        
+        
+        
     }
   
     

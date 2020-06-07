@@ -18,7 +18,7 @@ import GoogleMaps
 
 class CustomerHomeScreen : UIViewController{
     
-   
+    
     
     //refresher variable
     var refresher : UIRefreshControl!
@@ -27,7 +27,7 @@ class CustomerHomeScreen : UIViewController{
     //the array created to hold business names and points the user has added to display to the tableview
     var BusinessNamesArray : [BusinessName] = []
     
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -198,10 +198,10 @@ class CustomerHomeScreen : UIViewController{
     }
     
     func delay(_ delay:Double, closure:@escaping ()->()) {
-           DispatchQueue.main.asyncAfter(
-               deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
-       }
-       
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+    }
+    
     
 }
 
@@ -217,26 +217,31 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
-        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta]
-        let randomColor = Int.random(in: 0...5)
+        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple]
+        let randomColor = Int.random(in: 0...7)
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
         cell.PointsProgressBar.progressTintColor = colorHolder[randomColor]
         //background color on cell select (not gray)
         cell.BonusPointsLabel.textColor = colorHolder[randomColor]
         cell.BonusPointsLabel.isHidden = true
+        cell.PerkString.isHidden = true
         GlobalFunctions.setPointProgressBarRadius(bar: cell.PointsProgressBar)
-       
+        
         
         if self.BusinessNamesArray[indexPath.row].bonusPoints != 0 {
             self.delay(0.2) {
-            cell.BonusPointsLabel.isHidden = false
-            cell.BonusPointsLabel.text = ("+ \(String(self.BusinessNamesArray[indexPath.row].bonusPoints))")
-        }
+                cell.BonusPointsLabel.isHidden = false
+                if self.BusinessNamesArray[indexPath.row].bonusPoints == 10 {
+                    cell.BonusPointsLabel.text = ("+10!")
+                } else {
+                    cell.BonusPointsLabel.text = ("+ \(String(self.BusinessNamesArray[indexPath.row].bonusPoints))")
+                }
+            }
             self.delay(3.0) {
-            cell.BonusPointsLabel.isHidden = true
-            //show the bonus points, then delete them forever
-            GlobalFunctions.deleteBonusPoint(user: Auth.auth().currentUser?.email, business: self.BusinessNamesArray[indexPath.row].name)
-        }
+                cell.BonusPointsLabel.isHidden = true
+                //show the bonus points, then delete them forever
+                GlobalFunctions.deleteBonusPoint(user: Auth.auth().currentUser?.email, business: self.BusinessNamesArray[indexPath.row].name)
+            }
         }
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
@@ -250,6 +255,17 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.ActualPointsLabel.textColor = colorHolder[randomColor]
         if cell.PointsProgressBar.progress.isEqual(to: 1) {
             cell.CheckMarkImage.isHidden = false
+            //cell.PerkString.isHidden = false
+            let randomPerkStrings : [String] = ["You've got a perk!", "Scan to redeem!", "Grab your freebee!", "Go treat yourself!"]
+            let randomNumber = Int.random(in: 0...10)
+            let randomPerkString = Int.random(in: 0...3)
+            if randomNumber > 6 {
+                cell.PerkString.isHidden = false
+                cell.PerkString.text = randomPerkStrings[randomPerkString]
+            }
+            
+            
+            
         }
         if cell.PointsProgressBar.progress.isEqual(to: 0) {
             cell.Points.isHidden = false

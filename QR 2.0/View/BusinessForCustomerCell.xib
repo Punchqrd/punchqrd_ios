@@ -71,6 +71,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lc-Tl-FTq">
+                                <rect key="frame" x="20" y="73" width="172" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -83,6 +90,7 @@
                 <outlet property="BonusPointsLabel" destination="fju-SV-ZDr" id="sxe-vu-8SN"/>
                 <outlet property="BusinessName" destination="JG8-zq-ZrH" id="sCy-zO-T1M"/>
                 <outlet property="CheckMarkImage" destination="yAt-AK-YqD" id="mzP-Z2-UFf"/>
+                <outlet property="PerkString" destination="2lc-Tl-FTq" id="Win-27-jt0"/>
                 <outlet property="Points" destination="gxJ-8g-T5A" id="6OV-2Q-gw7"/>
                 <outlet property="PointsProgressBar" destination="8hg-CX-RZD" id="1al-hA-uxT"/>
             </connections>

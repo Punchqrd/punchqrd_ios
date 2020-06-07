@@ -18,7 +18,7 @@ class BusinessForCustomerCell: UITableViewCell {
     @IBOutlet weak var CheckMarkImage: UIImageView!
     @IBOutlet weak var BonusPointsLabel: UILabel!
     @IBOutlet weak var ActualPointsLabel: UILabel!
-    
+    @IBOutlet weak var PerkString: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

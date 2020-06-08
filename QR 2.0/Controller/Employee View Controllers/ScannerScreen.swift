@@ -36,58 +36,65 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     //setup the camera function
     func setupCamera() {
         
-        self.overlayLayer.sublayers = nil
         
-        avCaptureSession = AVCaptureSession()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
-                self.failed()
-                return
-            }
-            let avVideoInput: AVCaptureDeviceInput
-            
-            do {
-                avVideoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-            } catch {
-                self.failed()
-                return
-            }
-            
-            if (self.avCaptureSession.canAddInput(avVideoInput)) {
-                self.avCaptureSession.addInput(avVideoInput)
-            } else {
-                self.failed()
-                return
-            }
-            
-            let metadataOutput = AVCaptureMetadataOutput()
-            
-            if (self.avCaptureSession.canAddOutput(metadataOutput)) {
-                
-                self.avCaptureSession.addOutput(metadataOutput)
-                metadataOutput.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
-                metadataOutput.metadataObjectTypes = [.qr]
-                
-            } else {
-                self.failed()
-                return
-            }
             
             
-            //layering the camera onto the screen with certain bounds
+            self.overlayLayer.sublayers = nil
+                   
+            self.avCaptureSession = AVCaptureSession()
+                   DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                       guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
+                           self.failed()
+                           return
+                       }
+                       let avVideoInput: AVCaptureDeviceInput
+                       
+                       do {
+                           avVideoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+                       } catch {
+                           self.failed()
+                           return
+                       }
+                       
+                       if (self.avCaptureSession.canAddInput(avVideoInput)) {
+                           self.avCaptureSession.addInput(avVideoInput)
+                       } else {
+                           self.failed()
+                           return
+                       }
+                       
+                       let metadataOutput = AVCaptureMetadataOutput()
+                       
+                       if (self.avCaptureSession.canAddOutput(metadataOutput)) {
+                           
+                           self.avCaptureSession.addOutput(metadataOutput)
+                           metadataOutput.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
+                           metadataOutput.metadataObjectTypes = [.qr]
+                           
+                       } else {
+                           self.failed()
+                           return
+                       }
+                       
+                       
+                       //layering the camera onto the screen with certain bounds
+                       
+                       self.avPreviewLayer = AVCaptureVideoPreviewLayer(session: self.avCaptureSession)
+                       self.avPreviewLayer.frame = self.view.layer.bounds
+                       self.avPreviewLayer.videoGravity = .resizeAspectFill
+                       self.view.layer.addSublayer(self.avPreviewLayer)
+                       self.avCaptureSession.startRunning()
+                       
+                       
+                       
+                       
+                       
+                       
+                   }
             
-            self.avPreviewLayer = AVCaptureVideoPreviewLayer(session: self.avCaptureSession)
-            self.avPreviewLayer.frame = self.view.layer.bounds
-            self.avPreviewLayer.videoGravity = .resizeAspectFill
-            self.view.layer.addSublayer(self.avPreviewLayer)
-            self.avCaptureSession.startRunning()
             
-            
-            
-            
-            
-            
-        }
+        
+       
     }
     
     private func addCheckMarkImage(to layer: CALayer, videoSize: CGSize) {
@@ -146,32 +153,7 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
-    /*
-    private func addredeemImage(to layer: CALayer, videoSize: CGSize, inputcolor : UIColor) {
-        
-        self.overlayLayer.sublayers = nil
-        self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
-        self.view.layer.addSublayer(self.overlayLayer)
-        let screenSize : CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.size.width
-        let screenHeight = screenSize.size.height
-        let greenView = UIImage(color: inputcolor, size: CGSize(width: screenWidth, height: screenHeight))
-        
-        
-        let imageLayer = CALayer()
-        let width = screenWidth
-        let height = screenHeight
-        imageLayer.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: width,
-            height: height)
-        greenView!.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
-        imageLayer.contents = greenView?.cgImage
-        layer.addSublayer(imageLayer)
-        
-    }
-    */
+   
     
     @IBAction func LogoutAction(_ sender: UIBarButtonItem) {
         let firebaseAuth = Auth.auth()
@@ -304,26 +286,16 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                     GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
                                                     self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
                                                 }
-                                           
                                         }
-                                            
-                                            
                                         }
-                                        
                                     }
                                 }
-                                    
                                 else {
-                                    //if the user does not exist, or has subsxribed to zumos, then reset the camera view
-                                    
                                     self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
                                 }
                             }
-                            
                         } else {self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
                         }
-                        
-                       
                     }
                     
                 }
@@ -331,7 +303,10 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
             }
         }
         
-        self.setupCamera()
+        
+            self.setupCamera()
+        
+        
     }
     
     

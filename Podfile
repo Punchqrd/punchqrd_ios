@@ -17,7 +17,7 @@ target 'QR 2.0' do
   	pod 'GooglePlaces'
 	pod 'MaterialComponents'
 	pod 'MaterialComponents/Buttons+Theming'
-	
+	pod 'SideMenu'
 
 
 end

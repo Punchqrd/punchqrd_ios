@@ -47,6 +47,11 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ErrorLabel : UILabel!
     
     
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+
+    }
+    
     
     
     

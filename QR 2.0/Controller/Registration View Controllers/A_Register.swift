@@ -19,6 +19,10 @@ class A_Register : UIViewController {
         
     }
     
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+
+    }
     
     
     @IBAction func CustomerButton(_ sender: UIButton) {

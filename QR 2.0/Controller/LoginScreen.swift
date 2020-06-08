@@ -21,6 +21,7 @@ import GoogleMaps
 
 class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
     
+    let defaults = UserDefaults.standard
     let locationManager = CLLocationManager()
     @IBOutlet weak var RegisterButton: UIButton!
     @IBOutlet weak var LoginButton: UIButton!
@@ -41,8 +42,20 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     }
     @IBOutlet weak var ErrorLabel : UILabel!
     
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+
+    }
+    
+    
+    
     override func viewDidLoad() {
+        
+        
+       
+        
         super.viewDidLoad()
+        
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
         
@@ -58,17 +71,33 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
 
     }
     
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
+               if isLoggedIn == true {
+                   self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
+               }
+               
+        
+        
+        
         self.locationManager.delegate = self
         GlobalFunctions.setButtonRadius(button: self.LoginButton)
         self.navigationController?.navigationBar.isHidden = true
         PasswordTextField.text = nil
         EmailTextField.text = nil
+        
+        
+        
         
         
     }
@@ -89,6 +118,55 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         
     }
+    
+    
+    @IBAction func ForgotPassword(_ sender: UIButton) {
+        if let text = self.EmailTextField.text, text.isEmpty {
+            self.resetButtonWithNoEmailPopup(title: "input your email address", message: nil)
+        } else {
+            resetButtonWithEmailPopup(title: "How would you like to reset?", message: nil)
+        }
+    }
+    
+   
+    func resetButtonWithNoEmailPopup(title : String?, message : String?) {
+            //popup notifying the user to enter email.
+            let enterEmailAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                      enterEmailAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+                          enterEmailAlert.dismiss(animated: true, completion: nil)
+                      }))
+                      self.present(enterEmailAlert, animated: true)
+        
+        }
+          
+    
+    
+    func resetButtonWithEmailPopup(title : String?, message : String?) {
+       //popup with the send verifiction email
+                  let resetEmail = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                  resetEmail.addAction(UIAlertAction(title: "Reset via email", style: UIAlertAction.Style.default, handler: { (action) in
+                      let db = Auth.auth()
+                      db.sendPasswordReset(withEmail: self.EmailTextField.text!) { (error) in
+                          if let error = error {self.ErrorLabel.text = error.localizedDescription}
+                      }
+                      resetEmail.dismiss(animated: true, completion: nil)
+                  }))
+        
+        
+        let cancel = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        resetEmail.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
+            
+            cancel.dismiss(animated: true, completion: nil)
+        }))
+        
+                  self.present(resetEmail, animated: true)
+    
+    }
+    
+    
+    
+    
+    
     
     //login function
     func login () {
@@ -118,7 +196,10 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                                     }
                                 })
                             }
-                            if data == GlobalVariables.UserIDs.UserCustomer {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)}
+                            if data == GlobalVariables.UserIDs.UserCustomer {
+                                self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
+                                
+                            }
                             if data == GlobalVariables.UserIDs.UserEmployee {
                                 
                                 let businessName = dataPiece.get(GlobalVariables.UserIDs.EmployerString) as! String
@@ -127,7 +208,11 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                                 
                                 
                             }
-                            if data == GlobalVariables.UserIDs.UserOwner {self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)}
+                            if data == GlobalVariables.UserIDs.UserOwner {
+                                self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)
+                                
+                                
+                            }
                             
                         }
                         

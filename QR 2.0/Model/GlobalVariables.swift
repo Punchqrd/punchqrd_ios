@@ -44,7 +44,9 @@ class GlobalVariables {
         static let CustomersScannedCollectionTitle = "Customers"
         static let CustomerPurchasesString = "Total Purchases"
         static let BonusPointsString = "Bonus Points"
-       
+        static let CustomerScanScore = "Scan Score"
+        static let CustomerScanCollectionData = "Scan Collection"
+        static let CustomerScanDocument = "Scan Data"
         
         
         
@@ -62,6 +64,9 @@ class GlobalVariables {
         static let employeeCodeCollection = "Employee Access Codes"
         static let EmployerNameString = "Employer Email"
         static let EmployerBusinessString = "Employer Business"
+        
+        //user default ids
+        static let isUserLoggedIn = "Logged In"
     }
     
     
@@ -100,8 +105,9 @@ class GlobalVariables {
        //access code given by the employer
         static var employeeAccessCode : String?
         
-        
-        
+    
+        //user default is the user logged in boolean
+        static var isLoggedIn = false
         
         
     }
@@ -126,6 +132,7 @@ class GlobalVariables {
         static let EmployeeSecondScreenSegue = "AddEmployee2Segue"
         static let FinalEmployeeRegisterSegue = "FinalEmployeeRegisterSegue"
         static let RedemptionConfirmSegue = "RedemptionSegue"
+        static let toLoginScreen = "toLoginScreen"
            
        }
     

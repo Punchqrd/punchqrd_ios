@@ -206,6 +206,21 @@ class GlobalFunctions {
             }
         }
         
+        
+        //create a new branch (if it already doesnt exist) to increment the total scans a business has done
+        let CustomerScanScoreCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(userBeingScanned!).collection(GlobalVariables.UserIDs.CustomerScanCollectionData).document(GlobalVariables.UserIDs.CustomerScanDocument)
+        
+        CustomerScanScoreCollection.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                CustomerScanScoreCollection.updateData([GlobalVariables.UserIDs.CustomerScanScore : FieldValue.increment(Int64(1))])
+            } else {
+                CustomerScanScoreCollection.setData([GlobalVariables.UserIDs.CustomerScanScore : 1])
+            }
+        }
+        
+        
+        
+        
     }
     
     

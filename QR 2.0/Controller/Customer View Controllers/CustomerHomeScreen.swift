@@ -19,7 +19,10 @@ import GoogleMaps
 class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
+   
+    @IBOutlet weak var ScanScoreLabel: UILabel!
     //refresher variable
+    @IBOutlet weak var BottomLabelView: UIView!
     var refresher : UIRefreshControl!
     //the created table view in the home screen
     @IBOutlet weak var BusinessList: UITableView!
@@ -27,48 +30,87 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     var BusinessNamesArray : [BusinessName] = []
     let locationManager = CLLocationManager()
 
+    //set the user defaults variable
+    
+    let defaults = UserDefaults.standard
     
     
     override func viewDidLoad() {
         
+        
         super.viewDidLoad()
-        
-        
-        
-        
-        
-        
-        
         BusinessList.delegate = self
         // Remove the background color.
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         // Set the shadow color.
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
-        
-        
-        
         refreshTableView()
         
         
     }
     
+    func setupDefault() {
+        defaults.set(GlobalVariables.ActualIDs.isLoggedIn, forKey: GlobalVariables.UserIDs.isUserLoggedIn)
+    }
+    
     
     //what will appear in the view before it loads onto the screen
     override func viewWillAppear(_ animated: Bool) {
+        
+        //self.ClearToHomeButton.isHidden = true
+        //self.sideView.isHidden = true
         self.locationManager.delegate = self
         self.BusinessList.backgroundColor = .white
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.isHidden = false
+        setupTitle()
+        
+        
+        //sets the global variable as true for the user being logged in
+        GlobalVariables.ActualIDs.isLoggedIn = true
+        //then adds that data to the defaults data
+        self.setupDefault()
+        
+        
         showList()
+        showScanScore()
+        
+       
+    }
+    
+    func setupTitle() {
+        
+        self.navigationItem.title = Auth.auth().currentUser?.email!
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poppins-Thin", size: 15)!]
         
     }
     
+   
+    func showScanScore() {
+        let db = Firestore.firestore()
+        let customerScanData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerScanCollectionData).document(GlobalVariables.UserIDs.CustomerScanDocument)
+        customerScanData.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                let randomColorHolder : [UIColor] = [.blue, .cyan, .purple, .green, .magenta, .systemPink]
+                let randomNumber = Int.random(in: 0...5)
+                self.ScanScoreLabel.textColor = randomColorHolder[randomNumber]
+                self.ScanScoreLabel.text = String(describing: doc.get(GlobalVariables.UserIDs.CustomerScanScore)!)
+            } else {
+                self.ScanScoreLabel.textColor = .red
+                self.ScanScoreLabel.text = "0"
+            }
+        }
+        
+        
+        
+    }
     
     
     
     //functuon to create a business list and show it on the screen
     func showList() {
         createBusinessList()
+        showScanScore()
         BusinessList.dataSource = self
         BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
         BusinessList.rowHeight = 100
@@ -77,6 +119,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //function to refresh the table view
     func refreshTableView() {
         //this is the refresh list variables to enable a refresh for the UITableView
+        showScanScore()
         self.refresher = UIRefreshControl()
         refresher.tintColor = .white
         self.BusinessList.reloadData()
@@ -95,6 +138,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     //function to refresh the data on the page
     func refreshData() {
+        showScanScore()
         let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemPink, .systemOrange]
         let randomColor = Int.random(in: 0...7)
         self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
@@ -135,6 +179,56 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     }
     
     
+    @IBAction func Logout(_ sender: UIBarButtonItem) {
+       
+        logoutAlert(title: "Logout?", message: nil)
+    }
+    
+    
+   
+    //logout alert
+       func logoutAlert(title : String?, message : String?) {
+           let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+           
+           alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+               let firebaseAuth = Auth.auth()
+               do {
+                   try firebaseAuth.signOut()
+                   
+                   //reset the values for the user defaults as false to indicate that the user is logged out
+                   GlobalVariables.ActualIDs.isLoggedIn = false
+                   self.defaults.set(GlobalVariables.ActualIDs.isLoggedIn, forKey: GlobalVariables.UserIDs.isUserLoggedIn)
+                   
+                self.navigationController?.popToRootViewController(animated: true)
+                   
+                  
+                   print("Logged out the user")
+               } catch let signOutError as NSError {
+                   print ("Error signing out: %@", signOutError)
+               }
+               
+               
+           }))
+           
+           
+           
+           alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
+               alert.dismiss(animated: true, completion: nil)
+           }))
+           
+           
+           self.present(alert, animated: true)
+       }
+       
+       
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func viewQRButton(_ sender: UIButton) {
         
@@ -169,40 +263,27 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         self.present(alert, animated: true)
     }
     
-    //logout alert
-    func logoutAlert(title : String?, message : String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-                //send the user back to the homescreen
-                self.navigationController?.popToRootViewController(animated: true)
-                print("Logged out the user")
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
-            }
-            
-            
-        }))
-        
-        
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        
-        
-        self.present(alert, animated: true)
-    }
     
     
     
-    //button action to logout the user
-    @IBAction func LogoutButton(_ sender: UIBarButtonItem) {
-        logoutAlert(title: "Logout?", message: nil)
-    }
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(
@@ -227,7 +308,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple, .systemTeal, .systemPink, .red]
         let randomColor = Int.random(in: 0...10)
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
-        cell.PointsProgressBar.progressTintColor = colorHolder[randomColor]
+        //cell.PointsProgressBar.progressTintColor = colorHolder[randomColor]
         //background color on cell select (not gray)
         cell.BonusPointsLabel.textColor = colorHolder[randomColor]
         cell.BonusPointsLabel.isHidden = true
@@ -254,6 +335,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         backgroundView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = backgroundView
         cell.isUserInteractionEnabled = false
+        
         
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name

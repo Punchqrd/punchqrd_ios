@@ -11,9 +11,14 @@ import UIKit
 import Firebase
 import GoogleMaps
 import GooglePlaces
+import StoreKit
 
-class B_2_2Register : UIViewController, UITextFieldDelegate{
+class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactionObserver {
     
+    
+   
+    let grayView = UIView()
+    let productID = "com.SebastianBarry.QR20.BusinessSub"
     let db = Firestore.firestore()
     @IBOutlet weak var EmailTextField: UITextField! {
         didSet {
@@ -42,6 +47,17 @@ class B_2_2Register : UIViewController, UITextFieldDelegate{
         self.PasswordTextField.delegate = self
         self.ConfirmPasswordTextField.delegate = self
         super.viewDidLoad()
+        SKPaymentQueue.default().add(self)
+        
+        self.grayView.frame.size.height = self.view.bounds.height
+        self.grayView.frame.size.width = self.view.bounds.width
+        self.grayView.backgroundColor = UIColor.systemGray.withAlphaComponent(0.7)
+        self.view.addSubview(self.grayView)
+        
+        
+        setupPremiumPurchase()
+        
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -58,9 +74,54 @@ class B_2_2Register : UIViewController, UITextFieldDelegate{
         
     }
     
+    
+    //MARK:- Setup up the purchase function for business account creation.
+    
+    func setupPremiumPurchase() {
+        
+        if SKPaymentQueue.canMakePayments() {
+            let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = productID
+            SKPaymentQueue.default().add(paymentRequest)
+            
+            
+            
+        } else {
+            print("Cannot make payments")
+        }
+        
+        
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transactions in transactions {
+            if transactions.transactionState == .purchased {
+                //user payment was successful
+                print("transaction was successful")
+                SKPaymentQueue.default().finishTransaction(transactions)
+                self.grayView.removeFromSuperview()
+            } else if transactions.transactionState == .failed {
+                //payment failed
+                if let error = transactions.error {
+                    let errorDescription = error.localizedDescription
+                    SKPaymentQueue.default().finishTransaction(transactions)
+
+                    print(errorDescription)
+
+                }
+                SKPaymentQueue.default().finishTransaction(transactions)
+                self.navigationController?.popViewController(animated: true)
+            } else if transactions.transactionState == .purchased {
+                self.grayView.removeFromSuperview()
+            }
+        }
+       }
+    
     //setup a new user function
        func SetupNewUser () {
              
+             
+
              Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
                  if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
                  else {

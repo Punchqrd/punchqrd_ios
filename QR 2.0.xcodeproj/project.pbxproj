@@ -24,6 +24,7 @@
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
 		176AD814248FD6C500669202 /* qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 176AD813248FD6C400669202 /* qr.png */; };
+		176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176AD81524901DAD00669202 /* StoreKit.framework */; };
 		177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */; };
 		179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179534CD2482B28200C033E6 /* WorkWeek.swift */; };
 		1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */; };
@@ -92,6 +93,7 @@
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
 		176AD813248FD6C400669202 /* qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr.png; sourceTree = "<group>"; };
+		176AD81524901DAD00669202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataProtocols.swift; sourceTree = "<group>"; };
 		179534CD2482B28200C033E6 /* WorkWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWeek.swift; sourceTree = "<group>"; };
 		1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_1Register.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */,
+				176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +336,7 @@
 		C96DB8792DE1491CE077091E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				176AD81524901DAD00669202 /* StoreKit.framework */,
 				2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */,
 			);
 			name = Frameworks;

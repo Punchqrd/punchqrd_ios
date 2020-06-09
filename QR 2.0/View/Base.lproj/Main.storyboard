@@ -143,13 +143,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Scans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR6-cr-S5o">
-                                <rect key="frame" x="45" y="135" width="105.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total Scans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR6-cr-S5o">
+                                <rect key="frame" x="45" y="135" width="105.66666666666669" height="24"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82i-HQ-j3l">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82i-HQ-j3l">
                                 <rect key="frame" x="158" y="130" width="47" height="29"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.78107674100000002" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -262,9 +262,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeI-fJ-NW7">
+                                <rect key="frame" x="70" y="395" width="275" height="296"/>
+                                <string key="text">Generate a random code, and send it to your employee. The code will alow him/her to register as your employee and acces the scanner.</string>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2xr-LY-gvL">
+                                <rect key="frame" x="64" y="131" width="287" height="63"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="8G4-gh-8XT"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copy and paste it in a text message!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gco-bh-rPH">
+                                <rect key="frame" x="40" y="724" width="334" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="CXL-pA-OB5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5U-kj-Fzd">
-                                <rect key="frame" x="87" y="413" width="240" height="70"/>
+                                <rect key="frame" x="104" y="232" width="207" height="97"/>
                                 <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="97" id="e0Y-Mc-bN8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Generate Random Code">
@@ -274,48 +303,20 @@
                                     <action selector="RandomCodeAction:" destination="Z2J-K2-aI3" eventType="touchUpInside" id="6lW-kX-7v5"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeI-fJ-NW7">
-                                <rect key="frame" x="70" y="526" width="275" height="96"/>
-                                <string key="text">Generate a random code, and send it to your employee. The code will alow him/her to register as your employee and acces the scanner.</string>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copy and paste it in a text message!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gco-bh-rPH">
-                                <rect key="frame" x="40" y="651" width="334" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="CXL-pA-OB5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2xr-LY-gvL">
-                                <rect key="frame" x="64" y="313" width="287" height="63"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="8G4-gh-8XT"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="2xr-LY-gvL" firstAttribute="top" secondItem="baZ-8o-GOK" secondAttribute="top" constant="225" id="1V3-eW-fIU"/>
-                            <constraint firstItem="baZ-8o-GOK" firstAttribute="trailing" secondItem="k5U-kj-Fzd" secondAttribute="trailing" constant="87" id="C49-UK-Epj"/>
-                            <constraint firstItem="baZ-8o-GOK" firstAttribute="bottom" secondItem="Gco-bh-rPH" secondAttribute="bottom" constant="187" id="LdP-JK-MSI"/>
-                            <constraint firstItem="k5U-kj-Fzd" firstAttribute="centerY" secondItem="ecL-os-OcV" secondAttribute="centerY" id="Mvf-TX-R9C"/>
+                            <constraint firstItem="VeI-fJ-NW7" firstAttribute="top" secondItem="k5U-kj-Fzd" secondAttribute="bottom" constant="66" id="2mk-MK-8Sy"/>
+                            <constraint firstItem="k5U-kj-Fzd" firstAttribute="leading" secondItem="baZ-8o-GOK" secondAttribute="leading" constant="104" id="JsV-OL-VFT"/>
+                            <constraint firstItem="baZ-8o-GOK" firstAttribute="bottom" secondItem="Gco-bh-rPH" secondAttribute="bottom" constant="114" id="LdP-JK-MSI"/>
                             <constraint firstItem="Gco-bh-rPH" firstAttribute="leading" secondItem="baZ-8o-GOK" secondAttribute="leading" constant="40" id="V8k-t0-pra"/>
                             <constraint firstItem="baZ-8o-GOK" firstAttribute="trailing" secondItem="VeI-fJ-NW7" secondAttribute="trailing" constant="69" id="Y2x-AQ-8TD"/>
-                            <constraint firstItem="Gco-bh-rPH" firstAttribute="top" secondItem="VeI-fJ-NW7" secondAttribute="bottom" constant="29" id="bve-AL-FeS"/>
-                            <constraint firstItem="k5U-kj-Fzd" firstAttribute="leading" secondItem="baZ-8o-GOK" secondAttribute="leading" constant="87" id="flh-cg-aPD"/>
-                            <constraint firstItem="VeI-fJ-NW7" firstAttribute="top" secondItem="k5U-kj-Fzd" secondAttribute="bottom" constant="43" id="hHF-cR-xye"/>
+                            <constraint firstItem="k5U-kj-Fzd" firstAttribute="top" secondItem="2xr-LY-gvL" secondAttribute="bottom" constant="38" id="Yia-vT-rTV"/>
+                            <constraint firstItem="Gco-bh-rPH" firstAttribute="top" secondItem="VeI-fJ-NW7" secondAttribute="bottom" constant="33" id="bve-AL-FeS"/>
                             <constraint firstItem="baZ-8o-GOK" firstAttribute="trailing" secondItem="Gco-bh-rPH" secondAttribute="trailing" constant="40" id="kJj-Lf-KJi"/>
                             <constraint firstItem="2xr-LY-gvL" firstAttribute="leading" secondItem="baZ-8o-GOK" secondAttribute="leading" constant="64" id="mDl-Nb-NZI"/>
                             <constraint firstItem="VeI-fJ-NW7" firstAttribute="leading" secondItem="baZ-8o-GOK" secondAttribute="leading" constant="70" id="pVL-Ij-Pgw"/>
-                            <constraint firstItem="k5U-kj-Fzd" firstAttribute="top" secondItem="2xr-LY-gvL" secondAttribute="bottom" constant="37" id="ttA-ZT-iKV"/>
+                            <constraint firstItem="k5U-kj-Fzd" firstAttribute="top" secondItem="ecL-os-OcV" secondAttribute="top" constant="232" id="xxM-lQ-0bK"/>
                             <constraint firstItem="baZ-8o-GOK" firstAttribute="trailing" secondItem="2xr-LY-gvL" secondAttribute="trailing" constant="63" id="yD2-0f-MMJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="baZ-8o-GOK"/>
@@ -328,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gs4-ML-AzC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4450.7246376811599" y="-1756.4732142857142"/>
+            <point key="canvasLocation" x="4450.3999999999996" y="-1757.2713643178413"/>
         </scene>
         <!--Remove Employees Screen-->
         <scene sceneID="F4a-Ic-gJU">
@@ -389,7 +390,7 @@
                                         <rect key="frame" x="13" y="24" width="93" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Err-Ne-QCO">
@@ -427,7 +428,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="uxk-GK-NmT">
-                            <color key="tintColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="searchBusinessButton:" destination="Pjb-C6-ViW" id="Qek-Ew-fI9"/>
                                 <segue destination="LLP-fA-b4A" kind="show" id="59H-Av-INb"/>
@@ -501,8 +502,11 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AG-dV-K6F">
-                                <rect key="frame" x="69" y="318" width="277" height="61"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AG-dV-K6F">
+                                <rect key="frame" x="69" y="318" width="277" height="127"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="127" id="G0b-Gj-r5d"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Poppins-Thin" family="Poppins" pointSize="16"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -529,8 +533,11 @@
                             <constraint firstItem="AYm-tA-zXJ" firstAttribute="leading" secondItem="8iy-9j-Mmu" secondAttribute="leading" constant="69" id="TmA-7k-9X8"/>
                             <constraint firstItem="AYm-tA-zXJ" firstAttribute="top" secondItem="8iy-9j-Mmu" secondAttribute="top" constant="141" id="UrM-xT-nXZ"/>
                             <constraint firstItem="XT4-PK-B07" firstAttribute="leading" secondItem="8iy-9j-Mmu" secondAttribute="leading" constant="69" id="YhF-59-AMb"/>
+                            <constraint firstItem="8iy-9j-Mmu" firstAttribute="trailing" secondItem="0AG-dV-K6F" secondAttribute="trailing" constant="68" id="e6r-OU-AP5"/>
+                            <constraint firstItem="0AG-dV-K6F" firstAttribute="top" secondItem="AYm-tA-zXJ" secondAttribute="bottom" constant="8" id="gTa-yT-p0N"/>
                             <constraint firstItem="8iy-9j-Mmu" firstAttribute="bottom" secondItem="XT4-PK-B07" secondAttribute="bottom" constant="36" id="l3j-vk-G5O"/>
                             <constraint firstItem="DW6-qR-dPY" firstAttribute="leading" secondItem="8iy-9j-Mmu" secondAttribute="leading" constant="69" id="qWz-7M-vo2"/>
+                            <constraint firstItem="0AG-dV-K6F" firstAttribute="leading" secondItem="8iy-9j-Mmu" secondAttribute="leading" constant="69" id="tAh-qH-LsA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8iy-9j-Mmu"/>
                     </view>
@@ -544,6 +551,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrG-pU-xoN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5760.8695652173919" y="-33.482142857142854"/>
+        </scene>
+        <!--Employee Home-->
+        <scene sceneID="CPO-LL-Rbt">
+            <objects>
+                <viewController id="8m9-YT-4v0" customClass="EmployeeHome" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X9h-j8-rn5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Uv-Ec-GcH">
+                                <rect key="frame" x="116" y="296" width="183" height="51"/>
+                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="22"/>
+                                <state key="normal" title="Scan">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="ScanAction:" destination="8m9-YT-4v0" eventType="touchUpInside" id="XQO-8Q-SHG"/>
+                                    <segue destination="3V0-G0-Xvl" kind="show" id="NaV-UV-sin"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Era-xe-Axm" firstAttribute="trailing" secondItem="6Uv-Ec-GcH" secondAttribute="trailing" constant="115" id="88N-6X-RZz"/>
+                            <constraint firstItem="6Uv-Ec-GcH" firstAttribute="top" secondItem="Era-xe-Axm" secondAttribute="top" constant="208" id="DPT-6D-aPl"/>
+                            <constraint firstItem="Era-xe-Axm" firstAttribute="bottom" secondItem="6Uv-Ec-GcH" secondAttribute="bottom" constant="515" id="WG8-jk-3gH"/>
+                            <constraint firstItem="6Uv-Ec-GcH" firstAttribute="leading" secondItem="Era-xe-Axm" secondAttribute="leading" constant="116" id="bfT-qG-05a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Era-xe-Axm"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CVW-ih-plD">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrowshape.turn.up.left" catalog="system" id="7qf-Bw-0Uo">
+                            <color key="tintColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ScanButton" destination="6Uv-Ec-GcH" id="gWM-zQ-5U7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lu9-WR-G7G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="179.71014492753625" y="-1501.3392857142856"/>
         </scene>
         <!--Scanner Screen-->
         <scene sceneID="q1N-Az-fdH">
@@ -716,7 +766,7 @@
                         <outlet property="RegisterButton" destination="HEb-Au-F7G" id="CAT-YD-lLg"/>
                         <segue destination="Pjb-C6-ViW" kind="show" identifier="CustomerHomeScreen" id="KRw-zj-nqN"/>
                         <segue destination="4zM-D4-uka" kind="show" identifier="OwnerHomeScreen" id="cuJ-rL-5Wf"/>
-                        <segue destination="3V0-G0-Xvl" kind="show" identifier="EmployeeLoginSegue" id="WlR-iH-hqg"/>
+                        <segue destination="8m9-YT-4v0" kind="show" identifier="EmployeeLoginSegue" id="SJD-lR-TLh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g5Y-TT-V8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -838,7 +888,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Employee Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GPk-nR-POx">
-                                <rect key="frame" x="65" y="382" width="285" height="25.5"/>
+                                <rect key="frame" x="65" y="382" width="285" height="21.5"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -851,7 +901,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eO-ia-UhQ">
-                                <rect key="frame" x="65" y="415.5" width="285" height="54"/>
+                                <rect key="frame" x="65" y="411.5" width="285" height="47"/>
                                 <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Confirm">

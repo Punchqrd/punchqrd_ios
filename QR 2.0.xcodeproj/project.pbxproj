@@ -60,6 +60,7 @@
 		17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEB248D369F00041577 /* ScanDataFile.swift */; };
 		17F7BDEE248D3F0E00041577 /* OwnerDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */; };
 		17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEF248D750900041577 /* PlacesObject.swift */; };
+		17FDDE18248F0F6B008F5FF1 /* EmployeeHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */; };
 		222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		17F7BDEB248D369F00041577 /* ScanDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataFile.swift; sourceTree = "<group>"; };
 		17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerDataObject.swift; sourceTree = "<group>"; };
 		17F7BDEF248D750900041577 /* PlacesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesObject.swift; sourceTree = "<group>"; };
+		17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeHome.swift; sourceTree = "<group>"; };
 		2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			children = (
 				17E2846724843D610035F7CA /* ScannerScreen.swift */,
 				17F7BDE9248C346300041577 /* RedeemConfirm.swift */,
+				17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */,
 			);
 			path = "Employee View Controllers";
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17FDDE18248F0F6B008F5FF1 /* EmployeeHome.swift in Sources */,
 				17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */,
 				179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */,
 				177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */,

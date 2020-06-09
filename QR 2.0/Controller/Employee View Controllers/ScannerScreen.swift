@@ -154,20 +154,6 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     }
     
    
-    
-    @IBAction func LogoutAction(_ sender: UIBarButtonItem) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            //send the user back to the homescreen
-            
-            self.navigationController?.popToRootViewController(animated: true)
-            print("Logged out the user")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-    }
-    
     func failed() {
         let ac = UIAlertController(title: "Scanner not supported", message: "Please use a device with a camera. Because this device does not support scanning a code", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -177,9 +163,7 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = .white
-        self.navigationItem.hidesBackButton = true
+        self.navigationController?.isNavigationBarHidden = true
         if (avCaptureSession?.isRunning == false) {
             avCaptureSession.startRunning()
         }
@@ -189,6 +173,7 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
         if (avCaptureSession?.isRunning == true) {
             avCaptureSession.stopRunning()
         }
+        self.overlayLayer.sublayers = nil
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -285,16 +270,20 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                     //INCREMENT Points.
                                                     GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
                                                     self.addCheckMarkImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                                     self.navigationController?.popViewController(animated: true)
                                                 }
                                         }
                                         }
                                     }
                                 }
                                 else {
+                                    
                                     self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                                     self.navigationController?.popViewController(animated: true)
                                 }
                             }
                         } else {self.addXImage(to: self.overlayLayer, videoSize: CGSize.init(width: 100, height: 100))
+                             self.navigationController?.popViewController(animated: true)
                         }
                     }
                     
@@ -304,7 +293,7 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
         }
         
         
-            self.setupCamera()
+       
         
         
     }

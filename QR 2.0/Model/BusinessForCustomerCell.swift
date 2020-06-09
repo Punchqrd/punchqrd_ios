@@ -9,9 +9,12 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Lottie
 
 class BusinessForCustomerCell: UITableViewCell {
 
+    let animationView = AnimationView()
+    
     @IBOutlet weak var BusinessName: UILabel!
     @IBOutlet weak var Points: UILabel!
     @IBOutlet weak var PointsProgressBar: UIProgressView!
@@ -33,6 +36,26 @@ class BusinessForCustomerCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func animateCheckMark() {
+          
+          self.setupAnimation()
+      }
+      func setupAnimation() {
+          
+          self.animationView.animation = Animation.named("CheckMark3")
+          self.animationView.frame.size.height = self.CheckMarkImage.frame.height
+          self.animationView.frame.size.width = self.CheckMarkImage.frame.width
+          self.animationView.contentMode = .scaleAspectFill
+        self.animationView.loopMode = .repeat(3)
+          self.animationView.backgroundColor = .white
+         
+          self.animationView.play()
+          self.CheckMarkImage.addSubview(self.animationView)
+                  
+      }
+      
+      
     
     
     

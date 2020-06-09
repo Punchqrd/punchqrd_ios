@@ -282,6 +282,7 @@ PODS:
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.3.1)
   - leveldb-library (1.22)
+  - lottie-ios (3.1.8)
   - MaterialComponents (109.6.0):
     - MaterialComponents/ActionSheet (= 109.6.0)
     - "MaterialComponents/ActionSheet+Theming (= 109.6.0)"
@@ -907,7 +908,6 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
-  - SideMenu (6.4.8)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -916,9 +916,9 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleMaps
   - GooglePlaces
+  - lottie-ios
   - MaterialComponents
   - "MaterialComponents/Buttons+Theming"
-  - SideMenu
 
 SPEC REPOS:
   trunk:
@@ -944,6 +944,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - leveldb-library
+    - lottie-ios
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -951,7 +952,6 @@ SPEC REPOS:
     - MotionInterchange
     - nanopb
     - PromisesObjC
-    - SideMenu
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -976,6 +976,7 @@ SPEC CHECKSUMS:
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   MaterialComponents: 7c5a7d77fbe08aca9383fc97aeb7423b1fbce6b4
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
@@ -983,8 +984,7 @@ SPEC CHECKSUMS:
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
 
-PODFILE CHECKSUM: cc214f1c68841ade03c529d873e87d554169effc
+PODFILE CHECKSUM: ec65c023627748eccd2016330234a3ae5919c32a
 
 COCOAPODS: 1.9.1

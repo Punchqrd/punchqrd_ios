@@ -13,6 +13,7 @@ import FirebaseFirestore
 import MaterialComponents
 import GooglePlaces
 import GoogleMaps
+import Lottie
 
 
 
@@ -20,6 +21,11 @@ import GoogleMaps
 
 
 class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
+    let newView = UIView()
+    let animationView = AnimationView()
+    
+    
+    
     
     let defaults = UserDefaults.standard
     let locationManager = CLLocationManager()
@@ -51,8 +57,6 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         
-        
-       
         
         super.viewDidLoad()
         
@@ -86,19 +90,15 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                if isLoggedIn == true {
                    self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
                }
-               
-        
-        
-        
+           
         self.locationManager.delegate = self
         GlobalFunctions.setButtonRadius(button: self.LoginButton)
         self.navigationController?.navigationBar.isHidden = true
         PasswordTextField.text = nil
         EmailTextField.text = nil
-        
-        
-        
-        
+        ErrorLabel.text = nil
+        self.removeLoadingView()
+      
         
     }
     
@@ -118,6 +118,53 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func addLoadingView() {
+        
+        self.setupAnimation()
+    }
+    func setupAnimation() {
+        let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+        let randomNumber = Int.random(in: 0...3)
+        self.animationView.animation = Animation.named(animationNames[randomNumber])
+        self.animationView.frame.size.height = self.view.frame.height
+        self.animationView.frame.size.width = self.view.frame.width
+        self.animationView.contentMode = .center
+        self.animationView.backgroundColor = .white
+       
+        self.animationView.play()
+        self.animationView.loopMode = .loop
+        self.view.addSubview(self.animationView)
+                
+    }
+    func removeLoadingView() {
+        self.animationView.stop()
+        self.animationView.removeFromSuperview()
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     @IBAction func ForgotPassword(_ sender: UIButton) {
@@ -165,18 +212,24 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     
     
+   
     
     
     
     //login function
     func login () {
+        self.addLoadingView()
         Auth.auth().signIn(withEmail: EmailTextField.text!, password: PasswordTextField.text!) { (user, error) in
-            if error != nil { self.ErrorLabel.text = error?.localizedDescription }
+            if error != nil { self.ErrorLabel.text = error?.localizedDescription
+                self.removeLoadingView()
+            }
             else {
+                
                 let user = Auth.auth().currentUser
                 switch user!.isEmailVerified {
                     
                 case true:
+                    
                     //fetch the document array for the user.
                     let document = self.db.collection(GlobalVariables.UserIDs.CollectionTitle).document(self.EmailTextField.text!)
                     //we not have a document
@@ -196,9 +249,10 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                                     }
                                 })
                             }
+                            
                             if data == GlobalVariables.UserIDs.UserCustomer {
                                 self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
-                                
+                                //UIView.setAnimationsEnabled(true)
                             }
                             if data == GlobalVariables.UserIDs.UserEmployee {
                                 
@@ -217,20 +271,20 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                         }
                         
                         else {self.ErrorLabel.text = "User does not exist!"
-                            
+                            self.removeLoadingView()
                         }
                            
                         
                     }
                     
                 case false:
+                    self.removeLoadingView()
                     self.verifyEmailAlert(title: "Psst", message: "Verify your account before logging in", currentuser : user!)
                 }
                 
             }
         }
     }
-    
     
     func verifyEmailAlert(title : String?, message : String?, currentuser: User?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

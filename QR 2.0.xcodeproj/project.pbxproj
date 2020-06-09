@@ -10,6 +10,15 @@
 		17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */; };
 		17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */; };
 		17121857247EFA300060093A /* BusinessName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121856247EFA300060093A /* BusinessName.swift */; };
+		172224D1248F367B0063F0FC /* Loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D0248F367A0063F0FC /* Loader.json */; };
+		172224D3248F41420063F0FC /* Loader2.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D2248F41420063F0FC /* Loader2.json */; };
+		172224D5248F44D90063F0FC /* CroissantLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D4248F44D90063F0FC /* CroissantLoader.json */; };
+		172224D7248F45670063F0FC /* CoffeeLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D6248F45670063F0FC /* CoffeeLoader.json */; };
+		172224DA248F45A50063F0FC /* PizzaLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D8248F45A10063F0FC /* PizzaLoader.json */; };
+		172224DB248F45A50063F0FC /* BeerLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D9248F45A50063F0FC /* BeerLoader.json */; };
+		172224DD248F50A10063F0FC /* CheckMark.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224DC248F50A00063F0FC /* CheckMark.json */; };
+		172224DF248F58020063F0FC /* CheckMark2.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224DE248F58020063F0FC /* CheckMark2.json */; };
+		172224E1248F5C3D0063F0FC /* CheckMark3.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224E0248F5C3D0063F0FC /* CheckMark3.json */; };
 		173B49F2248B450E00056833 /* C_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F1248B450E00056833 /* C_1Register.swift */; };
 		173B49F4248B494000056833 /* C_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F3248B494000056833 /* C_2Register.swift */; };
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
@@ -68,6 +77,15 @@
 		17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessForCustomerCell.swift; sourceTree = "<group>"; };
 		17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessForCustomerCell.xib; sourceTree = "<group>"; };
 		17121856247EFA300060093A /* BusinessName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessName.swift; sourceTree = "<group>"; };
+		172224D0248F367A0063F0FC /* Loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader.json; sourceTree = "<group>"; };
+		172224D2248F41420063F0FC /* Loader2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader2.json; sourceTree = "<group>"; };
+		172224D4248F44D90063F0FC /* CroissantLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CroissantLoader.json; sourceTree = "<group>"; };
+		172224D6248F45670063F0FC /* CoffeeLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CoffeeLoader.json; sourceTree = "<group>"; };
+		172224D8248F45A10063F0FC /* PizzaLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PizzaLoader.json; sourceTree = "<group>"; };
+		172224D9248F45A50063F0FC /* BeerLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BeerLoader.json; sourceTree = "<group>"; };
+		172224DC248F50A00063F0FC /* CheckMark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark.json; sourceTree = "<group>"; };
+		172224DE248F58020063F0FC /* CheckMark2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark2.json; sourceTree = "<group>"; };
+		172224E0248F5C3D0063F0FC /* CheckMark3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark3.json; sourceTree = "<group>"; };
 		173B49F1248B450E00056833 /* C_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_1Register.swift; sourceTree = "<group>"; };
 		173B49F3248B494000056833 /* C_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_2Register.swift; sourceTree = "<group>"; };
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
@@ -191,6 +209,15 @@
 			isa = PBXGroup;
 			children = (
 				17DF196B2488773C0040059C /* Assets.xcassets */,
+				172224D0248F367A0063F0FC /* Loader.json */,
+				172224D2248F41420063F0FC /* Loader2.json */,
+				172224D4248F44D90063F0FC /* CroissantLoader.json */,
+				172224D6248F45670063F0FC /* CoffeeLoader.json */,
+				172224D8248F45A10063F0FC /* PizzaLoader.json */,
+				172224D9248F45A50063F0FC /* BeerLoader.json */,
+				172224DC248F50A00063F0FC /* CheckMark.json */,
+				172224DE248F58020063F0FC /* CheckMark2.json */,
+				172224E0248F5C3D0063F0FC /* CheckMark3.json */,
 				17C81F1E247ACA7F008DAAA2 /* LaunchScreen.storyboard */,
 				17C81F21247ACA7F008DAAA2 /* Info.plist */,
 				17C81F35247C2263008DAAA2 /* GoogleService-Info.plist */,
@@ -372,25 +399,34 @@
 				17DF19822488863C0040059C /* Poppins-Black.ttf in Resources */,
 				17C81F36247C2263008DAAA2 /* GoogleService-Info.plist in Resources */,
 				17DF197F2488863C0040059C /* Poppins-ExtraBold.ttf in Resources */,
+				172224DA248F45A50063F0FC /* PizzaLoader.json in Resources */,
+				172224DF248F58020063F0FC /* CheckMark2.json in Resources */,
+				172224D5248F44D90063F0FC /* CroissantLoader.json in Resources */,
 				17DF198B2488863C0040059C /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				17DF19802488863C0040059C /* Poppins-BlackItalic.ttf in Resources */,
 				17DF19862488863C0040059C /* Poppins-ExtraLight.ttf in Resources */,
 				17DF198C2488863C0040059C /* Poppins-ExtraLightItalic.ttf in Resources */,
 				17DF19892488863C0040059C /* Poppins-SemiBold.ttf in Resources */,
 				17DF197E2488863C0040059C /* Poppins-MediumItalic.ttf in Resources */,
+				172224D1248F367B0063F0FC /* Loader.json in Resources */,
 				1796CB7C248AE58900B227B2 /* EmployeeCell.xib in Resources */,
+				172224DB248F45A50063F0FC /* BeerLoader.json in Resources */,
 				17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */,
 				17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */,
+				172224DD248F50A10063F0FC /* CheckMark.json in Resources */,
 				17DF19852488863C0040059C /* Poppins-Bold.ttf in Resources */,
 				17DF19872488863C0040059C /* Poppins-BoldItalic.ttf in Resources */,
 				17DF198A2488863C0040059C /* Poppins-Light.ttf in Resources */,
 				17DF19832488863C0040059C /* Poppins-Italic.ttf in Resources */,
+				172224D3248F41420063F0FC /* Loader2.json in Resources */,
 				17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */,
 				17DF19842488863C0040059C /* Poppins-LightItalic.ttf in Resources */,
 				17DF196C2488773D0040059C /* Assets.xcassets in Resources */,
+				172224E1248F5C3D0063F0FC /* CheckMark3.json in Resources */,
 				17DF19812488863C0040059C /* Poppins-Regular.ttf in Resources */,
 				17DF19882488863C0040059C /* Poppins-Medium.ttf in Resources */,
 				17DF198D2488863C0040059C /* Poppins-SemiBoldItalic.ttf in Resources */,
+				172224D7248F45670063F0FC /* CoffeeLoader.json in Resources */,
 				17C81F20247ACA7F008DAAA2 /* LaunchScreen.storyboard in Resources */,
 				17C81F1B247ACA7B008DAAA2 /* Main.storyboard in Resources */,
 			);

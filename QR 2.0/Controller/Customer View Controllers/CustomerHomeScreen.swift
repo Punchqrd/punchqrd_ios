@@ -39,6 +39,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         
         
         super.viewDidLoad()
+        
         BusinessList.delegate = self
         // Remove the background color.
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
@@ -199,7 +200,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
                    GlobalVariables.ActualIDs.isLoggedIn = false
                    self.defaults.set(GlobalVariables.ActualIDs.isLoggedIn, forKey: GlobalVariables.UserIDs.isUserLoggedIn)
                    
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: false)
                    
                   
                    print("Logged out the user")
@@ -344,6 +345,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.ActualPointsLabel.textColor = colorHolder[randomColor]
         if cell.PointsProgressBar.progress.isEqual(to: 1) {
             cell.CheckMarkImage.isHidden = false
+            cell.animateCheckMark()
             //cell.PerkString.isHidden = false
             let randomPerkStrings : [String] = ["You've got a perk!", "Scan to redeem!", "Grab your freebee!", "Go treat yourself!"]
             let randomNumber = Int.random(in: 0...10)
@@ -357,6 +359,9 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             
         }
         if cell.PointsProgressBar.progress.isEqual(to: 0) {
+            let randomcolor2 = Int.random(in: 0...10)
+            cell.PointsProgressBar.trackTintColor = colorHolder[randomcolor2].withAlphaComponent(0.20)
+            
             cell.Points.isHidden = false
             cell.ActualPointsLabel.textColor = .black
         }

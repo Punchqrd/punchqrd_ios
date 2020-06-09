@@ -47,7 +47,7 @@ class BusinessForCustomerCell: UITableViewCell {
           self.animationView.frame.size.height = self.CheckMarkImage.frame.height
           self.animationView.frame.size.width = self.CheckMarkImage.frame.width
           self.animationView.contentMode = .scaleAspectFill
-        self.animationView.loopMode = .repeat(3)
+        self.animationView.loopMode = .loop
           self.animationView.backgroundColor = .white
          
           self.animationView.play()

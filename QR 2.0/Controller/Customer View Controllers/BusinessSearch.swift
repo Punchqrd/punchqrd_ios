@@ -102,6 +102,7 @@ class BusinessSearch: UIViewController {
 extension BusinessSearch: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didAutocompleteWith place: GMSPlace) {
+        
         searchController?.isActive = false
         searchController?.searchBar.placeholder = place.name
         
@@ -122,11 +123,11 @@ extension BusinessSearch: GMSAutocompleteResultsViewControllerDelegate {
     
     // Turn the network activity indicator on and off again.
     func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        //UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        //UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
 

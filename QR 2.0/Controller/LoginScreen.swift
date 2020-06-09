@@ -252,12 +252,12 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                             
                             if data == GlobalVariables.UserIDs.UserCustomer {
                                 self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
-                                //UIView.setAnimationsEnabled(true)
+                                
                             }
                             if data == GlobalVariables.UserIDs.UserEmployee {
                                 
                                 let businessName = dataPiece.get(GlobalVariables.UserIDs.EmployerString) as! String
-                                GlobalFunctions.employeeLocationForLogin(employeeEmployerBusinessName: businessName, navigationController: self, errorLabel: self.ErrorLabel)
+                                GlobalFunctions.employeeLocationForLogin(employeeEmployerBusinessName: businessName, navigationController: self, errorLabel: self.ErrorLabel, animationView: self.animationView)
                                 
                                 
                                 

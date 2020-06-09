@@ -12,6 +12,7 @@ import Firebase
 import FirebaseFirestore
 import GooglePlaces
 import GoogleMaps
+import Lottie
 
 
 class GlobalFunctions {
@@ -237,39 +238,52 @@ class GlobalFunctions {
     
     
     
-    static func employeeLocationForLogin(employeeEmployerBusinessName : String?, navigationController : UIViewController, errorLabel : UILabel!) {
+    static func employeeLocationForLogin(employeeEmployerBusinessName : String?, navigationController : UIViewController, errorLabel : UILabel!, animationView: AnimationView!) {
         
         let placesClient = GooglePlaces.GMSPlacesClient()
         // Specify the place data types to return.
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-                                                  UInt(GMSPlaceField.placeID.rawValue))!
+            UInt(GMSPlaceField.placeID.rawValue))!
         placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: fields, callback: {
-          (placeLikelihoodList: Array<GMSPlaceLikelihood>?, error: Error?) in
-          if let error = error {
-            print("An error occurred: \(error.localizedDescription)")
-            return
-          }
-
-          if let placeLikelihoodList = placeLikelihoodList {
-            for likelihood in placeLikelihoodList {
-              
-                if likelihood.place.name != nil {
-                    if likelihood.place.name! == employeeEmployerBusinessName! {
-                        if likelihood.likelihood > 0.95 {
-                        navigationController.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: navigationController.self)
+            (placeLikelihoodList: Array<GMSPlaceLikelihood>?, error: Error?) in
+            if let error = error {
+                print("An error occurred: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placeLikelihoodList = placeLikelihoodList {
+                for likelihood in placeLikelihoodList {
+                    
+                    if likelihood.place.name != nil {
+                        if likelihood.place.name! == employeeEmployerBusinessName! {
+                            
+                            if likelihood.likelihood > 0.95 {
+                                if likelihood.place.isOpen().rawValue == 1 {
+                                    
+                                    navigationController.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: navigationController.presentingViewController)
+                                } else {
+                                    
+                                    errorLabel.text = "\(employeeEmployerBusinessName!) is closed"
+                                    animationView.removeFromSuperview()
+                                }
+                            } else {
+                                animationView.removeFromSuperview()
+                                errorLabel.text = "You are not in proximity of your business"
+                            }
+                            
+                            
+                        }
+                        
+                        
                     }
-                    }
+                    
                     
                     
                 }
                 
-                
-                
             }
-            errorLabel.text = "You are not in proximity of your business"
-          }
         })
     }
-           
+    
     
 }

@@ -19,7 +19,9 @@ import GoogleMaps
 class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
-   
+    @IBOutlet weak var searchButton: UIBarButtonItem!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    @IBOutlet weak var qrButton: UIButton!
     @IBOutlet weak var ScanScoreLabel: UILabel!
     //refresher variable
     @IBOutlet weak var BottomLabelView: UIView!
@@ -40,11 +42,16 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         
         super.viewDidLoad()
         
+        
+        
+       
         BusinessList.delegate = self
         // Remove the background color.
-        navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
+        
+        navigationController?.navigationBar.setBackgroundImage(UIColor.lightGray.withAlphaComponent(0.15).as1ptImage(), for: .default)
         // Set the shadow color.
-        navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
+        navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).as4ptImage()
+            //UIColor.clear.as1ptImage()
         refreshTableView()
         
         
@@ -55,16 +62,26 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     }
     
     
+    
     //what will appear in the view before it loads onto the screen
     override func viewWillAppear(_ animated: Bool) {
         
+       
+        
+        self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+        self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
+        self.qrButton.layer.shadowOpacity = 1.0
+        self.qrButton.layer.shadowRadius = 0.0
+        self.qrButton.layer.masksToBounds = false
         //self.ClearToHomeButton.isHidden = true
         //self.sideView.isHidden = true
         self.locationManager.delegate = self
         self.BusinessList.backgroundColor = .white
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.isHidden = false
+        //navigationController?.navigationBar.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         setupTitle()
+        
         
         
         //sets the global variable as true for the user being logged in
@@ -83,7 +100,6 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         
         self.navigationItem.title = Auth.auth().currentUser?.email!
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poppins-Thin", size: 15)!]
-        
     }
     
    
@@ -394,6 +410,15 @@ extension UIColor {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
         setFill()
         UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
+    func as4ptImage() -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 4))
+        setFill()
+        UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 4))
         let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
         UIGraphicsEndImageContext()
         return image

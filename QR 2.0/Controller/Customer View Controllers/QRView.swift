@@ -14,15 +14,12 @@ import Firebase
 class QRView: UIViewController {
     
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var IDLabe: UILabel!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -32,6 +29,7 @@ class QRView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setupCodeAndView()
+        self.IDLabe.text = Auth.auth().currentUser?.email!
     }
     
     func setupCodeAndView() {

@@ -31,31 +31,43 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //the array created to hold business names and points the user has added to display to the tableview
     var BusinessNamesArray : [BusinessName] = []
     let locationManager = CLLocationManager()
-
+    
     //set the user defaults variable
     
     let defaults = UserDefaults.standard
     
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
-        
-        
-        
-       
         BusinessList.delegate = self
         // Remove the background color.
-        
-        navigationController?.navigationBar.setBackgroundImage(UIColor.lightGray.withAlphaComponent(0.15).as1ptImage(), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIColor.lightGray.withAlphaComponent(0.20).as1ptImage(), for: .default)
         // Set the shadow color.
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).as4ptImage()
-            //UIColor.clear.as1ptImage()
+        //UIColor.clear.as1ptImage()
         refreshTableView()
+        setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        /*
+        let titleImageView = UIImageView(image: UIImage(named: "search"))
+        titleImageView.contentMode = .scaleAspectFit
+        titleImageView.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        navigationItem.titleView = titleImageView
+        */
         
+        /*
+        let searchButton = UIButton(type: .system)
+        searchButton.setImage(UIImage(named: "search"), for: .normal)
+        searchButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        searchButton.contentMode = .scaleAspectFit
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchButton)
+ */
         
     }
+    
+    
     
     func setupDefault() {
         defaults.set(GlobalVariables.ActualIDs.isLoggedIn, forKey: GlobalVariables.UserIDs.isUserLoggedIn)
@@ -66,7 +78,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //what will appear in the view before it loads onto the screen
     override func viewWillAppear(_ animated: Bool) {
         
-       
+        
         
         self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
@@ -93,7 +105,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         showList()
         showScanScore()
         
-       
+        
+        
     }
     
     func setupTitle() {
@@ -102,7 +115,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poppins-Thin", size: 15)!]
     }
     
-   
+    
     func showScanScore() {
         let db = Firestore.firestore()
         let customerScanData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerScanCollectionData).document(GlobalVariables.UserIDs.CustomerScanDocument)
@@ -197,47 +210,47 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     @IBAction func Logout(_ sender: UIBarButtonItem) {
-       
+        
         logoutAlert(title: "Logout?", message: nil)
     }
     
     
-   
+    
     //logout alert
-       func logoutAlert(title : String?, message : String?) {
-           let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-           
-           alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
-               let firebaseAuth = Auth.auth()
-               do {
-                   try firebaseAuth.signOut()
-                   
-                   //reset the values for the user defaults as false to indicate that the user is logged out
-                   GlobalVariables.ActualIDs.isLoggedIn = false
-                   self.defaults.set(GlobalVariables.ActualIDs.isLoggedIn, forKey: GlobalVariables.UserIDs.isUserLoggedIn)
-                   
+    func logoutAlert(title : String?, message : String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                
+                //reset the values for the user defaults as false to indicate that the user is logged out
+                GlobalVariables.ActualIDs.isLoggedIn = false
+                self.defaults.set(GlobalVariables.ActualIDs.isLoggedIn, forKey: GlobalVariables.UserIDs.isUserLoggedIn)
+                
                 self.navigationController?.popToRootViewController(animated: false)
-                   
-                  
-                   print("Logged out the user")
-               } catch let signOutError as NSError {
-                   print ("Error signing out: %@", signOutError)
-               }
-               
-               
-           }))
-           
-           
-           
-           alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
-               alert.dismiss(animated: true, completion: nil)
-           }))
-           
-           
-           self.present(alert, animated: true)
-       }
-       
-       
+                
+                
+                print("Logged out the user")
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+            
+            
+        }))
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        
+        self.present(alert, animated: true)
+    }
+    
+    
     
     
     
@@ -285,12 +298,37 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     
+    /*
+    func showAddBusinessView() {
+        if self.BusinessNamesArray.isEmpty {
+                   let grayView = UIView()
+                   grayView.frame.size.width = self.view.frame.width
+                   grayView.frame.size.height = self.view.frame.height
+                   grayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+                   
+                   let label = UILabel()
+                   label.numberOfLines = 6
+                   label.frame.size.width = self.view.frame.width * 0.7
+                   label.frame.size.height = self.view.frame.height / 3
+                   label.text = "Lookup local businesses from the top right."
+                   label.font = UIFont(name: "Poppins-Bold", size: 25)
+                   label.textColor = .white
+                   label.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
+                   
+                   grayView.addSubview(label)
+                   self.view.addSubview(grayView)
+                   
+                   self.delay(2.0) {
+                       label.removeFromSuperview()
+                       grayView.removeFromSuperview()
+                   }
+                   
+               }
+    }
+    */
     
     
     
-    
-    
-
     
     
     
@@ -315,13 +353,22 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     //how many cells should be present
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //this should be the actual lenght of the array
+        //this should be the actual lenght of the arra
+        
+        
+       
         return BusinessNamesArray.count
+        
+        
     }
     
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
+        
+        
+        
+        
         let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple, .systemTeal, .systemPink, .red]
         let randomColor = Int.random(in: 0...10)
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
@@ -381,7 +428,12 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             cell.Points.isHidden = false
             cell.ActualPointsLabel.textColor = .black
         }
+        
+        
         return cell
+        
+        
+        
     }
     
     

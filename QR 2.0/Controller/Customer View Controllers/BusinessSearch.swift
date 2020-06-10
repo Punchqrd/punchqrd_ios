@@ -49,7 +49,9 @@ class BusinessSearch: UIViewController {
             
             
             
-        } else {searchController?.searchBar.placeholder = "Pick a business"}
+        } else {
+            self.removeLoadingView()
+            searchController?.searchBar.placeholder = "Find a business"}
         
     }
     

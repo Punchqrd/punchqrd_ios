@@ -53,7 +53,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
-
+        
     }
     
     
@@ -74,49 +74,71 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           self.view.endEditing(true)
-           return false
-       }
+        self.view.endEditing(true)
+        return false
+    }
     
     
     
     
-      
-      func addLoadingView() {
-          
-          self.setupAnimation()
-      }
-      func setupAnimation() {
-          let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
-          let randomNumber = Int.random(in: 0...3)
-          self.animationView.animation = Animation.named(animationNames[randomNumber])
-          self.animationView.frame.size.height = self.view.frame.height
-          self.animationView.frame.size.width = self.view.frame.width
-          self.animationView.contentMode = .center
-          self.animationView.backgroundColor = .white
-         
-          self.animationView.play()
-          self.animationView.loopMode = .loop
-          self.view.addSubview(self.animationView)
-                  
-      }
-      func removeLoadingView() {
-          self.animationView.stop()
-          self.animationView.removeFromSuperview()
-          
-      }
-      
+    
+    func addLoadingView() {
+        
+        self.setupAnimation()
+    }
+    func setupAnimation() {
+        let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+        let randomNumber = Int.random(in: 0...3)
+        self.animationView.animation = Animation.named(animationNames[randomNumber])
+        self.animationView.frame.size.height = self.view.frame.height
+        self.animationView.frame.size.width = self.view.frame.width
+        self.animationView.contentMode = .center
+        self.animationView.backgroundColor = .white
+        
+        self.animationView.play()
+        self.animationView.loopMode = .loop
+        self.view.addSubview(self.animationView)
+        
+    }
+    func removeLoadingView() {
+        self.animationView.stop()
+        self.animationView.removeFromSuperview()
+        
+    }
+    
     
     
     
     
     @IBAction func ConfirmData(_ sender: UIButton) {
         //the next 3 instantiations set the global variables to be used in the final dictionary as what the user inputted in the text fields.
-        GlobalVariables.ActualIDs.ActualName = NameTextField.text
-        GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
-        GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
         
-        SetupNewUser()
+        if let text = self.ConfirmPasswordTextField.text, !text.isEmpty
+        {
+            
+            if self.ConfirmPasswordTextField.text! == self.PasswordTextField.text! {
+                
+                GlobalVariables.ActualIDs.ActualName = NameTextField.text
+                GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
+                GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
+                
+                SetupNewUser()
+                
+            } else {
+                self.ErrorLabel.text = "Make sure both passwords are the same."
+            }
+            
+        } else {
+            self.ErrorLabel.text = "Confirm your password"
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -182,16 +204,16 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     
     
     func verifyEmailAlert(title : String?, message : String?, currentuser: String?) {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
-                self.navigationController?.popToRootViewController(animated: true)
-            }))
-            
-            self.removeLoadingView()
-            present(alert, animated: true)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        
+        self.removeLoadingView()
+        present(alert, animated: true)
+        
+        
     }
     
 }

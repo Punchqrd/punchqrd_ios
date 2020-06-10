@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 import Firebase
+import Lottie
 
 class B_2_1Register : UIViewController, UITextFieldDelegate {
     
+    let animationView = AnimationView()
     
     @IBOutlet weak var ErrorLabel: UILabel!
     let db = Firestore.firestore()
@@ -54,16 +56,50 @@ class B_2_1Register : UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         if self.CodeField.text!.isEmpty == true {self.ErrorLabel.text = "Enter Code"}
         else{
+            self.addLoadingView()
             let codeData = db.collection(GlobalVariables.UserIDs.AccessCodeCollectionTitle).document(self.CodeField.text!)
             codeData.getDocument { (codeDocument, error) in
                 if let codeDocument = codeDocument, codeDocument.exists {
                     self.performSegue(withIdentifier: GlobalVariables.SegueIDs.AccessCodeSuccessSegue, sender: self)
-                } else {self.ErrorLabel.text = "No code exists."}
+                    self.removeLoadingView()
+                } else {
+                    self.removeLoadingView()
+                    self.ErrorLabel.text = "No code exists."
+                    
+                }
             }
             
         }
         
     }
+    
+    
+    
+    
+        func addLoadingView() {
+            
+            self.setupAnimation()
+        }
+        func setupAnimation() {
+            let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+            let randomNumber = Int.random(in: 0...3)
+            self.animationView.animation = Animation.named(animationNames[randomNumber])
+            self.animationView.frame.size.height = self.view.frame.height
+            self.animationView.frame.size.width = self.view.frame.width
+            self.animationView.contentMode = .center
+            self.animationView.backgroundColor = .white
+           
+            self.animationView.play()
+            self.animationView.loopMode = .loop
+            self.view.addSubview(self.animationView)
+                    
+        }
+        func removeLoadingView() {
+            self.animationView.stop()
+            self.animationView.removeFromSuperview()
+            
+        }
+        
     
     
 }

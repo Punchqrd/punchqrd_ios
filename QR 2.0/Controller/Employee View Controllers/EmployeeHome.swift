@@ -39,18 +39,46 @@ class EmployeeHome: UIViewController {
     
     
     
-    @IBAction func LogoutAction(_ sender: UIBarButtonItem) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            //send the user back to the homescreen
+    
+     @IBAction func Logout(_ sender: UIBarButtonItem) {
+        
+         logoutAlert(title: "Logout?", message: nil)
+     }
+     
+     
+    
+     //logout alert
+        func logoutAlert(title : String?, message : String?) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
-            self.navigationController?.popToRootViewController(animated: true)
-            print("Logged out the user")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                    
+                    //reset the values for the user defaults as false to indicate that the user is logged out
+                    
+                 self.navigationController?.popToRootViewController(animated: false)
+                    
+                   
+                    print("Logged out the user")
+                } catch let signOutError as NSError {
+                    print ("Error signing out: %@", signOutError)
+                }
+                
+                
+            }))
+            
+            
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            
+            
+            self.present(alert, animated: true)
         }
-    }
+        
     
     
 }

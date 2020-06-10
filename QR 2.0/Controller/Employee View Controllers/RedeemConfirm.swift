@@ -10,11 +10,12 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import Lottie
 
 class RedeemConfirm : UIViewController {
     
     
-    
+    let animationView = AnimationView()
     @IBOutlet weak var RedeemButton: UIButton!
     @IBOutlet weak var ReturnButton: UIButton!
     
@@ -37,9 +38,10 @@ class RedeemConfirm : UIViewController {
     
     
     @IBAction func RedeemAction(_ sender: UIButton) {
-        
+        self.addLoadingView()
         GlobalFunctions.deleteAllPoints(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness)
         
+        self.removeLoadingView()
         self.RedeemButton.backgroundColor = .green
         self.RedeemButton.setTitle("Confirmed!", for: .normal)
         self.RedeemButton.isEnabled = false
@@ -56,6 +58,34 @@ class RedeemConfirm : UIViewController {
         
 
     }
+    
+    
+    
+    func addLoadingView() {
+        
+        self.setupAnimation()
+    }
+    func setupAnimation() {
+        let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+        let randomNumber = Int.random(in: 0...3)
+        self.animationView.animation = Animation.named(animationNames[randomNumber])
+        self.animationView.frame.size.height = self.view.frame.height
+        self.animationView.frame.size.width = self.view.frame.width
+        self.animationView.contentMode = .center
+        self.animationView.backgroundColor = .white
+        
+        self.animationView.play()
+        self.animationView.loopMode = .loop
+        self.view.addSubview(self.animationView)
+        
+    }
+    func removeLoadingView() {
+        self.animationView.stop()
+        self.animationView.removeFromSuperview()
+        
+    }
+    
+    
     
 }
 

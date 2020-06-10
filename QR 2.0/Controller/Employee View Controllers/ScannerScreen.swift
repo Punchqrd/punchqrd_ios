@@ -12,11 +12,12 @@ import UIKit
 import AVFoundation
 import FirebaseAuth
 import FirebaseFirestore
+import Lottie
 
 
 class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    
+    let animationView = AnimationView()
     var overlayLayer = CALayer()
     @IBOutlet weak var LogoutButton: UIBarButtonItem!
     var avCaptureSession: AVCaptureSession!
@@ -29,7 +30,7 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.backgroundColor = .clear
         setupCamera()
-
+        
         
     }
     
@@ -37,100 +38,101 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     func setupCamera() {
         
         
+        
+        self.removeLoadingView()
+        self.overlayLayer.sublayers = nil
+        
+        self.avCaptureSession = AVCaptureSession()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
+                self.failed()
+                return
+            }
+            let avVideoInput: AVCaptureDeviceInput
+            
+            do {
+                avVideoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+            } catch {
+                self.failed()
+                return
+            }
+            
+            if (self.avCaptureSession.canAddInput(avVideoInput)) {
+                self.avCaptureSession.addInput(avVideoInput)
+            } else {
+                self.failed()
+                return
+            }
+            
+            let metadataOutput = AVCaptureMetadataOutput()
+            
+            if (self.avCaptureSession.canAddOutput(metadataOutput)) {
+                
+                self.avCaptureSession.addOutput(metadataOutput)
+                metadataOutput.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
+                metadataOutput.metadataObjectTypes = [.qr]
+                
+            } else {
+                self.failed()
+                return
+            }
             
             
-            self.overlayLayer.sublayers = nil
-                   
-            self.avCaptureSession = AVCaptureSession()
-                   DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                       guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
-                           self.failed()
-                           return
-                       }
-                       let avVideoInput: AVCaptureDeviceInput
-                       
-                       do {
-                           avVideoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-                       } catch {
-                           self.failed()
-                           return
-                       }
-                       
-                       if (self.avCaptureSession.canAddInput(avVideoInput)) {
-                           self.avCaptureSession.addInput(avVideoInput)
-                       } else {
-                           self.failed()
-                           return
-                       }
-                       
-                       let metadataOutput = AVCaptureMetadataOutput()
-                       
-                       if (self.avCaptureSession.canAddOutput(metadataOutput)) {
-                           
-                           self.avCaptureSession.addOutput(metadataOutput)
-                           metadataOutput.setMetadataObjectsDelegate(self as AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
-                           metadataOutput.metadataObjectTypes = [.qr]
-                           
-                       } else {
-                           self.failed()
-                           return
-                       }
-                       
-                       
-                       //layering the camera onto the screen with certain bounds
-                       
-                       self.avPreviewLayer = AVCaptureVideoPreviewLayer(session: self.avCaptureSession)
-                       self.avPreviewLayer.frame = self.view.layer.bounds
-                       self.avPreviewLayer.videoGravity = .resizeAspectFill
-                       self.view.layer.addSublayer(self.avPreviewLayer)
-                       self.avCaptureSession.startRunning()
-                       
-                       
-                       
-                       
-                       
-                       
-                   }
+            //layering the camera onto the screen with certain bounds
+            
+            self.avPreviewLayer = AVCaptureVideoPreviewLayer(session: self.avCaptureSession)
+            self.avPreviewLayer.frame = self.view.layer.bounds
+            self.avPreviewLayer.videoGravity = .resizeAspectFill
+            self.view.layer.addSublayer(self.avPreviewLayer)
+            self.avCaptureSession.startRunning()
             
             
+            
+            
+            
+            
+        }
         
-       
-    }
-    
-    private func addCheckMarkImage(to layer: CALayer, videoSize: CGSize) {
-        
-        self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
-        self.view.layer.addSublayer(self.overlayLayer)
-        let screenSize : CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.size.width
-        let screenHeight = screenSize.size.height
-        let greenView = UIImage(color: .green, size: CGSize(width: screenWidth, height: screenHeight))
-        
-        
-        let imageLayer = CALayer()
-        let width = screenWidth
-        let height = screenHeight
-        imageLayer.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: width,
-            height: height)
-        greenView!.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
-        imageLayer.contents = greenView?.cgImage
-        layer.addSublayer(imageLayer)
         
         
         
     }
     
-   
+    /*
+     private func addCheckMarkImage(to layer: CALayer, videoSize: CGSize) {
+     
+     self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
+     self.view.layer.addSublayer(self.overlayLayer)
+     let screenSize : CGRect = UIScreen.main.bounds
+     let screenWidth = screenSize.size.width
+     let screenHeight = screenSize.size.height
+     let greenView = UIImage(color: .green, size: CGSize(width: screenWidth, height: screenHeight))
+     
+     
+     let imageLayer = CALayer()
+     let width = screenWidth
+     let height = screenHeight
+     imageLayer.frame = CGRect(
+     x: 0,
+     y: 0,
+     width: width,
+     height: height)
+     greenView!.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
+     imageLayer.contents = greenView?.cgImage
+     layer.addSublayer(imageLayer)
+     
+     
+     
+     }
+     */
+    
     
     func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
-   
+    
     func failed() {
         let ac = UIAlertController(title: "Scanner not supported", message: "Please use a device with a camera. Because this device does not support scanning a code", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -139,7 +141,7 @@ class ScannerScreen:  UIViewController, UINavigationControllerDelegate, UITextFi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.addLoadingView()
         self.navigationController?.isNavigationBarHidden = true
         if (avCaptureSession?.isRunning == false) {
             avCaptureSession.startRunning()
@@ -186,6 +188,8 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
     
     
     func found(code: String) {
+        
+        self.addCheckMarkView()
         let newValue = code.split(separator: " ")
         let customerEmail = newValue[0]
         let customerCode = newValue[1]
@@ -217,7 +221,7 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                             //now check if the code scanned from the QR code is a legitimate customer.
                             let customerData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail))
                             customerData.getDocument { (doc, err) in
-                            
+                                
                                 if let doc = doc, doc.exists {
                                     
                                     //IF THE USER EXISTS: Do this logic.
@@ -233,32 +237,34 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                         let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail)).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName!)
                                         customerBusinessCollection.getDocument { (documentSnap, error) in
                                             if let documentSnap = documentSnap, documentSnap.exists {
-                               
+                                                
                                                 let totalAccruedPoints = documentSnap.get(GlobalVariables.UserIDs.PointsString) as! Int
                                                 //if the user has more than 10 points (is eligible for redemption)?
                                                 if totalAccruedPoints >= 10 {
                                                     //if the user is eligible for redemption, then give the user a redemption point
                                                     GlobalVariables.ActualIDs.ActualCustomer = String(customerEmail)
                                                     GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName
-                                                   
+                                                    
                                                     self.performSegue(withIdentifier: GlobalVariables.SegueIDs.RedemptionSegue, sender: self)
-                                                 
+                                                    
                                                 } else if totalAccruedPoints < 10 {
                                                     //INCREMENT Points.
                                                     GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
-                                                     self.navigationController?.popViewController(animated: true)
+                                                    self.removeLoadingView()
+                                                    self.navigationController?.popViewController(animated: true)
                                                 }
-                                        }
+                                            }
                                         }
                                     }
                                 }
                                 else {
-                                    
-                                     self.navigationController?.popViewController(animated: true)
+                                    self.removeLoadingView()
+                                    self.navigationController?.popViewController(animated: true)
                                 }
                             }
                         } else {
-                             self.navigationController?.popViewController(animated: true)
+                            self.removeLoadingView()
+                            self.navigationController?.popViewController(animated: true)
                         }
                     }
                     
@@ -268,10 +274,54 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
         }
         
         
-       
+        
         
         
     }
+    
+    
+    func setupCheckAnimation() {
+        self.animationView.animation = Animation.named("CheckMark")
+        self.animationView.frame.size.height = self.view.frame.height
+        self.animationView.frame.size.width = self.view.frame.width
+        self.animationView.contentMode = .center
+        self.animationView.backgroundColor = .white
+        self.animationView.play()
+        self.animationView.loopMode = .playOnce
+        self.view.addSubview(self.animationView)
+    }
+    
+    func addCheckMarkView() {
+        self.setupCheckAnimation()
+    }
+    
+  
+    
+    func addLoadingView() {
+        
+        self.setupAnimation()
+    }
+    func setupAnimation() {
+        let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+        let randomNumber = Int.random(in: 0...3)
+        self.animationView.animation = Animation.named(animationNames[randomNumber])
+        self.animationView.frame.size.height = self.view.frame.height
+        self.animationView.frame.size.width = self.view.frame.width
+        self.animationView.contentMode = .center
+        self.animationView.backgroundColor = .white
+        
+        self.animationView.play()
+        self.animationView.loopMode = .loop
+        self.view.addSubview(self.animationView)
+        
+    }
+    func removeLoadingView() {
+        self.animationView.stop()
+        self.animationView.removeFromSuperview()
+        
+    }
+    
+    
     
     
     

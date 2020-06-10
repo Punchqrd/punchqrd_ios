@@ -12,12 +12,12 @@ import FirebaseFirestore
 import FirebaseAuth
 import GooglePlaces
 import GoogleMaps
-
+import Lottie
 
 
 //this is the OWNER view controller register class
 class B_2Register : UIViewController {
-    
+    let animationView = AnimationView()
     @IBOutlet weak var nameConfirmButton: UIButton!
     @IBOutlet weak var addressConfirmButton: UIButton!
     var confirmedAddress : Bool?
@@ -83,7 +83,7 @@ class B_2Register : UIViewController {
     //move to the next screen.
     @IBAction func BusinessConfirm(_ sender: UIButton) {
         
-        
+       
         if confirmedAddress == true && confirmedName == true {
             GlobalVariables.ActualIDs.ActualBusinessName = self.businessName
             GlobalVariables.ActualIDs.ActualZipCode = self.businessAddress
@@ -138,6 +138,32 @@ class B_2Register : UIViewController {
         self.cancelAlert(title: "Cancel Process?", message: "This will take you back home")
     }
     
+    
+    
+    
+        func addLoadingView() {
+            
+            self.setupAnimation()
+        }
+        func setupAnimation() {
+            let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+            let randomNumber = Int.random(in: 0...3)
+            self.animationView.animation = Animation.named(animationNames[randomNumber])
+            self.animationView.frame.size.height = self.view.frame.height
+            self.animationView.frame.size.width = self.view.frame.width
+            self.animationView.contentMode = .center
+            self.animationView.backgroundColor = .white
+           
+            self.animationView.play()
+            self.animationView.loopMode = .loop
+            self.view.addSubview(self.animationView)
+                    
+        }
+        func removeLoadingView() {
+            self.animationView.stop()
+            self.animationView.removeFromSuperview()
+            
+        }
     
 }
 

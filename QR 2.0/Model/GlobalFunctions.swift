@@ -239,7 +239,7 @@ class GlobalFunctions {
     
     
     static func employeeLocationForLogin(employeeEmployerBusinessName : String?, navigationController : UIViewController, errorLabel : UILabel!, animationView: AnimationView!) {
-        
+        print("calling function for location")
         let placesClient = GooglePlaces.GMSPlacesClient()
         // Specify the place data types to return.
         let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
@@ -253,30 +253,50 @@ class GlobalFunctions {
             
             if let placeLikelihoodList = placeLikelihoodList {
                 for likelihood in placeLikelihoodList {
-                    
                     if likelihood.place.name != nil {
-                        if likelihood.place.name! == employeeEmployerBusinessName! {
-                            
-                            if likelihood.likelihood > 0.95 {
-                                if likelihood.place.isOpen().rawValue == 1 {
+                        if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
+                            print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
+                            //if the business name is the same as the place.name
+                            //check if the likelyhood of you being near the actual business is greate than 85%
+                            if likelihood.likelihood > 0.85 {
+                                //if you are near the business and are close enough, check if the business is open.
+                                if likelihood.place.isOpen().rawValue == 0 {
                                     
                                     navigationController.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: navigationController.presentingViewController)
+                                    break
                                 } else {
                                     
                                     errorLabel.text = "\(employeeEmployerBusinessName!) is closed"
                                     animationView.removeFromSuperview()
+                                    break
                                 }
                             } else {
+                                
                                 animationView.removeFromSuperview()
-                                errorLabel.text = "You are not in proximity of your business"
+                                errorLabel.text = "Get closer to your business"
+                                break
                             }
                             
+                            
+                        }//if the place is not a name
+                            
+                        else {
+                            
+                            print("not the business")
+                            break
                             
                         }
                         
                         
+                        
+                        
                     }
-                    
+                    else {
+                        
+                        animationView.removeFromSuperview()
+                        errorLabel.text = "\(employeeEmployerBusinessName!) is not in your area"
+                        break
+                    }
                     
                     
                 }

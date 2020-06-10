@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Lottie
 
 class C_2Register : UIViewController, UITextFieldDelegate {
     
     
         
-    
+        let animationView = AnimationView()
         @IBOutlet weak var ErrorLabel: UILabel!
         @IBOutlet weak var CreateEmployeeButton: UIButton!
         @IBOutlet weak var NameField: UITextField! {
@@ -76,16 +77,18 @@ class C_2Register : UIViewController, UITextFieldDelegate {
         func createNewEmployeeAsUser() {
             
             
-            
+            self.addLoadingView()
             Auth.auth().createUser(withEmail: self.EmailField.text!, password: self.PasswordField.text!) { (user, error) in
                 if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
                 else {
+                    
                     GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.EmployerBusinessEmail!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!)
                     //after creating the user, destroy the code
                     GlobalFunctions.deleteEmployeeAccessCode(codeValue: GlobalVariables.ActualIDs.employeeAccessCode)
                     //send a verificiation email
                     Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
                         if let error = error {print(error.localizedDescription)} else {
+                            
                             self.verifyEmailAlert(title: "Check your email!", message: "We sent a link to verify your account.", currentuser: nil)
                         }
                     })
@@ -103,7 +106,7 @@ class C_2Register : UIViewController, UITextFieldDelegate {
                       self.navigationController?.popToRootViewController(animated: true)
                   }))
                   
-                  
+                  self.removeLoadingView()
                   present(alert, animated: true)
               
 
@@ -114,9 +117,37 @@ class C_2Register : UIViewController, UITextFieldDelegate {
         
         @IBAction func CreateEmployee(_ sender: UIButton) {
             self.createNewEmployeeAsUser()
+            self.resignFirstResponder()
+
         }
         
         
+    
+    
+    
+        func addLoadingView() {
+            
+            self.setupAnimation()
+        }
+        func setupAnimation() {
+            let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+            let randomNumber = Int.random(in: 0...3)
+            self.animationView.animation = Animation.named(animationNames[randomNumber])
+            self.animationView.frame.size.height = self.view.frame.height
+            self.animationView.frame.size.width = self.view.frame.width
+            self.animationView.contentMode = .center
+            self.animationView.backgroundColor = .white
+           
+            self.animationView.play()
+            self.animationView.loopMode = .loop
+            self.view.addSubview(self.animationView)
+                    
+        }
+        func removeLoadingView() {
+            self.animationView.stop()
+            self.animationView.removeFromSuperview()
+            
+        }
         
     }
     

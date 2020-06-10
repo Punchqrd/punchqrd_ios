@@ -12,12 +12,12 @@ import Firebase
 import GoogleMaps
 import GooglePlaces
 import StoreKit
+import Lottie
 
 class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactionObserver {
     
     
-   
-    let grayView = UIView()
+    let animationView = AnimationView()
     let productID = "com.SebastianBarry.QR20.BusinessSub"
     let db = Firestore.firestore()
     @IBOutlet weak var EmailTextField: UITextField! {
@@ -49,16 +49,42 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
         super.viewDidLoad()
         SKPaymentQueue.default().add(self)
         
-        self.grayView.frame.size.height = self.view.bounds.height
-        self.grayView.frame.size.width = self.view.bounds.width
-        self.grayView.backgroundColor = UIColor.systemGray.withAlphaComponent(0.7)
-        self.view.addSubview(self.grayView)
-        
+        self.addLoadingView()
         
         setupPremiumPurchase()
         
         
     }
+    
+    
+      
+      func addLoadingView() {
+          
+          self.setupAnimation()
+      }
+      func setupAnimation() {
+          let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+          let randomNumber = Int.random(in: 0...3)
+          self.animationView.animation = Animation.named(animationNames[randomNumber])
+          self.animationView.frame.size.height = self.view.frame.height
+          self.animationView.frame.size.width = self.view.frame.width
+          self.animationView.contentMode = .center
+          self.animationView.backgroundColor = .white
+         
+          self.animationView.play()
+          self.animationView.loopMode = .loop
+          self.view.addSubview(self.animationView)
+                  
+      }
+      func removeLoadingView() {
+          self.animationView.stop()
+          self.animationView.removeFromSuperview()
+          
+      }
+      
+      
+      
+      
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -78,7 +104,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
     //MARK:- Setup up the purchase function for business account creation.
     
     func setupPremiumPurchase() {
-        
+       
         if SKPaymentQueue.canMakePayments() {
             let paymentRequest = SKMutablePayment()
             paymentRequest.productIdentifier = productID
@@ -94,25 +120,27 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        
         for transactions in transactions {
             if transactions.transactionState == .purchased {
                 //user payment was successful
                 print("transaction was successful")
                 SKPaymentQueue.default().finishTransaction(transactions)
-                self.grayView.removeFromSuperview()
+                self.removeLoadingView()
             } else if transactions.transactionState == .failed {
                 //payment failed
                 if let error = transactions.error {
                     let errorDescription = error.localizedDescription
                     SKPaymentQueue.default().finishTransaction(transactions)
-
+         
                     print(errorDescription)
 
                 }
                 SKPaymentQueue.default().finishTransaction(transactions)
                 self.navigationController?.popViewController(animated: true)
             } else if transactions.transactionState == .purchased {
-                self.grayView.removeFromSuperview()
+                print("transaction happened")
+                self.removeLoadingView()
             }
         }
        }
@@ -121,9 +149,12 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
        func SetupNewUser () {
              
              
-
+             self.addLoadingView()
              Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
-                 if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
+                 if let error = error {self.ErrorLabel.text = (error.localizedDescription)
+                    self.removeLoadingView()
+                    
+                 }
                  else {
                    
                    print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a \(GlobalVariables.ActualIDs.ActualUserType!)")
@@ -147,6 +178,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
                }))
                
                
+               self.removeLoadingView()
                present(alert, animated: true)
            
 
@@ -182,11 +214,16 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
        
     @IBAction func ConfirmBusiness(_ sender: UIButton) {
         //the next few lines set the global data variables as the textfield user inputted data for use in data set.
+        
         GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
         GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
         //***Still need to set the address
         SetupNewUser()
     }
+    
+    
+    
+      
     
     
 }

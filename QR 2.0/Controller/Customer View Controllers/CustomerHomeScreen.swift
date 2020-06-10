@@ -80,7 +80,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.isHidden = false
         //navigationController?.navigationBar.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
-        setupTitle()
+        //setupTitle()
         
         
         
@@ -364,7 +364,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             cell.animateCheckMark()
             //cell.PerkString.isHidden = false
             let randomPerkStrings : [String] = ["You've got a perk!", "Scan to redeem!", "Grab your freebee!", "Go treat yourself!"]
-            let randomNumber = Int.random(in: 0...10)
+            let randomNumber = Int.random(in: 0...8)
             let randomPerkString = Int.random(in: 0...3)
             if randomNumber > 6 {
                 cell.PerkString.isHidden = false

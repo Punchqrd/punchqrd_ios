@@ -255,8 +255,9 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                                 
                             }
                             if data == GlobalVariables.UserIDs.UserEmployee {
-                                
+                                print("Employee")
                                 let businessName = dataPiece.get(GlobalVariables.UserIDs.EmployerString) as! String
+                                print(businessName)
                                 GlobalFunctions.employeeLocationForLogin(employeeEmployerBusinessName: businessName, navigationController: self, errorLabel: self.ErrorLabel, animationView: self.animationView)
                                 
                                 

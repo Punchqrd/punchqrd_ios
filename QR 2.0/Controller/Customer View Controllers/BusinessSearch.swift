@@ -10,9 +10,10 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import GooglePlaces
+import Lottie
 
 class BusinessSearch: UIViewController {
-    
+    let animationView = AnimationView()
     @IBOutlet weak var AddressLabel: UILabel!
     @IBOutlet weak var BusinessNameLabel: UILabel!
     var resultsViewController: GMSAutocompleteResultsViewController?
@@ -24,6 +25,7 @@ class BusinessSearch: UIViewController {
     //this is the button that will add a new business from the selected business to the users list
     @IBAction func AddBusiness(_ sender: UIButton) {
         
+        self.addLoadingView()
         if let substituteValue = self.businessName {
             GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer = substituteValue
             let db = Firestore.firestore()
@@ -32,10 +34,13 @@ class BusinessSearch: UIViewController {
             //set certain field values within the collection
             collection.getDocument { (doc, error) in
                 if let doc = doc, doc.exists {
+                    self.removeLoadingView()
                     self.searchController?.searchBar.placeholder = "Business already added"
                 } else {
-                    self.navigationController?.popViewController(animated: true)
+                    
                     collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0"])
+                    self.removeLoadingView()
+                    self.navigationController?.popViewController(animated: true)
                 }
                 
             }
@@ -51,6 +56,30 @@ class BusinessSearch: UIViewController {
     
     
     
+    
+        func addLoadingView() {
+            
+            self.setupAnimation()
+        }
+        func setupAnimation() {
+            let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+            let randomNumber = Int.random(in: 0...3)
+            self.animationView.animation = Animation.named(animationNames[randomNumber])
+            self.animationView.frame.size.height = self.view.frame.height
+            self.animationView.frame.size.width = self.view.frame.width
+            self.animationView.contentMode = .center
+            self.animationView.backgroundColor = .white
+           
+            self.animationView.play()
+            self.animationView.loopMode = .loop
+            self.view.addSubview(self.animationView)
+                    
+        }
+        func removeLoadingView() {
+            self.animationView.stop()
+            self.animationView.removeFromSuperview()
+            
+        }
     
     
     

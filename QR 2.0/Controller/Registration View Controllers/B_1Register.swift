@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import Lottie
 
 
 //this is the CUSTOMER view controller register class
 class B_1Register : UIViewController, UITextFieldDelegate {
+    
+    
+    let animationView = AnimationView()
     
     let db = Firestore.firestore()
     
@@ -74,11 +78,44 @@ class B_1Register : UIViewController, UITextFieldDelegate {
            return false
        }
     
+    
+    
+    
+      
+      func addLoadingView() {
+          
+          self.setupAnimation()
+      }
+      func setupAnimation() {
+          let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
+          let randomNumber = Int.random(in: 0...3)
+          self.animationView.animation = Animation.named(animationNames[randomNumber])
+          self.animationView.frame.size.height = self.view.frame.height
+          self.animationView.frame.size.width = self.view.frame.width
+          self.animationView.contentMode = .center
+          self.animationView.backgroundColor = .white
+         
+          self.animationView.play()
+          self.animationView.loopMode = .loop
+          self.view.addSubview(self.animationView)
+                  
+      }
+      func removeLoadingView() {
+          self.animationView.stop()
+          self.animationView.removeFromSuperview()
+          
+      }
+      
+    
+    
+    
+    
     @IBAction func ConfirmData(_ sender: UIButton) {
         //the next 3 instantiations set the global variables to be used in the final dictionary as what the user inputted in the text fields.
         GlobalVariables.ActualIDs.ActualName = NameTextField.text
         GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
         GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
+        
         SetupNewUser()
         
         
@@ -114,8 +151,14 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     
     //setup function for a new user in Firebase
     func SetupNewUser () {
+        self.addLoadingView()
         Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
-            if let error = error {self.ErrorLabel.text = (error.localizedDescription)}
+            if let error = error {
+                self.removeLoadingView()
+                self.ErrorLabel.text = (error.localizedDescription)
+                
+                
+            }
             else {
                 print("Successfully created \(GlobalVariables.ActualIDs.ActualEmail!) as a Customer")
                 self.SetupFirebaseData()
@@ -145,7 +188,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
                 self.navigationController?.popToRootViewController(animated: true)
             }))
             
-            
+            self.removeLoadingView()
             present(alert, animated: true)
         
 

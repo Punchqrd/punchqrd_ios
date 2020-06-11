@@ -261,8 +261,8 @@ class GlobalFunctions {
                             //check if the likelyhood of you being near the actual business is greate than 85%
                             if likelihood.likelihood > 0.85 {
                                 //if you are near the business and are close enough, check if the business is open.
-                                if likelihood.place.isOpen().rawValue == 0 {
-                                    
+                                if likelihood.place.isOpen().rawValue == 1 {
+                                    animationView.removeFromSuperview()
                                     navigationController.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: navigationController.presentingViewController)
                                     break
                                 } else {
@@ -282,9 +282,8 @@ class GlobalFunctions {
                         }//if the place is not a name
                             
                         else {
-                            
                             print("not the business")
-                            break
+                            
                             
                         }
                         

@@ -46,7 +46,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         //navigationController?.navigationBar.barTintColor = UIColor(red: 255, green: 103, blue: 104, alpha: 1.0)
 
         // Set the shadow color.
-        navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).as4ptImage()
+        navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         //UIColor.clear.as1ptImage()
         refreshTableView()
         setupNavigationBar()

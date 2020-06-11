@@ -50,67 +50,94 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
-
+        
     }
     
     
-    
+    //MARK: - View functions
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
         
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
         
         if CLLocationManager.authorizationStatus() == .notDetermined
-               {
-                   locationManager.requestWhenInUseAuthorization()
-                   locationManager.delegate = self
-                   locationManager.startUpdatingLocation()
-                   
-               }
-               
+        {
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+            
+        }
+        
         self.locationManager.delegate = self
-
+        
+        // call the 'keyboardWillShow' function when the view controller receive the notification that a keyboard is going to be shown
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginScreen.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // call the 'keyboardWillHide' function when the view controlelr receive notification that keyboard is going to be hidden
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginScreen.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        
     }
-    
-    
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-        
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
-               if isLoggedIn == true {
-                   self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
-               }
+           self.navigationController?.isNavigationBarHidden = false
            
-        self.locationManager.delegate = self
-        GlobalFunctions.setButtonRadius(button: self.LoginButton)
-        self.navigationController?.navigationBar.isHidden = true
-        PasswordTextField.text = nil
-        EmailTextField.text = nil
-        ErrorLabel.text = nil
-        self.removeLoadingView()
-      
+       }
+       
+       
+       
+       override func viewWillAppear(_ animated: Bool) {
+           
+           let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
+           if isLoggedIn == true {
+               self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
+           }
+           
+           self.locationManager.delegate = self
+           GlobalFunctions.setButtonRadius(button: self.LoginButton)
+           self.navigationController?.navigationBar.isHidden = true
+           PasswordTextField.text = nil
+           EmailTextField.text = nil
+           ErrorLabel.text = nil
+           self.removeLoadingView()
+           
+           
+       }
+       
+       
+       
+       
+       
+       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           self.view.endEditing(true)
+           return false
+       }
+       
+    
+    
+    //MARK: - Keyboard manipulation
+    @objc func keyboardWillShow(notification: NSNotification) {
         
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+            return
+        }
+        
+        // move the root view up by the distance of keyboard height
+        self.view.frame.origin.y = 0 - keyboardSize.height/2
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        // move back the root view origin to zero
+        self.view.frame.origin.y = 0
     }
     
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
     
     
-    //login button
+    //MARK: - Actions and animations
     @IBAction func LoginAction(_ sender: UIButton) {
         self.view.resignFirstResponder()
         self.view.endEditing(true)
@@ -119,24 +146,12 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func addLoadingView() {
         
         self.setupAnimation()
     }
+    
+    
     func setupAnimation() {
         let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
         let randomNumber = Int.random(in: 0...3)
@@ -145,11 +160,11 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         self.animationView.frame.size.width = self.view.frame.width
         self.animationView.contentMode = .center
         self.animationView.backgroundColor = .white
-       
+        
         self.animationView.play()
         self.animationView.loopMode = .loop
         self.view.addSubview(self.animationView)
-                
+        
     }
     func removeLoadingView() {
         self.animationView.stop()
@@ -175,29 +190,29 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         }
     }
     
-   
+    
     func resetButtonWithNoEmailPopup(title : String?, message : String?) {
-            //popup notifying the user to enter email.
-            let enterEmailAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                      enterEmailAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
-                          enterEmailAlert.dismiss(animated: true, completion: nil)
-                      }))
-                      self.present(enterEmailAlert, animated: true)
+        //popup notifying the user to enter email.
+        let enterEmailAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        enterEmailAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
+            enterEmailAlert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(enterEmailAlert, animated: true)
         
-        }
-          
+    }
+    
     
     
     func resetButtonWithEmailPopup(title : String?, message : String?) {
-       //popup with the send verifiction email
-                  let resetEmail = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                  resetEmail.addAction(UIAlertAction(title: "Reset via email", style: UIAlertAction.Style.default, handler: { (action) in
-                      let db = Auth.auth()
-                      db.sendPasswordReset(withEmail: self.EmailTextField.text!) { (error) in
-                          if let error = error {self.ErrorLabel.text = error.localizedDescription}
-                      }
-                      resetEmail.dismiss(animated: true, completion: nil)
-                  }))
+        //popup with the send verifiction email
+        let resetEmail = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        resetEmail.addAction(UIAlertAction(title: "Reset via email", style: UIAlertAction.Style.default, handler: { (action) in
+            let db = Auth.auth()
+            db.sendPasswordReset(withEmail: self.EmailTextField.text!) { (error) in
+                if let error = error {self.ErrorLabel.text = error.localizedDescription}
+            }
+            resetEmail.dismiss(animated: true, completion: nil)
+        }))
         
         
         let cancel = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -206,13 +221,13 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
             cancel.dismiss(animated: true, completion: nil)
         }))
         
-                  self.present(resetEmail, animated: true)
-    
+        self.present(resetEmail, animated: true)
+        
     }
     
     
     
-   
+    
     
     
     
@@ -270,11 +285,11 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                             }
                             
                         }
-                        
+                            
                         else {self.ErrorLabel.text = "User does not exist!"
                             self.removeLoadingView()
                         }
-                           
+                        
                         
                     }
                     

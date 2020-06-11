@@ -41,12 +41,18 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         BusinessList.delegate = self
         // Remove the background color.
-        navigationController?.navigationBar.setBackgroundImage(UIColor.lightGray.withAlphaComponent(0.20).as1ptImage(), for: .default)
+        
+        //navigationController?.navigationBar.setBackgroundImage(UIColor.lightGray.withAlphaComponent(0.20).as1ptImage(), for: .default)
+        //navigationController?.navigationBar.barTintColor = UIColor(red: 255, green: 103, blue: 104, alpha: 1.0)
+
         // Set the shadow color.
-        navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).as4ptImage()
+        navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.12).as4ptImage()
         //UIColor.clear.as1ptImage()
         refreshTableView()
         setupNavigationBar()
+        
+        
+        
     }
     
     func setupNavigationBar() {
@@ -79,7 +85,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         
         
-        
+        self.refresher.backgroundColor = UIColor.green.withAlphaComponent(0.8)
         self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
         self.qrButton.layer.shadowOpacity = 1.0
@@ -468,9 +474,9 @@ extension UIColor {
     }
     
     func as4ptImage() -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: 1, height: 4))
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 6))
         setFill()
-        UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 4))
+        UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 6))
         let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
         UIGraphicsEndImageContext()
         return image

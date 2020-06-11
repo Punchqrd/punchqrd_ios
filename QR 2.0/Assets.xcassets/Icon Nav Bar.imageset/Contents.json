@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "icons8-search-bar-24.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Icon Nav Bar .png",
       "idiom" : "universal",
       "scale" : "2x"
     },

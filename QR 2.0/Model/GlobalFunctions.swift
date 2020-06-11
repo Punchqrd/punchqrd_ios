@@ -253,15 +253,28 @@ class GlobalFunctions {
             }
             
             if let placeLikelihoodList = placeLikelihoodList {
+                
                 for likelihood in placeLikelihoodList {
+                    
                     if likelihood.place.name != nil {
+                        
                         if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
                             print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
                             //if the business name is the same as the place.name
                             //check if the likelyhood of you being near the actual business is greate than 85%
-                            if likelihood.likelihood > 0.85 {
-                                //if you are near the business and are close enough, check if the business is open.
-                                if likelihood.place.isOpen().rawValue == 1 {
+                            
+                            //assign the name to a variable (the name might change?)
+                            
+                            //this value always seems to be 0 even when not that close to the business...
+                            
+                            //returning small values like .067...
+                            
+                            if likelihood.likelihood >= 0.7 {
+                                //the stores always seem to be clise.
+                                //print(likelihood.likelihood)
+                                //print(likelihood.place.name)
+                                //print(likelihood.place.isOpen().rawValue) <- this always seems to be returning 0
+                                if likelihood.place.isOpen().rawValue != 1 {
                                     animationView.removeFromSuperview()
                                     navigationController.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: navigationController.presentingViewController)
                                     break

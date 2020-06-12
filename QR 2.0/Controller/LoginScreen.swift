@@ -33,19 +33,23 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     @IBOutlet weak var LoginButton: UIButton!
     
     let db = Firestore.firestore()
-    @IBOutlet weak var EmailTextField: UITextField! {
+    
+    @IBOutlet weak var EmailTextField: UITextField!
+        /*{
         didSet {
-            EmailTextField.tintColor = UIColor.red
+            EmailTextField.tintColor = UIColor.white
             EmailTextField.setIcon(UIImage(systemName: "person")!)
         }
-    }
-    @IBOutlet weak var PasswordTextField: UITextField! {
+    }*/
+    
+    @IBOutlet weak var PasswordTextField: UITextField!
+        /*{
         didSet {
-            PasswordTextField.tintColor = UIColor.red
+            PasswordTextField.tintColor = UIColor.white
             PasswordTextField.setIcon(UIImage(systemName: "lock")!)
         }
         
-    }
+    }*/
     @IBOutlet weak var ErrorLabel : UILabel!
     
     override func encodeRestorableState(with coder: NSCoder) {

@@ -224,7 +224,6 @@
 				172224DC248F50A00063F0FC /* CheckMark.json */,
 				172224DE248F58020063F0FC /* CheckMark2.json */,
 				172224E0248F5C3D0063F0FC /* CheckMark3.json */,
-				17C81F1E247ACA7F008DAAA2 /* LaunchScreen.storyboard */,
 				17C81F21247ACA7F008DAAA2 /* Info.plist */,
 				17C81F35247C2263008DAAA2 /* GoogleService-Info.plist */,
 				17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */,
@@ -256,6 +255,7 @@
 		17C81F28247ACAA9008DAAA2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17C81F1E247ACA7F008DAAA2 /* LaunchScreen.storyboard */,
 				17C81F19247ACA7B008DAAA2 /* Main.storyboard */,
 				17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */,
 				1796CB7A248AE58900B227B2 /* EmployeeCell.xib */,

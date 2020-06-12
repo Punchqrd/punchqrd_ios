@@ -446,6 +446,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     //disable full swipe accross cell
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            
             self.createBottomAlert(title: "Remove this Business?", message: "All points will be lost", valueRemove: indexPath.row, path: indexPath)
             completionHandler(true)
         }

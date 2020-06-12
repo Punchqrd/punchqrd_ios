@@ -19,30 +19,10 @@ class C_2Register : UIViewController, UITextFieldDelegate {
     let animationView = AnimationView()
     @IBOutlet weak var ErrorLabel: UILabel!
     @IBOutlet weak var CreateEmployeeButton: UIButton!
-    @IBOutlet weak var NameField: UITextField! {
-        didSet {
-            NameField.tintColor = UIColor.green
-            NameField.setIcon(UIImage(systemName: "smiley")!)
-        }
-    }
-    @IBOutlet weak var EmailField: UITextField! {
-        didSet {
-            EmailField.tintColor = UIColor.red
-            EmailField.setIcon(UIImage(systemName: "person")!)
-        }
-    }
-    @IBOutlet weak var PasswordField: UITextField! {
-        didSet {
-            PasswordField.tintColor = UIColor.blue
-            PasswordField.setIcon(UIImage(systemName: "lock")!)
-        }
-    }
-    @IBOutlet weak var ConfirmPassWord: UITextField! {
-        didSet {
-            ConfirmPassWord.tintColor = UIColor.yellow
-            ConfirmPassWord.setIcon(UIImage(systemName: "lock.fill")!)
-        }
-    }
+    @IBOutlet weak var NameField: UITextField!
+    @IBOutlet weak var EmailField: UITextField!
+    @IBOutlet weak var PasswordField: UITextField!
+    @IBOutlet weak var ConfirmPassWord: UITextField! 
     
     override func viewDidLoad() {
         super.viewDidLoad()

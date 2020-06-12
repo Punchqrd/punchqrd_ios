@@ -254,9 +254,8 @@ class GlobalFunctions {
             if let placeLikelihoodList = placeLikelihoodList {
                 
                 for likelihood in placeLikelihoodList {
-                    
                     if likelihood.place.name != nil {
-                        
+                        print(likelihood.place.name!)
                         if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
                             print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
                             //if the business name is the same as the place.name
@@ -267,7 +266,7 @@ class GlobalFunctions {
                             //this value always seems to be 0 even when not that close to the business...
                             
                             //returning small values like .067...
-                            
+                            print(likelihood.likelihood)
                             if likelihood.likelihood >= 0.7 {
                                 //the stores always seem to be clise.
                                 //print(likelihood.likelihood)
@@ -291,7 +290,8 @@ class GlobalFunctions {
                             }
                             
                             
-                        }//if the place is not a name
+                        }
+                            //if the place is not a name
                             
                         else {
                             print("not the business")

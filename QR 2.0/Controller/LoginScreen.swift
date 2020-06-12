@@ -267,6 +267,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                                         self.logoutAlert(title: "Your employee \(self.EmailTextField.text!) has been deleted from your list", message: nil)
                                         self.EmailTextField.text = nil
                                         self.PasswordTextField.text = nil
+                                        self.removeLoadingView()
                                     }
                                 })
                             }

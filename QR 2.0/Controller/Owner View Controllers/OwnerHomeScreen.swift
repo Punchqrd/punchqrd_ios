@@ -29,6 +29,7 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
         SKPaymentQueue.default().add(self)
         navigationItem.hidesBackButton = true
         
+        
         //check if the user is subscribed
         let db = Firestore.firestore()
         let OwnerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!)

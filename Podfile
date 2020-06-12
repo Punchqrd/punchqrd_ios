@@ -1,14 +1,15 @@
 # Uncomment the next line to define a global platform for your project
-target 'QR 2.0' do
+target 'FizzyPoints' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
 
 
 
-  # Pods for QR 2.0
+  # Pods for FizzyPoints
 
-	
+
+
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Firestore'
 	pod 'Firebase/Storage'
@@ -19,5 +20,6 @@ target 'QR 2.0' do
 	pod 'MaterialComponents/Buttons+Theming'
         pod 'lottie-ios'
 
+	
 
 end

@@ -42,7 +42,6 @@
 		17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F2D247ACE2E008DAAA2 /* A_Register.swift */; };
 		17C81F30247AD276008DAAA2 /* B_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F2F247AD276008DAAA2 /* B_1Register.swift */; };
 		17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F31247AD2AB008DAAA2 /* B_2Register.swift */; };
-		17C81F36247C2263008DAAA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17C81F35247C2263008DAAA2 /* GoogleService-Info.plist */; };
 		17C81F38247C3197008DAAA2 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F37247C3197008DAAA2 /* GlobalFunctions.swift */; };
 		17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */; };
 		17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */; };
@@ -67,12 +66,13 @@
 		17DF198D2488863C0040059C /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */; };
 		17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */; };
 		17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846724843D610035F7CA /* ScannerScreen.swift */; };
+		17F55F1324942D8900F78E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17F55F1224942D8900F78E5F /* GoogleService-Info.plist */; };
 		17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDE9248C346300041577 /* RedeemConfirm.swift */; };
 		17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEB248D369F00041577 /* ScanDataFile.swift */; };
 		17F7BDEE248D3F0E00041577 /* OwnerDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */; };
 		17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEF248D750900041577 /* PlacesObject.swift */; };
 		17FDDE18248F0F6B008F5FF1 /* EmployeeHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */; };
-		222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */; };
+		188E6394833396A7121FAA10 /* Pods_FizzyPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,7 +103,7 @@
 		1796CB79248AE58900B227B2 /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
 		1796CB7A248AE58900B227B2 /* EmployeeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeCell.xib; sourceTree = "<group>"; };
 		1796CB7D248AE73700B227B2 /* EmployeeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeObject.swift; sourceTree = "<group>"; };
-		17C81F10247ACA7B008DAAA2 /* QR 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		17C81F10247ACA7B008DAAA2 /* Fizzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fizzy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		17C81F1A247ACA7B008DAAA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,11 +113,11 @@
 		17C81F2D247ACE2E008DAAA2 /* A_Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A_Register.swift; sourceTree = "<group>"; };
 		17C81F2F247AD276008DAAA2 /* B_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_1Register.swift; sourceTree = "<group>"; };
 		17C81F31247AD2AB008DAAA2 /* B_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2Register.swift; sourceTree = "<group>"; };
-		17C81F35247C2263008DAAA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		17C81F37247C3197008DAAA2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeScreen.swift; sourceTree = "<group>"; };
 		17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHomeScreen.swift; sourceTree = "<group>"; };
+		17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints.release.xcconfig"; path = "Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints.release.xcconfig"; sourceTree = "<group>"; };
 		17DF1969248851EE0040059C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		17DF196B2488773C0040059C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17DF196D248885DA0040059C /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -138,12 +138,14 @@
 		17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		17E2846724843D610035F7CA /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
+		17F55F1224942D8900F78E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		17F7BDE9248C346300041577 /* RedeemConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemConfirm.swift; sourceTree = "<group>"; };
 		17F7BDEB248D369F00041577 /* ScanDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataFile.swift; sourceTree = "<group>"; };
 		17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerDataObject.swift; sourceTree = "<group>"; };
 		17F7BDEF248D750900041577 /* PlacesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesObject.swift; sourceTree = "<group>"; };
 		17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeHome.swift; sourceTree = "<group>"; };
-		2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FizzyPoints.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints.debug.xcconfig"; path = "Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints.debug.xcconfig"; sourceTree = "<group>"; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,8 +155,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				222C6AC1C34615C327BF6610 /* Pods_QR_2_0.framework in Frameworks */,
 				176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */,
+				188E6394833396A7121FAA10 /* Pods_FizzyPoints.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +206,7 @@
 		17C81F11247ACA7B008DAAA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				17C81F10247ACA7B008DAAA2 /* QR 2.0.app */,
+				17C81F10247ACA7B008DAAA2 /* Fizzy.app */,
 			);
 			name = Products;
 			path = ..;
@@ -224,8 +226,8 @@
 				172224DC248F50A00063F0FC /* CheckMark.json */,
 				172224DE248F58020063F0FC /* CheckMark2.json */,
 				172224E0248F5C3D0063F0FC /* CheckMark3.json */,
+				17F55F1224942D8900F78E5F /* GoogleService-Info.plist */,
 				17C81F21247ACA7F008DAAA2 /* Info.plist */,
-				17C81F35247C2263008DAAA2 /* GoogleService-Info.plist */,
 				17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */,
 				17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */,
 				177913C9247F447800FBEEDB /* Scrap Files */,
@@ -329,6 +331,8 @@
 			children = (
 				C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */,
 				A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */,
+				9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */,
+				17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -337,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				176AD81524901DAD00669202 /* StoreKit.framework */,
-				2F4BB4260F2B899919F20F08 /* Pods_QR_2_0.framework */,
+				181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -345,24 +349,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		17C81F0F247ACA7B008DAAA2 /* QR 2.0 */ = {
+		17C81F0F247ACA7B008DAAA2 /* FizzyPoints */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 17C81F24247ACA7F008DAAA2 /* Build configuration list for PBXNativeTarget "QR 2.0" */;
+			buildConfigurationList = 17C81F24247ACA7F008DAAA2 /* Build configuration list for PBXNativeTarget "FizzyPoints" */;
 			buildPhases = (
 				5105951C68CBABB91B15BDDB /* [CP] Check Pods Manifest.lock */,
 				17C81F0C247ACA7B008DAAA2 /* Sources */,
 				17C81F0D247ACA7B008DAAA2 /* Frameworks */,
 				17C81F0E247ACA7B008DAAA2 /* Resources */,
-				858286299550DF7967004A1E /* [CP] Embed Pods Frameworks */,
-				BF5FA8BFE278BFBA8FEAF7A3 /* [CP] Copy Pods Resources */,
+				6341B7CB4FFD704741C4A6B8 /* [CP] Embed Pods Frameworks */,
+				A7889603CFF0086C72DEAB65 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "QR 2.0";
+			name = FizzyPoints;
 			productName = "QR 2.0";
-			productReference = 17C81F10247ACA7B008DAAA2 /* QR 2.0.app */;
+			productReference = 17C81F10247ACA7B008DAAA2 /* Fizzy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -380,7 +384,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 17C81F0B247ACA7A008DAAA2 /* Build configuration list for PBXProject "QR 2.0" */;
+			buildConfigurationList = 17C81F0B247ACA7A008DAAA2 /* Build configuration list for PBXProject "FizzyPoints" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -393,7 +397,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				17C81F0F247ACA7B008DAAA2 /* QR 2.0 */,
+				17C81F0F247ACA7B008DAAA2 /* FizzyPoints */,
 			);
 		};
 /* End PBXProject section */
@@ -404,7 +408,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DF19822488863C0040059C /* Poppins-Black.ttf in Resources */,
-				17C81F36247C2263008DAAA2 /* GoogleService-Info.plist in Resources */,
 				17DF197F2488863C0040059C /* Poppins-ExtraBold.ttf in Resources */,
 				172224DA248F45A50063F0FC /* PizzaLoader.json in Resources */,
 				172224DF248F58020063F0FC /* CheckMark2.json in Resources */,
@@ -433,6 +436,7 @@
 				172224E1248F5C3D0063F0FC /* CheckMark3.json in Resources */,
 				17DF19812488863C0040059C /* Poppins-Regular.ttf in Resources */,
 				17DF19882488863C0040059C /* Poppins-Medium.ttf in Resources */,
+				17F55F1324942D8900F78E5F /* GoogleService-Info.plist in Resources */,
 				17DF198D2488863C0040059C /* Poppins-SemiBoldItalic.ttf in Resources */,
 				172224D7248F45670063F0FC /* CoffeeLoader.json in Resources */,
 				17C81F20247ACA7F008DAAA2 /* LaunchScreen.storyboard in Resources */,
@@ -458,45 +462,45 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-QR 2.0-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FizzyPoints-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		858286299550DF7967004A1E /* [CP] Embed Pods Frameworks */ = {
+		6341B7CB4FFD704741C4A6B8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BF5FA8BFE278BFBA8FEAF7A3 /* [CP] Copy Pods Resources */ = {
+		A7889603CFF0086C72DEAB65 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QR 2.0/Pods-QR 2.0-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -677,7 +681,7 @@
 		};
 		17C81F25247ACA7F008DAAA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */;
+			baseConfigurationReference = 9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -687,16 +691,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SebastianBarry.QR-2-0";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints;
+				PRODUCT_NAME = Fizzy;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		17C81F26247ACA7F008DAAA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */;
+			baseConfigurationReference = 17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -706,17 +710,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SebastianBarry.QR-2-0";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints;
+				PRODUCT_NAME = Fizzy;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		17C81F0B247ACA7A008DAAA2 /* Build configuration list for PBXProject "QR 2.0" */ = {
+		17C81F0B247ACA7A008DAAA2 /* Build configuration list for PBXProject "FizzyPoints" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				17C81F22247ACA7F008DAAA2 /* Debug */,
@@ -725,7 +729,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		17C81F24247ACA7F008DAAA2 /* Build configuration list for PBXNativeTarget "QR 2.0" */ = {
+		17C81F24247ACA7F008DAAA2 /* Build configuration list for PBXNativeTarget "FizzyPoints" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				17C81F25247ACA7F008DAAA2 /* Debug */,

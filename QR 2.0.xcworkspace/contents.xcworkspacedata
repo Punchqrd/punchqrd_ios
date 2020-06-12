@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:QR 2.0.xcodeproj">
+      location = "group:/Users/sebastianbarry/Documents/XCode/Fizzy Points/FizzyPoints.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

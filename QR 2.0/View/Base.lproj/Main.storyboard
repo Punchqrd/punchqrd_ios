@@ -21,7 +21,7 @@
         <!--Register-->
         <scene sceneID="2NE-fQ-1mr">
             <objects>
-                <viewController storyboardIdentifier="B_1Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ui9-WY-iIp" customClass="B_1Register" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="B_1Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ui9-WY-iIp" customClass="B_1Register" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aiy-hd-usb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,19 +138,19 @@
         <!--Scan Data File-->
         <scene sceneID="7qg-Gq-5yU">
             <objects>
-                <viewController id="GKX-cx-Xpr" customClass="ScanDataFile" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GKX-cx-Xpr" customClass="ScanDataFile" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kM9-ou-L2P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Scans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR6-cr-S5o">
-                                <rect key="frame" x="45" y="135" width="105.5" height="24"/>
+                                <rect key="frame" x="45" y="135" width="93" height="20"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82i-HQ-j3l">
-                                <rect key="frame" x="158" y="130" width="47" height="24"/>
+                                <rect key="frame" x="145.5" y="130" width="59.5" height="20"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.78107674100000002" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -179,7 +179,7 @@
         <!--Owner Home Screen-->
         <scene sceneID="CaQ-Po-bOZ">
             <objects>
-                <viewController storyboardIdentifier="OwnerHomeScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4zM-D4-uka" customClass="OwnerHomeScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OwnerHomeScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4zM-D4-uka" customClass="OwnerHomeScreen" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ml8-Jv-fjj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,7 +257,7 @@
         <!--Second Add Employee Screen-->
         <scene sceneID="So5-D9-aUQ">
             <objects>
-                <viewController id="Z2J-K2-aI3" customClass="SecondAddEmployeeScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z2J-K2-aI3" customClass="SecondAddEmployeeScreen" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ecL-os-OcV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -334,7 +334,7 @@
         <!--Remove Employees Screen-->
         <scene sceneID="F4a-Ic-gJU">
             <objects>
-                <viewController storyboardIdentifier="RemoveEmploy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yim-SK-ZfI" customClass="RemoveEmployeesScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RemoveEmploy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yim-SK-ZfI" customClass="RemoveEmployeesScreen" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EWT-Hr-soJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -360,7 +360,7 @@
         <!--Customer Home Screen-->
         <scene sceneID="Bnj-Ov-fn6">
             <objects>
-                <viewController restorationIdentifier="CustomerHome" storyboardIdentifier="CustomerHome" id="Pjb-C6-ViW" customClass="CustomerHomeScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CustomerHome" storyboardIdentifier="CustomerHome" id="Pjb-C6-ViW" customClass="CustomerHomeScreen" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1VY-cq-duv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -452,7 +452,7 @@
         <!--View-->
         <scene sceneID="r5a-nT-tDj">
             <objects>
-                <viewController id="Vqe-xR-fWL" customClass="QRView" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vqe-xR-fWL" customClass="QRView" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nQD-a9-SMZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -498,7 +498,7 @@
         <!--Business Search-->
         <scene sceneID="PhX-hW-5fg">
             <objects>
-                <viewController id="LLP-fA-b4A" customClass="BusinessSearch" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LLP-fA-b4A" customClass="BusinessSearch" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iTM-dx-1Fq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -572,7 +572,7 @@
         <!--Employee Home-->
         <scene sceneID="CPO-LL-Rbt">
             <objects>
-                <viewController id="8m9-YT-4v0" customClass="EmployeeHome" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8m9-YT-4v0" customClass="EmployeeHome" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X9h-j8-rn5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -618,7 +618,7 @@
         <!--Scanner Screen-->
         <scene sceneID="q1N-Az-fdH">
             <objects>
-                <viewController storyboardIdentifier="EmployeeHome" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3V0-G0-Xvl" customClass="ScannerScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmployeeHome" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3V0-G0-Xvl" customClass="ScannerScreen" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qcw-HH-YCl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -645,7 +645,7 @@
         <!--Redeem Confirm-->
         <scene sceneID="v1I-vD-MpO">
             <objects>
-                <viewController id="27G-XF-LSL" customClass="RedeemConfirm" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="27G-XF-LSL" customClass="RedeemConfirm" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4sO-RG-dEq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -698,7 +698,7 @@
         <!--Login Screen-->
         <scene sceneID="slV-wb-Iva">
             <objects>
-                <viewController restorationIdentifier="LoginScreen" storyboardIdentifier="LoginScreen" id="s4K-dY-0HM" customClass="LoginScreen" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LoginScreen" storyboardIdentifier="LoginScreen" id="s4K-dY-0HM" customClass="LoginScreen" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="ha4-5p-IXz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -827,7 +827,7 @@
         <!--Register-->
         <scene sceneID="YJA-bC-j6V">
             <objects>
-                <viewController storyboardIdentifier="C_2Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="msU-u6-6J0" customClass="C_2Register" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="C_2Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="msU-u6-6J0" customClass="C_2Register" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bs1-OQ-F5r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -914,7 +914,7 @@
         <!--Register-->
         <scene sceneID="jjA-1A-P0Y">
             <objects>
-                <viewController storyboardIdentifier="C_1Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ugf-bs-w11" customClass="C_1Register" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="C_1Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ugf-bs-w11" customClass="C_1Register" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vui-1g-1pv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -970,7 +970,7 @@
         <!--Register-->
         <scene sceneID="y4P-FA-vbn">
             <objects>
-                <viewController storyboardIdentifier="B_2_1Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3er-RY-sb5" customClass="B_2_1Register" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="B_2_1Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3er-RY-sb5" customClass="B_2_1Register" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IV3-xV-vm9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1028,7 +1028,7 @@
         <!--Register-->
         <scene sceneID="6QK-1u-Whz">
             <objects>
-                <viewController storyboardIdentifier="B_2Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e2a-Py-Its" customClass="B_2Register" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="B_2Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e2a-Py-Its" customClass="B_2Register" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RbI-Mg-qMs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1164,7 +1164,7 @@
         <!--Register-->
         <scene sceneID="tko-a2-Lq8">
             <objects>
-                <viewController storyboardIdentifier="B_2_2Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9bC-nF-6n7" customClass="B_2_2Register" customModule="QR_2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="B_2_2Reg" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9bC-nF-6n7" customClass="B_2_2Register" customModule="Fizzy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SGo-v7-LTf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

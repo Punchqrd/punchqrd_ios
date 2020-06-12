@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>381666031067-o67spsj1kksvu8bltucqpb791sj2t9gn.apps.googleusercontent.com</string>
+	<string>42269676136-upj18kmk1gr0t4pf6aishtbd60a0cc3r.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.381666031067-o67spsj1kksvu8bltucqpb791sj2t9gn</string>
+	<string>com.googleusercontent.apps.42269676136-upj18kmk1gr0t4pf6aishtbd60a0cc3r</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAVuhzSxNgvkHFCL0UU2kxq70dz7bvU8BM</string>
+	<string>AIzaSyBx5E-FnlJlbgeveI3DZS_2N0-XUDZXhis</string>
 	<key>GCM_SENDER_ID</key>
-	<string>381666031067</string>
+	<string>42269676136</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.SebastianBarry.QR-2-0</string>
+	<string>com.SebastianBarry.FizzyPoints</string>
 	<key>PROJECT_ID</key>
-	<string>qr-2-0</string>
+	<string>fizzy-points</string>
 	<key>STORAGE_BUCKET</key>
-	<string>qr-2-0.appspot.com</string>
+	<string>fizzy-points.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:381666031067:ios:d5005238073a886010a3fe</string>
+	<string>1:42269676136:ios:382fbbf65f9a72abaf21dd</string>
 	<key>DATABASE_URL</key>
-	<string>https://qr-2-0.firebaseio.com</string>
+	<string>https://fizzy-points.firebaseio.com</string>
 </dict>
 </plist>

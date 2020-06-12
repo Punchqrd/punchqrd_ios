@@ -49,30 +49,17 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         //UIColor.clear.as1ptImage()
         refreshTableView()
-        setupNavigationBar()
         
         
+        self.navigationController?.navigationBar.titleTextAttributes =
+        [NSAttributedString.Key.foregroundColor: UIColor.purple,
+         NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 21)!]
         
+        self.navigationItem.title = "fizzy points"
+ 
     }
     
-    func setupNavigationBar() {
-        /*
-        let titleImageView = UIImageView(image: UIImage(named: "search"))
-        titleImageView.contentMode = .scaleAspectFit
-        titleImageView.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        navigationItem.titleView = titleImageView
-        */
-        
-        /*
-        let searchButton = UIButton(type: .system)
-        searchButton.setImage(UIImage(named: "search"), for: .normal)
-        searchButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        searchButton.contentMode = .scaleAspectFit
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchButton)
- */
-        
-    }
-    
+  
     
     
     func setupDefault() {
@@ -85,7 +72,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         
         
-        self.refresher.backgroundColor = UIColor.green.withAlphaComponent(0.8)
+        self.refresher.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.8)
         self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
         self.qrButton.layer.shadowOpacity = 1.0
@@ -127,9 +114,9 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         let customerScanData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerScanCollectionData).document(GlobalVariables.UserIDs.CustomerScanDocument)
         customerScanData.getDocument { (doc, error) in
             if let doc = doc, doc.exists {
-                let randomColorHolder : [UIColor] = [.blue, .cyan, .purple, .green, .magenta, .systemPink]
-                let randomNumber = Int.random(in: 0...5)
-                self.ScanScoreLabel.textColor = randomColorHolder[randomNumber]
+                //let randomColorHolder : [UIColor] = [.blue, .cyan, .purple, .green, .magenta, .systemPink]
+                //let randomNumber = Int.random(in: 0...5)
+               // self.ScanScoreLabel.textColor = randomColorHolder[randomNumber]
                 self.ScanScoreLabel.text = String(describing: doc.get(GlobalVariables.UserIDs.CustomerScanScore)!)
             } else {
                 self.ScanScoreLabel.textColor = .red
@@ -175,8 +162,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //function to refresh the data on the page
     func refreshData() {
         showScanScore()
-        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemPink, .systemOrange]
-        let randomColor = Int.random(in: 0...7)
+        let colorHolder : [UIColor] = [ .systemGreen, .yellow, .systemPurple, .brown, .orange]
+        let randomColor = Int.random(in: 0...4)
         self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
         self.BusinessList.reloadData()
         DispatchQueue.main.async { self.BusinessList.reloadData() }
@@ -304,39 +291,6 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     
-    /*
-    func showAddBusinessView() {
-        if self.BusinessNamesArray.isEmpty {
-                   let grayView = UIView()
-                   grayView.frame.size.width = self.view.frame.width
-                   grayView.frame.size.height = self.view.frame.height
-                   grayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-                   
-                   let label = UILabel()
-                   label.numberOfLines = 6
-                   label.frame.size.width = self.view.frame.width * 0.7
-                   label.frame.size.height = self.view.frame.height / 3
-                   label.text = "Lookup local businesses from the top right."
-                   label.font = UIFont(name: "Poppins-Bold", size: 25)
-                   label.textColor = .white
-                   label.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
-                   
-                   grayView.addSubview(label)
-                   self.view.addSubview(grayView)
-                   
-                   self.delay(2.0) {
-                       label.removeFromSuperview()
-                       grayView.removeFromSuperview()
-                   }
-                   
-               }
-    }
-    */
-    
-    
-    
-    
-    
     
     
     
@@ -413,8 +367,10 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.ActualPointsLabel.text = String((Int(self.BusinessNamesArray[indexPath.row].points)))
         cell.ActualPointsLabel.textColor = colorHolder[randomColor]
         if cell.PointsProgressBar.progress.isEqual(to: 1) {
+            
             cell.CheckMarkImage.isHidden = false
             cell.animateCheckMark()
+            cell.PointsProgressBar.tintColor = UIColor.green
             //cell.PerkString.isHidden = false
             let randomPerkStrings : [String] = ["You've got a perk!", "Scan to redeem!", "Grab your freebee!", "Go treat yourself!"]
             let randomNumber = Int.random(in: 0...8)

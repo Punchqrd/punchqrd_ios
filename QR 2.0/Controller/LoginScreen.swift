@@ -64,7 +64,11 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        self.PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        self.EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email:", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        
+        
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
         

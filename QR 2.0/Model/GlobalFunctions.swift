@@ -74,7 +74,6 @@ class GlobalFunctions {
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
         
         
-        
     }
     
     //global function to delete all the points from the users (nameofUser) data base Business input as (nameofbusiness)
@@ -89,7 +88,7 @@ class GlobalFunctions {
     static func setRedemptionToTrue (nameofUser : String?, nameofBusiness : String?) {
         let db = Firestore.firestore()
         let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.RedemptionNumberString : 1])
+        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.RedemptionNumberString : FieldValue.increment(Int64(1))])
         
     }
     //reset redemption points to nothing once the user has redeemed his/her points

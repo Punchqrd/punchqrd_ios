@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdP-9j-i89">
-                                <rect key="frame" x="39" y="358.5" width="337" height="54"/>
+                                <rect key="frame" x="39" y="357" width="337" height="54"/>
                                 <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Create Account">
@@ -56,13 +56,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xeP-uZ-1IF">
-                                <rect key="frame" x="39" y="323" width="337" height="25.5"/>
+                                <rect key="frame" x="39" y="323" width="337" height="24"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnV-R9-k00">
-                                <rect key="frame" x="47" y="350.5" width="320" height="0.0"/>
+                                <rect key="frame" x="47" y="349" width="320" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Poppins-Thin" family="Poppins" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

@@ -14,7 +14,7 @@ import GooglePlaces
 import StoreKit
 import Lottie
 
-class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactionObserver {
+class B_2_2Register : UIViewController, UITextFieldDelegate { //SKPaymentTransactionObserver (include?)
     
     
     let animationView = AnimationView()
@@ -32,11 +32,12 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
         self.PasswordTextField.delegate = self
         self.ConfirmPasswordTextField.delegate = self
         super.viewDidLoad()
-        SKPaymentQueue.default().add(self)
         
-        self.addLoadingView()
+        //SKPaymentQueue.default().add(self)
         
-        setupPremiumPurchase()
+        //self.addLoadingView()
+        
+        //setupPremiumPurchase()
         
         
     }
@@ -82,12 +83,12 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        self.removeLoadingView()
     }
     
     
     //MARK:- Setup up the purchase function for business account creation.
-    
+    /*
     func setupPremiumPurchase() {
         
         if SKPaymentQueue.canMakePayments() {
@@ -98,12 +99,14 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
             
             
         } else {
+            
             print("Cannot make payments")
         }
         
         
     }
-    
+    */
+    /*
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         
         for transactions in transactions {
@@ -112,23 +115,31 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
                 print("transaction was successful")
                 SKPaymentQueue.default().finishTransaction(transactions)
                 self.removeLoadingView()
+                self.navigationController?.popViewController(animated: true)
+                
             } else if transactions.transactionState == .failed {
                 //payment failed
                 if let error = transactions.error {
                     let errorDescription = error.localizedDescription
                     SKPaymentQueue.default().finishTransaction(transactions)
-                    
+                    self.removeLoadingView()
                     print(errorDescription)
                     
                 }
-                SKPaymentQueue.default().finishTransaction(transactions)
-                self.navigationController?.popViewController(animated: true)
-            } else if transactions.transactionState == .purchased {
-                print("transaction happened")
-                self.removeLoadingView()
+                
             }
+            if transactions.transactionState == .restored {
+                print("Transaction was restored so cannot make segue")
+                SKPaymentQueue.default().finishTransaction(transactions)
+                self.removeLoadingView()
+                
+            }
+           
+            
+            
         }
     }
+    */
     
     //setup a new user function
     func SetupNewUser () {
@@ -178,7 +189,8 @@ class B_2_2Register : UIViewController, UITextFieldDelegate, SKPaymentTransactio
             GlobalVariables.UserIDs.BusinessName : GlobalVariables.ActualIDs.ActualBusinessName, //(1)
             GlobalVariables.UserIDs.UserPassword: GlobalVariables.ActualIDs.ActualPassword, //(2)
             GlobalVariables.UserIDs.UserType: GlobalVariables.ActualIDs.ActualUserType, //(3)
-            GlobalVariables.UserIDs.UserZipCode: GlobalVariables.ActualIDs.ActualZipCode //(4)
+            GlobalVariables.UserIDs.UserZipCode: GlobalVariables.ActualIDs.ActualZipCode, //(4)
+            GlobalVariables.UserIDs.OwnerRegisteredTitle : "false"
         ]
         
         return NewUser as [String : Any]

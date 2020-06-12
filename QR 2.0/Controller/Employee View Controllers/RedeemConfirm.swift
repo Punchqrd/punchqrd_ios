@@ -40,7 +40,7 @@ class RedeemConfirm : UIViewController {
     @IBAction func RedeemAction(_ sender: UIButton) {
         self.addLoadingView()
         GlobalFunctions.deleteAllPoints(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness)
-        
+        GlobalFunctions.setRedemptionToTrue(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness)
         self.removeLoadingView()
         self.RedeemButton.backgroundColor = .green
         self.RedeemButton.setTitle("Confirmed!", for: .normal)

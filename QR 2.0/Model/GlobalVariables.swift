@@ -67,6 +67,9 @@ class GlobalVariables {
         
         //user default ids
         static let isUserLoggedIn = "Logged In"
+        
+        //titles regarding transaction details
+        static let OwnerRegisteredTitle = "Registered User"
     }
     
     

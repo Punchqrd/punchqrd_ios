@@ -14,6 +14,7 @@ import MaterialComponents
 import GooglePlaces
 import GoogleMaps
 import Lottie
+import StoreKit
 
 
 
@@ -27,6 +28,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     
     
+    
     let defaults = UserDefaults.standard
     let locationManager = CLLocationManager()
     @IBOutlet weak var RegisterButton: UIButton!
@@ -35,21 +37,21 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     let db = Firestore.firestore()
     
     @IBOutlet weak var EmailTextField: UITextField!
-        /*{
-        didSet {
-            EmailTextField.tintColor = UIColor.white
-            EmailTextField.setIcon(UIImage(systemName: "person")!)
-        }
-    }*/
+    /*{
+     didSet {
+     EmailTextField.tintColor = UIColor.white
+     EmailTextField.setIcon(UIImage(systemName: "person")!)
+     }
+     }*/
     
     @IBOutlet weak var PasswordTextField: UITextField!
-        /*{
-        didSet {
-            PasswordTextField.tintColor = UIColor.white
-            PasswordTextField.setIcon(UIImage(systemName: "lock")!)
-        }
-        
-    }*/
+    /*{
+     didSet {
+     PasswordTextField.tintColor = UIColor.white
+     PasswordTextField.setIcon(UIImage(systemName: "lock")!)
+     }
+     
+     }*/
     @IBOutlet weak var ErrorLabel : UILabel!
     
     override func encodeRestorableState(with coder: NSCoder) {
@@ -62,6 +64,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
         
@@ -85,39 +88,39 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-           self.navigationController?.isNavigationBarHidden = false
-           
-       }
-       
-       
-       
-       override func viewWillAppear(_ animated: Bool) {
-           
-           let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
-           if isLoggedIn == true {
-               self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
-           }
-           
-           self.locationManager.delegate = self
-           GlobalFunctions.setButtonRadius(button: self.LoginButton)
-           self.navigationController?.navigationBar.isHidden = true
-           PasswordTextField.text = nil
-           EmailTextField.text = nil
-           ErrorLabel.text = nil
-           self.removeLoadingView()
-           
-           
-       }
-       
-       
-       
-       
-       
-       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           self.view.endEditing(true)
-           return false
-       }
-       
+        self.navigationController?.isNavigationBarHidden = false
+        
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
+        if isLoggedIn == true {
+            self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
+        }
+        
+        self.locationManager.delegate = self
+        GlobalFunctions.setButtonRadius(button: self.LoginButton)
+        self.navigationController?.navigationBar.isHidden = true
+        PasswordTextField.text = nil
+        EmailTextField.text = nil
+        ErrorLabel.text = nil
+        self.removeLoadingView()
+        
+        
+    }
+    
+    
+    
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     
     
     //MARK: - Keyboard manipulation
@@ -229,8 +232,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
     }
     
-    
-    
+  
     
     
     
@@ -284,8 +286,10 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                             }
                             if data == GlobalVariables.UserIDs.UserOwner {
                                 self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)
+                                //self.setupPremiumPurchase()
                                 
                                 
+                                         
                             }
                             
                         }

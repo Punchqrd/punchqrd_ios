@@ -15,12 +15,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Name No Shadow Launch" translatesAutoresizingMaskIntoConstraints="NO" id="3sO-q0-oXu">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Name No Shadow Launch" translatesAutoresizingMaskIntoConstraints="NO" id="3sO-q0-oXu">
                                 <rect key="frame" x="87" y="328" width="240" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="5WW-wv-yvf"/>
+                                    <constraint firstAttribute="height" constant="240" id="ABq-dU-0kh"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3sO-q0-oXu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="4Kb-u1-G8n"/>
+                            <constraint firstItem="3sO-q0-oXu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="284" id="50z-Ft-bbi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3sO-q0-oXu" secondAttribute="bottom" constant="294" id="GLk-rn-Bio"/>
+                            <constraint firstItem="3sO-q0-oXu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="KWG-Px-ZI2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3sO-q0-oXu" secondAttribute="trailing" constant="87" id="a1m-3L-Pbi"/>
+                            <constraint firstItem="3sO-q0-oXu" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dpc-xz-wZ4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

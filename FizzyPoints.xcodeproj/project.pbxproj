@@ -23,10 +23,7 @@
 		173B49F4248B494000056833 /* C_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F3248B494000056833 /* C_2Register.swift */; };
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
-		176AD814248FD6C500669202 /* qr.png in Resources */ = {isa = PBXBuildFile; fileRef = 176AD813248FD6C400669202 /* qr.png */; };
 		176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176AD81524901DAD00669202 /* StoreKit.framework */; };
-		177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */; };
-		179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179534CD2482B28200C033E6 /* WorkWeek.swift */; };
 		1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */; };
 		1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6E248957FD00B227B2 /* B_2_2Register.swift */; };
 		1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */; };
@@ -92,10 +89,7 @@
 		173B49F3248B494000056833 /* C_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_2Register.swift; sourceTree = "<group>"; };
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
-		176AD813248FD6C400669202 /* qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr.png; sourceTree = "<group>"; };
 		176AD81524901DAD00669202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataProtocols.swift; sourceTree = "<group>"; };
-		179534CD2482B28200C033E6 /* WorkWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWeek.swift; sourceTree = "<group>"; };
 		1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_1Register.swift; sourceTree = "<group>"; };
 		1796CB6E248957FD00B227B2 /* B_2_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_2Register.swift; sourceTree = "<group>"; };
 		1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondAddEmployeeScreen.swift; sourceTree = "<group>"; };
@@ -184,11 +178,34 @@
 			path = "Owner View Controllers";
 			sourceTree = "<group>";
 		};
+		1740753E249465F30079D398 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				172224D0248F367A0063F0FC /* Loader.json */,
+				172224D2248F41420063F0FC /* Loader2.json */,
+				172224D4248F44D90063F0FC /* CroissantLoader.json */,
+				172224D6248F45670063F0FC /* CoffeeLoader.json */,
+				172224D8248F45A10063F0FC /* PizzaLoader.json */,
+				172224D9248F45A50063F0FC /* BeerLoader.json */,
+				172224DC248F50A00063F0FC /* CheckMark.json */,
+				172224DE248F58020063F0FC /* CheckMark2.json */,
+				172224E0248F5C3D0063F0FC /* CheckMark3.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		1740753F249466080079D398 /* Delegate Files */ = {
+			isa = PBXGroup;
+			children = (
+				17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */,
+				17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */,
+			);
+			path = "Delegate Files";
+			sourceTree = "<group>";
+		};
 		177913C9247F447800FBEEDB /* Scrap Files */ = {
 			isa = PBXGroup;
 			children = (
-				177913C7247F40DB00FBEEDB /* RefreshDataProtocols.swift */,
-				179534CD2482B28200C033E6 /* WorkWeek.swift */,
 			);
 			path = "Scrap Files";
 			sourceTree = "<group>";
@@ -197,7 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				17DF1967248845A30040059C /* Fonts */,
-				17C81F12247ACA7B008DAAA2 /* QR 2.0 */,
+				17C81F12247ACA7B008DAAA2 /* FizzyPoints */,
 				7060B761C14B6509BDB792EC /* Pods */,
 				C96DB8792DE1491CE077091E /* Frameworks */,
 			);
@@ -212,31 +229,21 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		17C81F12247ACA7B008DAAA2 /* QR 2.0 */ = {
+		17C81F12247ACA7B008DAAA2 /* FizzyPoints */ = {
 			isa = PBXGroup;
 			children = (
-				17DF196B2488773C0040059C /* Assets.xcassets */,
-				176AD813248FD6C400669202 /* qr.png */,
-				172224D0248F367A0063F0FC /* Loader.json */,
-				172224D2248F41420063F0FC /* Loader2.json */,
-				172224D4248F44D90063F0FC /* CroissantLoader.json */,
-				172224D6248F45670063F0FC /* CoffeeLoader.json */,
-				172224D8248F45A10063F0FC /* PizzaLoader.json */,
-				172224D9248F45A50063F0FC /* BeerLoader.json */,
-				172224DC248F50A00063F0FC /* CheckMark.json */,
-				172224DE248F58020063F0FC /* CheckMark2.json */,
-				172224E0248F5C3D0063F0FC /* CheckMark3.json */,
 				17F55F1224942D8900F78E5F /* GoogleService-Info.plist */,
 				17C81F21247ACA7F008DAAA2 /* Info.plist */,
-				17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */,
-				17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */,
+				17DF196B2488773C0040059C /* Assets.xcassets */,
+				1740753F249466080079D398 /* Delegate Files */,
+				1740753E249465F30079D398 /* Animations */,
 				177913C9247F447800FBEEDB /* Scrap Files */,
 				17C81F27247ACA99008DAAA2 /* Model */,
 				17C81F28247ACAA9008DAAA2 /* View */,
 				17C81F29247ACAAE008DAAA2 /* Controller */,
 				17C81F11247ACA7B008DAAA2 /* Products */,
 			);
-			path = "QR 2.0";
+			path = FizzyPoints;
 			sourceTree = "<group>";
 		};
 		17C81F27247ACA99008DAAA2 /* Model */ = {
@@ -414,7 +421,6 @@
 				172224D5248F44D90063F0FC /* CroissantLoader.json in Resources */,
 				17DF198B2488863C0040059C /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				17DF19802488863C0040059C /* Poppins-BlackItalic.ttf in Resources */,
-				176AD814248FD6C500669202 /* qr.png in Resources */,
 				17DF19862488863C0040059C /* Poppins-ExtraLight.ttf in Resources */,
 				17DF198C2488863C0040059C /* Poppins-ExtraLightItalic.ttf in Resources */,
 				17DF19892488863C0040059C /* Poppins-SemiBold.ttf in Resources */,
@@ -512,8 +518,6 @@
 			files = (
 				17FDDE18248F0F6B008F5FF1 /* EmployeeHome.swift in Sources */,
 				17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */,
-				179534CE2482B28200C033E6 /* WorkWeek.swift in Sources */,
-				177913C8247F40DB00FBEEDB /* RefreshDataProtocols.swift in Sources */,
 				1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */,
 				173B49F2248B450E00056833 /* C_1Register.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
@@ -686,7 +690,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
-				INFOPLIST_FILE = "QR 2.0/Info.plist";
+				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -705,7 +709,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
-				INFOPLIST_FILE = "QR 2.0/Info.plist";
+				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

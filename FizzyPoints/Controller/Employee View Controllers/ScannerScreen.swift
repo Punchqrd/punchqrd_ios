@@ -220,6 +220,8 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                     self.navigationController?.popViewController(animated: true)
                                                 }
                                             }
+                                            self.removeLoadingView()
+                                            self.navigationController?.popViewController(animated: true)
                                         }
                                     }
                                 }

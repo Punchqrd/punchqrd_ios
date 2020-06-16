@@ -249,13 +249,16 @@ class GlobalFunctions {
             }
             
             if let placeLikelihoodList = placeLikelihoodList {
-                
+                print(placeLikelihoodList)
                 for likelihood in placeLikelihoodList {
+                    
                     if likelihood.place.name != nil {
                         print(likelihood.place.name!)
                         if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
                             print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
-                            if likelihood.likelihood >= 0.7 {
+                            print(likelihood.likelihood)
+                            //this value might have to change
+                            if likelihood.likelihood >= 0.35 {
                                 
                                 //value above might have to be changed (0.7)
                                 
@@ -282,11 +285,17 @@ class GlobalFunctions {
                     }
                     else {
                         animationView.removeFromSuperview()
-                        errorLabel.text = "\(employeeEmployerBusinessName!) is not in your area"
+                        errorLabel.text = "you might have to get closer \(employeeEmployerBusinessName!)"
                         break
                     }
                 }
+                    
+                   
+                
             }
+            animationView.removeFromSuperview()
+            errorLabel.text = "\(employeeEmployerBusinessName!) is not in your area"
+
         })
     }
 }

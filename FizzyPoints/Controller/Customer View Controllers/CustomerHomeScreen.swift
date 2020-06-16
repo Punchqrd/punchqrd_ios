@@ -85,7 +85,11 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         showScanScore()
         self.refresher = UIRefreshControl()
         refresher.tintColor = .white
-        self.BusinessList.reloadData()
+        
+        DispatchQueue.main.async {
+            self.BusinessList.reloadData()
+        }
+        
         self.refresher.addTarget(self, action: #selector(CustomerHomeScreen.refresh), for: UIControl.Event.valueChanged)
         self.BusinessList.addSubview(self.refresher)
         

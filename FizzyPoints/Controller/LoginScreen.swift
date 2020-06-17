@@ -12,7 +12,6 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-import MaterialComponents
 import GooglePlaces
 import GoogleMaps
 import Lottie

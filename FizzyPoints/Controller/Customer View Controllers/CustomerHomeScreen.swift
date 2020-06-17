@@ -52,7 +52,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
             [NSAttributedString.Key.foregroundColor: UIColor.purple,
              NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 21)!]
         
-        self.navigationItem.title = "fizzy points"
+        self.navigationItem.title = "fizzypoints"
         refreshTableView()
     }
     
@@ -106,8 +106,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //function to refresh the data on the page
     func refreshData() {
         showScanScore()
-        let colorHolder : [UIColor] = [ .systemGreen, .yellow, .systemPurple, .brown, .orange]
-        let randomColor = Int.random(in: 0...4)
+        let colorHolder : [UIColor] = [ .systemGreen, .yellow, .systemPurple, .orange]
+        let randomColor = Int.random(in: 0...3)
         self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
         self.BusinessList.reloadData()
         DispatchQueue.main.async { self.BusinessList.reloadData() }
@@ -315,7 +315,6 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         if cell.PointsProgressBar.progress.isEqual(to: 1) {
             cell.CheckMarkImage.isHidden = false
             cell.animateCheckMark()
-            cell.PointsProgressBar.tintColor = UIColor.green
             //cell.PerkString.isHidden = false
             let randomPerkStrings : [String] = ["You've got a perk!", "Scan to redeem!", "Grab your freebee!", "Go treat yourself!"]
             let randomNumber = Int.random(in: 0...8)
@@ -328,13 +327,12 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             
         }
         if cell.PointsProgressBar.progress.isEqual(to: 0) {
-            let randomcolor2 = Int.random(in: 0...10)
-            cell.PointsProgressBar.trackTintColor = colorHolder[randomcolor2].withAlphaComponent(0.20)
+            cell.PointsProgressBar.trackTintColor = UIColor.blue.withAlphaComponent(0.20)
             
             cell.Points.isHidden = false
             cell.ActualPointsLabel.textColor = .black
         }
-        
+       
         
         return cell
         

@@ -16,8 +16,6 @@ target 'FizzyPoints' do
   pod 'Firebase/Auth'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-  pod 'MaterialComponents'
-  pod 'MaterialComponents/Buttons+Theming'
   pod 'lottie-ios'
   
   

@@ -28,7 +28,6 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var BottomLabelView: UIView!
     @IBOutlet weak var BusinessList: UITableView!
     
-    
     //MARK:- Preliminary setup
     
     func setupDefault() {
@@ -45,6 +44,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //MARK:- View functions
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         BusinessList.delegate = self
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
@@ -82,6 +82,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //function to refresh the table view
     func refreshTableView() {
         //this is the refresh list variables to enable a refresh for the UITableView
+       
         showScanScore()
         self.refresher = UIRefreshControl()
         refresher.tintColor = .white
@@ -100,11 +101,11 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     {
         refreshData()
         self.refresher.endRefreshing()
-        
     }
     
     //function to refresh the data on the page
     func refreshData() {
+      
         showScanScore()
         let colorHolder : [UIColor] = [ .systemGreen, .yellow, .systemPurple, .orange]
         let randomColor = Int.random(in: 0...3)
@@ -124,6 +125,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     //functuon to create a business list and show it on the screen
     func showList() {
+        
         createBusinessList()
         showScanScore()
         BusinessList.dataSource = self
@@ -335,6 +337,8 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
        
         
         return cell
+       
+        
         
         
     }

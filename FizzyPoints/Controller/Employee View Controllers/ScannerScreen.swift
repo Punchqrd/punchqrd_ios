@@ -203,15 +203,21 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                         let customerBusinessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(String(customerEmail)).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(employerBusinessName!)
                                         customerBusinessCollection.getDocument { (documentSnap, error) in
                                             if let documentSnap = documentSnap, documentSnap.exists {
-                                                
                                                 let totalAccruedPoints = documentSnap.get(GlobalVariables.UserIDs.PointsString) as! Int
                                                 //if the user has more than 10 points (is eligible for redemption)?
                                                 if totalAccruedPoints >= 10 {
+                                                    print("function is called")
                                                     //if the user is eligible for redemption, then give the user a redemption point
+                                                    self.avCaptureSession.stopRunning()
+                                                    self.removeLoadingView()
                                                     GlobalVariables.ActualIDs.ActualCustomer = String(customerEmail)
                                                     GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName
+                                                    DispatchQueue.main.async {
+                                                        self.performSegue(withIdentifier: GlobalVariables.SegueIDs.RedemptionSegue, sender: self)
+
+                                                    }
                                                     
-                                                    self.performSegue(withIdentifier: GlobalVariables.SegueIDs.RedemptionSegue, sender: self)
+
                                                     
                                                 } else if totalAccruedPoints < 10 {
                                                     //INCREMENT Points.

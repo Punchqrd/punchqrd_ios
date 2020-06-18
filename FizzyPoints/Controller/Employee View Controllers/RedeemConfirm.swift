@@ -22,10 +22,13 @@ class RedeemConfirm : UIViewController {
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("enter screen")
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
         self.navigationController?.isToolbarHidden = true
         self.ReturnButton.isHidden = true
         GlobalFunctions.setButtonRadius(button: self.RedeemButton)
@@ -33,7 +36,7 @@ class RedeemConfirm : UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
+        print("leavin screen")
     }
     
     //MARK:- Actions
@@ -45,12 +48,13 @@ class RedeemConfirm : UIViewController {
         self.RedeemButton.backgroundColor = .green
         self.RedeemButton.setTitle("Confirmed!", for: .normal)
         self.RedeemButton.isEnabled = false
-        self.ReturnButton.isHidden = false
+        //self.ReturnButton.isHidden = true
     }
     
     
     @IBAction func ReturnAction(_ sender: UIButton) {
-        self.backTwo()
+        print("button was pressed")
+        //self.navigationController?.popViewController(animated: true)
     }
     
     

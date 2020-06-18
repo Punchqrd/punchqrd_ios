@@ -212,31 +212,33 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                     self.removeLoadingView()
                                                     GlobalVariables.ActualIDs.ActualCustomer = String(customerEmail)
                                                     GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName
-                                                    DispatchQueue.main.async {
+                                                    //DispatchQueue.main.async {
                                                         self.performSegue(withIdentifier: GlobalVariables.SegueIDs.RedemptionSegue, sender: self)
-
-                                                    }
+                                                //}
                                                     
 
                                                     
-                                                } else if totalAccruedPoints < 10 {
+                                                }
+                                                if totalAccruedPoints < 10 {
                                                     //INCREMENT Points.
+                                                    print("4")
                                                     GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
                                                     self.removeLoadingView()
                                                     self.navigationController?.popViewController(animated: true)
                                                 }
                                             }
-                                            self.removeLoadingView()
-                                            self.navigationController?.popViewController(animated: true)
+                                           
                                         }
                                     }
                                 }
                                 else {
+                                    print("1")
                                     self.removeLoadingView()
                                     self.navigationController?.popViewController(animated: true)
                                 }
                             }
                         } else {
+                            print("2")
                             self.removeLoadingView()
                             self.navigationController?.popViewController(animated: true)
                         }

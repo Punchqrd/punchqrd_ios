@@ -36,7 +36,7 @@ class RedeemConfirm : UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("leavin screen")
+        print("leaving")
     }
     
     //MARK:- Actions
@@ -48,13 +48,12 @@ class RedeemConfirm : UIViewController {
         self.RedeemButton.backgroundColor = .green
         self.RedeemButton.setTitle("Confirmed!", for: .normal)
         self.RedeemButton.isEnabled = false
-        //self.ReturnButton.isHidden = true
+        self.ReturnButton.isHidden = false
     }
     
     
     @IBAction func ReturnAction(_ sender: UIButton) {
-        print("button was pressed")
-        //self.navigationController?.popViewController(animated: true)
+        self.backTwo()
     }
     
     

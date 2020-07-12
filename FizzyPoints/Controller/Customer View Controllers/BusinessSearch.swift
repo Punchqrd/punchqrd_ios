@@ -78,7 +78,7 @@ class BusinessSearch: UIViewController {
                     self.searchController?.searchBar.placeholder = "Business already added"
                 } else {
                     
-                    collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0"])
+                    collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0", GlobalVariables.UserIDs.CustomerTotalSpent: 0])
                     self.removeLoadingView()
                     self.navigationController?.popViewController(animated: true)
                 }

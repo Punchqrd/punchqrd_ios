@@ -29,6 +29,8 @@ class C_1Register : UIViewController, UITextFieldDelegate {
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupToHideKeyboardOnTapOnView()
+
         self.CodeTextField.delegate = self
     }
     

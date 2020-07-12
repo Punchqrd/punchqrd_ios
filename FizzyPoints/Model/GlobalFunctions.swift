@@ -38,36 +38,64 @@ class GlobalFunctions {
             } else {print("Deleted File")}}
     }
     
-    //MARK:- Algorithm to increment a random point everytime a scan is undergone.
+    //MARK:- Algorithm to increment a random point everytime a scan is undergone. This is the random model (may be deprecated.)
     static func incrementPointValue(inputNumber : Int) -> Int{
-        let random100 = Int.random(in: 1...50)
-        if random100 >= 49 {
+        let random100 = Int.random(in: 1...75)
+        if random100 == 74 {
             return 10
         } else {
             if inputNumber == 1 {
-                var value = Int.random(in: inputNumber...5)
+                var value = Int.random(in: inputNumber...3)
                 if value >= 10 {value = 9}
                 return value
             }
             if inputNumber == 9 {
                 return 1
             } else {
-                var randomNumbers = Int.random(in: 1...3)
+                var randomNumbers = Int.random(in: 1...2)
                 if randomNumbers >= 10 {randomNumbers = 9}
                 return randomNumbers
             }
         }
     }
     
+    //MARK:- Function to increment the points in the database. At random based on the points the user already has.
+       static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?,  totalPoints : Int?) {
+           let db = Firestore.firestore()
+           let finalValue = self.incrementPointValue(inputNumber: totalPoints!)
+           let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+           CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : finalValue])
+           let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+           Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
+       }
     
-    //MARK:- Function to increment the points in the database.
-    static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?,  totalPoints : Int?) {
+    //MARK:- Function to increment the users points based on actual price values.
+    static func incrementPointsButton (nameofUser: String?, nameofBusiness: String?,  incrementPoints: Double?) {
+        //increment points will either be 1,2,3 depending on how much the user spends.
+        
+        var actualPoints = 1
+        
+        if incrementPoints! <= 4.99 {
+            actualPoints = 1
+        } else if incrementPoints! > 4.99 && incrementPoints! < 9.99 {
+            actualPoints = 2
+        } else if incrementPoints! >= 9.99 {
+            actualPoints = 3
+        }
+        
         let db = Firestore.firestore()
-        let finalValue = self.incrementPointValue(inputNumber: totalPoints!)
         let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-        CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : finalValue])
+        CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : actualPoints])
         let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
+        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(actualPoints))])
+        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.CustomerTotalSpent : FieldValue.increment(incrementPoints!)])
+        
+        
+    }
+    
+    //need a function to update the total amount spent from the user.
+    static func incrementPaymentTotalAtBusiness(user: String, nameofBusiness: String,  payment: Double) {
+       
     }
     
     
@@ -218,7 +246,7 @@ class GlobalFunctions {
                 CustomerScanScoreCollection.setData([GlobalVariables.UserIDs.CustomerScanScore : 1])
             }
         }
-          
+        
     }
     
     
@@ -289,13 +317,13 @@ class GlobalFunctions {
                         break
                     }
                 }
-                    
-                   
+                
+                
                 
             }
             animationView.removeFromSuperview()
             errorLabel.text = "\(employeeEmployerBusinessName!) is not in your area"
-
+            
         })
     }
 }
@@ -304,27 +332,27 @@ class GlobalFunctions {
 extension UIColor {
     public convenience init?(hex: String) {
         let r, g, b, a: CGFloat
-
+        
         if hex.hasPrefix("#") {
             let start = hex.index(hex.startIndex, offsetBy: 1)
             let hexColor = String(hex[start...])
-
+            
             if hexColor.count == 8 {
                 let scanner = Scanner(string: hexColor)
                 var hexNumber: UInt64 = 0
-
+                
                 if scanner.scanHexInt64(&hexNumber) {
                     r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
                     g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
                     b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
                     a = CGFloat(hexNumber & 0x000000ff) / 255
-
+                    
                     self.init(red: r, green: g, blue: b, alpha: a)
                     return
                 }
             }
         }
-
+        
         return nil
     }
 }

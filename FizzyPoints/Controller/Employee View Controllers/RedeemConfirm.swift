@@ -46,7 +46,7 @@ class RedeemConfirm : UIViewController {
         GlobalFunctions.setRedemptionToTrue(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness)
         self.removeLoadingView()
         self.RedeemButton.backgroundColor = .green
-        self.RedeemButton.setTitle("Confirmed!", for: .normal)
+        self.RedeemButton.setTitle("All Set!", for: .normal)
         self.RedeemButton.isEnabled = false
         self.ReturnButton.isHidden = false
     }

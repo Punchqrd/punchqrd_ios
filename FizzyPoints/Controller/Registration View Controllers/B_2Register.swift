@@ -40,6 +40,7 @@ class B_2Register : UIViewController {
     
     //MARK:- View functions
     override func viewDidLoad() {
+        setupToHideKeyboardOnTapOnView()
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         // Remove the background color.

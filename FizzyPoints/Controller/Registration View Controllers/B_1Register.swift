@@ -34,6 +34,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupToHideKeyboardOnTapOnView()
         self.EmailTextField.delegate = self
         self.PasswordTextField.delegate = self
         self.ConfirmPasswordTextField.delegate = self
@@ -83,6 +84,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     //MARK:- Actions and Data Setup
     @IBAction func ConfirmData(_ sender: UIButton) {
         //the next 3 instantiations set the global variables to be used in the final dictionary as what the user inputted in the text fields.
+        self.view.endEditing(true)
         if let text = self.ConfirmPasswordTextField.text, !text.isEmpty
         {
             if self.ConfirmPasswordTextField.text! == self.PasswordTextField.text! {

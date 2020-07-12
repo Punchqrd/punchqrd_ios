@@ -221,11 +221,21 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                 }
                                                 if totalAccruedPoints < 10 {
                                                     //INCREMENT Points.
-                                                    print("4")
-                                                    GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
+                                                    //this is whre the segue happens for the user
+                                                    //GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
+                                                    
                                                     self.removeLoadingView()
-                                                    self.navigationController?.popViewController(animated: true)
+                                                    self.avCaptureSession.stopRunning()
+                                                    GlobalVariables.ActualIDs.ActualCustomer = String(customerEmail)
+                                                    GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName
+                                                    self.performSegue(withIdentifier: GlobalVariables.SegueIDs.toPriceView, sender: self)
                                                 }
+                                            }
+                                            
+                                            
+                                            else {
+                                                self.removeLoadingView()
+                                                self.navigationController?.popViewController(animated: true)
                                             }
                                            
                                         }

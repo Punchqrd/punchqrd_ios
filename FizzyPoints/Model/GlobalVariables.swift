@@ -46,6 +46,7 @@ class GlobalVariables {
         static let CustomerScanScore = "Scan Score"
         static let CustomerScanCollectionData = "Scan Collection"
         static let CustomerScanDocument = "Scan Data"
+        static let CustomerTotalSpent = "Total Spent"
         
         
         
@@ -136,6 +137,7 @@ class GlobalVariables {
         static let FinalEmployeeRegisterSegue = "FinalEmployeeRegisterSegue"
         static let RedemptionConfirmSegue = "RedemptionSegue"
         static let toLoginScreen = "toLoginScreen"
+        static let toPriceView = "priceview"
         static let toCameraScreen = "CameraSegue"
            
        }

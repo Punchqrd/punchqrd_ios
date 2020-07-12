@@ -24,6 +24,7 @@
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
 		176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176AD81524901DAD00669202 /* StoreKit.framework */; };
+		1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771DB8324BB820500154CC1 /* PaymentScreen.swift */; };
 		1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */; };
 		1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6E248957FD00B227B2 /* B_2_2Register.swift */; };
 		1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */; };
@@ -90,6 +91,7 @@
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
 		176AD81524901DAD00669202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1771DB8324BB820500154CC1 /* PaymentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentScreen.swift; sourceTree = "<group>"; };
 		1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_1Register.swift; sourceTree = "<group>"; };
 		1796CB6E248957FD00B227B2 /* B_2_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_2Register.swift; sourceTree = "<group>"; };
 		1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondAddEmployeeScreen.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				17E2846724843D610035F7CA /* ScannerScreen.swift */,
 				17F7BDE9248C346300041577 /* RedeemConfirm.swift */,
 				17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */,
+				1771DB8324BB820500154CC1 /* PaymentScreen.swift */,
 			);
 			path = "Employee View Controllers";
 			sourceTree = "<group>";
@@ -364,8 +367,8 @@
 				17C81F0C247ACA7B008DAAA2 /* Sources */,
 				17C81F0D247ACA7B008DAAA2 /* Frameworks */,
 				17C81F0E247ACA7B008DAAA2 /* Resources */,
-				41913B10D6EF274444A377AC /* [CP] Embed Pods Frameworks */,
-				EF3D66A9CF1F611901D01429 /* [CP] Copy Pods Resources */,
+				2E4B2CF828925302726CCBE0 /* [CP] Embed Pods Frameworks */,
+				C1344DF57CCB9D13CD05C71E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -453,7 +456,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		41913B10D6EF274444A377AC /* [CP] Embed Pods Frameworks */ = {
+		2E4B2CF828925302726CCBE0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -492,7 +495,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF3D66A9CF1F611901D01429 /* [CP] Copy Pods Resources */ = {
+		C1344DF57CCB9D13CD05C71E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -540,6 +543,7 @@
 				173F1701247DB44B00C67812 /* QRView.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
 				17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */,
+				1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */,
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,
 				17C81F30247AD276008DAAA2 /* B_1Register.swift in Sources */,
@@ -689,7 +693,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -700,7 +704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints;
 				PRODUCT_NAME = FizzyPoints;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -710,7 +714,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -721,7 +725,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints;
 				PRODUCT_NAME = FizzyPoints;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

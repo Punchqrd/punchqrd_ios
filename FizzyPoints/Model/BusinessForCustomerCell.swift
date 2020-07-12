@@ -28,7 +28,9 @@ class BusinessForCustomerCell: UITableViewCell {
     //MARK:- Function Calls
     override func awakeFromNib() {
         super.awakeFromNib()
+       //
         PointsProgressBar.transform = PointsProgressBar.transform.scaledBy(x: 1, y: 6)
+        
     }
     
     

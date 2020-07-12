@@ -27,6 +27,8 @@ class C_2Register : UIViewController, UITextFieldDelegate {
     //MARK:-View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupToHideKeyboardOnTapOnView()
+
         self.NameField.delegate = self
         self.EmailField.delegate = self
         self.PasswordField.delegate = self
@@ -113,7 +115,7 @@ class C_2Register : UIViewController, UITextFieldDelegate {
     
     //MARK:- Actions
     @IBAction func CreateEmployee(_ sender: UIButton) {
-        
+        self.view.endEditing(true)
         if let text = self.ConfirmPassWord.text, !text.isEmpty
         {
             

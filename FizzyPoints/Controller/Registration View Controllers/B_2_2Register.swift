@@ -32,6 +32,8 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
         self.EmailTextField.delegate = self
         self.PasswordTextField.delegate = self
         self.ConfirmPasswordTextField.delegate = self
+        setupToHideKeyboardOnTapOnView()
+
         super.viewDidLoad()
     }
     
@@ -148,7 +150,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     //MARK:- Actions
     @IBAction func ConfirmBusiness(_ sender: UIButton) {
         //the next few lines set the global data variables as the textfield user inputted data for use in data set.
-        
+        self.view.endEditing(true)
         if let text = self.ConfirmPasswordTextField.text, !text.isEmpty
         {
             if self.ConfirmPasswordTextField.text! == self.PasswordTextField.text! {

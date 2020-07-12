@@ -61,7 +61,8 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         // Set the shadow color.
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
-        
+        ScanButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/2.5, height: 53)
+        ScanButton.center = self.view.center
         
     }
     

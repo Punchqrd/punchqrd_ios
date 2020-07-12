@@ -22,7 +22,9 @@ class B_2_1Register : UIViewController, UITextFieldDelegate {
     
     //MARK:- View functions
     override func viewDidLoad() {
+
         super.viewDidLoad()
+        setupToHideKeyboardOnTapOnView()
         self.CodeField.delegate = self
         GlobalFunctions.setButtonRadius(button: self.ConfirmButton)
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)

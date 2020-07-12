@@ -58,7 +58,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.BusinessList.frame.size.width = self.view.frame.size.width
         self.refresher.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.8)
         self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
@@ -86,11 +86,6 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         showScanScore()
         self.refresher = UIRefreshControl()
         refresher.tintColor = .white
-        
-        DispatchQueue.main.async {
-            self.BusinessList.reloadData()
-        }
-        
         self.refresher.addTarget(self, action: #selector(CustomerHomeScreen.refresh), for: UIControl.Event.valueChanged)
         self.BusinessList.addSubview(self.refresher)
         
@@ -99,23 +94,35 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     @objc func refresh()
     {
+        //calls the function below
+        
         refreshData()
-        self.refresher.endRefreshing()
+        
     }
+    
+   
     
     //function to refresh the data on the page
     func refreshData() {
       
+       
         showScanScore()
         let colorHolder : [UIColor] = [ .systemGreen, .yellow, .systemPurple, .orange]
         let randomColor = Int.random(in: 0...3)
         self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
-        self.BusinessList.reloadData()
-        DispatchQueue.main.async { self.BusinessList.reloadData() }
-        createBusinessList()
-        BusinessList.dataSource = self
-        BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
-        self.refresher.endRefreshing()
+        
+        //self.BusinessList.reloadData()
+        DispatchQueue.main.async {
+            self.createBusinessList()
+            self.BusinessList.reloadData()
+            self.BusinessList.dataSource = self
+            self.BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
+            //find a way to end the refreshing when the internet is back on.
+            
+            
+        }
+        
+
     }
     
     
@@ -148,13 +155,12 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
                     //this is where you can add all the businesses to the tableview
                     let newBusinessAdded = BusinessName(inputName: businessNames.documentID, pointsAdded: businessNames.get(GlobalVariables.UserIDs.PointsString) as? Float ?? 0, redemptionCode: businessNames.get(GlobalVariables.UserIDs.RedemptionNumberString) as? Int ?? 0, bonusPoints: businessNames.get(GlobalVariables.UserIDs.BonusPointsString) as? Int ?? 0)
                     //add a new business to the array
-                    print("\(newBusinessAdded.points) new points added")
                     
                     self.BusinessNamesArray.append(newBusinessAdded)
                     //setup this when reloading the data
                 }
                 self.BusinessList.reloadData()
-            }
+                self.refresher.endRefreshing()            }
         }
     }
     
@@ -277,22 +283,28 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
+        //cell.PointsProgressBar.frame.size.width = self.BusinessList.frame.size.width - self.view.frame.size.width/6
+        cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
+        cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
+        cell.PointsProgressBar.progressTintColor = UIColor.systemGreen
+
+              
         let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple, .systemTeal, .systemPink, .red]
         let randomColor = Int.random(in: 0...10)
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
         
-        cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
         cell.BonusPointsLabel.textColor = colorHolder[randomColor]
         cell.BonusPointsLabel.isHidden = true
+      
+        cell.ActualPointsLabel.text = String((Int(self.BusinessNamesArray[indexPath.row].points)))
+        cell.ActualPointsLabel.textColor = UIColor.systemGreen
+        
         cell.PerkString.isHidden = true
         cell.selectedBackgroundView = backgroundView
         cell.isUserInteractionEnabled = false
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
-        cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
-        cell.ActualPointsLabel.text = String((Int(self.BusinessNamesArray[indexPath.row].points)))
-        cell.ActualPointsLabel.textColor = colorHolder[randomColor]
         
         GlobalFunctions.setPointProgressBarRadius(bar: cell.PointsProgressBar)
         
@@ -309,6 +321,9 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             self.delay(3.0) {
                 cell.BonusPointsLabel.isHidden = true
                 //show the bonus points, then delete them forever
+                
+                //this is a little buggy when one or more business are added to the users profile
+                //could be connectivity issues.?
                 GlobalFunctions.deleteBonusPoint(user: Auth.auth().currentUser?.email, business: self.BusinessNamesArray[indexPath.row].name)
             }
         }
@@ -317,7 +332,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         if cell.PointsProgressBar.progress.isEqual(to: 1) {
             cell.CheckMarkImage.isHidden = false
             cell.animateCheckMark()
-            //cell.PerkString.isHidden = false
+            cell.PointsProgressBar.progressTintColor = UIColor.green
             let randomPerkStrings : [String] = ["You've got a perk!", "Scan to redeem!", "Grab your freebee!", "Go treat yourself!"]
             let randomNumber = Int.random(in: 0...8)
             let randomPerkString = Int.random(in: 0...3)

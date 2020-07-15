@@ -24,13 +24,14 @@ class BusinessForCustomerCell: UITableViewCell {
     @IBOutlet weak var BonusPointsLabel: UILabel!
     @IBOutlet weak var ActualPointsLabel: UILabel!
     @IBOutlet weak var PerkString: UILabel!
+    @IBOutlet weak var MainView: UIView!
     
     //MARK:- Function Calls
     override func awakeFromNib() {
         super.awakeFromNib()
        //
         PointsProgressBar.transform = PointsProgressBar.transform.scaledBy(x: 1, y: 6)
-        
+        layoutView()
     }
     
     
@@ -53,7 +54,35 @@ class BusinessForCustomerCell: UITableViewCell {
         self.animationView.backgroundColor = .white
         self.animationView.play()
         self.CheckMarkImage.addSubview(self.animationView)
-    }
+        self.MainView.sendSubviewToBack(self.CheckMarkImage)    }
+    
+    func layoutView() {
+         
+         // set the shadow of the view's layer
+         layer.backgroundColor = UIColor.clear.cgColor
+         layer.shadowColor = UIColor.black.cgColor
+         layer.shadowOffset = CGSize(width: 0, height: 1.0)
+         layer.shadowOpacity = 0.2
+         layer.shadowRadius = 4.0
+           
+         // set the cornerRadius of the containerView's layer
+         MainView.layer.cornerRadius = 20
+         MainView.layer.masksToBounds = true
+         
+         
+         //
+         // add additional views to the containerView here
+         //
+         
+         // add constraints
+         MainView.translatesAutoresizingMaskIntoConstraints = false
+         
+         // pin the containerView to the edges to the view
+         MainView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+         MainView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+         MainView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+         MainView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+       }
     
     
 }

@@ -27,6 +27,7 @@ class ScanDataFile : UIViewController {
     }
     
     //MARK:- Suplimentary functions
+    
     func populateData() {
         let db = Firestore.firestore()
         let TotalScansDoc = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.ScanDataString).document(GlobalVariables.UserIDs.TotalScansString)

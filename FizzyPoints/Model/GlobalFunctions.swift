@@ -166,7 +166,6 @@ class GlobalFunctions {
         button.layer.shadowOpacity = 1.0
         button.layer.shadowRadius = 0.0
         button.layer.masksToBounds = false
-        button.layer.cornerRadius = 5.0
     }
     
     //progressbar appearance configuration

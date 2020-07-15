@@ -42,13 +42,17 @@ class BusinessSearch: UIViewController {
         definesPresentationContext = true
         // Prevent the navigation bar from being hidden when searching.
         searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.searchBar.placeholder = "Search"
+        searchController?.searchBar.placeholder = ""
         
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         setupButtons()
+        searchController!.searchBar.barStyle = .black
+        searchController!.searchBar.searchTextField.leftView?.tintColor = .white
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.white
     }
     
     
@@ -93,9 +97,9 @@ class BusinessSearch: UIViewController {
     
     //MARK:- Animations
     func addLoadingView() {
-        
         self.setupAnimation()
     }
+    
     func setupAnimation() {
         let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
         let randomNumber = Int.random(in: 0...3)

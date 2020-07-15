@@ -49,7 +49,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         BusinessList.delegate = self
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.purple,
+            [NSAttributedString.Key.foregroundColor: UIColor.white,
              NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 21)!]
         
         self.navigationItem.title = "fizzypoints"
@@ -73,6 +73,14 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         self.setupDefault()
         showList()
         showScanScore()
+        
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.purple
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 4.0
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        self.navigationController?.navigationBar.layer.masksToBounds = false
         
     }
     
@@ -107,8 +115,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
       
        
         showScanScore()
-        let colorHolder : [UIColor] = [ .systemGreen, .yellow, .systemPurple, .orange]
-        let randomColor = Int.random(in: 0...3)
+        let colorHolder : [UIColor] = [.systemPurple]
+        let randomColor = 0
         self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
         
         //self.BusinessList.reloadData()

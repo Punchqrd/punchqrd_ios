@@ -32,114 +32,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdP-9j-i89">
-                                <rect key="frame" x="39" y="357.33333333333331" width="337" height="54"/>
-                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
-                                <state key="normal" title="Create Account">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="ConfirmData:" destination="ui9-WY-iIp" eventType="touchUpInside" id="Pg7-My-SBY"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbQ-wb-ad6">
-                                <rect key="frame" x="39" y="291.33333333333331" width="337" height="24"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2fD-pA-LSL">
-                                <rect key="frame" x="39" y="224" width="337" height="25.666666666666657"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G4o-jE-lp1">
-                                <rect key="frame" x="39" y="257.66666666666669" width="337" height="25.666666666666686"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xeP-uZ-1IF">
-                                <rect key="frame" x="39" y="323.33333333333331" width="337" height="24"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnV-R9-k00">
                                 <rect key="frame" x="47" y="349.33333333333331" width="320" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Poppins-Thin" family="Poppins" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTu-BL-9ob">
-                                <rect key="frame" x="71" y="729" width="273" height="36"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <state key="normal" title="Register as employee">
-                                    <color key="titleColor" red="0.48324757810000002" green="0.0" blue="0.57258188720000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Ugf-bs-w11" kind="show" animates="NO" id="9KF-z5-M3T"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZT-Tq-dVG">
-                                <rect key="frame" x="71" y="773" width="273" height="36"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                <state key="normal" title="Register your business">
-                                    <color key="titleColor" red="0.48324757810000002" green="0.0" blue="0.57258188720000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="OwnerRegisterButton:" destination="ui9-WY-iIp" eventType="touchUpInside" id="WxN-zo-FeI"/>
-                                    <segue destination="3er-RY-sb5" kind="show" animates="NO" id="HkI-fX-5RF"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="TdP-9j-i89" firstAttribute="top" secondItem="LnV-R9-k00" secondAttribute="bottom" constant="8" id="0hA-vw-7OJ"/>
-                            <constraint firstItem="xeP-uZ-1IF" firstAttribute="top" secondItem="FbQ-wb-ad6" secondAttribute="bottom" constant="8" id="1c3-DB-L3s"/>
-                            <constraint firstItem="TdP-9j-i89" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="39" id="2EN-jJ-ilc"/>
-                            <constraint firstItem="HZT-Tq-dVG" firstAttribute="top" secondItem="nTu-BL-9ob" secondAttribute="bottom" constant="8" id="2WR-3A-gas"/>
-                            <constraint firstItem="xeP-uZ-1IF" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="39" id="2gT-Ya-T6G"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="bottom" secondItem="HZT-Tq-dVG" secondAttribute="bottom" constant="53" id="472-0I-UWh"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="nTu-BL-9ob" secondAttribute="trailing" constant="70" id="6gQ-3Z-rqa"/>
-                            <constraint firstItem="LnV-R9-k00" firstAttribute="top" secondItem="xeP-uZ-1IF" secondAttribute="bottom" constant="2" id="7CM-sv-qUT"/>
-                            <constraint firstItem="2fD-pA-LSL" firstAttribute="top" secondItem="eRi-Il-mav" secondAttribute="top" constant="136" id="8tF-1X-ZPj"/>
-                            <constraint firstItem="G4o-jE-lp1" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="39" id="EYc-ZB-VD3"/>
-                            <constraint firstItem="FbQ-wb-ad6" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="39" id="IkP-j0-8TY"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="HZT-Tq-dVG" secondAttribute="trailing" constant="70" id="M7S-A1-cmQ"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="FbQ-wb-ad6" secondAttribute="trailing" constant="38" id="PjT-cf-h7z"/>
-                            <constraint firstItem="G4o-jE-lp1" firstAttribute="top" secondItem="2fD-pA-LSL" secondAttribute="bottom" constant="8" id="bfI-GG-9jc"/>
+                            <constraint firstItem="LnV-R9-k00" firstAttribute="top" secondItem="eRi-Il-mav" secondAttribute="top" constant="261.33333333333331" id="b28-tl-qhv"/>
                             <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="LnV-R9-k00" secondAttribute="trailing" constant="47" id="cfp-bo-cfg"/>
-                            <constraint firstItem="nTu-BL-9ob" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="71" id="dxx-pt-eeg"/>
-                            <constraint firstItem="FbQ-wb-ad6" firstAttribute="top" secondItem="G4o-jE-lp1" secondAttribute="bottom" constant="8" id="fl2-fI-heL"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="G4o-jE-lp1" secondAttribute="trailing" constant="38" id="gIy-qG-Bb7"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="TdP-9j-i89" secondAttribute="trailing" constant="38" id="gax-fu-lvB"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="xeP-uZ-1IF" secondAttribute="trailing" constant="38" id="koP-BU-6G8"/>
                             <constraint firstItem="LnV-R9-k00" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="47" id="oiS-3E-8Sk"/>
-                            <constraint firstItem="2fD-pA-LSL" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="39" id="rlF-0b-joq"/>
-                            <constraint firstItem="HZT-Tq-dVG" firstAttribute="leading" secondItem="eRi-Il-mav" secondAttribute="leading" constant="71" id="sNq-Kp-yib"/>
-                            <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="2fD-pA-LSL" secondAttribute="trailing" constant="38" id="vbo-zL-O4D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eRi-Il-mav"/>
                     </view>
                     <navigationItem key="navigationItem" id="Dbp-aD-yLW"/>
                     <connections>
-                        <outlet property="ConfirmPasswordTextField" destination="xeP-uZ-1IF" id="XvT-EH-7fc"/>
-                        <outlet property="EmailTextField" destination="2fD-pA-LSL" id="tEv-M2-AHD"/>
-                        <outlet property="ErrorLabel" destination="LnV-R9-k00" id="qLt-4D-Fst"/>
-                        <outlet property="NameTextField" destination="G4o-jE-lp1" id="EtD-Jo-cek"/>
-                        <outlet property="PasswordTextField" destination="FbQ-wb-ad6" id="ec7-IM-phu"/>
-                        <outlet property="RegisterButton" destination="TdP-9j-i89" id="L3Y-lH-Vqh"/>
-                        <outlet property="employeeButton" destination="nTu-BL-9ob" id="vaG-Ca-DrG"/>
-                        <outlet property="registerBusiness" destination="HZT-Tq-dVG" id="17T-Bb-Y3K"/>
+                        <segue destination="3er-RY-sb5" kind="show" identifier="B_1RegisterSeque" id="Hga-bt-5tn"/>
+                        <segue destination="Ugf-bs-w11" kind="show" identifier="B_2RegisterSeque" id="E31-Un-TiI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6z-yd-T7P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2792.753623188406" y="-33.482142857142854"/>
+            <point key="canvasLocation" x="2780" y="-52"/>
         </scene>
         <!--Scan Data File-->
         <scene sceneID="7qg-Gq-5yU">
@@ -218,7 +134,7 @@
                                 <rect key="frame" x="39" y="367" width="337" height="54"/>
                                 <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
-                                <state key="normal" title="Scan Data">
+                                <state key="normal" title="Data">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -428,13 +344,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="XYX-3c-uYY">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="circle" catalog="system" style="plain" id="qIY-vW-1Il">
-                            <color key="tintColor" red="0.48324757810000002" green="0.0" blue="0.57258188720000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="Logout:" destination="Pjb-C6-ViW" id="3oM-zu-eNL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="uxk-GK-NmT">
-                            <color key="tintColor" red="0.48324757810000002" green="0.0" blue="0.57258188720000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="searchBusinessButton:" destination="Pjb-C6-ViW" id="Qek-Ew-fI9"/>
                                 <segue destination="LLP-fA-b4A" kind="show" id="59H-Av-INb"/>
@@ -784,7 +700,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R9J-wh-7wa">
-                                <rect key="frame" x="55" y="543" width="305" height="25.666666666666629"/>
+                                <rect key="frame" x="55" y="544.66666666666663" width="305" height="24"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
@@ -811,7 +727,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ui9-WY-iIp" kind="show" id="1xk-BZ-wQk"/>
+                                    <segue destination="ui9-WY-iIp" kind="show" id="E90-ey-GLb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgb-KW-Wkc">
@@ -903,7 +819,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-jc-qfg">
-                                <rect key="frame" x="39" y="295" width="337" height="54"/>
+                                <rect key="frame" x="39" y="295.33333333333331" width="337" height="54"/>
                                 <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Register">
@@ -914,7 +830,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jnm-Jc-83K">
-                                <rect key="frame" x="47" y="229" width="320" height="24"/>
+                                <rect key="frame" x="47" y="229.33333333333334" width="320" height="24"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -926,19 +842,19 @@
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tI6-eg-bVx">
-                                <rect key="frame" x="47" y="195.66666666666666" width="320" height="25.333333333333343"/>
+                                <rect key="frame" x="47" y="195.66666666666666" width="320" height="25.666666666666657"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I7R-VX-KVw">
-                                <rect key="frame" x="47" y="261" width="320" height="24"/>
+                                <rect key="frame" x="47" y="261.33333333333331" width="320" height="24"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfj-fv-iIU">
-                                <rect key="frame" x="47" y="287" width="320" height="0.0"/>
+                                <rect key="frame" x="47" y="287.33333333333331" width="320" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Poppins-Thin" family="Poppins" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1046,7 +962,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Business Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aLv-gz-mgw">
-                                <rect key="frame" x="65" y="396.66666666666669" width="285" height="25.333333333333314"/>
+                                <rect key="frame" x="65" y="396.33333333333331" width="285" height="25.666666666666686"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1269,7 +1185,6 @@
                                 </state>
                                 <connections>
                                     <action selector="ConfirmBusiness:" destination="9bC-nF-6n7" eventType="touchUpInside" id="caL-rZ-sBY"/>
-                                    <action selector="ConfirmData:" destination="ui9-WY-iIp" eventType="touchUpInside" id="J0W-Ug-yCv"/>
                                     <action selector="ConfirmData:" destination="e2a-Py-Its" eventType="touchUpInside" id="nuU-4s-IGe"/>
                                 </connections>
                             </button>

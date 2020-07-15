@@ -47,7 +47,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupToHideKeyboardOnTapOnView()
         self.PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         self.EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email:", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])

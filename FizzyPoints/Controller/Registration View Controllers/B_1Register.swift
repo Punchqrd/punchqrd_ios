@@ -508,10 +508,12 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     //MARK:- @objc functions called
     
     @objc func toEmployeeView() {
+        GlobalVariables.ActualIDs.ActualUserType = GlobalVariables.UserIDs.UserEmployee
         self.performSegue(withIdentifier: GlobalVariables.SegueIDs.B_2RegisterSeque, sender: self)
     }
     
     @objc func toOwnerView() {
+        GlobalVariables.ActualIDs.ActualUserType = GlobalVariables.UserIDs.UserOwner
         self.performSegue(withIdentifier: GlobalVariables.SegueIDs.B_1RegisterSeque, sender: self)
     }
     

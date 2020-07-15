@@ -32,21 +32,36 @@ class B_1Register : UIViewController, UITextFieldDelegate {
     
     
     let RegisterButton = UIButton()
+    //name fields and views
     let NameTextField = UITextField()
+    let nameTextFieldView = UIView()
+    //email.
     let EmailTextField = UITextField()
-    
+    let emailTextFieldView = UIView()
+    //password fields and views
     let PasswordTextField = UITextField()
     let passwordTextFieldView = UIView()
-    
+    //confirm password fields and views
     let ConfirmPasswordTextField = UITextField()
     let confirmpasswordTextFieldView = UIView()
     
-    let ageInput = UITextField()
+    //birth date input and views
     let birthMonth = UITextField()
+    let birthMonthView = UIView()
+    
     let birthDay = UITextField()
+    let birthDayView = UIView()
+    
     let birthYear = UITextField()
+    let birthYearView = UIView()
+    
+    let cakeImage = UIImage(named: "birthday")
+    
+    
+    //labels
     let ErrorLabel = UILabel()
-    let gender = UISegmentedControl()
+    //setup gender images in this array
+    
     
     
     //MARK:- View functions
@@ -95,8 +110,8 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         RegisterButton.setTitle("Confirm", for: .normal)
         RegisterButton.backgroundColor = .systemGreen
         GlobalFunctions.setButtonRadius(button: RegisterButton)
-        RegisterButton.layer.cornerRadius = 20
-        //add a target here
+        RegisterButton.layer.cornerRadius = RegisterButton.frame.height/2.1
+        RegisterButton.addTarget(self, action: #selector(confirmData), for: .touchUpInside)
         self.containerView.addSubview(RegisterButton)
         
         
@@ -115,6 +130,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         
         ConfirmPasswordTextField.frame = CGRect(x: 0, y: 0, width: confirmpasswordTextFieldView.frame.size.width - 30, height: confirmpasswordTextFieldView.frame.size.height - 10)
         ConfirmPasswordTextField.placeholder = "Confirm Password"
+        ConfirmPasswordTextField.font =  UIFont(name: "Poppins", size: 15)
         ConfirmPasswordTextField.center = confirmpasswordTextFieldView.center
         ConfirmPasswordTextField.isSecureTextEntry = true
         containerView.addSubview(ConfirmPasswordTextField)
@@ -135,13 +151,123 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         
         PasswordTextField.frame = CGRect(x: 0, y: 0, width: confirmpasswordTextFieldView.frame.size.width - 30, height: confirmpasswordTextFieldView.frame.size.height - 10)
         PasswordTextField.placeholder = "Password"
+        PasswordTextField.font =  UIFont(name: "Poppins", size: 15)
         PasswordTextField.center = passwordTextFieldView.center
         PasswordTextField.isSecureTextEntry = true
         containerView.addSubview(PasswordTextField)
-        self.containerView.addSubview(passwordTextFieldView)
-        self.containerView.sendSubviewToBack(passwordTextFieldView)
-      
+        containerView.addSubview(passwordTextFieldView)
+        containerView.sendSubviewToBack(passwordTextFieldView)
         
+        
+        
+        
+        //setup the date containers and textfields
+        //month
+        birthMonthView.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.width/4.8, height: RegisterButton.frame.size.height)
+        birthMonthView.center.x = self.view.center.x - 140
+        birthMonthView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
+        birthMonthView.backgroundColor = .white
+        setupShadow(view: birthMonthView)
+        
+        
+        birthMonth.frame = CGRect(x: 0, y: 0, width: birthMonthView.frame.size.width - 20, height: birthMonthView.frame.size.height - 10)
+        birthMonth.placeholder = "MM"
+        birthMonth.center = birthMonthView.center
+        birthMonth.textAlignment = .center
+        birthMonth.keyboardType = .numberPad
+        
+        containerView.addSubview(birthMonth)
+        containerView.addSubview(birthMonthView)
+        containerView.sendSubviewToBack(birthMonthView)
+        
+        //day
+        birthDayView.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.width/4.8, height: RegisterButton.frame.size.height)
+        birthDayView.center.x = self.view.center.x - 70
+        birthDayView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
+        birthDayView.backgroundColor = .white
+        setupShadow(view: birthDayView)
+        
+        
+        birthDay.frame = CGRect(x: 0, y: 0, width: birthDayView.frame.size.width - 30, height: birthDayView.frame.size.height - 10)
+        birthDay.placeholder = "DD"
+        birthDay.center = birthDayView.center
+        birthDay.textAlignment = .center
+        birthDay.keyboardType = .numberPad
+        
+        containerView.addSubview(birthDay)
+        containerView.addSubview(birthDayView)
+        containerView.sendSubviewToBack(birthDayView)
+        
+        //year
+        birthYearView.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.width/3.5, height: RegisterButton.frame.size.height)
+        birthYearView.center.x = self.view.center.x + 15
+        birthYearView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
+        birthYearView.backgroundColor = .white
+        setupShadow(view: birthYearView)
+        
+        
+        birthYear.frame = CGRect(x: 0, y: 0, width: birthYearView.frame.size.width - 30, height: birthYearView.frame.size.height - 10)
+        birthYear.placeholder = "YYYY"
+        birthYear.center = birthYearView.center
+        birthYear.textAlignment = .center
+        birthYear.keyboardType = .numberPad
+        
+        containerView.addSubview(birthYear)
+        containerView.addSubview(birthYearView)
+        containerView.sendSubviewToBack(birthYearView)
+        
+        //setup the image of the cake next to the textfields
+        let cakeView = UIImageView(image: cakeImage!)
+        cakeView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        cakeView.center.x = self.view.center.x + 95
+        cakeView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
+        setupShadow(view: cakeView)
+        containerView.addSubview(cakeView)
+        
+        
+        //setup the email field
+        emailTextFieldView.frame = RegisterButton.frame
+        emailTextFieldView.backgroundColor = .white
+        emailTextFieldView.center.x = self.view.center.x - 23
+        emailTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*5 + 50)
+        setupShadow(view: emailTextFieldView)
+        
+        
+        EmailTextField.frame = CGRect(x: 0, y: 0, width: emailTextFieldView.frame.size.width - 30, height: emailTextFieldView.frame.size.height - 10)
+        EmailTextField.placeholder = "Email"
+        EmailTextField.center = emailTextFieldView.center
+        EmailTextField.font =  UIFont(name: "Poppins", size: 15)
+        containerView.addSubview(EmailTextField)
+        containerView.addSubview(emailTextFieldView)
+        containerView.sendSubviewToBack(emailTextFieldView)
+        
+        //setup the full name field
+        nameTextFieldView.frame = RegisterButton.frame
+        nameTextFieldView.backgroundColor = .white
+        nameTextFieldView.center.x = self.view.center.x - 23
+        nameTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*6 + 60)
+        setupShadow(view: nameTextFieldView)
+        
+        
+        NameTextField.frame = CGRect(x: 0, y: 0, width: nameTextFieldView.frame.size.width - 30, height: nameTextFieldView.frame.size.height - 10)
+        NameTextField.placeholder = "Full Name"
+        NameTextField.center = nameTextFieldView.center
+        NameTextField.font =  UIFont(name: "Poppins", size: 15)
+        containerView.addSubview(NameTextField)
+        containerView.addSubview(nameTextFieldView)
+        containerView.sendSubviewToBack(nameTextFieldView)
+        
+        
+        //setup the error label
+        ErrorLabel.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.width, height: RegisterButton.frame.size.height/1.5)
+        ErrorLabel.text = ""
+        ErrorLabel.textColor = .systemPurple
+        ErrorLabel.font =  UIFont(name: "Poppins-Bold", size: 15)
+        ErrorLabel.textAlignment = .center
+        ErrorLabel.center.x = self.view.center.x - 23
+        ErrorLabel.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*7 + 70)
+        ErrorLabel.numberOfLines = 2
+        containerView.addSubview(ErrorLabel)
         
         
         
@@ -155,7 +281,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         UIView.animate(withDuration: 1, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
             //animate all of the containerviews elements to animate with it
             self.containerView.center.y = self.view.center.y - self.containerView.frame.size.height / 4
-           
+            
         }, completion: nil)
         
         //  GlobalFunctions.setButtonRadius(button: self.RegisterButton)
@@ -168,7 +294,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowRadius = 10
         view.layer.shadowOpacity = 0.3
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = view.frame.height/2.1
     }
     
     func addLoadingView() {
@@ -203,20 +329,46 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         if let text = self.ConfirmPasswordTextField.text, !text.isEmpty
         {
-            if self.ConfirmPasswordTextField.text! == self.PasswordTextField.text! {
-                GlobalVariables.ActualIDs.ActualName = NameTextField.text
-                GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
-                GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
-                //add more of the inputs to the this field must first create new global variables
-                
-                SetupNewUser()
-                
-            } else {
-                self.ErrorLabel.text = "Make sure both passwords are the same."
+            if let text = self.PasswordTextField.text, !text.isEmpty{
+                if let text = self.birthYear.text, !text.isEmpty {
+                    if let text = self.birthDay.text, !text.isEmpty {
+                        if let text = self.birthMonth.text, !text.isEmpty {
+                            if let text = self.NameTextField.text, !text.isEmpty {
+                                if let text = self.EmailTextField.text, !text.isEmpty {
+                                    
+                                    
+                                    if self.ConfirmPasswordTextField.text! == self.PasswordTextField.text! {
+                                        GlobalVariables.ActualIDs.ActualName = NameTextField.text
+                                        GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
+                                        GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
+                                        GlobalVariables.ActualIDs.ActualMonth = Int(birthMonth.text!)
+                                        GlobalVariables.ActualIDs.ActualDay = Int(birthDay.text!)
+                                        GlobalVariables.ActualIDs.ActualYear = Int(birthYear.text!)
+                                        
+                                        
+                                        //add more of the inputs to the this field must first create new global variables
+                                        
+                                        SetupNewUser()
+                                        
+                                        
+                                    } else {
+                                        self.ErrorLabel.text = "Make sure both passwords are the same."
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        }
             
-        } else {
-            self.ErrorLabel.text = "Confirm your password"
+            
+        else {
+            self.ErrorLabel.text = "Oops something's missing."
         }
         
     }
@@ -229,8 +381,13 @@ class B_1Register : UIViewController, UITextFieldDelegate {
             GlobalVariables.UserIDs.UserName : GlobalVariables.ActualIDs.ActualName!,
             GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail!,
             GlobalVariables.UserIDs.UserPassword: GlobalVariables.ActualIDs.ActualPassword!,
+            GlobalVariables.UserIDs.UserBirthMonth: GlobalVariables.ActualIDs.ActualMonth!,
+            GlobalVariables.UserIDs.UserBirthDay: GlobalVariables.ActualIDs.ActualDay!,
+            GlobalVariables.UserIDs.UserBirthYear: GlobalVariables.ActualIDs.ActualYear!,
             GlobalVariables.UserIDs.UserType: "Customer",
             GlobalVariables.UserIDs.UserCodeString : "",
+            
+            
             //add all of the new variables to this array to be added into the database.
             ] as [String : Any]
         

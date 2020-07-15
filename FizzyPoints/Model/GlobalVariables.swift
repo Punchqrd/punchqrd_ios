@@ -19,6 +19,9 @@ class GlobalVariables {
         static let UserPassword = "User Password"
         static let UserAddress = "User Address"
         static let UserName = "User Name"
+        static let UserBirthYear = "Birth Year"
+        static let UserBirthDay = "Birth Day"
+        static let UserBirthMonth = "Birth Month"
         static let UserZipCode = "User ZipCode"
         static let UserCustomer = "Customer"
         static let UserOwner = "Owner"
@@ -79,8 +82,13 @@ class GlobalVariables {
     struct ActualIDs {
         
         static var CurrentUser : String?
+        
         static var ActualEmail : String?
         static var ActualPassword : String?
+        static var ActualMonth : Int?
+        static var ActualDay : Int?
+        static var ActualYear : Int?
+        
         static var ActualUserType : String?
         static var ActualName : String?
         static var ActualZipCode : String?

@@ -60,17 +60,17 @@ class GlobalFunctions {
     }
     
     //MARK:- Function to increment the points in the database. At random based on the points the user already has.
-       static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?,  totalPoints : Int?) {
-           let db = Firestore.firestore()
-           let finalValue = self.incrementPointValue(inputNumber: totalPoints!)
-           let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-           CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : finalValue])
-           let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-           Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
-       }
+    static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?,  totalPoints : Int?) {
+        let db = Firestore.firestore()
+        let finalValue = self.incrementPointValue(inputNumber: totalPoints!)
+        let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+        CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : finalValue])
+        let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
+    }
     
     //MARK:- Function to increment the users points based on actual price values.
-    static func incrementPointsButton (nameofUser: String?, nameofBusiness: String?,  incrementPoints: Double?) {
+    static func incrementPointsButton (nameofUser: String?, nameofBusiness: String?,  incrementPoints: Double?, currentEmployerEmail: String?, year: Int, day: Int, month: Int, name: String?) {
         //increment points will either be 1,2,3 depending on how much the user spends.
         
         var actualPoints = 1
@@ -87,15 +87,61 @@ class GlobalFunctions {
         let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
         CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : actualPoints])
         let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+        //actual points are just the perk points
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(actualPoints))])
+        //increment points are the price values
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.CustomerTotalSpent : FieldValue.increment(incrementPoints!)])
+        
+        
+        
+        //include a function to increment to total value in the business end of the database.
+        //create a new branch collection for the business owner to add scanned customers.
+        let employerBusiness = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!)
+        let employerUsersScannedData = employerBusiness.collection(GlobalVariables.UserIDs.CustomersScannedCollectionTitle).document(nameofUser!)
+        employerUsersScannedData.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                employerUsersScannedData.updateData([GlobalVariables.UserIDs.CustomerTotalSpent : FieldValue.increment(incrementPoints!)])
+                employerUsersScannedData.updateData([GlobalVariables.UserIDs.UserBirthDay : day])
+                employerUsersScannedData.updateData([GlobalVariables.UserIDs.UserBirthMonth : month])
+                employerUsersScannedData.updateData([GlobalVariables.UserIDs.UserBirthYear : year])
+                employerUsersScannedData.updateData([GlobalVariables.UserIDs.UserName : name!])
+
+
+            } else {
+                employerUsersScannedData.setData([GlobalVariables.UserIDs.CustomerTotalSpent : incrementPoints!])
+                //update the users birthdate credentials
+                employerUsersScannedData.setData([GlobalVariables.UserIDs.UserBirthDay : day])
+                employerUsersScannedData.setData([GlobalVariables.UserIDs.UserBirthMonth : month])
+                employerUsersScannedData.setData([GlobalVariables.UserIDs.UserBirthYear : year])
+                employerUsersScannedData.setData([GlobalVariables.UserIDs.UserName : name!])
+
+
+                
+            }
+        }
+        
+        
+        
+        let employerTotalScanCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!).collection(GlobalVariables.UserIDs.ScanDataString).document(GlobalVariables.UserIDs.TotalScansString)
+        
+        employerTotalScanCollection.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                employerTotalScanCollection.updateData([GlobalVariables.UserIDs.OwnerRevenueString : FieldValue.increment(incrementPoints!)])
+
+            } else {
+                employerTotalScanCollection.setData([GlobalVariables.UserIDs.OwnerRevenueString : FieldValue.increment(incrementPoints!)])
+
+            }
+        }
+        
+        
         
         
     }
     
     //need a function to update the total amount spent from the user.
     static func incrementPaymentTotalAtBusiness(user: String, nameofBusiness: String,  payment: Double) {
-       
+        
     }
     
     
@@ -246,6 +292,8 @@ class GlobalFunctions {
             }
         }
         
+        //
+        
     }
     
     
@@ -326,7 +374,7 @@ class GlobalFunctions {
         })
     }
     
-   
+    
 }
 
 //MARK:- UICOLOR Extension

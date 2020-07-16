@@ -222,12 +222,12 @@ extension ScannerScreen : AVCaptureMetadataOutputObjectsDelegate {
                                                 if totalAccruedPoints < 10 {
                                                     //INCREMENT Points.
                                                     //this is whre the segue happens for the user
-                                                    //GlobalFunctions.incrementPointsForUser(nameofUser: String(customerEmail), nameofBusiness: employerBusinessName, totalPoints: totalAccruedPoints)
                                                     
                                                     self.removeLoadingView()
                                                     self.avCaptureSession.stopRunning()
-                                                    GlobalVariables.ActualIDs.ActualCustomer = String(customerEmail)
-                                                    GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName
+                                                    GlobalVariables.ActualIDs.ActualCustomer = String(customerEmail) //this is the customers email
+                                                    GlobalVariables.ActualIDs.CurrentNameofBusiness = employerBusinessName //this is the name of the business
+                                                    GlobalVariables.ActualIDs.CurrentNameofEmployer = (employerBusinessEmail as! String)
                                                     self.performSegue(withIdentifier: GlobalVariables.SegueIDs.toPriceView, sender: self)
                                                 }
                                             }

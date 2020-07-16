@@ -59,8 +59,39 @@ class PaymentScreen: UIViewController, UITextFieldDelegate {
             
             if periodCounter > 0 && periodCounter <= 1 {
                 let inputValue = Double(paymentAmount.text!)
-                GlobalFunctions.incrementPointsButton(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness, incrementPoints: inputValue)
-                backTwo()
+                
+                
+                
+                
+                
+                
+                
+                let db = Firestore.firestore()
+                db.collection(GlobalVariables.UserIDs.CollectionTitle).document(GlobalVariables.ActualIDs.ActualCustomer!).getDocument { (userProfile, err) in
+                    
+                        if let userProfile = userProfile, userProfile.exists {
+                            
+                            //this is where the data can be transmuted to the other datafields in the database.
+                            let useryear = userProfile.get(GlobalVariables.UserIDs.UserBirthYear)! as! Int
+                            let userday = userProfile.get(GlobalVariables.UserIDs.UserBirthDay)!  as! Int
+                            let usermonth = userProfile.get(GlobalVariables.UserIDs.UserBirthMonth)!  as! Int
+                            let username = userProfile.get(GlobalVariables.UserIDs.UserName)! as! String
+                            
+                          
+                            
+                            GlobalFunctions.incrementPointsButton(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness, incrementPoints: inputValue, currentEmployerEmail: GlobalVariables.ActualIDs.CurrentNameofEmployer, year: useryear, day: userday, month: usermonth, name: username)
+                                         
+                            self.backTwo()
+                            
+                            
+                        } else {
+                            return
+                        }
+                    
+                }
+                
+                
+             
             } else if periodCounter > 1 {
                 self.paymentAmount.text = ""
                 self.paymentAmount.placeholder = "One too many ."

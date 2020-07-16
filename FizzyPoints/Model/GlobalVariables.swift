@@ -39,12 +39,13 @@ class GlobalVariables {
         static let EmployeeList = "Employees"
         static let UserDeletedType = "Deleted"
         static let EmployerString = "Employer"
-        static let TotalScansString = "Total Scans"
+        static let TotalScansString = "Totals"
         static let ScanDataString = "Scan Data"
         static let ScansRecievedString = "Times Scanned"
         static let TotalCustomerScannedString = "Total Times Scanned"
         static let CustomersScannedCollectionTitle = "Customers"
-        static let CustomerPurchasesString = "Total Purchases"
+        static let CustomerPurchasesString = "Total Scans"
+        static let OwnerRevenueString = "Total Revenue"
         static let BonusPointsString = "Bonus Points"
         static let CustomerScanScore = "Scan Score"
         static let CustomerScanCollectionData = "Scan Collection"
@@ -104,6 +105,7 @@ class GlobalVariables {
         static var EmployerBusinessEmail : String?
         static var ActualCustomer : String?
         static var CurrentNameofBusiness : String?
+        static var CurrentNameofEmployer: String?
         
         
      

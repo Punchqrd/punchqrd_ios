@@ -31,10 +31,12 @@ class GlobalVariables {
         static let BusinessName = "Business Name"
         static let CustomerBusinessCollection = "Business Collection"
         static let PointsString =  "Points"
+        
         static let CustomerTableViewCellID = "BusinessCell"
         static let EmployeeTableCellID = "EmployeeCell"
         static let EmployeeNibCellID = "EmployeeCell"
         static let CustomerNibCell = "BusinessForCustomerCell"
+        
         static let RedemptionNumberString = "Redemption Number"
         static let EmployeeList = "Employees"
         static let UserDeletedType = "Deleted"

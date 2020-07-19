@@ -328,34 +328,6 @@ public extension UIImage {
 }
 
 
-//MARK:- Trash code
-/*
- private func addCheckMarkImage(to layer: CALayer, videoSize: CGSize) {
- 
- self.overlayLayer.frame = CGRect(origin: .zero, size: self.avPreviewLayer.preferredFrameSize())
- self.view.layer.addSublayer(self.overlayLayer)
- let screenSize : CGRect = UIScreen.main.bounds
- let screenWidth = screenSize.size.width
- let screenHeight = screenSize.size.height
- let greenView = UIImage(color: .green, size: CGSize(width: screenWidth, height: screenHeight))
- 
- 
- let imageLayer = CALayer()
- let width = screenWidth
- let height = screenHeight
- imageLayer.frame = CGRect(
- x: 0,
- y: 0,
- width: width,
- height: height)
- greenView!.withTintColor(UIColor.green, renderingMode: .alwaysTemplate)
- imageLayer.contents = greenView?.cgImage
- layer.addSublayer(imageLayer)
- 
- 
- 
- }
- */
 
 
 

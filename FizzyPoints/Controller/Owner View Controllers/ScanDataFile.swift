@@ -10,28 +10,57 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import Lottie
 
 class ScanDataFile : UIViewController {
     
-    var businessDataHolder : [OwnerDataObject] = []
+    private lazy var animationView1: AnimationView = {
+      let view = AnimationView()
+      return view
+    }()
     
+    private lazy var animationView2: AnimationView = {
+      let view = AnimationView()
+      return view
+    }()
+    
+    private lazy var animationView3: AnimationView = {
+      let view = AnimationView()
+      return view
+    }()
+    
+
+    
+    var businessDataHolder : [OwnerDataObject] = []
+    var toggleValue = true
     //view variables
     let bottomView = UIView()
     let middleView = UIView()
     
     let totalScansView = UIView()
     let totalScansValue = UILabel()
-                                                                        
+    
     let averageRevenueView = UIView()
     let averageRevenueLabel = UILabel()
     
     let totalRevenueView = UIView()
     let totalRevenueLabel = UILabel()
     
+    let switchButton = UIButton()
     
+    //all for the left views
+    let leftView = UIView()
+    let leftViewTitle = UILabel()
+    
+   
     //MARK:-View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupMiddleView()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            self.setupSideView()
+        }
+               
         retrieveValuesFromDataBase()
         
         
@@ -41,10 +70,19 @@ class ScanDataFile : UIViewController {
         
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-        setupMiddleView()
+        
+        
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        leftView.removeFromSuperview()
+    }
+    
+    
     
     //MARK:- Suplimentary functions
     
@@ -68,6 +106,10 @@ class ScanDataFile : UIViewController {
                 self.averageRevenueLabel.text = "$\(String(describing: self.businessDataHolder[0].averageRevenue!.rounded(toPlaces: 2)))"
                 
                 //animate the values
+                self.animationView1.removeFromSuperview()
+                self.animationView2.removeFromSuperview()
+                self.animationView3.removeFromSuperview()
+
                 
             } else {
                 self.businessDataHolder.append(OwnerDataObject(totalScans: 0, totalRevenue: 0, totalRedemptions: 0, averageRevenue: 0))
@@ -75,6 +117,13 @@ class ScanDataFile : UIViewController {
                 self.totalScansValue.text = String(describing: self.businessDataHolder[0].totalScans!)
                 self.totalRevenueLabel.text = "$0"
                 self.averageRevenueLabel.text = "$0"
+                
+                self.animationView1.removeFromSuperview()
+                self.animationView2.removeFromSuperview()
+                self.animationView3.removeFromSuperview()
+
+                
+                
             }
             
             
@@ -100,20 +149,79 @@ class ScanDataFile : UIViewController {
         bottomView.center.x = self.view.center.x
         bottomView.center.y = self.view.frame.size.height - bottomView.frame.size.height/2
         bottomView.backgroundColor = .white
+        //setup the chevron button so that the user can switch to see all his/her customer data.
+        setupSwitchButton(view: bottomView)
         self.view.addSubview(bottomView)
         
         
         //setup the input variables for the main view. (average, total, scans, etc.)
         
         
-        
     }
     
-    func setupShadow(view: UIView) {
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        view.layer.shadowRadius = 10
-        view.layer.shadowOpacity = 0.3
+    func setupSideView() {
+        
+        leftView.frame = self.middleView.frame
+        leftView.center.x = -self.view.frame.size.width/2
+        leftView.backgroundColor = .purple
+        leftView.layer.cornerRadius = 30
+        leftView.center.y = self.view.frame.size.height/2
+        setupShadow(view: leftView)
+        //setup a new line that creates a new instance of a table for the user to see
+        //looks something like this
+        /*
+         let chartView = customersClass(currentuseremail, leftview, superview)
+         leftview.addSubview(chartView)
+     
+         */
+        let chartView = CustomerTable(currentUserEmail: Auth.auth().currentUser?.email!, leftView: leftView, superView: self.view!)
+        chartView.populateData()
+        
+        self.leftView.addSubview(chartView)
+        
+        self.view.addSubview(leftView)
+    }
+    
+    func setupSwitchButton(view: UIView) {
+        let backGroundImage = UIImage(systemName: "chevron.left")
+        let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
+        switchButton.frame = CGRect(x: 0, y: 0, width: 30, height: 50)
+        switchButton.center.x = view.frame.size.width/2
+        switchButton.center.y = view.frame.size.height/2
+        switchButton.setBackgroundImage(tintedImage, for: .normal)
+        switchButton.tintColor = .black
+        switchButton.addTarget(self, action: #selector(toggleView), for: .touchUpInside)
+        
+        
+        view.addSubview(switchButton)
+    }
+    
+    
+    
+    @objc func toggleView() {
+        if toggleValue == true {
+            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+                self.middleView.center.x = self.view.frame.size.width * 1.5
+                self.switchButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                self.leftView.center.x = self.view.frame.size.width/2
+
+                self.toggleValue = false
+                
+                
+                
+            }, completion: nil)
+        } else {
+            
+            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+                self.middleView.center.x = self.view.frame.size.width/2
+                self.switchButton.transform = CGAffineTransform.identity
+                self.leftView.center.x = -self.view.frame.size.width/2
+                self.toggleValue = true
+                
+                
+                
+            }, completion: nil)
+        }
     }
     
     func setupTotalScansView(parentView: UIView) {
@@ -146,13 +254,29 @@ class ScanDataFile : UIViewController {
         setupShadow(view: totalLabel)
         
         
+        //setup the animation view
         
         
-        
-        
+        setupAnimation(parentView: totalScansView, animationView: animationView3, animationName: "BeerLoader")
+
         parentView.addSubview(totalScansView)
         
         
+        
+    }
+    
+    func setupAnimation(parentView: UIView, animationView: AnimationView, animationName: String) {
+        animationView.animation = Animation.named(animationName)
+        animationView.frame = parentView.frame
+        animationView.center.x = parentView.frame.width/2
+        animationView.center.y = parentView.frame.height/2
+        animationView.contentMode = .scaleAspectFit
+        
+        animationView.layer.cornerRadius = 30
+        animationView.backgroundColor = .purple
+        animationView.play()
+        animationView.loopMode = .loop
+        parentView.addSubview(animationView)
     }
     
     
@@ -193,7 +317,9 @@ class ScanDataFile : UIViewController {
         
         
         
-        
+        setupAnimation(parentView: totalRevenueView, animationView: animationView2, animationName: "CoffeeLoader")
+
+
         parentView.addSubview(totalRevenueView)
         
         
@@ -234,12 +360,20 @@ class ScanDataFile : UIViewController {
         
         
         
-        
+        setupAnimation(parentView: averageRevenueView, animationView: animationView1, animationName: "CroissantLoader")
+
         parentView.addSubview(averageRevenueView)
         
         
     }
     
+    
+    func setupShadow(view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shadowRadius = 10
+        view.layer.shadowOpacity = 0.3
+    }
     
     
     

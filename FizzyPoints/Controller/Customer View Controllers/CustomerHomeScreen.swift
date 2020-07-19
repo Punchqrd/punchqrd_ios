@@ -24,9 +24,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var qrButton: UIButton!
-    @IBOutlet weak var ScanScoreLabel: UILabel!
-    @IBOutlet weak var BottomLabelView: UIView!
-    @IBOutlet weak var BusinessList: UITableView!
+    let BusinessList = UITableView()
     
     //MARK:- Preliminary setup
     
@@ -64,7 +62,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
         self.qrButton.layer.shadowOpacity = 1.0
         self.qrButton.layer.shadowRadius = 0.0
-        self.qrButton.layer.masksToBounds = false
+        self.qrButton.layer.cornerRadius = qrButton.frame.size.width/2
+        
         self.locationManager.delegate = self
         self.BusinessList.backgroundColor = .white
         navigationItem.hidesBackButton = true
@@ -72,9 +71,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         GlobalVariables.ActualIDs.isLoggedIn = true
         self.setupDefault()
         showList()
-        showScanScore()
         
-        
+        setupTable()
         self.navigationController?.navigationBar.barTintColor = UIColor.purple
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
@@ -85,13 +83,13 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     }
     
     
+    
     //MARK:- Refresher functions
     
     //function to refresh the table view
     func refreshTableView() {
         //this is the refresh list variables to enable a refresh for the UITableView
        
-        showScanScore()
         self.refresher = UIRefreshControl()
         refresher.tintColor = .white
         self.refresher.addTarget(self, action: #selector(CustomerHomeScreen.refresh), for: UIControl.Event.valueChanged)
@@ -114,7 +112,6 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     func refreshData() {
       
        
-        showScanScore()
         let colorHolder : [UIColor] = [.systemPurple]
         let randomColor = 0
         self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
@@ -138,11 +135,22 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     //MARK:- Table View logic
     
+    func setupTable() {
+        BusinessList.frame = CGRect(x: 0, y: 0,width: self.view.frame.size.width, height: self.view.frame.size.height)
+        BusinessList.center.x = self.view.frame.size.width/2
+        BusinessList.center.y = self.view.frame.size.height/2
+        BusinessList.layer.shadowColor = UIColor.black.cgColor
+        BusinessList.layer.shadowOffset = CGSize(width: 0, height: 0)
+        BusinessList.layer.shadowRadius = 10
+        BusinessList.layer.shadowOpacity = 0.3
+        BusinessList.separatorStyle = .none
+        self.view.addSubview(BusinessList)
+        self.view.sendSubviewToBack(BusinessList)
+    }
     //functuon to create a business list and show it on the screen
     func showList() {
         
         createBusinessList()
-        showScanScore()
         BusinessList.dataSource = self
         BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
         BusinessList.rowHeight = 100
@@ -254,19 +262,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     //MARK:- Supplimentary functions
     
-    func showScanScore() {
-        let db = Firestore.firestore()
-        let customerScanData = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerScanCollectionData).document(GlobalVariables.UserIDs.CustomerScanDocument)
-        customerScanData.getDocument { (doc, error) in
-            if let doc = doc, doc.exists {
-                self.ScanScoreLabel.text = String(describing: doc.get(GlobalVariables.UserIDs.CustomerScanScore)!)
-            } else {
-                self.ScanScoreLabel.textColor = .red
-                self.ScanScoreLabel.text = "0"
-            }
-        }
-        
-    }
+   
     
     
     func delay(_ delay:Double, closure:@escaping ()->()) {
@@ -289,14 +285,13 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
-        //cell.PointsProgressBar.frame.size.width = self.BusinessList.frame.size.width - self.view.frame.size.width/6
-        cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.15)
+        cell.PointsProgressBar.trackTintColor = UIColor.white.withAlphaComponent(0.15)
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
         cell.PointsProgressBar.progressTintColor = UIColor.systemGreen
 
-              
+        cell.frame.size.width = self.BusinessList.frame.size.width
+        
         let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple, .systemTeal, .systemPink, .red]
         let randomColor = Int.random(in: 0...10)
         let backgroundView = UIView()
@@ -306,11 +301,11 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.BonusPointsLabel.isHidden = true
       
         cell.ActualPointsLabel.text = String((Int(self.BusinessNamesArray[indexPath.row].points)))
-        cell.ActualPointsLabel.textColor = UIColor.systemGreen
+        cell.ActualPointsLabel.textColor = UIColor.white
         
         cell.PerkString.isHidden = true
         cell.selectedBackgroundView = backgroundView
-        cell.isUserInteractionEnabled = false
+        cell.isUserInteractionEnabled = true
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         
@@ -352,10 +347,9 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             
         }
         if cell.PointsProgressBar.progress.isEqual(to: 0) {
-            cell.PointsProgressBar.trackTintColor = UIColor.blue.withAlphaComponent(0.20)
+            cell.PointsProgressBar.trackTintColor = UIColor.white.withAlphaComponent(0.20)
             
-            cell.Points.isHidden = false
-            cell.ActualPointsLabel.textColor = .black
+            cell.ActualPointsLabel.textColor = .white
         }
        
         
@@ -363,6 +357,26 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
        
         
         
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let db = Firestore.firestore()
+        let businessCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(BusinessNamesArray[indexPath.row].name)
+        
+        businessCollection.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                
+                let totalSpent = doc.get(GlobalVariables.UserIDs.CustomerTotalSpent) as? Double ?? 0
+                let totalScans = doc.get(GlobalVariables.UserIDs.CustomerScanDocument) as? Int ?? 0
+                
+                let newView = Info_BusinessCustomer(parentView: self.view, totalSpent: totalSpent.rounded(toPlaces: 2), totalScans: totalScans, nameOfBusiness: self.BusinessNamesArray[indexPath.row].name)
+                newView.setupView()
+
+        }
+        }
+            
+      
         
     }
     

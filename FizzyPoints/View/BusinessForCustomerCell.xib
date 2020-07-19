@@ -10,15 +10,6 @@
         <array key="Poppins-Bold.ttf">
             <string>Poppins-Bold</string>
         </array>
-        <array key="Poppins-ExtraBold.ttf">
-            <string>Poppins-ExtraBold</string>
-        </array>
-        <array key="Poppins-Medium.ttf">
-            <string>Poppins-Medium</string>
-        </array>
-        <array key="Poppins-Regular.ttf">
-            <string>Poppins-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -41,77 +32,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eOh-iN-4ka">
-                                <rect key="frame" x="0.0" y="14" width="370" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/10 PTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxJ-8g-T5A">
-                                        <rect key="frame" x="238" y="63" width="64" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8p2-xg-cqD">
-                                        <rect key="frame" x="216" y="63" width="23" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="1" progressImage="button_compass_night.png" translatesAutoresizingMaskIntoConstraints="NO" id="8hg-CX-RZD">
-                                        <rect key="frame" x="20" y="52" width="330" height="3"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="progressTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="trackTintColor" cocoaTouchSystemColor="lightTextColor"/>
-                                    </progressView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Business Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JG8-zq-ZrH">
-                                        <rect key="frame" x="18" y="14" width="284" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <size key="shadowOffset" width="0.0" height="0.0"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fju-SV-ZDr">
-                                        <rect key="frame" x="291" y="9" width="59" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Poppins-ExtraBold" family="Poppins" pointSize="23"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <size key="shadowOffset" width="-1" height="-1"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yAt-AK-YqD">
-                        <rect key="frame" x="347" y="21" width="75" height="62"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="tintColor" red="0.0" green="0.78107674100000002" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="ActualPointsLabel" destination="8p2-xg-cqD" id="Hcx-HL-BYb"/>
-                <outlet property="BonusPointsLabel" destination="fju-SV-ZDr" id="sxe-vu-8SN"/>
-                <outlet property="BusinessName" destination="JG8-zq-ZrH" id="sCy-zO-T1M"/>
-                <outlet property="CheckMarkImage" destination="yAt-AK-YqD" id="mzP-Z2-UFf"/>
-                <outlet property="MainView" destination="eOh-iN-4ka" id="Yda-Eb-nOC"/>
                 <outlet property="PerkString" destination="2lc-Tl-FTq" id="Win-27-jt0"/>
-                <outlet property="Points" destination="gxJ-8g-T5A" id="6OV-2Q-gw7"/>
-                <outlet property="PointsProgressBar" destination="8hg-CX-RZD" id="1al-hA-uxT"/>
             </connections>
             <point key="canvasLocation" x="-344.20289855072468" y="127.90178571428571"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="button_compass_night.png" width="40" height="40"/>
-    </resources>
 </document>

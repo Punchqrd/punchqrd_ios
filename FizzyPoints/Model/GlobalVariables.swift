@@ -57,6 +57,7 @@ class GlobalVariables {
         
         
         
+        
         static let UserCodeString = "Code"
         //THIS is the title of the business access code collection for firebase.
         static let AccessCodeCollectionTitle = "Business Access Codes"

@@ -17,26 +17,97 @@ class BusinessForCustomerCell: UITableViewCell {
     let animationView = AnimationView()
     
     //Outlet Declaration
-    @IBOutlet weak var BusinessName: UILabel!
-    @IBOutlet weak var Points: UILabel!
-    @IBOutlet weak var PointsProgressBar: UIProgressView!
-    @IBOutlet weak var CheckMarkImage: UIImageView!
-    @IBOutlet weak var BonusPointsLabel: UILabel!
-    @IBOutlet weak var ActualPointsLabel: UILabel!
+    let BusinessName = UILabel()
+    let CheckMarkImage = UIImageView()
+    let BonusPointsLabel = UILabel()
+    let ActualPointsLabel = UILabel()
     @IBOutlet weak var PerkString: UILabel!
-    @IBOutlet weak var MainView: UIView!
+    let pointsCircle = UIView()
+    let PointsProgressBar = UIProgressView()
+    let progressBarBackground = UIView()
     
     //MARK:- Function Calls
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-       //
-        PointsProgressBar.transform = PointsProgressBar.transform.scaledBy(x: 1, y: 6)
-        layoutView()
+        setupProgressBarBack()
+        setupLabels()
+        setupPointsView()
     }
     
+   
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    func setupLabels() {
+        BusinessName.frame.size.width = progressBarBackground.frame.size.width
+        BusinessName.frame.size.height = progressBarBackground.frame.size.height
+        BusinessName.center.x = self.frame.size.width/3.3
+        BusinessName.center.y = self.frame.height/5
+        BusinessName.textColor = .black
+        BusinessName.font = UIFont(name: "Poppins-Light", size: 15)
+        BusinessName.textAlignment = .center
+        self.addSubview(BusinessName)
+    }
+    
+    func setupPointsView() {
+        pointsCircle.frame = CGRect(x: 0, y: 0, width: progressBarBackground.frame.size.height, height: progressBarBackground.frame.size.height)
+        pointsCircle.layer.cornerRadius = progressBarBackground.frame.size.height/2
+        pointsCircle.backgroundColor = .purple
+        pointsCircle.center.x = self.frame.size.width / 1.3
+        pointsCircle.center.y = progressBarBackground.center.y
+        
+        ActualPointsLabel.frame = pointsCircle.frame
+        ActualPointsLabel.center.x = pointsCircle.frame.size.width/2
+        ActualPointsLabel.center.y = pointsCircle.frame.size.height/2
+        ActualPointsLabel.font = UIFont(name: "Poppins-Bold", size: 20)
+        ActualPointsLabel.textColor = .white
+        ActualPointsLabel.textAlignment = .center
+        pointsCircle.addSubview(ActualPointsLabel)
+        pointsCircle.sendSubviewToBack(ActualPointsLabel)
+        
+        CheckMarkImage.frame = pointsCircle.frame
+        CheckMarkImage.center.x = pointsCircle.frame.size.width/2
+        CheckMarkImage.center.y = pointsCircle.frame.size.height/2
+        pointsCircle.addSubview(CheckMarkImage)
+        
+        
+        //bonus points
+        BonusPointsLabel.frame = pointsCircle.frame
+        BonusPointsLabel.center.x = pointsCircle.frame.size.width/2
+        BonusPointsLabel.center.y = pointsCircle.frame.size.height/2
+        BonusPointsLabel.font = UIFont(name: "Poppins-Bold", size: 12)
+        BonusPointsLabel.textAlignment = .center
+        
+        pointsCircle.addSubview(BonusPointsLabel)
+        
+        self.addSubview(pointsCircle)
+    }
+    
+    func setupProgressBarBack() {
+        progressBarBackground.frame.size.width = self.frame.size.width/2
+        progressBarBackground.frame.size.height = self.frame.size.height/3.5
+        
+        progressBarBackground.backgroundColor = .purple
+        progressBarBackground.layer.cornerRadius = progressBarBackground.frame.size.width/12.5
+        progressBarBackground.center.x = self.frame.size.width/3.3
+        progressBarBackground.center.y = self.frame.size.height/2
+
+            
+        PointsProgressBar.frame.size.width = progressBarBackground.frame.size.width - 50
+        PointsProgressBar.frame.size.height = progressBarBackground.frame.size.height - 50
+        PointsProgressBar.center.x = progressBarBackground.frame.size.width/2
+        PointsProgressBar.center.y = progressBarBackground.frame.size.height/2
+        PointsProgressBar.transform = PointsProgressBar.transform.scaledBy(x: 1, y: 6)
+        progressBarBackground.addSubview(PointsProgressBar)
+        B_1Register.setupShadow(view:PointsProgressBar)
+        
+        
+        
+        self.addSubview(progressBarBackground)
+        
     }
     
     
@@ -54,35 +125,7 @@ class BusinessForCustomerCell: UITableViewCell {
         self.animationView.backgroundColor = .white
         self.animationView.play()
         self.CheckMarkImage.addSubview(self.animationView)
-        self.MainView.sendSubviewToBack(self.CheckMarkImage)    }
-    
-    func layoutView() {
-         
-         // set the shadow of the view's layer
-         layer.backgroundColor = UIColor.clear.cgColor
-         layer.shadowColor = UIColor.black.cgColor
-         layer.shadowOffset = CGSize(width: 0, height: 1.0)
-         layer.shadowOpacity = 0.2
-         layer.shadowRadius = 4.0
-           
-         // set the cornerRadius of the containerView's layer
-         MainView.layer.cornerRadius = 20
-         MainView.layer.masksToBounds = true
-         
-         
-         //
-         // add additional views to the containerView here
-         //
-         
-         // add constraints
-         MainView.translatesAutoresizingMaskIntoConstraints = false
-         
-         // pin the containerView to the edges to the view
-         MainView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-         MainView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-         MainView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-         MainView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-       }
     
     
+    }
 }

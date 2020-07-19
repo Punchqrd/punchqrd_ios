@@ -125,7 +125,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         confirmpasswordTextFieldView.backgroundColor = .white
         confirmpasswordTextFieldView.center.x = self.view.center.x - 23
         confirmpasswordTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*2 + 20)
-        setupShadow(view: confirmpasswordTextFieldView)
+        B_1Register.setupShadow(view: confirmpasswordTextFieldView)
         
         
         ConfirmPasswordTextField.frame = CGRect(x: 0, y: 0, width: confirmpasswordTextFieldView.frame.size.width - 30, height: confirmpasswordTextFieldView.frame.size.height - 10)
@@ -146,7 +146,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         passwordTextFieldView.backgroundColor = .white
         passwordTextFieldView.center.x = self.view.center.x - 23
         passwordTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*3 + 30)
-        setupShadow(view: passwordTextFieldView)
+        B_1Register.setupShadow(view: passwordTextFieldView)
         
         
         PasswordTextField.frame = CGRect(x: 0, y: 0, width: confirmpasswordTextFieldView.frame.size.width - 30, height: confirmpasswordTextFieldView.frame.size.height - 10)
@@ -167,7 +167,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         birthMonthView.center.x = self.view.center.x - 140
         birthMonthView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
         birthMonthView.backgroundColor = .white
-        setupShadow(view: birthMonthView)
+        B_1Register.setupShadow(view: birthMonthView)
         
         
         birthMonth.frame = CGRect(x: 0, y: 0, width: birthMonthView.frame.size.width - 20, height: birthMonthView.frame.size.height - 10)
@@ -185,7 +185,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         birthDayView.center.x = self.view.center.x - 70
         birthDayView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
         birthDayView.backgroundColor = .white
-        setupShadow(view: birthDayView)
+        B_1Register.setupShadow(view: birthDayView)
         
         
         birthDay.frame = CGRect(x: 0, y: 0, width: birthDayView.frame.size.width - 30, height: birthDayView.frame.size.height - 10)
@@ -203,7 +203,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         birthYearView.center.x = self.view.center.x + 15
         birthYearView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
         birthYearView.backgroundColor = .white
-        setupShadow(view: birthYearView)
+        B_1Register.setupShadow(view: birthYearView)
         
         
         birthYear.frame = CGRect(x: 0, y: 0, width: birthYearView.frame.size.width - 30, height: birthYearView.frame.size.height - 10)
@@ -221,7 +221,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         cakeView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         cakeView.center.x = self.view.center.x + 95
         cakeView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)
-        setupShadow(view: cakeView)
+        B_1Register.setupShadow(view: cakeView)
         containerView.addSubview(cakeView)
         
         
@@ -230,7 +230,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         emailTextFieldView.backgroundColor = .white
         emailTextFieldView.center.x = self.view.center.x - 23
         emailTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*5 + 50)
-        setupShadow(view: emailTextFieldView)
+        B_1Register.setupShadow(view: emailTextFieldView)
         
         
         EmailTextField.frame = CGRect(x: 0, y: 0, width: emailTextFieldView.frame.size.width - 30, height: emailTextFieldView.frame.size.height - 10)
@@ -246,7 +246,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         nameTextFieldView.backgroundColor = .white
         nameTextFieldView.center.x = self.view.center.x - 23
         nameTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*6 + 60)
-        setupShadow(view: nameTextFieldView)
+        B_1Register.setupShadow(view: nameTextFieldView)
         
         
         NameTextField.frame = CGRect(x: 0, y: 0, width: nameTextFieldView.frame.size.width - 30, height: nameTextFieldView.frame.size.height - 10)
@@ -289,7 +289,7 @@ class B_1Register : UIViewController, UITextFieldDelegate {
         
     }
     
-    func setupShadow(view: UIView){
+    static func setupShadow(view: UIView){
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.layer.shadowRadius = 10

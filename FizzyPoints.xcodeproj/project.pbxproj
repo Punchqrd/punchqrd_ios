@@ -19,6 +19,7 @@
 		172224DD248F50A10063F0FC /* CheckMark.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224DC248F50A00063F0FC /* CheckMark.json */; };
 		172224DF248F58020063F0FC /* CheckMark2.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224DE248F58020063F0FC /* CheckMark2.json */; };
 		172224E1248F5C3D0063F0FC /* CheckMark3.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224E0248F5C3D0063F0FC /* CheckMark3.json */; };
+		1724123B24C4C88200C048D0 /* Info_BusinessCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */; };
 		173A179B24C337D700ABAB10 /* CustomerInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A179A24C337D700ABAB10 /* CustomerInformationView.swift */; };
 		173B49F2248B450E00056833 /* C_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F1248B450E00056833 /* C_1Register.swift */; };
 		173B49F4248B494000056833 /* C_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F3248B494000056833 /* C_2Register.swift */; };
@@ -93,6 +94,7 @@
 		172224DC248F50A00063F0FC /* CheckMark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark.json; sourceTree = "<group>"; };
 		172224DE248F58020063F0FC /* CheckMark2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark2.json; sourceTree = "<group>"; };
 		172224E0248F5C3D0063F0FC /* CheckMark3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark3.json; sourceTree = "<group>"; };
+		1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info_BusinessCustomer.swift; sourceTree = "<group>"; };
 		173A179A24C337D700ABAB10 /* CustomerInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInformationView.swift; sourceTree = "<group>"; };
 		173B49F1248B450E00056833 /* C_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_1Register.swift; sourceTree = "<group>"; };
 		173B49F3248B494000056833 /* C_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_2Register.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				17839FB424C214FF00B74AEF /* CustomerCell.swift */,
 				173A179A24C337D700ABAB10 /* CustomerInformationView.swift */,
 				17DC8B9724C3A5F8005589D2 /* LoaderAnimationView.swift */,
+				1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1724123B24C4C88200C048D0 /* Info_BusinessCustomer.swift in Sources */,
 				17FDDE18248F0F6B008F5FF1 /* EmployeeHome.swift in Sources */,
 				17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */,
 				173A179B24C337D700ABAB10 /* CustomerInformationView.swift in Sources */,

@@ -60,14 +60,14 @@ class GlobalFunctions {
     }
     
     //MARK:- Function to increment the points in the database. At random based on the points the user already has.
-    static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?,  totalPoints : Int?) {
-        let db = Firestore.firestore()
-        let finalValue = self.incrementPointValue(inputNumber: totalPoints!)
-        let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-        CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : finalValue])
-        let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
-        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
-    }
+//    static func incrementPointsForUser (nameofUser : String?, nameofBusiness : String?,  totalPoints : Int?) {
+//        let db = Firestore.firestore()
+//        let finalValue = self.incrementPointValue(inputNumber: totalPoints!)
+//        let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+//        CustomerCollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.BonusPointsString : finalValue])
+//        let Businesscollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection)
+//        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(finalValue))])
+//    }
     
     //MARK:- Function to increment the users points based on actual price values.
     static func incrementPointsButton (nameofUser: String?, nameofBusiness: String?,  incrementPoints: Double?, currentEmployerEmail: String?, year: Int, day: Int, month: Int, name: String?) {
@@ -91,7 +91,7 @@ class GlobalFunctions {
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.PointsString : FieldValue.increment(Int64(actualPoints))])
         //increment points are the price values
         Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.CustomerTotalSpent : FieldValue.increment(incrementPoints!)])
-        
+        Businesscollection.document(nameofBusiness!).updateData([GlobalVariables.UserIDs.CustomerScanDocument : FieldValue.increment(Int64(1))])
         
         
         //include a function to increment to total value in the business end of the database.

@@ -31,11 +31,24 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     let db = Firestore.firestore()
     
     //Outlet Declarations
-    @IBOutlet weak var RegisterButton: UIButton!
-    @IBOutlet weak var LoginButton: UIButton!
-    @IBOutlet weak var EmailTextField: UITextField!
-    @IBOutlet weak var PasswordTextField: UITextField!
-    @IBOutlet weak var ErrorLabel : UILabel!
+    var containerView = UIView()
+    
+    var RegisterButton = UIButton()
+    var LoginButton = UIButton()
+    var EmailTextField = UITextField()
+    var PasswordTextField = UITextField()
+    var passwordContainerView = UIView()
+    var emailContainerView = UIView()
+    var ErrorLabel = UILabel()
+    
+    var forgotPasswordButton = UIButton()
+    var questionMarkButton = UIButton()
+    var forgotPasswordView = UIView()
+    
+    let homeAnimation = AnimationView()
+    var logoView = UIView()
+    
+    
     
     //UserDefaults setup.
     override func encodeRestorableState(with coder: NSCoder) {
@@ -98,9 +111,177 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         EmailTextField.text = nil
         ErrorLabel.text = nil
         self.removeLoadingView()
-        
+        setupView()
         
     }
+    
+    //setup the visual interface
+    func setupView() {
+        
+       
+        
+        logoView.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
+        logoView.center.x = self.view.frame.width/2
+        logoView.center.y = self.view.frame.height/4
+        //logo setup
+        let imageName = "Home Screen Inverse"
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 0, y: 0, width: logoView.frame.size.width, height: logoView.frame.size.height)
+        logoView.addSubview(imageView)
+        
+        self.view.addSubview(logoView)
+        
+        //home animation setup
+        self.homeAnimation.animation = Animation.named("HomeAnimation")
+        self.homeAnimation.frame.size.height =  self.view.frame.width/2
+        self.homeAnimation.frame.size.width = self.view.frame.width/2
+        self.homeAnimation.center.x = self.view.frame.size.width/2
+        self.homeAnimation.center.y = self.view.frame.size.height/2
+        self.homeAnimation.contentMode = .center
+        self.homeAnimation.backgroundColor = .clear
+        self.homeAnimation.play()
+        self.homeAnimation.loopMode = .loop
+        self.homeAnimation.contentMode = .scaleAspectFit
+        self.view.addSubview(self.homeAnimation)
+        self.view.sendSubviewToBack(homeAnimation)
+        
+        //setup the container view
+        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/1.5, height: self.view.frame.size.width/1.5)
+        containerView.backgroundColor = UIColor.white.withAlphaComponent(1)
+        containerView.center.x = self.view.frame.size.width/2
+        containerView.center.y = self.view.frame.size.height/1.5
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        containerView.layer.cornerRadius = 30
+        containerView.layer.shadowRadius = 8
+        containerView.layer.shadowOpacity = 0.33
+        
+        //setup the buttons
+        LoginButton.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width - 60, height: containerView.frame.size.height/4)
+        LoginButton.center.x = containerView.frame.size.width/2
+        LoginButton.center.y = containerView.frame.size.height/1.3
+        LoginButton.backgroundColor = .purple
+        LoginButton.layer.cornerRadius = 25
+        LoginButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+        LoginButton.setTitleColor(.white, for: .normal)
+        LoginButton.setTitle("Login", for: .normal)
+        LoginButton.addTarget(self, action: #selector(LoginAction), for: .touchUpInside)
+        containerView.addSubview(LoginButton)
+        
+        //setup the fields
+        passwordContainerView.frame = CGRect(x: 0, y: 0, width: LoginButton.frame.size.width, height: containerView.frame.size.height/4.8)
+        passwordContainerView.center.x = containerView.frame.size.width/2
+        passwordContainerView.center.y = containerView.frame.size.height/2
+        passwordContainerView.backgroundColor = .purple
+        passwordContainerView.layer.cornerRadius = 25
+        containerView.addSubview(passwordContainerView)
+        
+        PasswordTextField.frame = CGRect(x: 0, y: 0, width: passwordContainerView.frame.size.width - 30, height: passwordContainerView.frame.size.height - 10)
+        PasswordTextField.center.x = passwordContainerView.frame.size.width/2
+        PasswordTextField.center.y = passwordContainerView.frame.size.height/2
+        PasswordTextField.isSecureTextEntry = true
+        PasswordTextField.textColor = .white
+        PasswordTextField.tintColor = .white
+        PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemPurple])
+        PasswordTextField.font = UIFont(name: "Poppins-Light", size: 14)
+        passwordContainerView.addSubview(PasswordTextField)
+        
+        emailContainerView.frame = passwordContainerView.frame
+        emailContainerView.center.y = containerView.frame.size.height/3.7
+        emailContainerView.center.x = containerView.frame.size.width/2
+        emailContainerView.backgroundColor = .purple
+        emailContainerView.layer.cornerRadius = 25
+        containerView.addSubview(emailContainerView)
+        
+        EmailTextField.frame = CGRect(x: 0, y: 0, width: emailContainerView.frame.size.width - 30, height: emailContainerView.frame.size.height - 10)
+        EmailTextField.center.x = emailContainerView.frame.size.width/2
+        EmailTextField.center.y = emailContainerView.frame.size.height/2
+        EmailTextField.isSecureTextEntry = false
+        EmailTextField.textContentType = .emailAddress
+        EmailTextField.autocapitalizationType = .none
+        EmailTextField.textColor = .white
+        EmailTextField.tintColor = .white
+        EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemPurple])
+        EmailTextField.font = UIFont(name: "Poppins-Light", size: 14)
+        emailContainerView.addSubview(EmailTextField)
+        //setup the label
+        ErrorLabel.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width/1.5, height: 30)
+        ErrorLabel.center.x = containerView.frame.size.width/2
+        ErrorLabel.center.y = containerView.frame.size.height/10
+        ErrorLabel.textColor = .systemPurple
+        ErrorLabel.textAlignment = .center
+        ErrorLabel.font = UIFont(name: "Poppins", size: 10)
+        containerView.addSubview(ErrorLabel)
+        
+        
+        
+        //setup the background color of the main view or addimages to the view
+        RegisterButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 60)
+        RegisterButton.center.x = self.view.frame.size.width/2
+        RegisterButton.center.y = self.view.frame.size.height/1.1
+        RegisterButton.backgroundColor = .systemPurple
+        RegisterButton.layer.cornerRadius = 25
+        RegisterButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+        RegisterButton.setTitleColor(.white, for: .normal)
+        RegisterButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
+        RegisterButton.setTitle("Create Account", for: .normal)
+        
+        questionMarkButton.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        questionMarkButton.center.x = containerView.frame.size.width - 20
+        questionMarkButton.center.y = containerView.frame.size.height - 20
+        questionMarkButton.backgroundColor = .systemPurple
+        questionMarkButton.layer.cornerRadius = 5
+        questionMarkButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 8)
+        questionMarkButton.setTitleColor(.white, for: .normal)
+        questionMarkButton.setTitle("?", for: .normal)
+        questionMarkButton.addTarget(self, action: #selector(showForgotPassword), for: .touchUpInside)
+        containerView.addSubview(questionMarkButton)
+        
+        
+ 
+        
+        self.view.addSubview(RegisterButton)
+        self.view.addSubview(containerView)
+        
+    }
+    
+    //selector functions
+    @objc func showForgotPassword() {
+        forgotPasswordView.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height/4)
+        forgotPasswordView.center.x = self.view.frame.size.width/2
+        forgotPasswordView.center.y = self.view.frame.size.height/1.5
+        forgotPasswordView.backgroundColor = .white
+        forgotPasswordView.layer.cornerRadius = 25
+        forgotPasswordView.layer.shadowColor = UIColor.black.cgColor
+        forgotPasswordView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        forgotPasswordView.layer.cornerRadius = 30
+        forgotPasswordView.layer.shadowRadius = 8
+        forgotPasswordView.layer.shadowOpacity = 0.33
+        
+        forgotPasswordButton.frame = CGRect(x: 0, y: 0, width: forgotPasswordView.frame.size.width / 1.5, height: forgotPasswordView.frame.size.height / 1.5)
+        forgotPasswordButton.center.x = forgotPasswordView.frame.size.width/2
+        forgotPasswordButton.center.y = forgotPasswordView.frame.size.height/2
+        forgotPasswordButton.backgroundColor = .systemPurple
+        forgotPasswordButton.layer.cornerRadius = forgotPasswordButton.frame.size.height/2
+        forgotPasswordButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 13)
+        forgotPasswordButton.setTitleColor(.white, for: .normal)
+        forgotPasswordButton.setTitle("Forgot Password", for: .normal)
+        forgotPasswordButton.addTarget(self, action: #selector(ForgotPassword), for: .touchUpInside)
+        
+        self.forgotPasswordView.addSubview(forgotPasswordButton)
+        self.view.addSubview(forgotPasswordView)
+        self.view.sendSubviewToBack(forgotPasswordView)
+        
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .transitionCurlUp, animations: {
+            self.forgotPasswordView.center.y = self.view.frame.size.height/2.2
+            self.view.sendSubviewToBack(self.homeAnimation)
+        }, completion: nil)
+    }
+    
+    
     
     
     
@@ -132,10 +313,14 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     
     //MARK: - Actions and animations
-    @IBAction func LoginAction(_ sender: UIButton) {
+    @objc func LoginAction() {
         self.view.resignFirstResponder()
         self.view.endEditing(true)
         login()
+    }
+    
+    @objc func registerAction() {
+        self.performSegue(withIdentifier: GlobalVariables.SegueIDs.B_1RegisterSeque, sender: self)
     }
     
     
@@ -166,9 +351,15 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     }
     
     
-    @IBAction func ForgotPassword(_ sender: UIButton) {
+    @objc func ForgotPassword() {
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .transitionCurlUp, animations: {
+            self.forgotPasswordView.center.y = self.view.frame.size.height/1.5
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.forgotPasswordView.removeFromSuperview()
+            }
+        }, completion: nil)
         if let text = self.EmailTextField.text, text.isEmpty {
-            self.resetButtonWithNoEmailPopup(title: "input your email address", message: nil)
+            self.resetButtonWithNoEmailPopup(title: "Input your email address in the text field below, then click this button again!", message: nil)
         } else {
             resetButtonWithEmailPopup(title: "How would you like to reset?", message: nil)
         }

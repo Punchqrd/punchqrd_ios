@@ -20,6 +20,7 @@
 		172224DF248F58020063F0FC /* CheckMark2.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224DE248F58020063F0FC /* CheckMark2.json */; };
 		172224E1248F5C3D0063F0FC /* CheckMark3.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224E0248F5C3D0063F0FC /* CheckMark3.json */; };
 		1724123B24C4C88200C048D0 /* Info_BusinessCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */; };
+		1724587B24C5EBC10073D316 /* HomeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 1724587A24C5EBC10073D316 /* HomeAnimation.json */; };
 		173A179B24C337D700ABAB10 /* CustomerInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A179A24C337D700ABAB10 /* CustomerInformationView.swift */; };
 		173B49F2248B450E00056833 /* C_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F1248B450E00056833 /* C_1Register.swift */; };
 		173B49F4248B494000056833 /* C_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F3248B494000056833 /* C_2Register.swift */; };
@@ -95,6 +96,7 @@
 		172224DE248F58020063F0FC /* CheckMark2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark2.json; sourceTree = "<group>"; };
 		172224E0248F5C3D0063F0FC /* CheckMark3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark3.json; sourceTree = "<group>"; };
 		1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info_BusinessCustomer.swift; sourceTree = "<group>"; };
+		1724587A24C5EBC10073D316 /* HomeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeAnimation.json; sourceTree = "<group>"; };
 		173A179A24C337D700ABAB10 /* CustomerInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInformationView.swift; sourceTree = "<group>"; };
 		173B49F1248B450E00056833 /* C_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_1Register.swift; sourceTree = "<group>"; };
 		173B49F3248B494000056833 /* C_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_2Register.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		1740753E249465F30079D398 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				1724587A24C5EBC10073D316 /* HomeAnimation.json */,
 				17DC8B9924C3A9CB005589D2 /* CoolLoader.json */,
 				172224D0248F367A0063F0FC /* Loader.json */,
 				172224D2248F41420063F0FC /* Loader2.json */,
@@ -391,8 +394,8 @@
 				17C81F0C247ACA7B008DAAA2 /* Sources */,
 				17C81F0D247ACA7B008DAAA2 /* Frameworks */,
 				17C81F0E247ACA7B008DAAA2 /* Resources */,
-				2E4B2CF828925302726CCBE0 /* [CP] Embed Pods Frameworks */,
-				C1344DF57CCB9D13CD05C71E /* [CP] Copy Pods Resources */,
+				A415726C01573BFB0A28BE83 /* [CP] Embed Pods Frameworks */,
+				6CEAC9222726AAD907F295A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -476,29 +479,13 @@
 				17C81F20247ACA7F008DAAA2 /* LaunchScreen.storyboard in Resources */,
 				17C81F1B247ACA7B008DAAA2 /* Main.storyboard in Resources */,
 				17DC8B9A24C3A9CB005589D2 /* CoolLoader.json in Resources */,
+				1724587B24C5EBC10073D316 /* HomeAnimation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2E4B2CF828925302726CCBE0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5105951C68CBABB91B15BDDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -521,7 +508,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C1344DF57CCB9D13CD05C71E /* [CP] Copy Pods Resources */ = {
+		6CEAC9222726AAD907F295A2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -536,6 +523,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A415726C01573BFB0A28BE83 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

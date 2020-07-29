@@ -146,7 +146,6 @@ class ScanDataView: UIView, UITextFieldDelegate {
         textFieldView.center.y = self.frame.size.height - changeButton.frame.size.height*2.1 - 50
         textFieldView.backgroundColor = .white
         textFieldView.layer.cornerRadius = textFieldView.frame.size.height/2
-        B_1Register.setupShadow(view: textFieldView)
         
         textFieldInput.frame = CGRect(x: 0, y: 0, width: textFieldView.frame.size.width - 20, height: textFieldView.frame.size.height - 10)
         textFieldInput.center = textFieldView.center

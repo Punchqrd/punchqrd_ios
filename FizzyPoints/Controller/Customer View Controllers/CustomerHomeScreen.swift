@@ -44,15 +44,15 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemPurple
         BusinessList.delegate = self
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.white,
-             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 21)!]
+            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+             NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
         
-        self.navigationItem.title = "fizzypoints"
+//        self.navigationItem.title = "fizzypoints"
         refreshTableView()
     }
     
@@ -77,14 +77,14 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         showList()
         
         setupTable()
-        navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemPurple
         
-        navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
-        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        navigationController?.navigationBar.layer.shadowRadius = 4.0
-        navigationController?.navigationBar.layer.shadowOpacity = 0.2
-        navigationController?.navigationBar.layer.masksToBounds = false
+//        navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+//        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+//        navigationController?.navigationBar.layer.shadowRadius = 4.0
+//        navigationController?.navigationBar.layer.shadowOpacity = 0.2
+//        navigationController?.navigationBar.layer.masksToBounds = false
         
     }
     

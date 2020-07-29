@@ -81,8 +81,8 @@ class B_1Register : UIViewController {
         
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.purple,
-            NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 21)!]
+            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+            NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
        
        navigationItem.title = "Create an Account"
       

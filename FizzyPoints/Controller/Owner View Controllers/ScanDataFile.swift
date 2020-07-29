@@ -29,6 +29,11 @@ class ScanDataFile : UIViewController {
       return view
     }()
     
+    private lazy var graphAnimation: AnimationView = {
+      let view = AnimationView()
+      return view
+    }()
+    
 
     private lazy var backGroundView: UIView = {
         let backGroundView = UIView()
@@ -69,7 +74,7 @@ class ScanDataFile : UIViewController {
     var totalScans = 0.0
 
     
-    
+    var newLeftSwipe = UISwipeGestureRecognizer()
     
    
     //MARK:-View functions
@@ -83,7 +88,7 @@ class ScanDataFile : UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.setupSideView()
             self.setupRightView()
-            self.setupSwipes()
+//            self.setupSwipes()
             
         }
  
@@ -159,6 +164,8 @@ class ScanDataFile : UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        let newAnimation = graphAnimation
+        self.setupAnimationGraph(parentView: self.view, animationView: newAnimation, animationName: "17216-your-app-developer")
         
         
         
@@ -249,8 +256,11 @@ class ScanDataFile : UIViewController {
         middleView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/1.2, height: self.view.frame.size.height/1.4)
         middleView.center.x = self.view.frame.size.width/2
         middleView.center.y = self.view.center.y
-        middleView.backgroundColor = .white
+        middleView.backgroundColor = .clear
         self.view.addSubview(middleView)
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(toggleView))
+        rightSwipe.direction = .right
+        self.middleView.addGestureRecognizer(rightSwipe)
         setupTotalScansView(parentView: middleView)
         setupTotalRevenueView(parentView: middleView)
         setupAverageRevenueView(parentView: middleView)
@@ -260,7 +270,7 @@ class ScanDataFile : UIViewController {
         bottomView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - middleView.frame.size.height - 150)
         bottomView.center.x = self.view.center.x
         bottomView.center.y = self.view.frame.size.height - bottomView.frame.size.height/2
-        bottomView.backgroundColor = .white
+        bottomView.backgroundColor = .clear
         //setup the chevron button so that the user can switch to see all his/her customer data.
         setupSwitchButton(view: bottomView)
         self.view.addSubview(bottomView)
@@ -323,6 +333,11 @@ class ScanDataFile : UIViewController {
         chartView.populateData()
         
         self.leftView.addSubview(chartView)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(toggleView))
+        leftSwipe.direction = .left
+        self.leftView.addGestureRecognizer(leftSwipe)
+        chartView.addGestureRecognizer(leftSwipe)
         
         self.view.addSubview(leftView)
     }
@@ -402,6 +417,10 @@ class ScanDataFile : UIViewController {
                 self.leftViewTitle.center.x =  self.view.frame.size.width/2
                 self.leftView.center.x = self.view.frame.size.width/2
                 self.rightViewButton.isHidden = true
+                
+                self.newLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.toggleView))
+                self.newLeftSwipe.direction = .left
+                self.view.addGestureRecognizer(self.newLeftSwipe)
 
                 self.toggleValue = false
                 
@@ -417,7 +436,7 @@ class ScanDataFile : UIViewController {
                 self.leftViewTitle.center.x =  -self.view.frame.size.width/2
                 self.toggleValue = true
                 self.rightViewButton.isHidden = false
-                
+                self.view.removeGestureRecognizer(self.newLeftSwipe)
                 
             }, completion: nil)
         }
@@ -477,6 +496,26 @@ class ScanDataFile : UIViewController {
         animationView.loopMode = .loop
         parentView.addSubview(animationView)
     }
+    
+    func setupAnimationGraph(parentView: UIView, animationView: AnimationView, animationName: String) {
+        animationView.animation = Animation.named(animationName)
+        animationView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width, height: parentView.frame.size.width)
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(animationView)
+        animationView.widthAnchor.constraint(equalToConstant: parentView.frame.size.width).isActive = true
+        animationView.heightAnchor.constraint(equalToConstant: parentView.frame.size.width).isActive = true
+        animationView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: 0).isActive = true
+        animationView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0).isActive = true
+        animationView.contentMode = .scaleAspectFit
+        
+        animationView.layer.cornerRadius = 30
+        animationView.backgroundColor = .white
+        animationView.play()
+        animationView.loopMode = .loop
+        
+        parentView.sendSubviewToBack(animationView)
+    }
+    
     
     
     func setupTotalRevenueView(parentView: UIView) {
@@ -582,7 +621,7 @@ class ScanDataFile : UIViewController {
 
 
 extension Double {
-    /// Rounds the double to decimal places value
+    /// Rounds the double to decimal places value/Users/sebastianbarry/Downloads/22554-bar-graph-icon/Graph_Bar.json
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor

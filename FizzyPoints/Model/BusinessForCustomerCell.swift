@@ -47,7 +47,7 @@ class BusinessForCustomerCell: UITableViewCell {
         BusinessName.center.x = self.frame.size.width/3.3
         BusinessName.center.y = self.frame.height/5
         BusinessName.textColor = .black
-        BusinessName.font = UIFont(name: "Poppins-Light", size: 15)
+        BusinessName.font = UIFont(name: "Poppins", size: 15)
         BusinessName.textAlignment = .center
         self.addSubview(BusinessName)
     }
@@ -56,9 +56,9 @@ class BusinessForCustomerCell: UITableViewCell {
         pointsCircle.frame = CGRect(x: 0, y: 0, width: progressBarBackground.frame.size.height, height: progressBarBackground.frame.size.height)
         pointsCircle.layer.cornerRadius = progressBarBackground.frame.size.height/2
 //        pointsCircle.backgroundColor = .purple
-        pointsCircle.backgroundColor = .black
+        pointsCircle.backgroundColor = .systemIndigo
         pointsCircle.center.x = self.frame.size.width / 1.3
-        pointsCircle.center.y = progressBarBackground.center.y
+        pointsCircle.center.y = self.frame.size.height/2
         
         ActualPointsLabel.frame = pointsCircle.frame
         ActualPointsLabel.center.x = pointsCircle.frame.size.width/2
@@ -100,9 +100,9 @@ class BusinessForCustomerCell: UITableViewCell {
         progressBarBackground.frame.size.height = self.frame.size.height/3.5
         
 //        progressBarBackground.backgroundColor = .purple
-        progressBarBackground.backgroundColor = .black
+        progressBarBackground.backgroundColor = .systemIndigo
         progressBarBackground.layer.cornerRadius = progressBarBackground.frame.size.width/12.5
-        progressBarBackground.center.x = self.frame.size.width/3.3
+        progressBarBackground.center.x = self.frame.size.width/3.1
         progressBarBackground.center.y = self.frame.size.height/2
 
             

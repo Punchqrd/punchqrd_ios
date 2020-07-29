@@ -82,7 +82,6 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     //MARK:- User handling functions
     //setup a new user function
     func SetupNewUser () {
-        
         self.addLoadingView()
         Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
             if let error = error {self.ErrorLabel.text = (error.localizedDescription)

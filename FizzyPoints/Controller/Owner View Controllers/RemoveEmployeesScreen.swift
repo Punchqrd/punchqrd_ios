@@ -15,17 +15,25 @@ class RemoveEmployeesScreen : UIViewController, UITableViewDelegate {
     
     var employeeArray : [EmployeeObject] = []
     
-    @IBOutlet weak var EmployeeTable: UITableView!
+    var EmployeeTable = UITableView()
     
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
         EmployeeTable.delegate = self
+        navigationController?.navigationBar.titleTextAttributes =
+                     [NSAttributedString.Key.foregroundColor: UIColor.purple,
+                     NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+                
+        navigationItem.title = "Employee List"
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         //when the view appears, create a new list of the employees in the collection.
+        EmployeeTable.frame = self.view.frame
+        EmployeeTable.separatorStyle = .none
+        self.view.addSubview(EmployeeTable)
         EmployeeTable.dataSource = self
         showList()
     }
@@ -106,14 +114,14 @@ extension RemoveEmployeesScreen: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = EmployeeTable.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.EmployeeTableCellID, for: indexPath) as! EmployeeCell
         cell.NameLabel.text = self.employeeArray[indexPath.row].name
-        cell.EmailLabel.text = self.employeeArray[indexPath.row].email
-        cell.PasswordLabel.text = self.employeeArray[indexPath.row].password
+        cell.EmailLabel.text = "Email: \(String(describing: self.employeeArray[indexPath.row].email!))"
+        cell.PasswordLabel.text = "Password: \(String(describing: self.employeeArray[indexPath.row].password!))"
         
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = backgroundView
-        
+        cell.frame.size.width = EmployeeTable.frame.size.width
         
         return cell
     }

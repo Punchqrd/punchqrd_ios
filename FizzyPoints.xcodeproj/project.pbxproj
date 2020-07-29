@@ -10,6 +10,10 @@
 		17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */; };
 		17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */; };
 		17121857247EFA300060093A /* BusinessName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17121856247EFA300060093A /* BusinessName.swift */; };
+		1714AA7524CF252F00D17425 /* Individual_Scans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1714AA7424CF252F00D17425 /* Individual_Scans.swift */; };
+		1714AA7724CF258500D17425 /* ScansTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1714AA7624CF258500D17425 /* ScansTable.swift */; };
+		1714AA7A24CF271100D17425 /* Individual_Scans_CellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */; };
+		1714AA7B24CF271100D17425 /* Individual_Scans_CellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1714AA7924CF271100D17425 /* Individual_Scans_CellTableViewCell.xib */; };
 		172224D1248F367B0063F0FC /* Loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D0248F367A0063F0FC /* Loader.json */; };
 		172224D3248F41420063F0FC /* Loader2.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D2248F41420063F0FC /* Loader2.json */; };
 		172224D5248F44D90063F0FC /* CroissantLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D4248F44D90063F0FC /* CroissantLoader.json */; };
@@ -28,6 +32,7 @@
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
 		176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176AD81524901DAD00669202 /* StoreKit.framework */; };
 		1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771DB8324BB820500154CC1 /* PaymentScreen.swift */; };
+		1783789C24C8F5A800436D1F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783789B24C8F5A800436D1F /* OnboardingView.swift */; };
 		17839FB324C2125400B74AEF /* CustomerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17839FB224C2125400B74AEF /* CustomerClass.swift */; };
 		17839FB624C214FF00B74AEF /* CustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17839FB424C214FF00B74AEF /* CustomerCell.swift */; };
 		17839FB724C214FF00B74AEF /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17839FB524C214FF00B74AEF /* CustomerCell.xib */; };
@@ -38,6 +43,8 @@
 		1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB79248AE58900B227B2 /* EmployeeCell.swift */; };
 		1796CB7C248AE58900B227B2 /* EmployeeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1796CB7A248AE58900B227B2 /* EmployeeCell.xib */; };
 		1796CB7E248AE73700B227B2 /* EmployeeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB7D248AE73700B227B2 /* EmployeeObject.swift */; };
+		179B9EBE24CF556500FD8A43 /* ScanDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B9EBD24CF556500FD8A43 /* ScanDataView.swift */; };
+		17B43B4924D0F21300DE05E1 /* SippingCoffee.json in Resources */ = {isa = PBXBuildFile; fileRef = 17B43B4824D0F21200DE05E1 /* SippingCoffee.json */; };
 		17B930B724C2041E00D73FBB /* CustomerTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B930B624C2041E00D73FBB /* CustomerTable.swift */; };
 		17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */; };
 		17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F15247ACA7B008DAAA2 /* SceneDelegate.swift */; };
@@ -73,6 +80,7 @@
 		17DF198D2488863C0040059C /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */; };
 		17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */; };
 		17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846724843D610035F7CA /* ScannerScreen.swift */; };
+		17F0B9C624CBCF510050A3E4 /* SDCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0B9C524CBCF510050A3E4 /* SDCTextField.swift */; };
 		17F55F1324942D8900F78E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17F55F1224942D8900F78E5F /* GoogleService-Info.plist */; };
 		17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDE9248C346300041577 /* RedeemConfirm.swift */; };
 		17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEB248D369F00041577 /* ScanDataFile.swift */; };
@@ -86,6 +94,10 @@
 		17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessForCustomerCell.swift; sourceTree = "<group>"; };
 		17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessForCustomerCell.xib; sourceTree = "<group>"; };
 		17121856247EFA300060093A /* BusinessName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessName.swift; sourceTree = "<group>"; };
+		1714AA7424CF252F00D17425 /* Individual_Scans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual_Scans.swift; sourceTree = "<group>"; };
+		1714AA7624CF258500D17425 /* ScansTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScansTable.swift; sourceTree = "<group>"; };
+		1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual_Scans_CellTableViewCell.swift; sourceTree = "<group>"; };
+		1714AA7924CF271100D17425 /* Individual_Scans_CellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Individual_Scans_CellTableViewCell.xib; sourceTree = "<group>"; };
 		172224D0248F367A0063F0FC /* Loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader.json; sourceTree = "<group>"; };
 		172224D2248F41420063F0FC /* Loader2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader2.json; sourceTree = "<group>"; };
 		172224D4248F44D90063F0FC /* CroissantLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CroissantLoader.json; sourceTree = "<group>"; };
@@ -104,6 +116,7 @@
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
 		176AD81524901DAD00669202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1771DB8324BB820500154CC1 /* PaymentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentScreen.swift; sourceTree = "<group>"; };
+		1783789B24C8F5A800436D1F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		17839FB224C2125400B74AEF /* CustomerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerClass.swift; sourceTree = "<group>"; };
 		17839FB424C214FF00B74AEF /* CustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCell.swift; sourceTree = "<group>"; };
 		17839FB524C214FF00B74AEF /* CustomerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
@@ -114,6 +127,8 @@
 		1796CB79248AE58900B227B2 /* EmployeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
 		1796CB7A248AE58900B227B2 /* EmployeeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeCell.xib; sourceTree = "<group>"; };
 		1796CB7D248AE73700B227B2 /* EmployeeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeObject.swift; sourceTree = "<group>"; };
+		179B9EBD24CF556500FD8A43 /* ScanDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataView.swift; sourceTree = "<group>"; };
+		17B43B4824D0F21200DE05E1 /* SippingCoffee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SippingCoffee.json; path = ../../../../../Downloads/SippingCoffee.json; sourceTree = "<group>"; };
 		17B930B624C2041E00D73FBB /* CustomerTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTable.swift; sourceTree = "<group>"; };
 		17C81F10247ACA7B008DAAA2 /* FizzyPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FizzyPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C81F13247ACA7B008DAAA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +167,7 @@
 		17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		17E2846724843D610035F7CA /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
+		17F0B9C524CBCF510050A3E4 /* SDCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDCTextField.swift; sourceTree = "<group>"; };
 		17F55F1224942D8900F78E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		17F7BDE9248C346300041577 /* RedeemConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemConfirm.swift; sourceTree = "<group>"; };
 		17F7BDEB248D369F00041577 /* ScanDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataFile.swift; sourceTree = "<group>"; };
@@ -201,6 +217,7 @@
 		1740753E249465F30079D398 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				17B43B4824D0F21200DE05E1 /* SippingCoffee.json */,
 				1724587A24C5EBC10073D316 /* HomeAnimation.json */,
 				17DC8B9924C3A9CB005589D2 /* CoolLoader.json */,
 				172224D0248F367A0063F0FC /* Loader.json */,
@@ -279,12 +296,18 @@
 				1796CB7D248AE73700B227B2 /* EmployeeObject.swift */,
 				17F7BDED248D3F0E00041577 /* OwnerDataObject.swift */,
 				17F7BDEF248D750900041577 /* PlacesObject.swift */,
+				1783789B24C8F5A800436D1F /* OnboardingView.swift */,
 				17B930B624C2041E00D73FBB /* CustomerTable.swift */,
 				17839FB224C2125400B74AEF /* CustomerClass.swift */,
 				17839FB424C214FF00B74AEF /* CustomerCell.swift */,
 				173A179A24C337D700ABAB10 /* CustomerInformationView.swift */,
 				17DC8B9724C3A5F8005589D2 /* LoaderAnimationView.swift */,
 				1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */,
+				17F0B9C524CBCF510050A3E4 /* SDCTextField.swift */,
+				1714AA7424CF252F00D17425 /* Individual_Scans.swift */,
+				1714AA7624CF258500D17425 /* ScansTable.swift */,
+				1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */,
+				179B9EBD24CF556500FD8A43 /* ScanDataView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -297,6 +320,7 @@
 				17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */,
 				1796CB7A248AE58900B227B2 /* EmployeeCell.xib */,
 				17839FB524C214FF00B74AEF /* CustomerCell.xib */,
+				1714AA7924CF271100D17425 /* Individual_Scans_CellTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -457,12 +481,14 @@
 				17DF197E2488863C0040059C /* Poppins-MediumItalic.ttf in Resources */,
 				172224D1248F367B0063F0FC /* Loader.json in Resources */,
 				1796CB7C248AE58900B227B2 /* EmployeeCell.xib in Resources */,
+				17B43B4924D0F21300DE05E1 /* SippingCoffee.json in Resources */,
 				17839FB724C214FF00B74AEF /* CustomerCell.xib in Resources */,
 				172224DB248F45A50063F0FC /* BeerLoader.json in Resources */,
 				17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */,
 				17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */,
 				172224DD248F50A10063F0FC /* CheckMark.json in Resources */,
 				17DF19852488863C0040059C /* Poppins-Bold.ttf in Resources */,
+				1714AA7B24CF271100D17425 /* Individual_Scans_CellTableViewCell.xib in Resources */,
 				17DF19872488863C0040059C /* Poppins-BoldItalic.ttf in Resources */,
 				17DF198A2488863C0040059C /* Poppins-Light.ttf in Resources */,
 				17DF19832488863C0040059C /* Poppins-Italic.ttf in Resources */,
@@ -556,6 +582,7 @@
 				1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */,
 				17DC8B9824C3A5F8005589D2 /* LoaderAnimationView.swift in Sources */,
 				173B49F2248B450E00056833 /* C_1Register.swift in Sources */,
+				17F0B9C624CBCF510050A3E4 /* SDCTextField.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
 				17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */,
 				17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */,
@@ -570,8 +597,10 @@
 				17C81F2C247ACB01008DAAA2 /* GlobalVariables.swift in Sources */,
 				17F7BDEE248D3F0E00041577 /* OwnerDataObject.swift in Sources */,
 				173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */,
+				1783789C24C8F5A800436D1F /* OnboardingView.swift in Sources */,
 				1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */,
 				17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */,
+				179B9EBE24CF556500FD8A43 /* ScanDataView.swift in Sources */,
 				17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */,
 				173F1701247DB44B00C67812 /* QRView.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
@@ -580,8 +609,11 @@
 				1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */,
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,
+				1714AA7524CF252F00D17425 /* Individual_Scans.swift in Sources */,
 				17C81F30247AD276008DAAA2 /* B_1Register.swift in Sources */,
+				1714AA7724CF258500D17425 /* ScansTable.swift in Sources */,
 				1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */,
+				1714AA7A24CF271100D17425 /* Individual_Scans_CellTableViewCell.swift in Sources */,
 				17839FB324C2125400B74AEF /* CustomerClass.swift in Sources */,
 				17839FB624C214FF00B74AEF /* CustomerCell.swift in Sources */,
 			);
@@ -729,7 +761,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -750,7 +782,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

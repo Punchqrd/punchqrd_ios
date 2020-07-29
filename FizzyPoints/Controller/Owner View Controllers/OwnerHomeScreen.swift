@@ -17,7 +17,7 @@ import Lottie
 
 class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     
-    let animationView = AnimationView()
+    let animationView1 = AnimationView()
     let productID = "com.SebastianBarry.FizzyPoints.BusinessPack"
 
     @IBOutlet weak var RemoveEmployeeButton: UIButton!
@@ -25,12 +25,26 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     @IBOutlet weak var AddEmployeeButton: UIButton!
     @IBOutlet weak var ScanDataButton: UIButton!
     
+    private lazy var animationView2: AnimationView = {
+         let view = AnimationView()
+         return view
+       }()
+    
     //MARK:- View functions
     override func viewDidLoad() {
         
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         
+        navigationController?.navigationBar.titleTextAttributes =
+                    [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+                    NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+               
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemPurple
+        navigationItem.title = String(describing: "Owner Portal")
+        
+        setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
         
         //check if the user is subscribed **
         SKPaymentQueue.default().add(self)
@@ -58,6 +72,15 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
         GlobalFunctions.setButtonRadius(button: self.AddEmployeeButton)
         GlobalFunctions.setButtonRadius(button: self.RemoveEmployeeButton)
         GlobalFunctions.setButtonRadius(button: self.ScanDataButton)
+        navigationController?.navigationBar.titleTextAttributes =
+                           [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+                           NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+                      
+               navigationController?.navigationBar.barTintColor = .white
+               navigationController?.navigationBar.tintColor = .systemPurple
+               navigationItem.title = String(describing: "Owner Portal")
+               
+               setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
     }
     
     //MARK:- Actions
@@ -88,7 +111,7 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
             do {
                 try firebaseAuth.signOut()
                 //send the user back to the homescreen
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: false)
                 print("Logged out the user")
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
@@ -177,21 +200,41 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     func setupAnimation() {
         let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
         let randomNumber = Int.random(in: 0...3)
-        self.animationView.animation = Animation.named(animationNames[randomNumber])
-        self.animationView.frame.size.height = self.view.frame.height
-        self.animationView.frame.size.width = self.view.frame.width
-        self.animationView.contentMode = .center
-        self.animationView.backgroundColor = .white
-        self.animationView.play()
-        self.animationView.loopMode = .loop
-        self.view.addSubview(self.animationView)
+        self.animationView1.animation = Animation.named(animationNames[randomNumber])
+        self.animationView1.frame.size.height = self.view.frame.height
+        self.animationView1.frame.size.width = self.view.frame.width
+        self.animationView1.contentMode = .center
+        self.animationView1.backgroundColor = .white
+        self.animationView1.play()
+        self.animationView1.loopMode = .loop
+        self.view.addSubview(self.animationView1)
         
     }
     
     func removeLoadingView() {
-        self.animationView.stop()
-        self.animationView.removeFromSuperview()
+        self.animationView1.stop()
+        self.animationView1.removeFromSuperview()
     }
+    
+    func setupAnimation2(parentView: UIView, animationView: AnimationView, animationName: String) {
+        animationView.animation = Animation.named(animationName)
+        animationView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width/1.5, height: parentView.frame.size.width/1.5)
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(animationView2)
+        animationView.widthAnchor.constraint(equalToConstant: parentView.frame.size.width/2).isActive = true
+        animationView.heightAnchor.constraint(equalToConstant: parentView.frame.size.width/2).isActive = true
+        animationView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor).isActive = true
+        animationView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: animationView.frame.size.height/5).isActive = true
+        animationView.contentMode = .scaleAspectFit
+        
+        animationView.layer.cornerRadius = 30
+        animationView.backgroundColor = .white
+        animationView.play()
+        animationView.loopMode = .loop
+        
+        parentView.sendSubviewToBack(animationView)
+    }
+    
     
     
     

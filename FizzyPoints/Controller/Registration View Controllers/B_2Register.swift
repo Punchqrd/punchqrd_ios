@@ -62,6 +62,7 @@ class B_2Register : UIViewController {
         // Prevent the navigation bar from being hidden when searching.
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.searchBar.placeholder = "Lookup your business."
+        searchController?.searchBar.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {

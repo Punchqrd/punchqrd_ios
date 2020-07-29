@@ -46,7 +46,9 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     var forgotPasswordView = UIView()
     
     let homeAnimation = AnimationView()
-    var logoView = UIView()
+    var logoView = UIImageView()
+    let backGroundView = UIView()
+
     
     
     
@@ -60,6 +62,9 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      
+      
         setupToHideKeyboardOnTapOnView()
         self.PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -95,13 +100,23 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
     }
     
-    
+
     
     override func viewWillAppear(_ animated: Bool) {
-        
         let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
+        let isFirstTime = defaults.bool(forKey: GlobalVariables.UserIDs.isUserFirstTime)
         if isLoggedIn == true {
             self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
+        }
+        if isFirstTime == true {
+            print("Yes")
+                let newView = OnboardingView(parentView: self.view)
+                newView.setupMainView()
+                newView.setupFirstView()
+        }
+        
+        if isFirstTime == false {
+               print("OK")
         }
         
         self.locationManager.delegate = self
@@ -122,8 +137,9 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         logoView.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         logoView.center.x = self.view.frame.width/2
-        logoView.center.y = self.view.frame.height/4
+        logoView.center.y = self.view.frame.height/5
         //logo setup
+       
         let imageName = "Home Screen Inverse"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
@@ -137,7 +153,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         self.homeAnimation.frame.size.height =  self.view.frame.width/2
         self.homeAnimation.frame.size.width = self.view.frame.width/2
         self.homeAnimation.center.x = self.view.frame.size.width/2
-        self.homeAnimation.center.y = self.view.frame.size.height/2
+        self.homeAnimation.center.y = logoView.center.y
         self.homeAnimation.contentMode = .center
         self.homeAnimation.backgroundColor = .clear
         self.homeAnimation.play()
@@ -147,15 +163,17 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         self.view.sendSubviewToBack(homeAnimation)
         
         //setup the container view
-        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/1.5, height: self.view.frame.size.width/1.5)
+        containerView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
         containerView.backgroundColor = UIColor.white.withAlphaComponent(1)
         containerView.center.x = self.view.frame.size.width/2
-        containerView.center.y = self.view.frame.size.height/1.5
+        containerView.center.y = self.view.center.y
         containerView.layer.shadowColor = UIColor.black.cgColor
         containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerView.layer.cornerRadius = 30
         containerView.layer.shadowRadius = 8
         containerView.layer.shadowOpacity = 0.33
+        
+
         
         //setup the buttons
         LoginButton.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width - 60, height: containerView.frame.size.height/4)
@@ -219,7 +237,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         
         //setup the background color of the main view or addimages to the view
-        RegisterButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 60)
+        RegisterButton.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width - 60, height: 50)
         RegisterButton.center.x = self.view.frame.size.width/2
         RegisterButton.center.y = self.view.frame.size.height/1.1
         RegisterButton.backgroundColor = .systemPurple
@@ -228,6 +246,8 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         RegisterButton.setTitleColor(.white, for: .normal)
         RegisterButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
         RegisterButton.setTitle("Create Account", for: .normal)
+        
+        
         
         questionMarkButton.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         questionMarkButton.center.x = containerView.frame.size.width - 20
@@ -242,9 +262,12 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         
  
-        
         self.view.addSubview(RegisterButton)
         self.view.addSubview(containerView)
+        self.view.sendSubviewToBack(containerView)
+        self.view.sendSubviewToBack(logoView)
+        self.view.sendSubviewToBack(RegisterButton)
+
         
     }
     
@@ -252,7 +275,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     @objc func showForgotPassword() {
         forgotPasswordView.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height/4)
         forgotPasswordView.center.x = self.view.frame.size.width/2
-        forgotPasswordView.center.y = self.view.frame.size.height/1.5
+        forgotPasswordView.center.y = self.view.frame.size.height/5
         forgotPasswordView.backgroundColor = .white
         forgotPasswordView.layer.cornerRadius = 25
         forgotPasswordView.layer.shadowColor = UIColor.black.cgColor
@@ -260,6 +283,13 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         forgotPasswordView.layer.cornerRadius = 30
         forgotPasswordView.layer.shadowRadius = 8
         forgotPasswordView.layer.shadowOpacity = 0.33
+        
+        backGroundView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        backGroundView.center.y = self.view.frame.size.height/2
+        backGroundView.center.x = self.view.frame.size.width/2
+        backGroundView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.removeView))
+        backGroundView.addGestureRecognizer(gesture)
         
         forgotPasswordButton.frame = CGRect(x: 0, y: 0, width: forgotPasswordView.frame.size.width / 1.5, height: forgotPasswordView.frame.size.height / 1.5)
         forgotPasswordButton.center.x = forgotPasswordView.frame.size.width/2
@@ -272,13 +302,10 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         forgotPasswordButton.addTarget(self, action: #selector(ForgotPassword), for: .touchUpInside)
         
         self.forgotPasswordView.addSubview(forgotPasswordButton)
-        self.view.addSubview(forgotPasswordView)
-        self.view.sendSubviewToBack(forgotPasswordView)
+        backGroundView.addSubview(forgotPasswordView)
+        self.view.addSubview(backGroundView)
         
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .transitionCurlUp, animations: {
-            self.forgotPasswordView.center.y = self.view.frame.size.height/2.2
-            self.view.sendSubviewToBack(self.homeAnimation)
-        }, completion: nil)
+        
     }
     
     
@@ -350,16 +377,18 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
     }
     
+    @objc func removeView() {
+        self.forgotPasswordView.removeFromSuperview()
+        self.backGroundView.removeFromSuperview()
+    }
     
     @objc func ForgotPassword() {
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .transitionCurlUp, animations: {
-            self.forgotPasswordView.center.y = self.view.frame.size.height/1.5
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                self.forgotPasswordView.removeFromSuperview()
-            }
-        }, completion: nil)
+        
+      self.forgotPasswordView.removeFromSuperview()
+             self.backGroundView.removeFromSuperview()
+        
         if let text = self.EmailTextField.text, text.isEmpty {
-            self.resetButtonWithNoEmailPopup(title: "Input your email address in the text field below, then click this button again!", message: nil)
+            self.resetButtonWithNoEmailPopup(title: "Input your email address in the 'Email' Text Field, then click this button again!", message: nil)
         } else {
             resetButtonWithEmailPopup(title: "How would you like to reset?", message: nil)
         }
@@ -494,10 +523,11 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                         
                         
                     }
-                //false case as to whether the user confirmed email
+//                always return case value to false
                 case false:
                     self.removeLoadingView()
                     self.verifyEmailAlert(title: "Psst", message: "Verify your account before logging in", currentuser : user!)
+
                 }
                 
             }

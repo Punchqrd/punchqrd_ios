@@ -30,6 +30,13 @@ class ScanDataFile : UIViewController {
     }()
     
 
+    private lazy var backGroundView: UIView = {
+        let backGroundView = UIView()
+        backGroundView.frame = self.view.frame
+        backGroundView.backgroundColor = .clear
+        backGroundView.center = self.view.center
+        return backGroundView
+    }()
     
     var businessDataHolder : [OwnerDataObject] = []
     var toggleValue = true
@@ -52,22 +59,101 @@ class ScanDataFile : UIViewController {
     let leftView = UIView()
     let leftViewTitle = UILabel()
     
+    //rightview buttons and views
+    let rightView = UIView()
+    let rightViewButton = UIButton()
+    
+    var titleLabel = UILabel()
+    var newRevenue = 0.0
+    var newAverage = 0.0
+    var totalScans = 0.0
+
+    
+    
+    
    
     //MARK:-View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+     
         setupMiddleView()
+        setupRightViewButton()
+        
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.setupSideView()
+            self.setupRightView()
+            self.setupSwipes()
+            
         }
-               
+ 
         retrieveValuesFromDataBase()
+        setupToHideKeyboardOnTapOnView()
+         
         
         
+        
+        //this is a function called below, with a completion handler that will change the values within the braces below to the values retrieved.
+        setListenerForRevenue {
+            ///when the completion handler is called, these labels will update to the appropriate values.
+            self.totalRevenueLabel.text = String(describing: "$\(self.newRevenue)")
+            self.averageRevenueLabel.text = String(describing: "$\((self.newRevenue/self.totalScans).rounded(toPlaces: 2))")
+        }
+        
+        //set another listener function for customer total spent label.
+        
+        
+        
+        
+        
+
+        //Keyboard functions
+              // call the 'keyboardWillShow' function when the view controller receive the notification that a keyboard is going to be shown
+              NotificationCenter.default.addObserver(self, selector: #selector(ScanDataFile.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                  
+              // call the 'keyboardWillHide' function when the view controlelr receive notification that keyboard is going to be hidden
+              NotificationCenter.default.addObserver(self, selector: #selector(ScanDataFile.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+              
         
         //setup the data when the view loads.
-        //must include some sort of guard if the internet is poor.
+        navigationController?.navigationBar.titleTextAttributes =
+              [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+              NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+         
+         navigationItem.title = "Your Business Analytics"
         
+        
+    }
+    
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+          guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+              // if keyboard size is not available for some reason, dont do anything
+              return
+          }
+          // move the root view up by the distance of keyboard height
+          self.view.frame.origin.y = 0 - keyboardSize.height/2
+        self.view.addSubview(backGroundView) //
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(keyboardWillHide(notification:)))
+        
+        self.backGroundView.addGestureRecognizer(gesture)
+    }
+      
+      
+    @objc func keyboardWillHide(notification: NSNotification) {
+          // move back the root view origin to zero
+        self.view.endEditing(true)
+          self.view.frame.origin.y = 0
+        self.backGroundView.removeFromSuperview() //
+    }
+    
+    func setupSwipes() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(toggleView))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(toggleView))
+        leftSwipe.direction = .left
+        self.view.addGestureRecognizer(leftSwipe)
     }
     
     
@@ -80,11 +166,38 @@ class ScanDataFile : UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         leftView.removeFromSuperview()
+        leftViewTitle.removeFromSuperview()
     }
     
     
     
     //MARK:- Suplimentary functions
+    //this escaping completion handler will execute the code in the declaration aboe when the fetching is comeplete
+    func setListenerForRevenue(completion: @escaping () -> ()) {
+        print("this is being used")
+        let db = Firestore.firestore()
+        let totals = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.ScanDataString).document(GlobalVariables.UserIDs.TotalScansString)
+        totals.addSnapshotListener { (doc, err) in
+            if let doc = doc, doc.exists {
+                //during the listening phase, these values will keep updating and listening/fetching values from the database if they have been changed.
+                let retrievedRevenue = doc.get(GlobalVariables.UserIDs.OwnerRevenueString) as! Double
+                self.newRevenue = retrievedRevenue
+                let retrievedScans = doc.get(GlobalVariables.UserIDs.CustomerPurchasesString) as! Double
+                self.totalScans = retrievedScans
+                self.totalRevenueLabel.text = String(describing: "$\(self.newRevenue.rounded(toPlaces: 2))")
+                self.averageRevenueLabel.text = String(describing: "$\((self.newRevenue/self.totalScans).rounded(toPlaces: 2))")
+                
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
     func retrieveValuesFromDataBase() {
         
@@ -104,12 +217,11 @@ class ScanDataFile : UIViewController {
                 self.totalScansValue.text = String(describing: self.businessDataHolder[0].totalScans!)
                 self.totalRevenueLabel.text = "$\(String(describing: self.businessDataHolder[0].totalRevenue!.rounded(toPlaces: 2)))"
                 self.averageRevenueLabel.text = "$\(String(describing: self.businessDataHolder[0].averageRevenue!.rounded(toPlaces: 2)))"
-                
                 //animate the values
                 self.animationView1.removeFromSuperview()
                 self.animationView2.removeFromSuperview()
                 self.animationView3.removeFromSuperview()
-
+                
                 
             } else {
                 self.businessDataHolder.append(OwnerDataObject(totalScans: 0, totalRevenue: 0, totalRedemptions: 0, averageRevenue: 0))
@@ -159,7 +271,35 @@ class ScanDataFile : UIViewController {
         
     }
     
+    func setupRightView() {
+        
+        rightView.frame = self.middleView.frame
+        rightView.center.x = self.view.frame.size.width + self.view.frame.size.width/2
+        rightView.backgroundColor = .purple
+        rightView.layer.cornerRadius = 30
+        rightView.center.y = self.view.frame.size.height/2
+        
+        
+        
+        
+        let chartView = ScansTable(rightView: rightView, parentView: self.view, currentUserEmail: Auth.auth().currentUser?.email)
+        chartView.populateData()
+        self.rightView.addSubview(chartView)
+        self.view.addSubview(rightView)
+        let gesture = UISwipeGestureRecognizer(target: self, action:  #selector(transitionRightViewtoCenter))
+        gesture.direction = .right
+        chartView.addGestureRecognizer(gesture)
+
+        
+
+        
+        
+        
+        
+    }
+    
     func setupSideView() {
+    
         
         leftView.frame = self.middleView.frame
         leftView.center.x = -self.view.frame.size.width/2
@@ -167,13 +307,18 @@ class ScanDataFile : UIViewController {
         leftView.layer.cornerRadius = 30
         leftView.center.y = self.view.frame.size.height/2
         setupShadow(view: leftView)
-        //setup a new line that creates a new instance of a table for the user to see
-        //looks something like this
-        /*
-         let chartView = customersClass(currentuseremail, leftview, superview)
-         leftview.addSubview(chartView)
-     
-         */
+      
+        leftViewTitle.frame = CGRect(x: 0, y: 0, width: leftView.frame.size.width, height: 20)
+        leftViewTitle.center.x =  -self.view.frame.size.width/2
+        leftViewTitle.center.y = leftView.center.y - leftView.frame.size.height/2 - 40
+        leftViewTitle.text = "Customers"
+        leftViewTitle.font = UIFont(name: "Poppins", size: 20)
+        leftViewTitle.textAlignment = .center
+        leftViewTitle.textColor = .systemPurple
+        self.view.addSubview(leftViewTitle)
+        
+        
+        
         let chartView = CustomerTable(currentUserEmail: Auth.auth().currentUser?.email!, leftView: leftView, superView: self.view!)
         chartView.populateData()
         
@@ -185,25 +330,78 @@ class ScanDataFile : UIViewController {
     func setupSwitchButton(view: UIView) {
         let backGroundImage = UIImage(systemName: "chevron.left")
         let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
-        switchButton.frame = CGRect(x: 0, y: 0, width: 30, height: 50)
+        switchButton.frame = CGRect(x: 0, y: 0, width: 25, height: 35)
         switchButton.center.x = view.frame.size.width/2
-        switchButton.center.y = view.frame.size.height/2
+        switchButton.center.y = view.frame.size.height/2 - 10
         switchButton.setBackgroundImage(tintedImage, for: .normal)
-        switchButton.tintColor = .black
+        switchButton.tintColor = .purple
         switchButton.addTarget(self, action: #selector(toggleView), for: .touchUpInside)
         
         
         view.addSubview(switchButton)
     }
     
+    //MARK:- right view setup
+    func setupRightViewButton() {
+        rightViewButton.translatesAutoresizingMaskIntoConstraints = false
+        rightViewButton.frame = CGRect(x: 0, y: 0, width: 25, height: 35)
+        self.view.addSubview(rightViewButton)
+        self.view.bringSubviewToFront(rightViewButton)
+        let backGroundImage = UIImage(systemName: "chevron.right")
+        let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
+        rightViewButton.setBackgroundImage(tintedImage, for: .normal)
+        rightViewButton.tintColor = .purple
+        rightViewButton.addTarget(self, action: #selector(transitionRightViewtoCenter), for: .touchUpInside)
+
+
+        
+        
+        //constraints
+        rightViewButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.size.height/2).isActive = true
+        rightViewButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        rightViewButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        rightViewButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        
+    
+    }
+    
+    @objc func transitionRightViewtoCenter() {
+        if self.rightView.center.x == self.view.frame.size.width/2 {
+         UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+            self.rightView.center.x = self.view.frame.size.width + self.view.frame.size.width/2
+            self.rightViewButton.center.x = self.view.frame.size.width - self.rightViewButton.frame.size.width
+          
+            self.rightViewButton.tintColor = .purple
+
+                       
+                       
+                   }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
+                       self.rightView.center.x = self.view.frame.size.width/2
+                self.rightViewButton.center.x = self.view.frame.size.width/2 - self.rightView.frame.size.width/2 - 15
+                self.rightViewButton.tintColor = .systemPurple
+                
+
+                                  
+                                  
+                              }, completion: nil)
+                   }
+        }
     
     
+    
+    
+    
+    //MARK:- other views and actions
     @objc func toggleView() {
         if toggleValue == true {
             UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
                 self.middleView.center.x = self.view.frame.size.width * 1.5
                 self.switchButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                self.leftViewTitle.center.x =  self.view.frame.size.width/2
                 self.leftView.center.x = self.view.frame.size.width/2
+                self.rightViewButton.isHidden = true
 
                 self.toggleValue = false
                 
@@ -216,8 +414,9 @@ class ScanDataFile : UIViewController {
                 self.middleView.center.x = self.view.frame.size.width/2
                 self.switchButton.transform = CGAffineTransform.identity
                 self.leftView.center.x = -self.view.frame.size.width/2
+                self.leftViewTitle.center.x =  -self.view.frame.size.width/2
                 self.toggleValue = true
-                
+                self.rightViewButton.isHidden = false
                 
                 
             }, completion: nil)
@@ -228,7 +427,7 @@ class ScanDataFile : UIViewController {
         totalScansView.frame = CGRect(x: 0, y: 0, width: self.middleView.frame.size.width/2.5, height: self.middleView.frame.size.height/4 - 20)
         totalScansView.center.x = parentView.frame.size.width/4
         totalScansView.center.y = self.middleView.frame.size.height - self.middleView.frame.size.height/1.9
-        totalScansView.backgroundColor = .purple
+        totalScansView.backgroundColor = .systemIndigo
         totalScansView.layer.cornerRadius = 30
         
         setupShadow(view: totalScansView)
@@ -258,7 +457,7 @@ class ScanDataFile : UIViewController {
         
         
         setupAnimation(parentView: totalScansView, animationView: animationView3, animationName: "BeerLoader")
-
+       
         parentView.addSubview(totalScansView)
         
         
@@ -285,7 +484,7 @@ class ScanDataFile : UIViewController {
         totalRevenueView.center.x = parentView.frame.size.width - totalRevenueView.frame.size.width/1.5
         totalRevenueView.center.y = self.middleView.frame.size.height - self.middleView.frame.size.height/1.2
         
-        totalRevenueView.backgroundColor = .purple
+        totalRevenueView.backgroundColor = .systemIndigo
         totalRevenueView.layer.cornerRadius = 30
         
         setupShadow(view: totalRevenueView)
@@ -331,7 +530,7 @@ class ScanDataFile : UIViewController {
         averageRevenueView.center.x = parentView.frame.size.width/4
         averageRevenueView.center.y = self.middleView.frame.size.height - self.middleView.frame.size.height/1.2
         
-        averageRevenueView.backgroundColor = .purple
+        averageRevenueView.backgroundColor = .systemIndigo
         averageRevenueView.layer.cornerRadius = 30
         
         setupShadow(view: averageRevenueView)

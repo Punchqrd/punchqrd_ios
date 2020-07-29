@@ -27,7 +27,7 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
      }()
 
      
-    @IBOutlet weak var ScanButton: UIButton!
+    var ScanButton = UIButton()
     
     //MARK:- View functions
     override func viewDidLoad() {
@@ -49,6 +49,7 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         let firstLocation = self.locationManager.location!.coordinate
         self.coordinatesArray.append(firstLocation)
         self.locationManager.startUpdatingLocation()
+        setupView()
         
     }
     
@@ -66,8 +67,22 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         
     }
     
+    //setup view
+    func setupView() {
+        ScanButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/3, height: 100)
+        ScanButton.center = self.view.center
+        ScanButton.backgroundColor = .purple
+        ScanButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+        ScanButton.setTitleColor(.white, for: .normal)
+        ScanButton.setTitle("Scan", for: .normal)
+        B_1Register.setupShadow(view: ScanButton)
+        ScanButton.addTarget(self, action: #selector(ScanAction), for: .touchUpInside)
+        self.view.addSubview(ScanButton)
+    }
+    
     //MARK:- Actions
-    @IBAction func ScanAction(_ sender: UIButton) {
+    @objc func ScanAction() {
+        self.performSegue(withIdentifier: GlobalVariables.SegueIDs.toCameraScreen, sender: self)
     }
 
     

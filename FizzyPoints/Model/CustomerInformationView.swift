@@ -30,6 +30,8 @@ class CustomerInformationView: UIView {
     let customerNameLabel = UILabel()
     let customerEmailLabel = UILabel()
     
+  
+    
     init(userEmail: String?, superView: UIView, customerEmail: String?, parentTable: UITableView) {
         self.userEmail = userEmail
         self.superView = superView
@@ -49,6 +51,8 @@ class CustomerInformationView: UIView {
     
     
     func setupView() {
+        
+        
         self.backgroundColor = UIColor.systemPurple.withAlphaComponent(1)
         self.layer.cornerRadius = 30
         self.frame = CGRect(x: 0, y: 0, width: self.superView!.frame.size.width/1.2, height: self.superView!.frame.size.height/1.35)
@@ -56,7 +60,9 @@ class CustomerInformationView: UIView {
         self.center.y = self.superView!.frame.height/2
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.checkAction))
         self.addGestureRecognizer(gesture)
-              
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.checkAction))
+        swipeLeftGesture.direction = .left
+        self.addGestureRecognizer(swipeLeftGesture)
         self.superView?.addSubview(self)
         
         
@@ -85,7 +91,6 @@ class CustomerInformationView: UIView {
             self.center.x = -self.superView!.frame.width/2
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                 self.removeFromSuperview()
-                
                 
             }
             
@@ -161,7 +166,7 @@ class CustomerInformationView: UIView {
                 let birthYear = document.get(GlobalVariables.UserIDs.UserBirthYear)!
                 
                 self.customerBirthDate = "\(String(describing: birthMonth))" + "\\" + "\(String(describing: birthDay))" + "\\" + "\(String(describing: birthYear))"
-                self.totalSpent = (document.get(GlobalVariables.UserIDs.CustomerTotalSpent)! as! Double)
+                self.totalSpent = (document.get(GlobalVariables.UserIDs.CustomerTotalSpent)! as! Double).rounded(toPlaces: 2)
                 self.totalScans = (document.get(GlobalVariables.UserIDs.ScansRecievedString)! as! Int)
                 
                 

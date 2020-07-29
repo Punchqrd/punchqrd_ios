@@ -22,6 +22,8 @@ class Info_BusinessCustomer: UIView {
     var nameOfBusinessLabel = UILabel()
     var containerView = UIView()
     
+    
+    
     init(parentView: UIView, totalSpent: Double?, totalScans: Int?, nameOfBusiness: String) {
         self.parentView = parentView
         self.totalScans = totalScans
@@ -36,6 +38,7 @@ class Info_BusinessCustomer: UIView {
     
     func setupView() {
         
+      
         self.containerView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width, height: parentView.frame.size.height)
         self.containerView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         self.containerView.center.x = parentView.frame.size.width/2
@@ -86,7 +89,6 @@ class Info_BusinessCustomer: UIView {
         UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
                      
             self.center.y = self.parentView.frame.size.height/2
-            
         }, completion: nil)
     }
     
@@ -95,7 +97,7 @@ class Info_BusinessCustomer: UIView {
                             
                 self.center.y = -self.parentView.frame.size.height/2
                 self.containerView.removeFromSuperview()
-
+                
                     
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                 self.removeFromSuperview()

@@ -44,6 +44,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.tintColor = .white
         BusinessList.delegate = self
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         self.navigationController?.navigationBar.titleTextAttributes =
@@ -68,17 +70,21 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         self.BusinessList.backgroundColor = .white
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.isHidden = false
+        
+
         GlobalVariables.ActualIDs.isLoggedIn = true
         self.setupDefault()
         showList()
         
         setupTable()
-        self.navigationController?.navigationBar.barTintColor = UIColor.purple
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        self.navigationController?.navigationBar.layer.shadowRadius = 4.0
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
-        self.navigationController?.navigationBar.layer.masksToBounds = false
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.tintColor = .white
+        
+        navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        navigationController?.navigationBar.layer.shadowRadius = 4.0
+        navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        navigationController?.navigationBar.layer.masksToBounds = false
         
     }
     
@@ -149,7 +155,6 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     }
     //functuon to create a business list and show it on the screen
     func showList() {
-        
         createBusinessList()
         BusinessList.dataSource = self
         BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
@@ -288,22 +293,20 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
         cell.PointsProgressBar.trackTintColor = UIColor.white.withAlphaComponent(0.15)
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
-        cell.PointsProgressBar.progressTintColor = UIColor.systemGreen
-
+//        cell.PointsProgressBar.progressTintColor = UIColor(red: 123, green: 0, blue: 146)
+        cell.PointsProgressBar.progressTintColor = UIColor.systemPurple
         cell.frame.size.width = self.BusinessList.frame.size.width
         
-        let colorHolder : [UIColor] = [.blue, .green, .yellow, .cyan, .systemPurple, .magenta, .systemOrange, .purple, .systemTeal, .systemPink, .red]
-        let randomColor = Int.random(in: 0...10)
+     
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
         
-        cell.BonusPointsLabel.textColor = colorHolder[randomColor]
-        cell.BonusPointsLabel.isHidden = true
+        cell.BonusPointsLabel.textColor = .white
+        cell.bonusPointsCircle.isHidden = true
       
         cell.ActualPointsLabel.text = String((Int(self.BusinessNamesArray[indexPath.row].points)))
         cell.ActualPointsLabel.textColor = UIColor.white
         
-        cell.PerkString.isHidden = true
         cell.selectedBackgroundView = backgroundView
         cell.isUserInteractionEnabled = true
         cell.CheckMarkImage.isHidden = true
@@ -314,7 +317,9 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         
         if self.BusinessNamesArray[indexPath.row].bonusPoints != 0 {
             self.delay(0.2) {
-                cell.BonusPointsLabel.isHidden = false
+                cell.bonusPointsCircle.isHidden = false
+                cell.bonusPointsCircle.sendSubviewToBack(cell.BonusPointsLabel)
+
                 if self.BusinessNamesArray[indexPath.row].bonusPoints == 10 {
                     cell.BonusPointsLabel.text = ("+10!")
                 } else {
@@ -322,7 +327,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
                 }
             }
             self.delay(3.0) {
-                cell.BonusPointsLabel.isHidden = true
+                cell.bonusPointsCircle.isHidden = true
                 //show the bonus points, then delete them forever
                 
                 //this is a little buggy when one or more business are added to the users profile
@@ -336,19 +341,10 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             cell.CheckMarkImage.isHidden = false
             cell.animateCheckMark()
             cell.PointsProgressBar.progressTintColor = UIColor.green
-            let randomPerkStrings : [String] = ["You've got a perk!", "Scan to redeem!", "Grab your freebee!", "Go treat yourself!"]
-            let randomNumber = Int.random(in: 0...8)
-            let randomPerkString = Int.random(in: 0...3)
-            if randomNumber > 6 {
-                cell.PerkString.isHidden = false
-                cell.PerkString.text = randomPerkStrings[randomPerkString]
-            }
-            
-            
         }
+        
         if cell.PointsProgressBar.progress.isEqual(to: 0) {
             cell.PointsProgressBar.trackTintColor = UIColor.white.withAlphaComponent(0.20)
-            
             cell.ActualPointsLabel.textColor = .white
         }
        

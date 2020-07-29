@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class PaymentScreen: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var paymentAmount: UITextField!
     @IBOutlet weak var doneButton: UIButton!
+    
+    //setting up the view variables
+    var paymentAmountBackGround = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +30,13 @@ class PaymentScreen: UIViewController, UITextFieldDelegate {
         
         GlobalFunctions.setButtonRadius(button: doneButton)
         doneButton.frame.size.height = 50
+        setupView()
     }
     
     //Textfield delegates
-   
+    func setupView() {
+        
+    }
     
     @IBAction func calculatePoints(_ sender: UIButton) {
         if paymentAmount.text?.isEmpty == false {
@@ -79,7 +86,7 @@ class PaymentScreen: UIViewController, UITextFieldDelegate {
                             
                           
                             
-                            GlobalFunctions.incrementPointsButton(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness, incrementPoints: inputValue, currentEmployerEmail: GlobalVariables.ActualIDs.CurrentNameofEmployer, year: useryear, day: userday, month: usermonth, name: username)
+                            GlobalFunctions.incrementPointsButton(nameofUser: GlobalVariables.ActualIDs.ActualCustomer, nameofBusiness: GlobalVariables.ActualIDs.CurrentNameofBusiness, incrementPoints: inputValue, currentEmployerEmail: GlobalVariables.ActualIDs.CurrentNameofEmployer, year: useryear, day: userday, month: usermonth, name: username, nameofEmployee: Auth.auth().currentUser?.email!)
                                          
                             self.backTwo()
                             

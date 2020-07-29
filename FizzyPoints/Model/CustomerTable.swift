@@ -19,7 +19,7 @@ class CustomerTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     var customers : [CustomerClass] = []
     
    
-
+    
     
     
     init(currentUserEmail: String?, leftView: UIView?, superView: UIView?) {

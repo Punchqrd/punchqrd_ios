@@ -70,7 +70,7 @@ class GlobalFunctions {
 //    }
     
     //MARK:- Function to increment the users points based on actual price values.
-    static func incrementPointsButton (nameofUser: String?, nameofBusiness: String?,  incrementPoints: Double?, currentEmployerEmail: String?, year: Int, day: Int, month: Int, name: String?) {
+    static func incrementPointsButton (nameofUser: String?, nameofBusiness: String?,  incrementPoints: Double?, currentEmployerEmail: String?, year: Int, day: Int, month: Int, name: String?, nameofEmployee: String?) {
         //increment points will either be 1,2,3 depending on how much the user spends.
         
         var actualPoints = 1
@@ -114,7 +114,7 @@ class GlobalFunctions {
                 employerUsersScannedData.setData([GlobalVariables.UserIDs.UserBirthMonth : month])
                 employerUsersScannedData.setData([GlobalVariables.UserIDs.UserBirthYear : year])
                 employerUsersScannedData.setData([GlobalVariables.UserIDs.UserName : name!])
-
+                
 
                 
             }
@@ -132,6 +132,24 @@ class GlobalFunctions {
                 employerTotalScanCollection.setData([GlobalVariables.UserIDs.OwnerRevenueString : FieldValue.increment(incrementPoints!)])
 
             }
+        }
+        
+        
+        
+        //add all the data from the scan as a new scan object in the database.
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateStyle = .long
+        formatter.string(from: currentDateTime)
+        let date = formatter.string(from: currentDateTime)
+        
+        let allScansCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(currentEmployerEmail!).collection(GlobalVariables.UserIDs.IndividualScans).document(date)
+        
+        allScansCollection.getDocument { (doc, error) in
+            
+            allScansCollection.setData([GlobalVariables.UserIDs.amountforScan : incrementPoints!, GlobalVariables.UserIDs.employeeName : nameofEmployee!, GlobalVariables.UserIDs.customerName : nameofUser!, GlobalVariables.UserIDs.date: date])
+            
         }
         
         
@@ -332,8 +350,8 @@ class GlobalFunctions {
                         if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
                             print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
                             print(likelihood.likelihood)
-                            //this value might have to change
-                            if likelihood.likelihood >= 0.35 {
+                            //this value might have to change .40
+                            if likelihood.likelihood >= 0.40 {
                                 
                                 //value above might have to be changed (0.7)
                                 

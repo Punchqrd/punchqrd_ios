@@ -23,6 +23,11 @@ class SecondAddEmployeeScreen: UIViewController, UITextFieldDelegate, UITextView
         self.codeLabel.delegate = self
         self.codeLabel.isEditable = false
         self.RandomCodeButton.isEnabled = true
+        navigationController?.navigationBar.titleTextAttributes =
+                            [NSAttributedString.Key.foregroundColor: UIColor.purple,
+                            NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+                       
+        navigationItem.title = "Add Employee"
     }
     
     override func viewWillAppear(_ animated: Bool) {

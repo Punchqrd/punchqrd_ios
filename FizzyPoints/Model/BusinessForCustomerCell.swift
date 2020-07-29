@@ -21,10 +21,10 @@ class BusinessForCustomerCell: UITableViewCell {
     let CheckMarkImage = UIImageView()
     let BonusPointsLabel = UILabel()
     let ActualPointsLabel = UILabel()
-    @IBOutlet weak var PerkString: UILabel!
     let pointsCircle = UIView()
     let PointsProgressBar = UIProgressView()
     let progressBarBackground = UIView()
+    let bonusPointsCircle = UIView()
     
     //MARK:- Function Calls
     
@@ -55,7 +55,8 @@ class BusinessForCustomerCell: UITableViewCell {
     func setupPointsView() {
         pointsCircle.frame = CGRect(x: 0, y: 0, width: progressBarBackground.frame.size.height, height: progressBarBackground.frame.size.height)
         pointsCircle.layer.cornerRadius = progressBarBackground.frame.size.height/2
-        pointsCircle.backgroundColor = .purple
+//        pointsCircle.backgroundColor = .purple
+        pointsCircle.backgroundColor = .black
         pointsCircle.center.x = self.frame.size.width / 1.3
         pointsCircle.center.y = progressBarBackground.center.y
         
@@ -75,14 +76,22 @@ class BusinessForCustomerCell: UITableViewCell {
         
         
         //bonus points
-        BonusPointsLabel.frame = pointsCircle.frame
-        BonusPointsLabel.center.x = pointsCircle.frame.size.width/2
-        BonusPointsLabel.center.y = pointsCircle.frame.size.height/2
-        BonusPointsLabel.font = UIFont(name: "Poppins-Bold", size: 12)
+        bonusPointsCircle.frame = CGRect(x: 0, y: 0, width: progressBarBackground.frame.size.height/1.4, height: progressBarBackground.frame.size.height/1.4)
+        bonusPointsCircle.layer.cornerRadius = (progressBarBackground.frame.size.height/1.4)/2
+        bonusPointsCircle.backgroundColor = .systemPurple
+        bonusPointsCircle.center.x = self.frame.size.width / 1.3 - (pointsCircle.frame.size.width*1.1)
+        bonusPointsCircle.center.y = progressBarBackground.center.y
+        
+        BonusPointsLabel.frame = bonusPointsCircle.frame
+        BonusPointsLabel.center.x = bonusPointsCircle.frame.size.width/2
+        BonusPointsLabel.center.y = bonusPointsCircle.frame.size.height/2
+        BonusPointsLabel.font = UIFont(name: "Poppins-Bold", size: 15)
+        BonusPointsLabel.backgroundColor = .clear
         BonusPointsLabel.textAlignment = .center
+        bonusPointsCircle.addSubview(BonusPointsLabel)
+        bonusPointsCircle.sendSubviewToBack(BonusPointsLabel)
         
-        pointsCircle.addSubview(BonusPointsLabel)
-        
+        self.addSubview(bonusPointsCircle)
         self.addSubview(pointsCircle)
     }
     
@@ -90,7 +99,8 @@ class BusinessForCustomerCell: UITableViewCell {
         progressBarBackground.frame.size.width = self.frame.size.width/2
         progressBarBackground.frame.size.height = self.frame.size.height/3.5
         
-        progressBarBackground.backgroundColor = .purple
+//        progressBarBackground.backgroundColor = .purple
+        progressBarBackground.backgroundColor = .black
         progressBarBackground.layer.cornerRadius = progressBarBackground.frame.size.width/12.5
         progressBarBackground.center.x = self.frame.size.width/3.3
         progressBarBackground.center.y = self.frame.size.height/2

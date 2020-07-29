@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QRu-V6-CgX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QRu-V6-CgX">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -83,7 +83,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-49-iK4">
                                 <rect key="frame" x="39" y="157" width="337" height="54"/>
-                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Manage Employees">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,7 +95,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqJ-sd-a4V">
                                 <rect key="frame" x="39" y="261" width="337" height="54"/>
-                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Add Employee">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,7 +107,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPl-Ug-Wwp">
                                 <rect key="frame" x="39" y="367" width="337" height="54"/>
-                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Data">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -118,7 +118,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dqJ-sd-a4V" firstAttribute="top" secondItem="fqn-49-iK4" secondAttribute="bottom" constant="50" id="1lW-AX-ax7"/>
                             <constraint firstItem="fqn-49-iK4" firstAttribute="top" secondItem="N4V-6d-5zu" secondAttribute="top" constant="69" id="2Jb-py-bqF"/>
@@ -235,20 +235,10 @@
                     <view key="view" contentMode="scaleToFill" id="EWT-Hr-soJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RGg-DP-boY">
-                                <rect key="frame" x="0.0" y="88" width="414" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="k1m-Wp-jy7"/>
                     </view>
                     <navigationItem key="navigationItem" id="acQ-j7-MpD"/>
-                    <connections>
-                        <outlet property="EmployeeTable" destination="RGg-DP-boY" id="BSq-Rn-5Ow"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RE6-1S-Hjy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -275,7 +265,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Jt3-Eo-G0D" firstAttribute="bottom" secondItem="M48-nB-CiT" secondAttribute="bottom" constant="12" id="HxL-B5-aEa"/>
                             <constraint firstItem="Jt3-Eo-G0D" firstAttribute="trailing" secondItem="M48-nB-CiT" secondAttribute="trailing" constant="38" id="PrH-LW-Tmt"/>
@@ -436,27 +425,7 @@
                     <view key="view" contentMode="scaleToFill" id="X9h-j8-rn5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Uv-Ec-GcH">
-                                <rect key="frame" x="116" y="423" width="183" height="51"/>
-                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="22"/>
-                                <state key="normal" title="Scan">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="ScanAction:" destination="8m9-YT-4v0" eventType="touchUpInside" id="XQO-8Q-SHG"/>
-                                    <segue destination="3V0-G0-Xvl" kind="show" id="NaV-UV-sin"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Era-xe-Axm" firstAttribute="trailing" secondItem="6Uv-Ec-GcH" secondAttribute="trailing" constant="115" id="88N-6X-RZz"/>
-                            <constraint firstItem="6Uv-Ec-GcH" firstAttribute="top" secondItem="Era-xe-Axm" secondAttribute="top" constant="335" id="DPT-6D-aPl"/>
-                            <constraint firstItem="Era-xe-Axm" firstAttribute="bottom" secondItem="6Uv-Ec-GcH" secondAttribute="bottom" constant="388" id="WG8-jk-3gH"/>
-                            <constraint firstItem="6Uv-Ec-GcH" firstAttribute="leading" secondItem="Era-xe-Axm" secondAttribute="leading" constant="116" id="bfT-qG-05a"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Era-xe-Axm"/>
                     </view>
                     <navigationItem key="navigationItem" id="CVW-ih-plD">
@@ -468,7 +437,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="ScanButton" destination="6Uv-Ec-GcH" id="gWM-zQ-5U7"/>
+                        <segue destination="3V0-G0-Xvl" kind="show" identifier="CameraSegue" id="lxq-Kc-e15"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lu9-WR-G7G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -639,7 +608,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g5Y-TT-V8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1081.1594202898552" y="-482.14285714285711"/>
+            <point key="canvasLocation" x="1083" y="-494"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lud-qK-ofp">
@@ -649,7 +618,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9fG-FZ-rSy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.43921568630000002" green="0.023529411760000001" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -948,6 +917,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="70T-lQ-ypp" firstAttribute="top" secondItem="XMA-PR-kMC" secondAttribute="top" constant="175" id="2Ak-8K-2z1"/>
                             <constraint firstItem="XMA-PR-kMC" firstAttribute="trailing" secondItem="9ET-vO-qFa" secondAttribute="trailing" constant="59" id="4yn-q5-qak"/>

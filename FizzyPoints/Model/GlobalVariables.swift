@@ -42,7 +42,7 @@ class GlobalVariables {
         static let UserDeletedType = "Deleted"
         static let EmployerString = "Employer"
         static let TotalScansString = "Totals"
-        static let ScanDataString = "Scan Data"
+        static let ScanDataString = "Aggregate Scan Data"
         static let ScansRecievedString = "Times Scanned"
         static let TotalCustomerScannedString = "Total Times Scanned"
         static let CustomersScannedCollectionTitle = "Customers"
@@ -53,6 +53,13 @@ class GlobalVariables {
         static let CustomerScanCollectionData = "Scan Collection"
         static let CustomerScanDocument = "Scan Data"
         static let CustomerTotalSpent = "Total Spent"
+        static let IndividualScans = "Individual Scan Data"
+        
+        //user info for each scan
+        static let customerName = "Customer"
+        static let employeeName = "Employee"
+        static let date = "Date"
+        static let amountforScan = "Purchase Price"
         
         
         
@@ -74,6 +81,7 @@ class GlobalVariables {
         
         //user default ids
         static let isUserLoggedIn = "Logged In"
+        static let isUserFirstTime = "First Time"
         
         //titles regarding transaction details
         static let OwnerRegisteredTitle = "Registered User"
@@ -123,8 +131,9 @@ class GlobalVariables {
         static var employeeAccessCode : String?
         
     
-        //user default is the user logged in boolean
+        //user defaults
         static var isLoggedIn = false
+        static var isFirstTime = true
         
         
     }

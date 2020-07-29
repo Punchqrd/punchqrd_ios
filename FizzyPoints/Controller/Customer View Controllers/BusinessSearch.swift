@@ -73,21 +73,47 @@ class BusinessSearch: UIViewController {
         if let substituteValue = self.businessName {
             GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer = substituteValue
             let db = Firestore.firestore()
-            //create a new collection within the users documents
-            let collection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer!)
-            //set certain field values within the collection
-            collection.getDocument { (doc, error) in
+            let businessCollection = db.collection(GlobalVariables.UserIDs.existingBusinesses).document(self.AddressLabel.text!)
+            businessCollection.getDocument { (doc, err) in
                 if let doc = doc, doc.exists {
-                    self.removeLoadingView()
-                    self.searchController?.searchBar.placeholder = "Business already added"
-                } else {
                     
-                    collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0", GlobalVariables.UserIDs.CustomerTotalSpent: 0])
+                    
+                    
+                    //create a new collection within the users documents
+                    let collection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(GlobalVariables.ActualIDs.ActualAddedBusinessForCustomer!)
+                    //set certain field values within the collection
+                    collection.getDocument { (doc, error) in
+                        if let doc = doc, doc.exists {
+                            self.removeLoadingView()
+                            self.searchController?.searchBar.placeholder = "Business already added"
+                        } else {
+                            
+                            collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0", GlobalVariables.UserIDs.CustomerTotalSpent: 0])
+                            self.removeLoadingView()
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }   else {
                     self.removeLoadingView()
-                    self.navigationController?.popViewController(animated: true)
+                    //present alert saying that the business doesnt exist in the databaseyet.
+                    
+                    let alert = UIAlertController(title: "Well", message: "Looks like this business doesn't use fizzypoints...yet!", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+                        alert.dismiss(animated: true, completion: nil)
+                    }))
+                    
+                    self.present(alert, animated: true)
+                    
+                    
                 }
                 
             }
+            
             
         } else {
             self.removeLoadingView()

@@ -122,6 +122,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     
     //setup the firebase for the new owner with a list of owner variables
     func SetupFirebaseData () {
+        db.collection(GlobalVariables.UserIDs.existingBusinesses).document((GlobalVariables.ActualIDs.ActualZipCode)!).setData(["Owner" : GlobalVariables.ActualIDs.ActualEmail!, "Business Name": GlobalVariables.ActualIDs.ActualBusinessName!])
         db.collection(GlobalVariables.UserIDs.CollectionTitle).document("\(GlobalVariables.ActualIDs.ActualEmail!)").setData(InstantiateOwnerList()) { err in
             if let err = err {
                 print("Error writing document: \(err)")

@@ -83,9 +83,35 @@ class B_2Register : UIViewController {
     
     @IBAction func BusinessConfirm(_ sender: UIButton) {
         if confirmedAddress == true && confirmedName == true {
-            GlobalVariables.ActualIDs.ActualBusinessName = self.businessName
-            GlobalVariables.ActualIDs.ActualZipCode = self.businessAddress
-            self.performSegue(withIdentifier: GlobalVariables.SegueIDs.PostBusinessSearchSegue, sender: self)
+            
+            
+            let db = Firestore.firestore()
+            let businessCollection = db.collection(GlobalVariables.UserIDs.existingBusinesses).document(self.businessAddress!)
+                   businessCollection.getDocument { (doc, err) in
+                       if let doc = doc, doc.exists {
+                            
+                           let alert = UIAlertController(title: "Hmmm", message: "Looks like this business already belongs to somebody else!", preferredStyle: .alert)
+                           
+                           alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+                               alert.dismiss(animated: true, completion: nil)
+                           }))
+                        
+                                self.present(alert, animated: true)
+
+                        
+                       } else {
+                        
+                        
+                        GlobalVariables.ActualIDs.ActualBusinessName = self.businessName
+                        GlobalVariables.ActualIDs.ActualZipCode = self.businessAddress
+                        self.performSegue(withIdentifier: GlobalVariables.SegueIDs.PostBusinessSearchSegue, sender: self)
+                        
+                    }
+                       
+                   }
+            
+            
+            
         } else {self.errorLabel.text = "Please check the marks to confirm."}
     }
     

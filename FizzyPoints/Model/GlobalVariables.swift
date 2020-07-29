@@ -31,6 +31,7 @@ class GlobalVariables {
         static let BusinessName = "Business Name"
         static let CustomerBusinessCollection = "Business Collection"
         static let PointsString =  "Points"
+        static let existingBusinesses = "Existing Businesses"
         
         static let CustomerTableViewCellID = "BusinessCell"
         static let EmployeeTableCellID = "EmployeeCell"

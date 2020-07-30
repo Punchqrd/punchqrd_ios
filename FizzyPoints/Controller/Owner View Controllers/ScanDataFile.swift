@@ -61,11 +61,16 @@ class ScanDataFile : UIViewController {
     let switchButton = UIButton()
     
     //all for the left views
-    let leftView = UIView()
+    private lazy var leftView: UIView = {
+        let leftView = UIView()
+        return leftView
+    }()
+    
     let leftViewTitle = UILabel()
     
     //rightview buttons and views
     let rightView = UIView()
+    let rightViewLabel = UILabel()
     let rightViewButton = UIButton()
     
     var titleLabel = UILabel()
@@ -81,6 +86,9 @@ class ScanDataFile : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
+//        let newAnimation = graphAnimation
+//        self.setupAnimationGraph(parentView: self.view, animationView: newAnimation, animationName: "17216-your-app-developer")
+              
         setupMiddleView()
         setupRightViewButton()
         
@@ -164,9 +172,7 @@ class ScanDataFile : UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        let newAnimation = graphAnimation
-        self.setupAnimationGraph(parentView: self.view, animationView: newAnimation, animationName: "17216-your-app-developer")
-        
+      
         
         
     }
@@ -174,6 +180,8 @@ class ScanDataFile : UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         leftView.removeFromSuperview()
         leftViewTitle.removeFromSuperview()
+        rightView.removeFromSuperview()
+        rightViewLabel.removeFromSuperview()
     }
     
     
@@ -285,10 +293,18 @@ class ScanDataFile : UIViewController {
         
         rightView.frame = self.middleView.frame
         rightView.center.x = self.view.frame.size.width + self.view.frame.size.width/2
-        rightView.backgroundColor = .purple
+        rightView.backgroundColor = Global_Colors.colors.apricot
         rightView.layer.cornerRadius = 30
         rightView.center.y = self.view.frame.size.height/2
         
+        rightViewLabel.frame = CGRect(x: 0, y: 0, width: rightView.frame.size.width, height: 20)
+        rightViewLabel.center.x =  self.view.frame.size.width + self.view.frame.size.width/2
+        rightViewLabel.center.y = rightView.center.y - rightView.frame.size.height/2 - 40
+        rightViewLabel.text = "Tickets"
+        rightViewLabel.font = UIFont(name: "Poppins", size: 20)
+        rightViewLabel.textAlignment = .center
+        rightViewLabel.textColor = .systemPurple
+        self.view.addSubview(rightViewLabel)
         
         
         
@@ -313,10 +329,9 @@ class ScanDataFile : UIViewController {
         
         leftView.frame = self.middleView.frame
         leftView.center.x = -self.view.frame.size.width/2
-        leftView.backgroundColor = .purple
+        leftView.backgroundColor = Global_Colors.colors.coolMint
         leftView.layer.cornerRadius = 30
         leftView.center.y = self.view.frame.size.height/2
-        setupShadow(view: leftView)
       
         leftViewTitle.frame = CGRect(x: 0, y: 0, width: leftView.frame.size.width, height: 20)
         leftViewTitle.center.x =  -self.view.frame.size.width/2
@@ -349,7 +364,7 @@ class ScanDataFile : UIViewController {
         switchButton.center.x = view.frame.size.width/2
         switchButton.center.y = view.frame.size.height/2 - 10
         switchButton.setBackgroundImage(tintedImage, for: .normal)
-        switchButton.tintColor = .purple
+        switchButton.tintColor = Global_Colors.colors.softBlue
         switchButton.addTarget(self, action: #selector(toggleView), for: .touchUpInside)
         
         
@@ -365,7 +380,7 @@ class ScanDataFile : UIViewController {
         let backGroundImage = UIImage(systemName: "chevron.right")
         let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
         rightViewButton.setBackgroundImage(tintedImage, for: .normal)
-        rightViewButton.tintColor = .purple
+        rightViewButton.tintColor = Global_Colors.colors.softBlue
         rightViewButton.addTarget(self, action: #selector(transitionRightViewtoCenter), for: .touchUpInside)
 
 
@@ -384,20 +399,17 @@ class ScanDataFile : UIViewController {
         if self.rightView.center.x == self.view.frame.size.width/2 {
          UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
             self.rightView.center.x = self.view.frame.size.width + self.view.frame.size.width/2
-            self.rightViewButton.center.x = self.view.frame.size.width - self.rightViewButton.frame.size.width
-          
-            self.rightViewButton.tintColor = .purple
-
+            self.rightViewLabel.center.x = self.view.frame.size.width + self.view.frame.size.width/2
+            self.rightViewButton.isHidden = false
                        
                        
                    }, completion: nil)
         } else {
             UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
-                       self.rightView.center.x = self.view.frame.size.width/2
-                self.rightViewButton.center.x = self.view.frame.size.width/2 - self.rightView.frame.size.width/2 - 15
-                self.rightViewButton.tintColor = .systemPurple
+                self.rightView.center.x = self.view.frame.size.width/2
+                self.rightViewLabel.center.x = self.view.frame.size.width/2
+                self.rightViewButton.isHidden = true
                 
-
                                   
                                   
                               }, completion: nil)
@@ -449,7 +461,7 @@ class ScanDataFile : UIViewController {
         totalScansView.backgroundColor = .systemIndigo
         totalScansView.layer.cornerRadius = 30
         
-        setupShadow(view: totalScansView)
+//        setupShadow(view: totalScansView)
         
         //setup the labels
         let totalLabel = UILabel()
@@ -469,7 +481,7 @@ class ScanDataFile : UIViewController {
         totalScansValue.font =  UIFont(name: "Poppins-Bold", size: 30)
         totalScansValue.textAlignment = .center
         totalScansView.addSubview(totalScansValue)
-        setupShadow(view: totalLabel)
+//        setupShadow(view: totalLabel)
         
         
         //setup the animation view
@@ -499,19 +511,18 @@ class ScanDataFile : UIViewController {
     
     func setupAnimationGraph(parentView: UIView, animationView: AnimationView, animationName: String) {
         animationView.animation = Animation.named(animationName)
-        animationView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width, height: parentView.frame.size.width)
         animationView.translatesAutoresizingMaskIntoConstraints = false
         parentView.addSubview(animationView)
-        animationView.widthAnchor.constraint(equalToConstant: parentView.frame.size.width).isActive = true
-        animationView.heightAnchor.constraint(equalToConstant: parentView.frame.size.width).isActive = true
-        animationView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: 0).isActive = true
+        animationView.widthAnchor.constraint(equalToConstant: parentView.frame.size.width/1.5).isActive = true
+        animationView.heightAnchor.constraint(equalToConstant: parentView.frame.size.width/1.5).isActive = true
+        animationView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: 50).isActive = true
         animationView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0).isActive = true
         animationView.contentMode = .scaleAspectFit
         
         animationView.layer.cornerRadius = 30
         animationView.backgroundColor = .white
         animationView.play()
-        animationView.loopMode = .loop
+        animationView.loopMode = .playOnce
         
         parentView.sendSubviewToBack(animationView)
     }
@@ -526,7 +537,7 @@ class ScanDataFile : UIViewController {
         totalRevenueView.backgroundColor = .systemIndigo
         totalRevenueView.layer.cornerRadius = 30
         
-        setupShadow(view: totalRevenueView)
+//        setupShadow(view: totalRevenueView)
         
         //setup the labels
         let totalLabel = UILabel()
@@ -548,7 +559,7 @@ class ScanDataFile : UIViewController {
         totalRevenueLabel.font =  UIFont(name: "Poppins-Bold", size: 25)
         totalRevenueLabel.textAlignment = .center
         totalRevenueView.addSubview(totalRevenueLabel)
-        setupShadow(view: totalLabel)
+//        setupShadow(view: totalLabel)
         
         
         
@@ -572,7 +583,7 @@ class ScanDataFile : UIViewController {
         averageRevenueView.backgroundColor = .systemIndigo
         averageRevenueView.layer.cornerRadius = 30
         
-        setupShadow(view: averageRevenueView)
+//        setupShadow(view: averageRevenueView)
         
         //setup the labels
         let totalLabel = UILabel()
@@ -592,7 +603,7 @@ class ScanDataFile : UIViewController {
         averageRevenueLabel.font =  UIFont(name: "Poppins-Bold", size: 25)
         averageRevenueLabel.textAlignment = .center
         averageRevenueView.addSubview(averageRevenueLabel)
-        setupShadow(view: totalLabel)
+//        setupShadow(view: totalLabel)
         
         
         

@@ -81,8 +81,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-49-iK4">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-49-iK4">
                                 <rect key="frame" x="39" y="157" width="337" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Manage Employees">
@@ -93,8 +94,9 @@
                                     <segue destination="yim-SK-ZfI" kind="show" id="2De-NR-Hi5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqJ-sd-a4V">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqJ-sd-a4V">
                                 <rect key="frame" x="39" y="261" width="337" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Add Employee">
@@ -105,8 +107,9 @@
                                     <segue destination="Z2J-K2-aI3" kind="show" id="Tfa-hY-axe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPl-Ug-Wwp">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPl-Ug-Wwp">
                                 <rect key="frame" x="39" y="367" width="337" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
                                 <state key="normal" title="Data">
@@ -117,19 +120,21 @@
                                     <segue destination="GKX-cx-Xpr" kind="show" id="SRB-Bt-k3F"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eg-YD-fbk">
+                                <rect key="frame" x="57" y="533" width="337" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="30"/>
+                                <state key="normal" title="Promote">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="PromotAction:" destination="4zM-D4-uka" eventType="touchUpInside" id="gnV-nq-vQp"/>
+                                    <action selector="ScanDataAction:" destination="4zM-D4-uka" eventType="touchUpInside" id="ezj-xi-fGJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="dqJ-sd-a4V" firstAttribute="top" secondItem="fqn-49-iK4" secondAttribute="bottom" constant="50" id="1lW-AX-ax7"/>
-                            <constraint firstItem="fqn-49-iK4" firstAttribute="top" secondItem="N4V-6d-5zu" secondAttribute="top" constant="69" id="2Jb-py-bqF"/>
-                            <constraint firstItem="fqn-49-iK4" firstAttribute="leading" secondItem="N4V-6d-5zu" secondAttribute="leading" constant="39" id="7pw-Bm-gZG"/>
-                            <constraint firstItem="tPl-Ug-Wwp" firstAttribute="leading" secondItem="N4V-6d-5zu" secondAttribute="leading" constant="39" id="ReN-31-KaK"/>
-                            <constraint firstItem="N4V-6d-5zu" firstAttribute="trailing" secondItem="tPl-Ug-Wwp" secondAttribute="trailing" constant="38" id="W9U-Ow-TZ0"/>
-                            <constraint firstItem="N4V-6d-5zu" firstAttribute="trailing" secondItem="fqn-49-iK4" secondAttribute="trailing" constant="38" id="fpt-v9-nJ6"/>
-                            <constraint firstItem="dqJ-sd-a4V" firstAttribute="leading" secondItem="N4V-6d-5zu" secondAttribute="leading" constant="39" id="jsi-ji-gcM"/>
-                            <constraint firstItem="tPl-Ug-Wwp" firstAttribute="top" secondItem="dqJ-sd-a4V" secondAttribute="bottom" constant="52" id="rmg-4x-acn"/>
-                            <constraint firstItem="N4V-6d-5zu" firstAttribute="trailing" secondItem="dqJ-sd-a4V" secondAttribute="trailing" constant="38" id="sbd-t1-L9b"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="N4V-6d-5zu"/>
                     </view>
                     <navigationItem key="navigationItem" id="l1G-QK-SIX">
@@ -142,6 +147,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="AddEmployeeButton" destination="dqJ-sd-a4V" id="grJ-Q4-T8U"/>
+                        <outlet property="PromotButton" destination="6eg-YD-fbk" id="Nds-9v-8rd"/>
                         <outlet property="RemoveEmployeeButton" destination="fqn-49-iK4" id="gtO-Nh-OjU"/>
                         <outlet property="ScanDataButton" destination="tPl-Ug-Wwp" id="eOg-bT-rP2"/>
                         <outlet property="logoutButton" destination="akH-YI-vw0" id="Vpw-pz-u63"/>
@@ -159,9 +165,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeI-fJ-NW7">
-                                <rect key="frame" x="70" y="618" width="275" height="73"/>
-                                <string key="text">Generate a random code, and send it to your employee. The code will alow him/her to register as your employee and acces the scanner.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeI-fJ-NW7">
+                                <rect key="frame" x="70" y="691" width="275" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -176,7 +181,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5U-kj-Fzd">
-                                <rect key="frame" x="72" y="530" width="270" height="66"/>
+                                <rect key="frame" x="72" y="603" width="270" height="66"/>
                                 <color key="backgroundColor" red="1" green="0.4039215686" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="e0Y-Mc-bN8"/>
@@ -191,7 +196,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2xr-LY-gvL">
-                                <rect key="frame" x="64" y="325" width="287" height="63"/>
+                                <rect key="frame" x="64" y="398" width="287" height="63"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="8G4-gh-8XT"/>
@@ -265,6 +270,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Jt3-Eo-G0D" firstAttribute="bottom" secondItem="M48-nB-CiT" secondAttribute="bottom" constant="12" id="HxL-B5-aEa"/>
                             <constraint firstItem="Jt3-Eo-G0D" firstAttribute="trailing" secondItem="M48-nB-CiT" secondAttribute="trailing" constant="38" id="PrH-LW-Tmt"/>
@@ -430,7 +436,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="CVW-ih-plD">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="circle" catalog="system" id="7qf-Bw-0Uo">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="Logout:" destination="8m9-YT-4v0" id="wtn-oO-VRw"/>
                             </connections>
@@ -595,7 +601,6 @@
                     <view key="view" contentMode="scaleAspectFit" id="ha4-5p-IXz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.4392156862745098" green="0.023529411764705882" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="3tR-3K-xVu"/>
                     </view>
                     <navigationItem key="navigationItem" id="Yjn-hE-9QI"/>

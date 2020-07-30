@@ -81,6 +81,10 @@
 		17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */; };
 		17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846724843D610035F7CA /* ScannerScreen.swift */; };
 		17F0B9C624CBCF510050A3E4 /* SDCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0B9C524CBCF510050A3E4 /* SDCTextField.swift */; };
+		17F1EF8024D2021F00726C34 /* Global_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF7F24D2021F00726C34 /* Global_Colors.swift */; };
+		17F1EF8224D2562D00726C34 /* PromoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8124D2562D00726C34 /* PromoteScreen.swift */; };
+		17F1EF8424D25D1A00726C34 /* mailman.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F1EF8324D25D1A00726C34 /* mailman.json */; };
+		17F1EF8824D3063B00726C34 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8724D3063B00726C34 /* MailView.swift */; };
 		17F55F1324942D8900F78E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17F55F1224942D8900F78E5F /* GoogleService-Info.plist */; };
 		17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDE9248C346300041577 /* RedeemConfirm.swift */; };
 		17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEB248D369F00041577 /* ScanDataFile.swift */; };
@@ -168,6 +172,10 @@
 		17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		17E2846724843D610035F7CA /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
 		17F0B9C524CBCF510050A3E4 /* SDCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDCTextField.swift; sourceTree = "<group>"; };
+		17F1EF7F24D2021F00726C34 /* Global_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Colors.swift; sourceTree = "<group>"; };
+		17F1EF8124D2562D00726C34 /* PromoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteScreen.swift; sourceTree = "<group>"; };
+		17F1EF8324D25D1A00726C34 /* mailman.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mailman.json; path = ../../../../../Downloads/mailman.json; sourceTree = "<group>"; };
+		17F1EF8724D3063B00726C34 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MailView.swift; path = "/Users/sebastianbarry/Documents/FizzyPoints/Fizzy Source Code/FizzyPoints/Model/MailView.swift"; sourceTree = "<absolute>"; };
 		17F55F1224942D8900F78E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		17F7BDE9248C346300041577 /* RedeemConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemConfirm.swift; sourceTree = "<group>"; };
 		17F7BDEB248D369F00041577 /* ScanDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataFile.swift; sourceTree = "<group>"; };
@@ -210,6 +218,7 @@
 				1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */,
 				1796CB74248AE3B200B227B2 /* RemoveEmployeesScreen.swift */,
 				17F7BDEB248D369F00041577 /* ScanDataFile.swift */,
+				17F1EF8124D2562D00726C34 /* PromoteScreen.swift */,
 			);
 			path = "Owner View Controllers";
 			sourceTree = "<group>";
@@ -217,6 +226,7 @@
 		1740753E249465F30079D398 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				17F1EF8324D25D1A00726C34 /* mailman.json */,
 				1712B57A24D1304200BB7150 /* 17216-your-app-developer.json */,
 				17B43B4824D0F21200DE05E1 /* SippingCoffee.json */,
 				1724587A24C5EBC10073D316 /* HomeAnimation.json */,
@@ -289,6 +299,7 @@
 		17C81F27247ACA99008DAAA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				17F1EF7F24D2021F00726C34 /* Global_Colors.swift */,
 				17C81F37247C3197008DAAA2 /* GlobalFunctions.swift */,
 				17C81F2B247ACB01008DAAA2 /* GlobalVariables.swift */,
 				17121856247EFA300060093A /* BusinessName.swift */,
@@ -309,6 +320,7 @@
 				1714AA7624CF258500D17425 /* ScansTable.swift */,
 				1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */,
 				179B9EBD24CF556500FD8A43 /* ScanDataView.swift */,
+				17F1EF8724D3063B00726C34 /* MailView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,6 +488,7 @@
 				17DF198B2488863C0040059C /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				17DF19802488863C0040059C /* Poppins-BlackItalic.ttf in Resources */,
 				17DF19862488863C0040059C /* Poppins-ExtraLight.ttf in Resources */,
+				17F1EF8424D25D1A00726C34 /* mailman.json in Resources */,
 				17DF198C2488863C0040059C /* Poppins-ExtraLightItalic.ttf in Resources */,
 				1712B57B24D1304200BB7150 /* 17216-your-app-developer.json in Resources */,
 				17DF197E2488863C0040059C /* Poppins-MediumItalic.ttf in Resources */,
@@ -590,8 +603,10 @@
 				1796CB75248AE3B200B227B2 /* RemoveEmployeesScreen.swift in Sources */,
 				173B49F4248B494000056833 /* C_2Register.swift in Sources */,
 				17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */,
+				17F1EF8824D3063B00726C34 /* MailView.swift in Sources */,
 				17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */,
 				17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */,
+				17F1EF8224D2562D00726C34 /* PromoteScreen.swift in Sources */,
 				1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */,
 				17C81F38247C3197008DAAA2 /* GlobalFunctions.swift in Sources */,
 				17C81F2C247ACB01008DAAA2 /* GlobalVariables.swift in Sources */,
@@ -611,6 +626,7 @@
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,
 				1714AA7524CF252F00D17425 /* Individual_Scans.swift in Sources */,
 				17C81F30247AD276008DAAA2 /* B_1Register.swift in Sources */,
+				17F1EF8024D2021F00726C34 /* Global_Colors.swift in Sources */,
 				1714AA7724CF258500D17425 /* ScansTable.swift in Sources */,
 				1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */,
 				1714AA7A24CF271100D17425 /* Individual_Scans_CellTableViewCell.swift in Sources */,

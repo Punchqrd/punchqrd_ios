@@ -35,6 +35,7 @@ class Individual_Scans_CellTableViewCell: UITableViewCell {
         self.dateLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         self.dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.size.height/2).isActive = true
         
+        
        
         self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(priceLabel)

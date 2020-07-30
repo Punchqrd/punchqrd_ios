@@ -26,13 +26,14 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
        return manager
      }()
 
+    
+    
      
     var ScanButton = UIButton()
     
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = false
         
         
         if CLLocationManager.authorizationStatus() == .notDetermined
@@ -51,6 +52,16 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         self.locationManager.startUpdatingLocation()
         setupView()
         
+        
+         navigationController?.navigationBar.titleTextAttributes =
+                    [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+                    NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+        self.parent?.title = String(describing: Auth.auth().currentUser?.email!)
+        self.navigationItem.title = String(describing: Auth.auth().currentUser?.email!)
+            
+               navigationController?.navigationBar.barTintColor = .white
+               navigationController?.navigationBar.tintColor = .systemPurple
+        
     }
     
     
@@ -58,12 +69,18 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         self.coordinatesArray.append(self.locationManager.location!.coordinate)
         GlobalFunctions.setButtonRadius(button: self.ScanButton)
         self.navigationItem.hidesBackButton = true
-        self.navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
-        // Set the shadow color.
-        navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
+       
         ScanButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/2.5, height: 53)
         ScanButton.center = self.view.center
+        
+        navigationController?.navigationBar.titleTextAttributes =
+             [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+        
+        self.navigationItem.title = String(describing: Auth.auth().currentUser?.email!)
+        
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = .systemPurple
         
     }
     

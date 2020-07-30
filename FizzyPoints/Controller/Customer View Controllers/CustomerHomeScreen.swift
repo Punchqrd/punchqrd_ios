@@ -142,15 +142,18 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //MARK:- Table View logic
     
     func setupTable() {
-        BusinessList.frame = CGRect(x: 0, y: 0,width: self.view.frame.size.width, height: self.view.frame.size.height)
-        BusinessList.center.x = self.view.frame.size.width/2
-        BusinessList.center.y = self.view.frame.size.height/2
+        BusinessList.translatesAutoresizingMaskIntoConstraints = false
+        BusinessList.frame = CGRect(x: 0, y: 0,width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+        self.view.addSubview(BusinessList)
+        BusinessList.widthAnchor.constraint(equalToConstant: self.view.frame.size.width).isActive = true
+        BusinessList.heightAnchor.constraint(equalToConstant: self.view.frame.size.height/2).isActive = true
+        BusinessList.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        BusinessList.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         BusinessList.layer.shadowColor = UIColor.black.cgColor
         BusinessList.layer.shadowOffset = CGSize(width: 0, height: 0)
         BusinessList.layer.shadowRadius = 10
         BusinessList.layer.shadowOpacity = 0.3
         BusinessList.separatorStyle = .none
-        self.view.addSubview(BusinessList)
         self.view.sendSubviewToBack(BusinessList)
     }
     //functuon to create a business list and show it on the screen

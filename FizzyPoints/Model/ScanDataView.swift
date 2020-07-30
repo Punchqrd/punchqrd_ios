@@ -15,7 +15,7 @@ import Lottie
 class ScanDataView: UIView, UITextFieldDelegate {
     
     var gesture = UITapGestureRecognizer()
-
+    
     var parentView: UIView?
     var priceValue: Double
     var priceLabel = UILabel()
@@ -34,6 +34,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
     var textFieldInput = UITextField()
     var textFieldView = UIView()
     
+    var nameBusiness: String
     
     private lazy var animationView1: AnimationView = {
         let view = AnimationView()
@@ -43,7 +44,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
     
     
     
-    init(parentView: UIView, priceValue: Double, dateValue: String, customerScanned: String, employeeScanned: String, ticket: Int, tableView: UITableView) {
+    init(parentView: UIView, priceValue: Double, dateValue: String, customerScanned: String, employeeScanned: String, ticket: Int, tableView: UITableView, nameBusiness: String) {
         self.parentView = parentView
         self.priceValue = priceValue
         self.customerScanned = customerScanned
@@ -51,6 +52,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         self.dateValue = dateValue
         self.ticket = ticket
         self.parentTableView = tableView
+        self.nameBusiness = nameBusiness
         super.init(frame: parentView.frame)
         
     }
@@ -133,26 +135,25 @@ class ScanDataView: UIView, UITextFieldDelegate {
         changeButton.center.x = self.frame.size.width/2
         changeButton.center.y = self.frame.size.height - 100
         changeButton.addTarget(self, action: #selector(changeToNewValue), for: .touchUpInside)
-        changeButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+        changeButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
         changeButton.setTitleColor(.white, for: .normal)
         changeButton.setTitle("Update", for: .normal)
-        changeButton.backgroundColor = .systemBlue
-        GlobalFunctions.setButtonRadius(button: changeButton)
-        changeButton.layer.cornerRadius = changeButton.frame.height/2
+        changeButton.backgroundColor = .clear
+        changeButton.layer.cornerRadius = self.frame.size.width/2
         self.addSubview(changeButton)
         
         textFieldView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width/1.3, height: 50)
         textFieldView.center.x = self.frame.size.width/2
         textFieldView.center.y = self.frame.size.height - changeButton.frame.size.height*2.1 - 50
         textFieldView.backgroundColor = .white
-        textFieldView.layer.cornerRadius = textFieldView.frame.size.height/2
+        textFieldView.layer.cornerRadius = 20
         
         textFieldInput.frame = CGRect(x: 0, y: 0, width: textFieldView.frame.size.width - 20, height: textFieldView.frame.size.height - 10)
         textFieldInput.center = textFieldView.center
         textFieldInput.keyboardType = .decimalPad
         textFieldInput.tintColor = .systemGreen
         textFieldInput.textColor = .black
-        textFieldInput.backgroundColor = .white
+        textFieldInput.backgroundColor = .clear
         textFieldInput.font =  UIFont(name: "Poppins", size: 15)
         textFieldInput.delegate = self
         textFieldInput.attributedPlaceholder = NSAttributedString(string: "Update Ticket $",
@@ -219,6 +220,13 @@ class ScanDataView: UIView, UITextFieldDelegate {
             }
             
             if periodCounter > 0 && periodCounter <= 1 {
+                
+                
+                
+                
+                
+                
+                
                 //setup loading view
                 let inputValue = Double(textFieldInput.text!)
                 
@@ -235,15 +243,16 @@ class ScanDataView: UIView, UITextFieldDelegate {
                         //change the value in the database for the owner
                         self.changeAggregateValue(oldPrice: self.priceValue, newPrice: inputValue!)
                         //change the value of total spent for the customer
-                        self.changeAggregateValueForCustomer(oldPrice: self.priceValue, newPrice: inputValue!)
+                        self.changeAggregateValueForCustomerTable(oldPrice: self.priceValue, newPrice: inputValue!)
                         
                         
+                        self.changeAggregateValueForCustomer(oldPrice: self.priceValue, newPrice: inputValue!, nameofUser: self.customerScanned, nameofBusiness: self.nameBusiness)
                         
                         self.animationView1.removeFromSuperview()
-                        self.changeButton.backgroundColor = .green
+                        self.changeButton.tintColor = .green
                         self.priceValue = inputValue!
                         self.priceLabel.text = String(describing: "For $\(inputValue!)")
-                        self.changeButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+                        self.changeButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
                         self.changeButton.setTitleColor(.white, for: .normal)
                         self.changeButton.setTitle("Updated!", for: .normal)
                         DispatchQueue.main.async {    self.parentTableView.reloadData()}
@@ -259,7 +268,13 @@ class ScanDataView: UIView, UITextFieldDelegate {
                 }
                 
                 
-               
+                
+                
+                
+                
+                
+                
+                
                 
                 
             } else if periodCounter > 1 {
@@ -295,53 +310,73 @@ class ScanDataView: UIView, UITextFieldDelegate {
     
     
     func changeAggregateValue(oldPrice: Double, newPrice: Double) {
-          let db = Firestore.firestore()
-              let totals = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.ScanDataString).document(GlobalVariables.UserIDs.TotalScansString)
-              totals.getDocument { (doc, error) in
-                  if let doc = doc, doc.exists {
-                    var retrievedRevenue = doc.get(GlobalVariables.UserIDs.OwnerRevenueString) as! Double
-                    retrievedRevenue -= oldPrice
-                    retrievedRevenue += newPrice
-                    totals.updateData([GlobalVariables.UserIDs.OwnerRevenueString:  retrievedRevenue])
-                    
-                     
-                      
-                      
-                  }
-                  
-                  
-              }
+        let db = Firestore.firestore()
+        let totals = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.ScanDataString).document(GlobalVariables.UserIDs.TotalScansString)
+        totals.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                var retrievedRevenue = doc.get(GlobalVariables.UserIDs.OwnerRevenueString) as! Double
+                retrievedRevenue -= oldPrice
+                retrievedRevenue += newPrice
+                totals.updateData([GlobalVariables.UserIDs.OwnerRevenueString:  retrievedRevenue])
+                
+                
+                
+                
+            }
+            
+            
+        }
     }
     
     
-    func changeAggregateValueForCustomer(oldPrice: Double, newPrice: Double) {
+    func changeAggregateValueForCustomerTable(oldPrice: Double, newPrice: Double) {
         let db = Firestore.firestore()
         let employerBusiness = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!)
-                       let employerUsersScannedData = employerBusiness.collection(GlobalVariables.UserIDs.CustomersScannedCollectionTitle).document(self.customerScanned)
-                              employerUsersScannedData.getDocument { (doc, error) in
-                                  if let doc = doc, doc.exists {
-                                    //retrieve the value the customer spent in the past.
-                                    var totalSpent = (doc.get(GlobalVariables.UserIDs.CustomerTotalSpent)! as! Double).rounded(toPlaces: 2)
-
-                                    totalSpent -= oldPrice
-                                    totalSpent += newPrice
-                                    employerUsersScannedData.updateData([GlobalVariables.UserIDs.CustomerTotalSpent: totalSpent])
-                                                       
-                                     
-                               }
-                       }
+        let employerUsersScannedData = employerBusiness.collection(GlobalVariables.UserIDs.CustomersScannedCollectionTitle).document(self.customerScanned)
+        employerUsersScannedData.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                //retrieve the value the customer spent in the past.
+                var totalSpent = (doc.get(GlobalVariables.UserIDs.CustomerTotalSpent)! as! Double).rounded(toPlaces: 2)
+                
+                totalSpent -= oldPrice
+                totalSpent += newPrice
+                employerUsersScannedData.updateData([GlobalVariables.UserIDs.CustomerTotalSpent: totalSpent])
+                
+                
+            }
+        }
         
-            
-                    
-                        
-                         
-                         
-                     
-                     
-                     
-                 
-       }
+        
+        
+        
+    }
+    
+    
+    //this one
+    func changeAggregateValueForCustomer(oldPrice: Double, newPrice: Double, nameofUser: String, nameofBusiness: String) {
+        print(nameofUser)
+        
+        let db = Firestore.firestore()
+        let CustomerCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document(nameofUser).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(nameofBusiness
+        )
+        print(nameofBusiness)
+       CustomerCollection.getDocument { (doc, error) in
+        
+            if let doc = doc, doc.exists {
+                var totalSpent = (doc.get(GlobalVariables.UserIDs.CustomerTotalSpent)! as! Double).rounded(toPlaces: 2)
+                print(totalSpent)
+
+                totalSpent -= oldPrice
+                totalSpent += newPrice
+                CustomerCollection.updateData([GlobalVariables.UserIDs.CustomerTotalSpent: totalSpent])
+                print(totalSpent)
+                
+            }
+        }
        
+        
+    }
+    
     
     
     

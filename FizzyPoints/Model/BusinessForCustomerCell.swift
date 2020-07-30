@@ -46,8 +46,8 @@ class BusinessForCustomerCell: UITableViewCell {
         BusinessName.frame.size.height = progressBarBackground.frame.size.height
         BusinessName.center.x = self.frame.size.width/3.3
         BusinessName.center.y = self.frame.height/5
-        BusinessName.textColor = .black
-        BusinessName.font = UIFont(name: "Poppins", size: 15)
+        BusinessName.textColor = .systemPurple
+        BusinessName.font = UIFont(name: "Poppins", size: 18)
         BusinessName.textAlignment = .center
         self.addSubview(BusinessName)
     }

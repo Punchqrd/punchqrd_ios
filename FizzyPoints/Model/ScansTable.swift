@@ -104,8 +104,21 @@ class ScansTable:  UITableView, UITableViewDelegate, UITableViewDataSource {
     
      
     func displayCustomerInformation(priceValue: Double, dateValue: String, customerScanned: String, employeeScanned: String, ticket: Int) {
-        let customerInformation = ScanDataView(parentView: rightView!, priceValue: priceValue, dateValue: dateValue, customerScanned: customerScanned, employeeScanned: employeeScanned, ticket: ticket, tableView: self)
-         customerInformation.setupView()
+        
+        let db = Firestore.firestore()
+        let ownerInfo = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!)
+        ownerInfo.getDocument { (doc, err) in
+            if let doc = doc, doc.exists {
+                //this is being called.
+                print("This is being called")
+                let nameofBusiness = doc.get(GlobalVariables.UserIDs.BusinessName)
+                let customerInformation = ScanDataView(parentView: self.rightView!, priceValue: priceValue, dateValue: dateValue, customerScanned: customerScanned, employeeScanned: employeeScanned, ticket: ticket, tableView: self, nameBusiness: nameofBusiness as! String)
+                customerInformation.setupView()
+            }
+        }
+        
+        
+       
          
      }
     

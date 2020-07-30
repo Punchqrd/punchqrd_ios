@@ -19,27 +19,35 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     
     let animationView1 = AnimationView()
     let productID = "com.SebastianBarry.FizzyPoints.BusinessPack"
-
+    
     @IBOutlet weak var RemoveEmployeeButton: UIButton!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var AddEmployeeButton: UIButton!
     @IBOutlet weak var ScanDataButton: UIButton!
+    @IBOutlet weak var PromotButton: UIButton!
     
     private lazy var animationView2: AnimationView = {
-         let view = AnimationView()
-         return view
-       }()
+        let view = AnimationView()
+        return view
+    }()
+    
+    
+    let buttonLoadingAnimation = AnimationView()
+    
     
     //MARK:- View functions
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+    
+        
         navigationItem.hidesBackButton = true
         
         navigationController?.navigationBar.titleTextAttributes =
-                    [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-                    NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
-               
+            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+             NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+        
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         navigationItem.title = String(describing: "Owner Portal")
@@ -62,25 +70,72 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
             }
         }
         
-           
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+            //button constraints
+        setupConstraintsForButtons()
+
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
         self.navigationController?.navigationBar.isHidden = false
+        
+        
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+             NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+        
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemPurple
+        navigationItem.title = String(describing: "Owner Portal")
+        
+        setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
+        self.buttonLoadingAnimation.removeFromSuperview()
+    }
+    
+    func setupConstraintsForButtons() {
+        RemoveEmployeeButton.translatesAutoresizingMaskIntoConstraints = false
+        RemoveEmployeeButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
+        RemoveEmployeeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
+        RemoveEmployeeButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        RemoveEmployeeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        RemoveEmployeeButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        
+        
+        AddEmployeeButton.translatesAutoresizingMaskIntoConstraints = false
+        AddEmployeeButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
+        AddEmployeeButton.topAnchor.constraint(equalTo: RemoveEmployeeButton.bottomAnchor, constant: 50).isActive = true
+        AddEmployeeButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        AddEmployeeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        AddEmployeeButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
+        
+        
+        ScanDataButton.translatesAutoresizingMaskIntoConstraints = false
+        ScanDataButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
+        ScanDataButton.topAnchor.constraint(equalTo: AddEmployeeButton.bottomAnchor, constant: 50).isActive = true
+        ScanDataButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        ScanDataButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        ScanDataButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
+        
+        
+        PromotButton.translatesAutoresizingMaskIntoConstraints = false
+        PromotButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
+        PromotButton.topAnchor.constraint(equalTo: ScanDataButton.bottomAnchor, constant: 50).isActive = true
+        PromotButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        PromotButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        PromotButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
+        
+        
+        //radius set for button.
         GlobalFunctions.setButtonRadius(button: self.AddEmployeeButton)
         GlobalFunctions.setButtonRadius(button: self.RemoveEmployeeButton)
         GlobalFunctions.setButtonRadius(button: self.ScanDataButton)
-        navigationController?.navigationBar.titleTextAttributes =
-                           [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-                           NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
-                      
-               navigationController?.navigationBar.barTintColor = .white
-               navigationController?.navigationBar.tintColor = .systemPurple
-               navigationItem.title = String(describing: "Owner Portal")
-               
-               setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
+        GlobalFunctions.setButtonRadius(button: self.PromotButton)
+        
     }
     
     //MARK:- Actions
@@ -92,15 +147,33 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
     
     @IBAction func ScanDataAction(_ sender: UIButton) {
         
     }
     
+    @IBAction func PromotAction(_ sender: UIButton) {
+        let promoteScreen = PromoteScreen()
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromBottom
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(promoteScreen, animated: false)
+    }
+    
+    
     
     @IBAction func LogoutButton(_ sender: UIBarButtonItem) {
         logoutAlert(title: "Logout?", message: nil)
     }
+    
+    
     
     //MARK:- Alerts
     func logoutAlert(title : String?, message : String?) {
@@ -235,6 +308,22 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
         parentView.sendSubviewToBack(animationView)
     }
     
+    
+    
+    func setupAnimationButton(parentView: UIView, animationView: AnimationView, animationName: String) {
+        animationView.animation = Animation.named(animationName)
+        animationView.frame = parentView.frame
+        animationView.center.x = parentView.frame.width/2
+        animationView.center.y = parentView.frame.height/2
+        animationView.contentMode = .scaleAspectFit
+        
+        animationView.layer.cornerRadius = 30
+        animationView.backgroundColor = .white
+        animationView.play()
+        animationView.loopMode = .loop
+        parentView.addSubview(animationView)
+        parentView.bringSubviewToFront(animationView)
+    }
     
     
     

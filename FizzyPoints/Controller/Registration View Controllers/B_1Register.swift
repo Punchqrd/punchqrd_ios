@@ -75,7 +75,6 @@ class B_1Register : UIViewController {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationController?.navigationBar.isHidden = false
-        
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         
@@ -335,7 +334,7 @@ class B_1Register : UIViewController {
         
         //setup the error label
         ErrorLabel.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.width, height: RegisterButton.frame.size.height/1.5)
-        ErrorLabel.text = ""
+        ErrorLabel.text = "fizzypoints"
         ErrorLabel.textColor = .systemPurple
         ErrorLabel.font =  UIFont(name: "Poppins-Bold", size: 15)
         ErrorLabel.textAlignment = .center

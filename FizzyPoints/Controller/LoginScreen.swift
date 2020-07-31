@@ -64,7 +64,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         super.viewDidLoad()
         
       
-      
+        
         setupToHideKeyboardOnTapOnView()
         self.PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -103,7 +103,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
 
     
     override func viewWillAppear(_ animated: Bool) {
-        self.view.backgroundColor = .systemIndigo
+        self.view.backgroundColor = .systemPurple
         let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
         let isFirstTime = defaults.bool(forKey: GlobalVariables.UserIDs.isUserFirstTime)
         if isLoggedIn == true {

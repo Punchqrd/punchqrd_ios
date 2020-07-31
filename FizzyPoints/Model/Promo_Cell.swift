@@ -18,9 +18,18 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
     let viewImageButton = UIButton()
     var parentView = UIView()
     
+    let backView = UIButton()
+    let newLargeImage = UIImageView()
+
+
     
     
-    var isTappedImage = false
+    
+    var isTappedImage = true
+    private lazy var isTappedLargeImage: UIButton = {
+        let isTappedLargeImage = UIButton()
+        return isTappedLargeImage
+    }()
         
     
     
@@ -29,7 +38,7 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         
         addSubview(businessTitle)
         businessTitle.translatesAutoresizingMaskIntoConstraints = false
-        businessTitle.font = UIFont(name: "Poppins-Normal", size: 14)
+        businessTitle.font = UIFont(name: "Poppins-Bold", size: 15)
         businessTitle.textAlignment = .left
         businessTitle.textColor = .black
         businessTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
@@ -116,17 +125,68 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
             return
         }
        
-        self.isTappedImage = true
-        print(parentView.frame)
+        
+        
+        
+        
         if self.isTappedImage == true {
+            
+            newLargeImage.frame = self.businessView.frame
+            newLargeImage.layer.cornerRadius = self.businessView.layer.cornerRadius
+            newLargeImage.image = self.businessImage.image
+            newLargeImage.center = self.center
+            newLargeImage.clipsToBounds = true
+            
+            self.parentView.addSubview(newLargeImage)
+            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseIn, animations: {
-                self.businessView.frame = CGRect(x: 0, y: 0, width: self.parentView.frame.size.width/2, height: self.parentView.frame.size.width/2)
-                self.businessView.center = self.parentView.center
                 
+                print("This is being called")
+                self.newLargeImage.frame = CGRect(x: 0, y: 0, width: self.parentView.frame.size.width/1.2, height: self.parentView.frame.size.width/1.2)
+                self.newLargeImage.layer.cornerRadius = (self.parentView.frame.size.width/1.2)/2
+                self.newLargeImage.clipsToBounds = true
+                self.newLargeImage.center = self.parentView.center
+                
+                self.backView.frame = self.parentView.frame
+                self.backView.backgroundColor = .clear
+                self.backView.addTarget(self, action: #selector(self.didTapImage), for: .touchUpInside)
+                self.parentView.addSubview(self.backView)
+                self.parentView.bringSubviewToFront(self.backView)
+                
+                
+              
+                self.isTappedImage = false
+                
+                print(self.isTappedImage)
+               
+                
+                
+                return
+
                 
             }, completion: nil)
         } else {
             print("Minimizing..")
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseIn, animations: {
+                           
+                self.newLargeImage.frame = CGRect(x: 0, y: 0, width: self.businessView.frame.size.width, height: self.businessView.frame.size.width)
+                self.newLargeImage.layer.cornerRadius = self.businessView.layer.cornerRadius
+                self.newLargeImage.clipsToBounds = true
+                self.newLargeImage.center = self.center
+
+                
+                self.isTappedImage = true
+                
+                
+            }, completion: nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                self.newLargeImage.removeFromSuperview()
+                self.backView.removeFromSuperview()
+            }
+         
+            
+                   
         }
         
         

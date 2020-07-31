@@ -106,10 +106,10 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         textInputForMail.layer.cornerRadius = 10
         textInputForMail.backgroundColor = .white
         self.textInputBackGroundView.addSubview(textInputForMail)
-        textInputForMail.topAnchor.constraint(equalTo: textInputBackGroundView.topAnchor, constant: 10).isActive = true
-        textInputForMail.bottomAnchor.constraint(equalTo: textInputBackGroundView.bottomAnchor, constant: -10).isActive = true
-        textInputForMail.rightAnchor.constraint(equalTo: textInputBackGroundView.rightAnchor, constant: -10).isActive = true
-        textInputForMail.leftAnchor.constraint(equalTo: textInputBackGroundView.leftAnchor, constant: 10).isActive = true
+        textInputForMail.topAnchor.constraint(equalTo: textInputBackGroundView.topAnchor, constant: 20).isActive = true
+        textInputForMail.bottomAnchor.constraint(equalTo: textInputBackGroundView.bottomAnchor, constant: -20).isActive = true
+        textInputForMail.rightAnchor.constraint(equalTo: textInputBackGroundView.rightAnchor, constant: -20).isActive = true
+        textInputForMail.leftAnchor.constraint(equalTo: textInputBackGroundView.leftAnchor, constant: 20).isActive = true
         
        
         //setup max character label

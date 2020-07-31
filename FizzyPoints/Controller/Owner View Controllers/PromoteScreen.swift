@@ -53,7 +53,6 @@ class PromoteScreen: UIViewController, UIPopoverPresentationControllerDelegate{
         //setup layers
         setupBackButton()
         setupPromotionView()
-        setupAllPromotionButton()
     }
     
     
@@ -73,6 +72,20 @@ class PromoteScreen: UIViewController, UIPopoverPresentationControllerDelegate{
         animationView.backgroundColor = .white
         animationView.play()
         animationView.loopMode = .autoReverse
+        
+        
+        allPromotionsButton.translatesAutoresizingMaskIntoConstraints = false
+        allPromotionsButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
+        allPromotionsButton.setTitleColor(Global_Colors.colors.softBlue, for: .normal)
+        allPromotionsButton.setTitle("View my promotions", for: .normal)
+        allPromotionsButton.backgroundColor = .clear
+        allPromotionsButton.addTarget(self, action: #selector(allPromosAction), for: .touchUpInside)
+        self.view.addSubview(allPromotionsButton)
+        self.view.bringSubviewToFront(allPromotionsButton)
+        allPromotionsButton.bottomAnchor.constraint(equalTo: animationView.topAnchor, constant: -15).isActive = true
+        allPromotionsButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
+        allPromotionsButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        allPromotionsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     
@@ -96,7 +109,7 @@ class PromoteScreen: UIViewController, UIPopoverPresentationControllerDelegate{
     func setupPromotionView() {
         promotionView.translatesAutoresizingMaskIntoConstraints = false
         promotionView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/1.1, height: self.view.frame.size.height/3)
-        promotionView.backgroundColor = .systemPurple
+        promotionView.backgroundColor = .white
         promotionView.layer.cornerRadius = 30
         self.view.addSubview(promotionView)
         promotionView.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/1.1).isActive = true
@@ -109,25 +122,14 @@ class PromoteScreen: UIViewController, UIPopoverPresentationControllerDelegate{
         mailView.setupView()
         promotionView.addSubview(mailView)
         
+      
+        
 
 
     }
     
     
-    func setupAllPromotionButton() {
-        allPromotionsButton.translatesAutoresizingMaskIntoConstraints = false
-        allPromotionsButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
-        allPromotionsButton.setTitleColor(Global_Colors.colors.softBlue, for: .normal)
-        allPromotionsButton.setTitle("View my promotions", for: .normal)
-        allPromotionsButton.backgroundColor = .clear
-        allPromotionsButton.addTarget(self, action: #selector(allPromosAction), for: .touchUpInside)
-        self.view.addSubview(allPromotionsButton)
-        self.view.bringSubviewToFront(allPromotionsButton)
-        allPromotionsButton.topAnchor.constraint(equalTo: promotionView.bottomAnchor, constant: 15).isActive = true
-        allPromotionsButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
-        allPromotionsButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        allPromotionsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
+    
     
     
     

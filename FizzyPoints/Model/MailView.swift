@@ -54,7 +54,7 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
        
         //setup the main view
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .clear
+        self.backgroundColor = .white
         self.superView!.addSubview(self)
         self.widthAnchor.constraint(equalToConstant: self.superView!.frame.size.width).isActive = true
         self.heightAnchor.constraint(equalToConstant: self.superView!.frame.size.height).isActive = true
@@ -63,16 +63,16 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         
         //setup the push button
         pushMailButton.translatesAutoresizingMaskIntoConstraints = false
-        pushMailButton.titleLabel?.font =  UIFont(name: "Poppins", size: 20)
-        pushMailButton.setTitleColor(.white, for: .normal)
+        pushMailButton.titleLabel?.font =  UIFont(name: "Poppins-Normal", size: 20)
+        pushMailButton.setTitleColor(.black, for: .normal)
         pushMailButton.setTitle("Post.", for: .normal)
         pushMailButton.backgroundColor = .clear
         pushMailButton.addTarget(self, action: #selector(sendPromotion), for: .touchUpInside)
         self.addSubview(pushMailButton)
         pushMailButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        pushMailButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        pushMailButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
-        pushMailButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        pushMailButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
+        pushMailButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        pushMailButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.sendSubviewToBack(pushMailButton)
         
         
@@ -84,14 +84,19 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         self.addSubview(textInputBackGroundView)
         self.sendSubviewToBack(textInputBackGroundView)
         textInputBackGroundView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        textInputBackGroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        textInputBackGroundView.bottomAnchor.constraint(equalTo: self.pushMailButton.topAnchor, constant: -15).isActive = true
         textInputBackGroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        textInputBackGroundView.widthAnchor.constraint(equalToConstant: self.frame.size.width/2).isActive = true
+        textInputBackGroundView.widthAnchor.constraint(equalToConstant: self.frame.size.width).isActive = true
+        textInputBackGroundView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+        textInputBackGroundView.layer.shadowColor = UIColor.lightGray.cgColor
+        textInputBackGroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        textInputBackGroundView.layer.shadowRadius = 10
+        textInputBackGroundView.layer.shadowOpacity = 0.3
         
         
         textInputForMail.translatesAutoresizingMaskIntoConstraints = false
         textInputForMail.textColor = .lightGray
-        textInputForMail.font = UIFont(name: "Poppins-Light", size: 14)
+        textInputForMail.font = UIFont(name: "Poppins", size: 14)
         textInputForMail.text = "Type your message here. Short and sweet!"
         textInputForMail.isUserInteractionEnabled = true
         textInputForMail.keyboardType = UIKeyboardType.default
@@ -105,10 +110,6 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         textInputForMail.bottomAnchor.constraint(equalTo: textInputBackGroundView.bottomAnchor, constant: -10).isActive = true
         textInputForMail.rightAnchor.constraint(equalTo: textInputBackGroundView.rightAnchor, constant: -10).isActive = true
         textInputForMail.leftAnchor.constraint(equalTo: textInputBackGroundView.leftAnchor, constant: 10).isActive = true
-        
-     
-        
-     
         
        
         //setup max character label
@@ -129,41 +130,30 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         //set the button for uploading a photo and the image holder
         
         
-        imageInputBackGroundView.translatesAutoresizingMaskIntoConstraints = false
-        imageInputBackGroundView.backgroundColor = Global_Colors.colors.apricot
-        imageInputBackGroundView.layer.cornerRadius = 30
-        self.addSubview(imageInputBackGroundView)
-        self.bringSubviewToFront(imageInputBackGroundView)
-        imageInputBackGroundView.leftAnchor.constraint(equalTo: self.textInputBackGroundView.rightAnchor, constant: 20).isActive = true
-        imageInputBackGroundView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        imageInputBackGroundView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        imageInputBackGroundView.widthAnchor.constraint(equalToConstant: self.frame.size.width/3.5).isActive = true
-        
-        
         imageInputForMail.translatesAutoresizingMaskIntoConstraints = false
         imageInputForMail.backgroundColor = .clear
-        imageInputForMail.layer.cornerRadius = (self.frame.size.width/3.5)/2
-        imageInputBackGroundView.addSubview(imageInputForMail)
-        imageInputForMail.centerXAnchor.constraint(equalTo: imageInputBackGroundView.centerXAnchor).isActive = true
-        imageInputForMail.centerYAnchor.constraint(equalTo: imageInputBackGroundView.centerYAnchor).isActive = true
-        imageInputForMail.widthAnchor.constraint(equalToConstant: self.frame.size.width/3.5).isActive = true
-        imageInputForMail.heightAnchor.constraint(equalToConstant: self.frame.size.width/3.5).isActive = true
-             
+        textInputBackGroundView.addSubview(imageInputForMail)
+        textInputBackGroundView.bringSubviewToFront(imageInputForMail)
+        imageInputForMail.leftAnchor.constraint(equalTo: textInputBackGroundView.leftAnchor, constant: 20).isActive = true
+        imageInputForMail.bottomAnchor.constraint(equalTo: textInputBackGroundView.bottomAnchor, constant: -20).isActive = true
+        imageInputForMail.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        imageInputForMail.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        imageInputForMail.layer.cornerRadius = 15
+        
+
         uploadPhotoButton.translatesAutoresizingMaskIntoConstraints = false
-        uploadPhotoButton.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-        uploadPhotoButton.titleLabel?.font =  UIFont(name: "Poppins", size: 13)
-        uploadPhotoButton.setTitleColor(.white, for: .normal)
-        uploadPhotoButton.setTitle("Add a Photo.", for: .normal)
+        uploadPhotoButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 20)
+        uploadPhotoButton.setTitleColor(.systemPurple, for: .normal)
+        uploadPhotoButton.setTitle("+", for: .normal)
         uploadPhotoButton.addTarget(self, action: #selector(uploadPhoto), for: .touchUpInside)
-        uploadPhotoButton.layer.cornerRadius = (self.frame.size.width/3.5)/2
-        uploadPhotoButton.backgroundColor = Global_Colors.colors.softBlue
+        uploadPhotoButton.layer.cornerRadius = 30
         uploadPhotoButton.isEnabled = true
         self.addSubview(uploadPhotoButton)
         self.bringSubviewToFront(uploadPhotoButton)
-        uploadPhotoButton.centerXAnchor.constraint(equalTo: imageInputBackGroundView.centerXAnchor).isActive = true
-        uploadPhotoButton.centerYAnchor.constraint(equalTo: imageInputBackGroundView.centerYAnchor).isActive = true
-        uploadPhotoButton.widthAnchor.constraint(equalToConstant: self.frame.size.width/3.5).isActive = true
-        uploadPhotoButton.heightAnchor.constraint(equalToConstant: self.frame.size.width/3.5).isActive = true
+        uploadPhotoButton.centerXAnchor.constraint(equalTo: imageInputForMail.centerXAnchor).isActive = true
+        uploadPhotoButton.centerYAnchor.constraint(equalTo: imageInputForMail.centerYAnchor).isActive = true
+        uploadPhotoButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        uploadPhotoButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
       
         
@@ -364,10 +354,12 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             imageInputForMail.image = image
-            imageInputForMail.layer.cornerRadius = (self.frame.size.width/3.5)/2
+            imageInputForMail.layer.cornerRadius = 15
             imageInputForMail.clipsToBounds = true
-//            imageInputBackGroundView.bringSubviewToFront(imageInputForMail)
+            self.uploadPhotoButton.tintColor = .clear
             self.uploadPhotoButton.backgroundColor = .clear
+            
+            
             
         }
         

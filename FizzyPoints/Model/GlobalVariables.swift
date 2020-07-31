@@ -91,6 +91,8 @@ class GlobalVariables {
         static let MessageCollectionTitle = "Promotions"
         static let Message = "Message"
         static let BinaryID = "Photo Binary ID"
+        static let Promo_CellID = "Promo_CellID"
+        static let Promo_NibCellFileName = "Promo_Cell"
         
     }
     

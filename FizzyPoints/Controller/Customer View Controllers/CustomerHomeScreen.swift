@@ -303,6 +303,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
      
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
+        cell.selectedBackgroundView = backgroundView
         
         cell.BonusPointsLabel.textColor = .white
         cell.bonusPointsCircle.isHidden = true
@@ -310,7 +311,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.ActualPointsLabel.text = String((Int(self.BusinessNamesArray[indexPath.row].points)))
         cell.ActualPointsLabel.textColor = UIColor.white
         
-        cell.selectedBackgroundView = backgroundView
+        
         cell.isUserInteractionEnabled = true
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name

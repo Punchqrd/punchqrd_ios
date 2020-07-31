@@ -85,6 +85,10 @@
 		17F1EF8224D2562D00726C34 /* PromoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8124D2562D00726C34 /* PromoteScreen.swift */; };
 		17F1EF8424D25D1A00726C34 /* mailman.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F1EF8324D25D1A00726C34 /* mailman.json */; };
 		17F1EF8824D3063B00726C34 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8724D3063B00726C34 /* MailView.swift */; };
+		17F1EF8A24D3C13600726C34 /* AllPromotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8924D3C13600726C34 /* AllPromotions.swift */; };
+		17F1EF8C24D3CA6600726C34 /* Promotion_Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */; };
+		17F1EF8F24D3CBA900726C34 /* Promo_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */; };
+		17F1EF9024D3CBA900726C34 /* Promo_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17F1EF8E24D3CBA900726C34 /* Promo_Cell.xib */; };
 		17F55F1324942D8900F78E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17F55F1224942D8900F78E5F /* GoogleService-Info.plist */; };
 		17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDE9248C346300041577 /* RedeemConfirm.swift */; };
 		17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEB248D369F00041577 /* ScanDataFile.swift */; };
@@ -176,6 +180,10 @@
 		17F1EF8124D2562D00726C34 /* PromoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteScreen.swift; sourceTree = "<group>"; };
 		17F1EF8324D25D1A00726C34 /* mailman.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mailman.json; path = ../../../../../Downloads/mailman.json; sourceTree = "<group>"; };
 		17F1EF8724D3063B00726C34 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MailView.swift; path = "/Users/sebastianbarry/Documents/FizzyPoints/Fizzy Source Code/FizzyPoints/Model/MailView.swift"; sourceTree = "<absolute>"; };
+		17F1EF8924D3C13600726C34 /* AllPromotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPromotions.swift; sourceTree = "<group>"; };
+		17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion_Objects.swift; sourceTree = "<group>"; };
+		17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promo_Cell.swift; sourceTree = "<group>"; };
+		17F1EF8E24D3CBA900726C34 /* Promo_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Promo_Cell.xib; sourceTree = "<group>"; };
 		17F55F1224942D8900F78E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		17F7BDE9248C346300041577 /* RedeemConfirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemConfirm.swift; sourceTree = "<group>"; };
 		17F7BDEB248D369F00041577 /* ScanDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataFile.swift; sourceTree = "<group>"; };
@@ -219,6 +227,7 @@
 				1796CB74248AE3B200B227B2 /* RemoveEmployeesScreen.swift */,
 				17F7BDEB248D369F00041577 /* ScanDataFile.swift */,
 				17F1EF8124D2562D00726C34 /* PromoteScreen.swift */,
+				17F1EF8924D3C13600726C34 /* AllPromotions.swift */,
 			);
 			path = "Owner View Controllers";
 			sourceTree = "<group>";
@@ -321,6 +330,8 @@
 				1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */,
 				179B9EBD24CF556500FD8A43 /* ScanDataView.swift */,
 				17F1EF8724D3063B00726C34 /* MailView.swift */,
+				17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */,
+				17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +345,7 @@
 				1796CB7A248AE58900B227B2 /* EmployeeCell.xib */,
 				17839FB524C214FF00B74AEF /* CustomerCell.xib */,
 				1714AA7924CF271100D17425 /* Individual_Scans_CellTableViewCell.xib */,
+				17F1EF8E24D3CBA900726C34 /* Promo_Cell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -499,6 +511,7 @@
 				172224DB248F45A50063F0FC /* BeerLoader.json in Resources */,
 				17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */,
 				17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */,
+				17F1EF9024D3CBA900726C34 /* Promo_Cell.xib in Resources */,
 				172224DD248F50A10063F0FC /* CheckMark.json in Resources */,
 				17DF19852488863C0040059C /* Poppins-Bold.ttf in Resources */,
 				1714AA7B24CF271100D17425 /* Individual_Scans_CellTableViewCell.xib in Resources */,
@@ -615,10 +628,13 @@
 				1783789C24C8F5A800436D1F /* OnboardingView.swift in Sources */,
 				1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */,
 				17C81F14247ACA7B008DAAA2 /* AppDelegate.swift in Sources */,
+				17F1EF8F24D3CBA900726C34 /* Promo_Cell.swift in Sources */,
 				179B9EBE24CF556500FD8A43 /* ScanDataView.swift in Sources */,
 				17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */,
 				173F1701247DB44B00C67812 /* QRView.swift in Sources */,
+				17F1EF8C24D3CA6600726C34 /* Promotion_Objects.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
+				17F1EF8A24D3C13600726C34 /* AllPromotions.swift in Sources */,
 				17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */,
 				17B930B724C2041E00D73FBB /* CustomerTable.swift in Sources */,
 				1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */,

@@ -18,6 +18,7 @@ import Lottie
 class GlobalFunctions {
     
     
+    
     //MARK:- Delete all businesses from the Customers Collection.
     static func deleteBusinessFromCustomerCollection(nameOfFile : String?) {
         let db = Firestore.firestore()

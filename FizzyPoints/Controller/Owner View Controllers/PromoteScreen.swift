@@ -12,9 +12,8 @@ import Lottie
 import FirebaseAuth
 import FirebaseFirestore
 
-class PromoteScreen: UIViewController {
-    
-    
+class PromoteScreen: UIViewController, UIPopoverPresentationControllerDelegate{
+
     //variable declarations
     private lazy var rocketAnimation: AnimationView = {
         let view = AnimationView()
@@ -47,6 +46,9 @@ class PromoteScreen: UIViewController {
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(popToMain))
         leftSwipe.direction = .up
         self.view.addGestureRecognizer(leftSwipe)
+        
+        
+        setupToHideKeyboardOnTapOnView()
 
         //setup layers
         setupBackButton()
@@ -80,7 +82,7 @@ class PromoteScreen: UIViewController {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.frame = CGRect(x: 0, y: 0, width: 35, height: 25)
         backButton.setBackgroundImage(tintedImage, for: .normal)
-        backButton.tintColor = Global_Colors.colors.apricot
+        backButton.tintColor = .systemPurple
         backButton.addTarget(self, action: #selector(popToMain), for: .touchUpInside)
         self.view.addSubview(backButton)
         backButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
@@ -94,7 +96,7 @@ class PromoteScreen: UIViewController {
     func setupPromotionView() {
         promotionView.translatesAutoresizingMaskIntoConstraints = false
         promotionView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/1.1, height: self.view.frame.size.height/3)
-        promotionView.backgroundColor = Global_Colors.colors.apricot
+        promotionView.backgroundColor = .systemPurple
         promotionView.layer.cornerRadius = 30
         self.view.addSubview(promotionView)
         promotionView.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/1.1).isActive = true
@@ -116,8 +118,9 @@ class PromoteScreen: UIViewController {
         allPromotionsButton.translatesAutoresizingMaskIntoConstraints = false
         allPromotionsButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
         allPromotionsButton.setTitleColor(Global_Colors.colors.softBlue, for: .normal)
-        allPromotionsButton.setTitle("View past promotions", for: .normal)
+        allPromotionsButton.setTitle("View my promotions", for: .normal)
         allPromotionsButton.backgroundColor = .clear
+        allPromotionsButton.addTarget(self, action: #selector(allPromosAction), for: .touchUpInside)
         self.view.addSubview(allPromotionsButton)
         self.view.bringSubviewToFront(allPromotionsButton)
         allPromotionsButton.topAnchor.constraint(equalTo: promotionView.bottomAnchor, constant: 15).isActive = true
@@ -143,6 +146,18 @@ class PromoteScreen: UIViewController {
     
     //MARK:- obcj functions
     
+    //to next all promotions screen.
+    @objc func allPromosAction() {
+        let promoteScreen = AllPromotions()
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromBottom
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(promoteScreen, animated: false)
+    }
     //return to the main menu
     @objc func popToMain() {
         let transition = CATransition()
@@ -155,6 +170,7 @@ class PromoteScreen: UIViewController {
     }
     
     
+
     
     
 }

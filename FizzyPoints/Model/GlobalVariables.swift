@@ -86,6 +86,12 @@ class GlobalVariables {
         
         //titles regarding transaction details
         static let OwnerRegisteredTitle = "Registered User"
+        
+        //titles regarding promotions
+        static let MessageCollectionTitle = "Promotions"
+        static let Message = "Message"
+        static let BinaryID = "Photo Binary ID"
+        
     }
     
     

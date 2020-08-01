@@ -80,9 +80,8 @@ class B_1Register : UIViewController {
         
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-            NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
-       
+            [NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
        navigationItem.title = "Create an Account"
       
         setupToHideKeyboardOnTapOnView()
@@ -133,7 +132,7 @@ class B_1Register : UIViewController {
         RegisterButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
         RegisterButton.setTitleColor(.white, for: .normal)
         RegisterButton.setTitle("Done", for: .normal)
-        RegisterButton.backgroundColor = .systemGreen
+        RegisterButton.backgroundColor = .black
         GlobalFunctions.setButtonRadius(button: RegisterButton)
         RegisterButton.layer.cornerRadius = RegisterButton.frame.height/2.1
         RegisterButton.addTarget(self, action: #selector(confirmData), for: .touchUpInside)

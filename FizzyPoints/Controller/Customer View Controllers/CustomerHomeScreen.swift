@@ -34,11 +34,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     }
     
     
-    func setupTitle() {
-        self.navigationItem.title = Auth.auth().currentUser?.email!
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Poppins-Thin", size: 15)!]
-    }
-    
+ 
     
     //MARK:- View functions
     
@@ -47,21 +43,30 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
-
+        navigationController?.navigationBar.prefersLargeTitles = false
         BusinessList.delegate = self
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
         
         self.navigationItem.title = "Your Subscriptions"
         refreshTableView()
         setupSideButton()
+        
+
 
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.largeTitleDisplayMode = .never
+    }
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.titleTextAttributes =
+                   [NSAttributedString.Key.foregroundColor: UIColor.black,
+                    NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
+               
+        self.navigationItem.title = "Your Subscriptions"
         self.refresher.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.8)
         self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
@@ -241,7 +246,6 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     @IBAction func searchBusinessButton(_ sender: UIBarButtonItem) {
-        
         
     }
     

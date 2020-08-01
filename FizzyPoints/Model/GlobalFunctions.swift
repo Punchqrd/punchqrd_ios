@@ -364,7 +364,7 @@ class GlobalFunctions {
                             print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
                             print(likelihood.likelihood)
                             //this value might have to change .40
-                            if likelihood.likelihood >= 0.40 {
+                            if likelihood.likelihood >= 0.0 {
                                 
                                 //value above might have to be changed (0.7)
                                 

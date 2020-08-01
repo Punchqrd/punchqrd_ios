@@ -35,6 +35,12 @@ class Customer_Feed: UIViewController {
         self.tableView.dataSource = self
         self.tableView.register(Promo_Cell.self, forCellReuseIdentifier: GlobalVariables.UserIDs.Promo_NibCellFileName)
         
+        let randomAnimations = ["BeerLoader", "PizzaLoader", "CoffeeLoader"]
+        let randomNum = Int.random(in: 0...2)
+        self.setupAnimation(parentView: self.view, animationView: animationView, animationName: randomAnimations[randomNum])
+                    
+     
+        
         findExistingBusinessSubscibed { (true, response) in
             guard let names = response as? [String] else {return}
             self.businessNamesOUT = names
@@ -52,7 +58,7 @@ class Customer_Feed: UIViewController {
                     self.returnArray.append(contentsOf: dataForCell)
                     print(self.returnArray.count)
                     self.tableView.reloadData()
-                    
+                    self.animationView.removeFromSuperview()
 
                     
                     
@@ -68,15 +74,16 @@ class Customer_Feed: UIViewController {
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-             NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
-        navigationItem.title = String(describing: "News Feed")
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = String(describing: "Whats the news?")
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         
         
     }
     
+   
     func setupView() {
         self.view.addSubview(tableView)
         tableView.delegate = self
@@ -117,7 +124,10 @@ class Customer_Feed: UIViewController {
         backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         backButton.leftAnchor.constraint(equalTo: containerForButton.leftAnchor, constant: 15).isActive = true
         backButton.centerYAnchor.constraint(equalTo: containerForButton.centerYAnchor, constant: 0).isActive = true
-               
+              
+        
+        //animate the view upon entry
+        
         
         
     }
@@ -248,6 +258,10 @@ extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.Promo_NibCellFileName, for: indexPath) as! Promo_Cell
 
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.white
+        cell.selectedBackgroundView = backgroundView
+        
 //        DispatchQueue.main.async {
         cell.parentView = self.view
         cell.businessDate.text = self.returnArray[indexPath.row].date
@@ -259,6 +273,26 @@ extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
 //        }
         return cell
         
+    }
+    
+    
+    
+    //MARK:- animation func
+    func setupAnimation(parentView: UIView, animationView: AnimationView, animationName: String) {
+        
+        
+        
+        
+        animationView.animation = Animation.named(animationName)
+        animationView.frame = parentView.frame
+        animationView.center.x = parentView.frame.width/2
+        animationView.center.y = parentView.frame.height/2
+        animationView.contentMode = .scaleAspectFit
+        
+        animationView.backgroundColor = .clear
+        animationView.play()
+        animationView.loopMode = .loop
+        parentView.addSubview(animationView)
     }
     
     

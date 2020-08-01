@@ -20,9 +20,9 @@ class BusinessSearch: UIViewController {
     var resultView: UITextView?
     var businessName : String?
     
-    @IBOutlet weak var AddressLabel: UILabel!
-    @IBOutlet weak var BusinessNameLabel: UILabel!
-    @IBOutlet weak var AddButton: UIButton!
+    var AddressLabel = UILabel()
+    var BusinessNameLabel = UILabel()
+    var AddButton = UIButton()
     
     
     //MARK:- View functions
@@ -43,6 +43,7 @@ class BusinessSearch: UIViewController {
         // Prevent the navigation bar from being hidden when searching.
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.searchBar.placeholder = ""
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: "Back"), style: .plain, target: self, action:#selector(back))
         
     }
     
@@ -58,16 +59,49 @@ class BusinessSearch: UIViewController {
     
     //MARK:- Supplementary functions
     func setupButtons() {
-        GlobalFunctions.setButtonRadius(button: self.AddButton)
+        BusinessNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(BusinessNameLabel)
+        BusinessNameLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
+        BusinessNameLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
+        BusinessNameLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -70).isActive = true
+        BusinessNameLabel.textAlignment = .natural
+        BusinessNameLabel.font = UIFont(name: "Poppins-Regular", size: 20)
+        BusinessNameLabel.numberOfLines = 0
+        BusinessNameLabel.textColor = .black
+        
+        AddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(AddressLabel)
+        AddressLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
+        AddressLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
+        AddressLabel.topAnchor.constraint(equalTo: BusinessNameLabel.bottomAnchor, constant: 20).isActive = true
+        AddressLabel.textAlignment = .natural
+        AddressLabel.numberOfLines = 0
+        AddressLabel.font = UIFont(name: "Poppins-Light", size: 17)
+        AddressLabel.textColor = .black
+        
+        
+        AddButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(AddButton)
+        AddButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        AddButton.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        AddButton.layer.cornerRadius = 60
+        AddButton.titleLabel?.font = UIFont(name: "Poppins-Regular", size: 30)
+        AddButton.setTitle("+", for: .normal)
+        AddButton.titleLabel?.textColor = .white
+        AddButton.addTarget(self, action: #selector(AddBusiness), for: .touchUpInside)
+        AddButton.backgroundColor = .systemIndigo
+        AddButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
+        AddButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
     }
     
     
     //MARK:- Actions
-    @IBAction func BackAction(_ sender: UIButton) {
+    @objc func back() {
         self.navigationController?.popViewController(animated: true)
     }
+  
     
-    @IBAction func AddBusiness(_ sender: UIButton) {
+    @objc func AddBusiness() {
         
         self.addLoadingView()
         if let substituteValue = self.businessName {
@@ -104,7 +138,7 @@ class BusinessSearch: UIViewController {
                     self.removeLoadingView()
                     //present alert saying that the business doesnt exist in the databaseyet.
                     
-                    let alert = UIAlertController(title: "Well", message: "Looks like this business doesn't use fizzypoints...yet!", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Well...", message: "Looks like this business doesn't use fizzypoints yet.", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
                         alert.dismiss(animated: true, completion: nil)

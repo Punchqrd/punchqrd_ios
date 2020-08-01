@@ -12,11 +12,11 @@ import UIKit
 class Promotion_Objects {
     
     var message: String
-    var imageID: UIImage
+    var imageID: UIImage?
     var date: String
     var businessName: String
     
-    init(message: String, imageID: UIImage, date: String, businessName: String) {
+    init(message: String, imageID: UIImage?, date: String, businessName: String) {
         self.message = message
         self.imageID = imageID
         self.businessName = businessName

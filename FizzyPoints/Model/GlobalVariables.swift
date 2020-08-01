@@ -30,6 +30,7 @@ class GlobalVariables {
         static let CollectionTitle = "All Users"
         static let BusinessName = "Business Name"
         static let CustomerBusinessCollection = "Business Collection"
+        static let BusinessAddressCollection = "Business Address Collection"
         static let PointsString =  "Points"
         static let existingBusinesses = "Existing Businesses"
         
@@ -88,11 +89,13 @@ class GlobalVariables {
         static let OwnerRegisteredTitle = "Registered User"
         
         //titles regarding promotions
+        static let CurrentMessageCollectionTitle = "Current Promotion"
         static let MessageCollectionTitle = "Promotions"
         static let Message = "Message"
         static let BinaryID = "Photo Binary ID"
         static let Promo_CellID = "Promo_CellID"
         static let Promo_NibCellFileName = "Promo_Cell"
+        static let dateUploaded = "Date Uploaded"
         
     }
     

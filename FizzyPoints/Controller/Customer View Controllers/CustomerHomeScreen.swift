@@ -24,6 +24,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var qrButton: UIButton!
+    let viewFeedButton = UIButton()
     let BusinessList = UITableView()
     
     //MARK:- Preliminary setup
@@ -46,19 +47,21 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
+
         BusinessList.delegate = self
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-             NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+            [NSAttributedString.Key.foregroundColor: UIColor.black,
+             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
         
-//        self.navigationItem.title = "fizzypoints"
+        self.navigationItem.title = "Your Subscriptions"
         refreshTableView()
+        setupSideButton()
+
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.BusinessList.frame.size.width = self.view.frame.size.width
         self.refresher.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.8)
         self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
         self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
@@ -75,16 +78,15 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         GlobalVariables.ActualIDs.isLoggedIn = true
         self.setupDefault()
         showList()
-        
         setupTable()
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         
-//        navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
-//        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-//        navigationController?.navigationBar.layer.shadowRadius = 4.0
-//        navigationController?.navigationBar.layer.shadowOpacity = 0.2
-//        navigationController?.navigationBar.layer.masksToBounds = false
+        //swipe gestures
+        let viewNewsFeedGesture = UISwipeGestureRecognizer(target: self, action: #selector(didTapSideButton))
+        viewNewsFeedGesture.direction = .right
+        self.view.addGestureRecognizer(viewNewsFeedGesture)
+        
         
     }
     
@@ -139,14 +141,49 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     
-    //MARK:- Table View logic
+    //MARK:- Table View logic and Setup
+    
+    func setupSideButton() {
+        let containerForButton = UIView()
+        containerForButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(containerForButton)
+        self.view.bringSubviewToFront(containerForButton)
+        containerForButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        containerForButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        containerForButton.layer.cornerRadius = 35
+        containerForButton.backgroundColor = .systemPurple
+        containerForButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+        containerForButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: -35).isActive = true
+        containerForButton.layer.shadowColor = UIColor.lightGray.cgColor
+        containerForButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        containerForButton.layer.shadowRadius = 10
+        containerForButton.layer.shadowOpacity = 0.3
+        
+        
+        
+        
+        let backGroundImage = UIImage(systemName: "chevron.right")
+        let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
+        containerForButton.addSubview(viewFeedButton)
+        containerForButton.bringSubviewToFront(viewFeedButton)
+        viewFeedButton.translatesAutoresizingMaskIntoConstraints = false
+        viewFeedButton.setImage(tintedImage, for: .normal)
+        viewFeedButton.tintColor = .white
+        viewFeedButton.backgroundColor = .clear
+        viewFeedButton.addTarget(self, action: #selector(didTapSideButton), for: .touchUpInside)
+        viewFeedButton.rightAnchor.constraint(equalTo: containerForButton.rightAnchor, constant: -15).isActive = true
+        viewFeedButton.centerYAnchor.constraint(equalTo: containerForButton.centerYAnchor, constant: 0).isActive = true
+        
+        
+        
+        
+    }
     
     func setupTable() {
         BusinessList.translatesAutoresizingMaskIntoConstraints = false
-        BusinessList.frame = CGRect(x: 0, y: 0,width: self.view.frame.size.width, height: self.view.frame.size.height/2)
         self.view.addSubview(BusinessList)
         BusinessList.widthAnchor.constraint(equalToConstant: self.view.frame.size.width).isActive = true
-        BusinessList.heightAnchor.constraint(equalToConstant: self.view.frame.size.height/2).isActive = true
+        BusinessList.heightAnchor.constraint(equalToConstant: self.view.frame.size.height).isActive = true
         BusinessList.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         BusinessList.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         BusinessList.layer.shadowColor = UIColor.black.cgColor
@@ -177,7 +214,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
             else {
                 for businessNames in Businesses!.documents {
                     //this is where you can add all the businesses to the tableview
-                    let newBusinessAdded = BusinessName(inputName: businessNames.documentID, pointsAdded: businessNames.get(GlobalVariables.UserIDs.PointsString) as? Float ?? 0, redemptionCode: businessNames.get(GlobalVariables.UserIDs.RedemptionNumberString) as? Int ?? 0, bonusPoints: businessNames.get(GlobalVariables.UserIDs.BonusPointsString) as? Int ?? 0)
+                    let newBusinessAdded = BusinessName(inputName: businessNames.documentID, pointsAdded: businessNames.get(GlobalVariables.UserIDs.PointsString) as? Float ?? 0, redemptionCode: businessNames.get(GlobalVariables.UserIDs.RedemptionNumberString) as? Int ?? 0, bonusPoints: businessNames.get(GlobalVariables.UserIDs.BonusPointsString) as? Int ?? 0, address: businessNames.get(GlobalVariables.UserIDs.UserAddress) as! String)
                     //add a new business to the array
                     
                     self.BusinessNamesArray.append(newBusinessAdded)
@@ -208,7 +245,17 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         
     }
     
-    
+    @objc func didTapSideButton() {
+        let promoteScreen = Customer_Feed()
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromLeft
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(promoteScreen, animated: false)
+    }
     
     //MARK:- Alerts
     
@@ -248,7 +295,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     func createBottomAlert(title : String?, message : String?, valueRemove : Int, path : IndexPath) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-            GlobalFunctions.deleteBusinessFromCustomerCollection(nameOfFile: self.BusinessNamesArray[valueRemove].name)
+            GlobalFunctions.deleteBusinessFromCustomerCollection(nameOfFile: self.BusinessNamesArray[valueRemove].name, address: self.BusinessNamesArray[valueRemove].address)
             self.BusinessNamesArray.remove(at: valueRemove)
             self.BusinessList.deleteRows(at: [path], with: .fade)
             //insert the function to delete a piece of data from the collection
@@ -294,11 +341,10 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
-        cell.PointsProgressBar.trackTintColor = UIColor.white.withAlphaComponent(0.15)
+        cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.1)
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
 //        cell.PointsProgressBar.progressTintColor = UIColor(red: 123, green: 0, blue: 146)
         cell.PointsProgressBar.progressTintColor = UIColor.systemPurple
-        cell.frame.size.width = self.BusinessList.frame.size.width
         
      
         let backgroundView = UIView()
@@ -316,19 +362,16 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         
-        GlobalFunctions.setPointProgressBarRadius(bar: cell.PointsProgressBar)
+//        GlobalFunctions.setPointProgressBarRadius(bar: cell.PointsProgressBar)
         
         
         if self.BusinessNamesArray[indexPath.row].bonusPoints != 0 {
             self.delay(0.2) {
                 cell.bonusPointsCircle.isHidden = false
-                cell.bonusPointsCircle.sendSubviewToBack(cell.BonusPointsLabel)
+                cell.BonusPointsLabel.text = String(describing: self.BusinessNamesArray[indexPath.row].bonusPoints)
+//                cell.bonusPointsCircle.sendSubviewToBack(cell.BonusPointsLabel)
 
-                if self.BusinessNamesArray[indexPath.row].bonusPoints == 10 {
-                    cell.BonusPointsLabel.text = ("+10!")
-                } else {
-                    cell.BonusPointsLabel.text = ("+\(String(self.BusinessNamesArray[indexPath.row].bonusPoints))")
-                }
+              
             }
             self.delay(3.0) {
                 cell.bonusPointsCircle.isHidden = true
@@ -344,13 +387,14 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         if cell.PointsProgressBar.progress.isEqual(to: 1) {
             cell.CheckMarkImage.isHidden = false
             cell.animateCheckMark()
-            cell.PointsProgressBar.progressTintColor = UIColor.green
+            cell.PointsProgressBar.progressTintColor = UIColor.systemGreen
+        } else {
+            cell.pointsCircle.backgroundColor = .systemIndigo
+            cell.ActualPointsLabel.isHidden = false
         }
         
-        if cell.PointsProgressBar.progress.isEqual(to: 0) {
-            cell.PointsProgressBar.trackTintColor = UIColor.white.withAlphaComponent(0.20)
-            cell.ActualPointsLabel.textColor = .white
-        }
+        
+        
        
         
         return cell

@@ -20,12 +20,24 @@ class GlobalFunctions {
     
     
     //MARK:- Delete all businesses from the Customers Collection.
-    static func deleteBusinessFromCustomerCollection(nameOfFile : String?) {
+    static func deleteBusinessFromCustomerCollection(nameOfFile : String?, address: String) {
         let db = Firestore.firestore()
         db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).document(nameOfFile!).delete()
             { err in if let err = err {
                 print(err.localizedDescription)
-            } else {print("Deleted File")}}
+            } else {print("Deleted File")}
+                
+        }
+        
+        db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.BusinessAddressCollection).document(address).delete()
+            {
+                err in if let err = err {
+                    print(err.localizedDescription)
+                }
+                else {
+                    print("deleted file 2")
+                }
+        }
     }
     
     

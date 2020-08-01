@@ -19,6 +19,7 @@ class AllPromotions: UIViewController {
     //variable declarations
     let backButton = UIButton()
     let tableView = UITableView()
+    let refresher = UIRefreshControl()
     var promotionsObjectsArray : [Promotion_Objects] = []
     //view functions
     override func viewDidLoad() {
@@ -31,32 +32,55 @@ class AllPromotions: UIViewController {
         self.navigationItem.hidesBackButton = true
         
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+            [NSAttributedString.Key.foregroundColor: UIColor.black,
              NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
-        
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "All Promotions"
+        self.navigationController?.navigationBar.barTintColor = .white
         setupTableView()
         setupBackButton()
-
+        refreshTableView()
+        
         
         
     }
     
     
     func setupBackButton() {
+        
+        let containerForButton = UIView()
+        
+        containerForButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(containerForButton)
+        containerForButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        containerForButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        containerForButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
+        containerForButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
+        
+        containerForButton.backgroundColor = .white
+        containerForButton.layer.cornerRadius = 35
+        
         let backGroundImage = UIImage(systemName: "chevron.down")
         let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.frame = CGRect(x: 0, y: 0, width: 35, height: 25)
         backButton.setBackgroundImage(tintedImage, for: .normal)
         backButton.tintColor = Global_Colors.colors.coolMint
         backButton.addTarget(self, action: #selector(popBack), for: .touchUpInside)
-        self.view.addSubview(backButton)
-        self.view.bringSubviewToFront(backButton)
-        backButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        containerForButton.addSubview(backButton)
+
+        backButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        backButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
-        backButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
+        backButton.centerXAnchor.constraint(equalTo: containerForButton.centerXAnchor, constant: 0).isActive = true
+        backButton.centerYAnchor.constraint(equalTo: containerForButton.centerYAnchor, constant: 0).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: containerForButton.centerYAnchor, constant: 0).isActive = true
+        
+       
+        containerForButton.bringSubviewToFront(backButton)
+        containerForButton.layer.shadowColor = UIColor.lightGray.cgColor
+        containerForButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        containerForButton.layer.shadowRadius = 10
+        containerForButton.layer.shadowOpacity = 0.3
     }
     
     func setupTableView() {
@@ -82,7 +106,7 @@ class AllPromotions: UIViewController {
         createPromotions()
         tableView.dataSource = self
         tableView.register(Promo_Cell.self, forCellReuseIdentifier: GlobalVariables.UserIDs.Promo_NibCellFileName)
-       
+        
         
         
     }
@@ -118,32 +142,35 @@ class AllPromotions: UIViewController {
                             //now go into the firebase to get the photo to ultimaetly append it to the array as part of a new promotions object.
                             // Create a reference to the file you want to download
                             let downloadRef = Storage.storage().reference(withPath: "\(businessAddress)/\(String(describing: photoID!)).jpg")
-                            //                            let downloadMetaData = StorageMetadata.init()
-                            //                            downloadMetaData.contentType = "image/jpg"
-                            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                            downloadRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
-                                if let error = error {
-                                    print(error)
-                                    return
-                                }
+                            
+                            let taskReference = downloadRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
                                 
-                                
-                                if let data = data {
-                                    
-                                    //this is where we can populate all of the values in the array...
-                                    let newImage = UIImage(data: data)
-                                    let newPromotion = Promotion_Objects(message: message, imageID: newImage!, date: date, businessName: nameofBusiness)
+                                if let image = data {
+                                    let newImage = UIImage(data: image)
+                                    let newPromotion = Promotion_Objects(message: message, imageID: newImage, date: date, businessName: nameofBusiness)
                                     self.promotionsObjectsArray.append(newPromotion)
                                     DispatchQueue.main.async { self.tableView.reloadData() }
-                                    self.tableView.reloadData()
-                                    
+                                        self.tableView.reloadData()
+                                        self.refresher.endRefreshing()
+                                } else {
+                                    let newPromotion = Promotion_Objects(message: message, imageID: nil, date: date, businessName: nameofBusiness)
+                                    self.promotionsObjectsArray.append(newPromotion)
+                                    DispatchQueue.main.async {
+                                        self.tableView.reloadData()
+                                        self.refresher.endRefreshing()
+                                    }
                                 }
                                 
                                 
                             }
                             
-                            
-                            
+                            taskReference.observe(.progress) { (snapshot) in
+                                guard let pctThere = snapshot.progress?.fractionCompleted else { return }
+                                print(pctThere)
+                                
+                                
+                                
+                            }
                             
                             
                         }
@@ -153,14 +180,63 @@ class AllPromotions: UIViewController {
                         
                         
                         
+                        
                     }
+                    
+                    
+                    
+                    
+                    
+                    
                 }
             }
-            
         }
+        
     }
     
+    
+    func refreshTableView() {
+        //this is the refresh list variables to enable a refresh for the UITableView
+        
+        
+        refresher.tintColor = .lightGray
+        refresher.addTarget(self, action: #selector(self.refresh), for: UIControl.Event.valueChanged)
+        self.tableView.addSubview(refresher)
+        
+        
+    }
+    
+    @objc func refresh() {
+        //calls the function below
+        
+        refreshData()
+        
+    }
+    
+    
+    
+    //function to refresh the data on the page
+    func refreshData() {
+        
+        
+        
+        refresher.backgroundColor = UIColor.white
+        
+        DispatchQueue.main.async {
+            self.createPromotions()
+            self.tableView.reloadData()
+            self.tableView.dataSource = self
+            
+            
+        }
+        
+        
+    }
+    
+    
 }
+
+
 
 
 
@@ -175,25 +251,41 @@ extension AllPromotions: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.Promo_NibCellFileName, for: indexPath) as! Promo_Cell
-        cell.businessDate.text = promotionsObjectsArray[indexPath.row].date
-        cell.businessImage.image = promotionsObjectsArray[indexPath.row].imageID
-        cell.businessMessage.text = promotionsObjectsArray[indexPath.row].message
-        cell.businessMessage.numberOfLines = 0
-        cell.businessTitle.text = promotionsObjectsArray[indexPath.row].businessName
-        cell.parentView = self.view
-        print(cell.parentView.frame.size.width/2)
-        print(cell.parentView.frame.size.height/2)
+        
+        if let image = promotionsObjectsArray[indexPath.row].imageID {
+            cell.businessDate.text = promotionsObjectsArray[indexPath.row].date
+            cell.businessDate.numberOfLines = 0
+            cell.businessImage.image = image
+            cell.businessMessage.text = promotionsObjectsArray[indexPath.row].message
+            cell.businessMessage.numberOfLines = 0
+            cell.businessTitle.text = promotionsObjectsArray[indexPath.row].businessName
+            cell.parentView = self.view
+        } else {
+            cell.businessImage.removeFromSuperview()
+            cell.parentView = self.view
+            cell.businessDate.text = promotionsObjectsArray[indexPath.row].date
+            cell.businessDate.numberOfLines = 0
+            cell.businessMessage.topAnchor.constraint(equalTo: cell.businessDate.bottomAnchor, constant: 5).isActive = true
+            cell.businessMessage.rightAnchor.constraint(equalTo: cell.rightAnchor, constant: -30).isActive = true
+            cell.businessMessage.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 30).isActive = true
+            cell.businessMessage.text = promotionsObjectsArray[indexPath.row].message
+            cell.businessMessage.numberOfLines = 0
+            cell.businessTitle.text = promotionsObjectsArray[indexPath.row].businessName
+        }
+        
+       
+        
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = backgroundView
         
-       
-
+        
+        
         return cell
     }
     
-
+    
     
     
     

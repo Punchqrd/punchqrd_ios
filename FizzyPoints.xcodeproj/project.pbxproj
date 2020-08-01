@@ -31,6 +31,7 @@
 		173B49F4248B494000056833 /* C_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F3248B494000056833 /* C_2Register.swift */; };
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
+		174AED9524D5B55B00AF704C /* Customer_Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174AED9424D5B55B00AF704C /* Customer_Feed.swift */; };
 		176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176AD81524901DAD00669202 /* StoreKit.framework */; };
 		1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771DB8324BB820500154CC1 /* PaymentScreen.swift */; };
 		1783789C24C8F5A800436D1F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783789B24C8F5A800436D1F /* OnboardingView.swift */; };
@@ -123,6 +124,7 @@
 		173B49F3248B494000056833 /* C_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_2Register.swift; sourceTree = "<group>"; };
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
+		174AED9424D5B55B00AF704C /* Customer_Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer_Feed.swift; sourceTree = "<group>"; };
 		176AD81524901DAD00669202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1771DB8324BB820500154CC1 /* PaymentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentScreen.swift; sourceTree = "<group>"; };
 		1783789B24C8F5A800436D1F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */,
 				173F1704247DB8AB00C67812 /* BusinessSearch.swift */,
 				173F1700247DB44B00C67812 /* QRView.swift */,
+				174AED9424D5B55B00AF704C /* Customer_Feed.swift */,
 			);
 			path = "Customer View Controllers";
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */,
 				17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */,
 				17F1EF8224D2562D00726C34 /* PromoteScreen.swift in Sources */,
+				174AED9524D5B55B00AF704C /* Customer_Feed.swift in Sources */,
 				1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */,
 				17C81F38247C3197008DAAA2 /* GlobalFunctions.swift in Sources */,
 				17C81F2C247ACB01008DAAA2 /* GlobalVariables.swift in Sources */,

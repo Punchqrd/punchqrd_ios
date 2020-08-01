@@ -87,8 +87,11 @@ class BusinessSearch: UIViewController {
                             self.removeLoadingView()
                             self.searchController?.searchBar.placeholder = "Business already added"
                         } else {
+                            let BusinessAddressCollection = db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.BusinessAddressCollection).document(self.AddressLabel.text!)
+                            BusinessAddressCollection.setData(["ID" : self.AddressLabel.text!])
                             
-                            collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0", GlobalVariables.UserIDs.CustomerTotalSpent: 0])
+                            
+                            collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0", GlobalVariables.UserIDs.CustomerTotalSpent: 0, GlobalVariables.UserIDs.UserAddress: self.AddressLabel.text!])
                             self.removeLoadingView()
                             self.navigationController?.popViewController(animated: true)
                         }

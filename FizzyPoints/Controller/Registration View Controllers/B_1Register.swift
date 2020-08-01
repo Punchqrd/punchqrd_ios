@@ -118,7 +118,7 @@ class B_1Register : UIViewController {
         containerView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / 2).isActive = true
         containerView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: containerView.frame.size.height/1.3).isActive = true
         containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        containerView.backgroundColor = .purple
+        containerView.backgroundColor = .white
         containerView.layer.shadowColor = UIColor.black.cgColor
         containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerView.layer.shadowRadius = 10
@@ -150,7 +150,7 @@ class B_1Register : UIViewController {
         confirmpasswordTextFieldView.backgroundColor = .white
         confirmpasswordTextFieldView.center.x = self.view.center.x - 23
         confirmpasswordTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*2 + 20)
-        B_1Register.setupShadow(view: confirmpasswordTextFieldView)
+//        B_1Register.setupShadow(view: confirmpasswordTextFieldView)
         
         
         ConfirmPasswordTextField.frame = CGRect(x: 0, y: 0, width: confirmpasswordTextFieldView.frame.size.width - 30, height: confirmpasswordTextFieldView.frame.size.height - 10)
@@ -171,7 +171,7 @@ class B_1Register : UIViewController {
         passwordTextFieldView.backgroundColor = .white
         passwordTextFieldView.center.x = self.view.center.x - 23
         passwordTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*3 + 30)
-        B_1Register.setupShadow(view: passwordTextFieldView)
+//        B_1Register.setupShadow(view: passwordTextFieldView)
         
         
         PasswordTextField.frame = CGRect(x: 0, y: 0, width: confirmpasswordTextFieldView.frame.size.width - 30, height: confirmpasswordTextFieldView.frame.size.height - 10)
@@ -197,7 +197,7 @@ class B_1Register : UIViewController {
         cakeView.heightAnchor.constraint(equalToConstant: RegisterButton.frame.size.height).isActive = true
         cakeView.centerYAnchor.constraint(equalTo: containerView.topAnchor, constant: self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)).isActive = true
         cakeView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -(containerView.frame.size.width - RegisterButton.frame.size.width)/2).isActive = true
-        B_1Register.setupShadow(view: cakeView)
+//        B_1Register.setupShadow(view: cakeView)
         
         
         
@@ -210,7 +210,7 @@ class B_1Register : UIViewController {
         birthYearView.centerYAnchor.constraint(equalTo: containerView.topAnchor, constant: self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)).isActive = true
         birthYearView.rightAnchor.constraint(equalTo: cakeView.leftAnchor, constant: -5).isActive = true
         birthYearView.backgroundColor = .white
-        B_1Register.setupShadow(view: birthYearView)
+//        B_1Register.setupShadow(view: birthYearView)
         
         
         birthYear.frame = CGRect(x: 0, y: 0, width: birthYearView.frame.size.width - 30, height: birthYearView.frame.size.height - 10)
@@ -232,7 +232,7 @@ class B_1Register : UIViewController {
         birthDayView.rightAnchor.constraint(equalTo: birthYearView.leftAnchor, constant: -5).isActive = true
         birthDayView.centerYAnchor.constraint(equalTo: containerView.topAnchor, constant: self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)).isActive = true
         birthDayView.backgroundColor = .white
-        B_1Register.setupShadow(view: birthDayView)
+//        B_1Register.setupShadow(view: birthDayView)
         
         
         birthDay.frame = CGRect(x: 0, y: 0, width: birthDayView.frame.size.width - 20, height: birthDayView.frame.size.height - 10)
@@ -254,7 +254,7 @@ class B_1Register : UIViewController {
         birthMonthView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: (containerView.frame.size.width - RegisterButton.frame.size.width)/2).isActive = true
         birthMonthView.centerYAnchor.constraint(equalTo: containerView.topAnchor, constant: self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*4 + 40)).isActive = true
         birthMonthView.backgroundColor = .white
-        B_1Register.setupShadow(view: birthMonthView)
+//        B_1Register.setupShadow(view: birthMonthView)
         
         
         birthMonth.translatesAutoresizingMaskIntoConstraints = false
@@ -276,7 +276,7 @@ class B_1Register : UIViewController {
         emailTextFieldView.backgroundColor = .white
         emailTextFieldView.center.x = self.view.center.x - 23
         emailTextFieldView.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*5 + 50)
-        B_1Register.setupShadow(view: emailTextFieldView)
+//        B_1Register.setupShadow(view: emailTextFieldView)
         
         
         EmailTextField.frame = CGRect(x: 0, y: 0, width: emailTextFieldView.frame.size.width - 30, height: emailTextFieldView.frame.size.height - 10)
@@ -298,7 +298,7 @@ class B_1Register : UIViewController {
         firstNameTextFieldView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: (containerView.frame.size.width - RegisterButton.frame.size.width)/2).isActive = true
         firstNameTextFieldView.centerYAnchor.constraint(equalTo: containerView.topAnchor, constant: (self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*6 + 60))).isActive = true
         firstNameTextFieldView.backgroundColor = .white
-        B_1Register.setupShadow(view: firstNameTextFieldView)
+//        B_1Register.setupShadow(view: firstNameTextFieldView)
         
         
         FirstName.frame = CGRect(x: 0, y: 0, width: firstNameTextFieldView.frame.size.width - 30, height: firstNameTextFieldView.frame.size.height - 10)
@@ -318,7 +318,7 @@ class B_1Register : UIViewController {
         lastNameTextFieldView.centerYAnchor.constraint(equalTo: containerView.topAnchor, constant: (self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*6 + 60))).isActive = true
         lastNameTextFieldView.backgroundColor = .white
         //        firstNameTextFieldView.center.x = self.view.center.x - 23
-        B_1Register.setupShadow(view: lastNameTextFieldView)
+//        B_1Register.setupShadow(view: lastNameTextFieldView)
         
         LastName.frame = CGRect(x: 0, y: 0, width: lastNameTextFieldView.frame.size.width - 30, height: lastNameTextFieldView.frame.size.height - 10)
         LastName.placeholder = "Last Name"
@@ -334,30 +334,18 @@ class B_1Register : UIViewController {
         
         //setup the error label
         ErrorLabel.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.width, height: RegisterButton.frame.size.height/1.5)
-        ErrorLabel.text = "fizzypoints"
+        ErrorLabel.text = "Customer"
         ErrorLabel.textColor = .systemPurple
-        ErrorLabel.font =  UIFont(name: "Poppins-Bold", size: 15)
+        ErrorLabel.font =  UIFont(name: "Poppins-Regular", size: 15)
         ErrorLabel.textAlignment = .center
         ErrorLabel.center.x = self.view.center.x - 23
         ErrorLabel.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*7 + 70)
-        ErrorLabel.numberOfLines = 2
+        ErrorLabel.numberOfLines = 0
         containerView.addSubview(ErrorLabel)
         
         
         
         
-        self.homeAnimation.animation = Animation.named("HomeAnimation")
-        self.homeAnimation.frame.size.height =  self.view.frame.width/2
-        self.homeAnimation.frame.size.width = self.view.frame.width/2
-        self.homeAnimation.center.x = self.view.frame.size.width/2
-        self.homeAnimation.center.y = self.view.frame.size.height - self.view.center.y/2.4
-        self.homeAnimation.contentMode = .center
-        self.homeAnimation.backgroundColor = .clear
-        self.homeAnimation.play()
-        self.homeAnimation.loopMode = .loop
-        self.homeAnimation.contentMode = .scaleAspectFit
-        self.view.addSubview(self.homeAnimation)
-        self.view.sendSubviewToBack(homeAnimation)
         
         
         

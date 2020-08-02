@@ -473,10 +473,22 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
             }
             else {
                 
-                let user = Auth.auth().currentUser
-                switch user!.isEmailVerified {
-                    
-                case true:
+                
+                
+                
+                //MARK:- UNCOMMENT THIS FOR EMAIL VERIFICATION
+//                let user = Auth.auth().currentUser
+//                switch user!.isEmailVerified {
+//
+//                case true:
+                
+                
+                
+                
+                
+                
+                
+                
                     
                     //fetch the document array for the user.
                     let document = self.db.collection(GlobalVariables.UserIDs.CollectionTitle).document(self.EmailTextField.text!)
@@ -525,12 +537,21 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                         
                         
                     }
-//                always return case value to false
-                case false:
-                    self.removeLoadingView()
-                    self.verifyEmailAlert(title: "Psst", message: "Verify your account before logging in", currentuser : user!)
+                    
+                    
+                    
+                    
+//                case false:
+//                    self.removeLoadingView()
+//                    self.verifyEmailAlert(title: "Psst", message: "Verify your account before logging in", currentuser : user!)
+//                }
 
-                }
+                //MARK:- END MARK
+                
+                
+                
+                
+                
                 
             }
         }

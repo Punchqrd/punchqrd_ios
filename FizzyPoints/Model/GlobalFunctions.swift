@@ -363,10 +363,21 @@ class GlobalFunctions {
                         if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
                             print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
                             print(likelihood.likelihood)
-                            //this value might have to change .40
+                           
+                            
+                            
+                            //MARK:- RESET LIKELIHOOD OF THIS VALUE TO 0.6 BEFORE FULL LAUNCH
+                            
                             if likelihood.likelihood >= 0.0 {
                                 
-                                //value above might have to be changed (0.7)
+                            //MARK:- END MARK
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 
                                 //print(likelihood.place.isOpen().rawValue) <- this always seems to be returning 0
                                 if likelihood.place.isOpen().rawValue != 1 {

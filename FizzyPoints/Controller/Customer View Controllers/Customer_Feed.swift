@@ -184,7 +184,11 @@ class Customer_Feed: UIViewController {
                                     return
                                 } else {
 //                                    for documents in documents!.documents {
-                                        
+                                    guard documents!.get(GlobalVariables.UserIDs.Message) != nil else {return}
+                                    guard documents!.get(GlobalVariables.UserIDs.BinaryID) != nil else {return}
+                                    guard documents!.get(GlobalVariables.UserIDs.dateUploaded) != nil else {return}
+
+
                                     businessDetails[values] = [GlobalVariables.UserIDs.Message: documents!.get(GlobalVariables.UserIDs.Message)!, GlobalVariables.UserIDs.BinaryID: documents!.get(GlobalVariables.UserIDs.BinaryID)!, GlobalVariables.UserIDs.date: documents!.get(GlobalVariables.UserIDs.dateUploaded)!]
                                         self.tableView.reloadData()
                                         completion(true, businessDetails)
@@ -196,6 +200,7 @@ class Customer_Feed: UIViewController {
 
                             }
                         }
+                        
                     }
                 }
             }

@@ -25,6 +25,7 @@ class Customer_Feed: UIViewController {
 
     var businessNamesOUT = [String]()
     var businessDetails = [String: [String: Any]]()
+    var secondtoFinalArray = [Promotion_Objects]()
     var returnArray = [Promotion_Objects]()
     var tableView = UITableView()
     var backButton = UIButton()
@@ -40,32 +41,8 @@ class Customer_Feed: UIViewController {
         self.setupAnimation(parentView: self.view, animationView: animationView, animationName: randomAnimations[randomNum])
                     
      
-        
-        findExistingBusinessSubscibed { (true, response) in
-            guard let names = response as? [String] else {return}
-            self.businessNamesOUT = names
-            print(self.businessNamesOUT)
-            //now call the next function to grab the data from the database.
-            self.retrieveMessageDataFromBusiness { (true, response) in
-                
-                guard let names = response as? [String: [String: Any]] else {return}
-                self.businessDetails = names
-                
-                self.retrieveImage(inputArray: self.businessDetails) { (true, response) in
-                    
-                    
-                    guard let dataForCell = response as? [Promotion_Objects] else {return}
-                    self.returnArray.append(contentsOf: dataForCell)
-                    print(self.returnArray.count)
-                    self.tableView.reloadData()
-                    self.animationView.removeFromSuperview()
-
-                    
-                    
-                    
-                }
-            }
-        }
+        startSearch()
+       
         
         
         let backToMainGesture = UISwipeGestureRecognizer(target: self, action: #selector(didTapBackButton))
@@ -82,6 +59,57 @@ class Customer_Feed: UIViewController {
         
         
     }
+    
+    
+    func startSearch() {
+        findExistingBusinessSubscibed { (true, response) in
+                   guard let names = response as? [String] else {return}
+                   self.businessNamesOUT = names
+                   //now call the next function to grab the data from the database.
+                   self.retrieveMessageDataFromBusiness { (true, response) in
+                       
+                       guard let names = response as? [String: [String: Any]] else {
+                           self.animationView.removeFromSuperview()
+                           return
+                           
+                       }
+                    
+                       self.businessDetails = names
+                    
+                    
+                       self.retrieveImage(inputArray: self.businessDetails) { (true, response) in
+                           
+                           
+                           guard let dataForCell = response as? [Promotion_Objects] else {
+                               self.animationView.removeFromSuperview()
+                               return
+                           }
+                           
+                        self.secondtoFinalArray.append(contentsOf: dataForCell)
+                        self.returnArray = self.secondtoFinalArray.uniqueElements()
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+         
+
+                        
+                     
+                        
+                           self.animationView.removeFromSuperview()
+//                           self.tableView.reloadData()
+                        
+                        
+                           
+                       }
+
+                   }
+            
+
+               }
+    }
+    
+   
     
    
     func setupView() {
@@ -187,10 +215,9 @@ class Customer_Feed: UIViewController {
                                     guard documents!.get(GlobalVariables.UserIDs.Message) != nil else {return}
                                     guard documents!.get(GlobalVariables.UserIDs.BinaryID) != nil else {return}
                                     guard documents!.get(GlobalVariables.UserIDs.dateUploaded) != nil else {return}
-
-
+                                    print(documents!.get(GlobalVariables.UserIDs.dateUploaded)!)
+                                    
                                     businessDetails[values] = [GlobalVariables.UserIDs.Message: documents!.get(GlobalVariables.UserIDs.Message)!, GlobalVariables.UserIDs.BinaryID: documents!.get(GlobalVariables.UserIDs.BinaryID)!, GlobalVariables.UserIDs.date: documents!.get(GlobalVariables.UserIDs.dateUploaded)!]
-                                        self.tableView.reloadData()
                                         completion(true, businessDetails)
                                         
 //                                    }
@@ -214,9 +241,12 @@ class Customer_Feed: UIViewController {
     func retrieveImage(inputArray: [String: [String: Any]], completion: @escaping (Bool, Any?) -> Void) {
         var returnArray = [Promotion_Objects]()
         for values in self.businessNamesOUT {
+            guard inputArray[values] != nil else {
+                continue
+            }
+
             let downloadRef = Storage.storage().reference(withPath: "\(values)/\(String(describing: inputArray[values]![GlobalVariables.UserIDs.BinaryID]!)).jpg")
         downloadRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
-            print("1")
             
             if let image = data {
                 
@@ -232,21 +262,21 @@ class Customer_Feed: UIViewController {
                         let nameOfBusiness = doc?.get(GlobalVariables.UserIDs.BusinessName) as! String
                         let newObject = Promotion_Objects(message: inputArray[values]![GlobalVariables.UserIDs.Message] as! String, imageID: newImage, date: inputArray[values]![GlobalVariables.UserIDs.date] as! String, businessName: nameOfBusiness)
                         returnArray.append(newObject)
+                        
+                        
+
                         completion(true, returnArray)
                         
+
                     }
                 }
                
                 
-
-               
-                
             }
             
-            
-            
         }
         }
+
     }
     
     
@@ -254,7 +284,6 @@ class Customer_Feed: UIViewController {
 
 extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.returnArray.count)
             return self.returnArray.count
         
         
@@ -302,3 +331,19 @@ extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+
+extension Array where Element: Equatable {
+  func uniqueElements() -> [Element] {
+    var out = [Element]()
+
+    for element in self {
+      if !out.contains(element) {
+        out.append(element)
+      }
+    }
+
+    return out
+  }
+}
+

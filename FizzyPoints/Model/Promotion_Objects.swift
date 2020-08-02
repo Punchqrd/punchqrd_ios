@@ -9,12 +9,25 @@
 import Foundation
 import UIKit
 
-class Promotion_Objects {
+class Promotion_Objects: Equatable {
     
-    var message: String
-    var imageID: UIImage?
-    var date: String
-    var businessName: String
+    
+      var message: String
+      var imageID: UIImage?
+      var date: String
+      var businessName: String
+      
+    
+    static func == (lhs: Promotion_Objects, rhs: Promotion_Objects) -> Bool {
+            return lhs.businessName == rhs.businessName && lhs.businessName == rhs.businessName
+
+    }
+    
+    
+    
+    
+  
+
     
     init(message: String, imageID: UIImage?, date: String, businessName: String) {
         self.message = message

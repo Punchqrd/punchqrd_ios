@@ -97,8 +97,7 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         
         addSubview(businessMessage)
         businessMessage.font = UIFont(name: "Poppins-Normal", size: 14)
-        businessMessage.textAlignment = .natural
-        businessMessage.layer.cornerRadius = 10
+        businessMessage.textAlignment = .left
         businessMessage.backgroundColor = .white
         businessMessage.textColor = .black
         businessMessage.translatesAutoresizingMaskIntoConstraints = false

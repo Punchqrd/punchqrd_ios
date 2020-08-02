@@ -50,10 +50,10 @@ class BusinessSearch: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setupButtons()
-        searchController!.searchBar.barStyle = .black
-        searchController!.searchBar.searchTextField.leftView?.tintColor = .white
+        searchController!.searchBar.barStyle = .default
+        searchController!.searchBar.searchTextField.leftView?.tintColor = .black
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.black
     }
     
     

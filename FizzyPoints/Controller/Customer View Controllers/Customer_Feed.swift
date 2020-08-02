@@ -50,8 +50,8 @@ class Customer_Feed: UIViewController {
         self.view.addGestureRecognizer(backToMainGesture)
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+            [NSAttributedString.Key.foregroundColor: UIColor.black,
+             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         navigationItem.title = String(describing: "Whats the news?")

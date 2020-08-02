@@ -202,8 +202,10 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     func showList() {
         createBusinessList()
         BusinessList.dataSource = self
-        BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
+        BusinessList.register(BusinessForCustomerCell.self, forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
+//        BusinessList.register(UINib(nibName: GlobalVariables.UserIDs.CustomerNibCell, bundle: nil), forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
         BusinessList.rowHeight = 100
+        
     }
     
     
@@ -345,6 +347,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
+        cell.parentView = self.view
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.1)
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
 //        cell.PointsProgressBar.progressTintColor = UIColor(red: 123, green: 0, blue: 146)
@@ -365,7 +368,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.isUserInteractionEnabled = true
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
-        
+        cell.BusinessName.numberOfLines = 0
 //        GlobalFunctions.setPointProgressBarRadius(bar: cell.PointsProgressBar)
         
         

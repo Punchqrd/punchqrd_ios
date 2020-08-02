@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Lottie
 
-class BusinessForCustomerCell: UITableViewCell {
+class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
     
     //Variable/Constant/Object Declaration
     let animationView = AnimationView()
@@ -30,37 +30,33 @@ class BusinessForCustomerCell: UITableViewCell {
     //MARK:- Function Calls
     
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupLabels()
-    }
+   
     //
     
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
-    func setupLabels() {
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+          super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         //business title setup
         BusinessName.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(BusinessName)
-        BusinessName.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        BusinessName.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        BusinessName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        BusinessName.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        BusinessName.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        BusinessName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
+//        BusinessName.heightAnchor.constraint(equalToConstant: 19).isActive = true
         BusinessName.textColor = .black
         BusinessName.font = UIFont(name: "Poppins-Normal", size: 18)
-        BusinessName.textAlignment = .left
+        BusinessName.textAlignment = .justified
         
         
         //progressbar setup
         progressBarBackground.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(progressBarBackground)
-        progressBarBackground.topAnchor.constraint(equalTo: BusinessName.bottomAnchor, constant: 20).isActive = true
-        progressBarBackground.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        progressBarBackground.topAnchor.constraint(equalTo: BusinessName.bottomAnchor, constant: 15).isActive = true
+        progressBarBackground.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         progressBarBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
-        progressBarBackground.heightAnchor.constraint(equalToConstant: 35).isActive = true
+//        progressBarBackground.heightAnchor.constraint(equalToConstant: 35).isActive = true
         progressBarBackground.layer.cornerRadius = 13
         
         
@@ -112,12 +108,13 @@ class BusinessForCustomerCell: UITableViewCell {
         
         pointsCircle.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(pointsCircle)
-        pointsCircle.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -50).isActive = true
-        pointsCircle.heightAnchor.constraint(equalToConstant: self.frame.size.height/2).isActive = true
-        pointsCircle.widthAnchor.constraint(equalToConstant: self.frame.size.height/2).isActive = true
+        pointsCircle.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
+        pointsCircle.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        pointsCircle.widthAnchor.constraint(equalToConstant: 70).isActive = true
         pointsCircle.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         pointsCircle.backgroundColor = .systemIndigo
-        pointsCircle.layer.cornerRadius = self.frame.size.height/4
+        pointsCircle.layer.cornerRadius = 35
+        pointsCircle.clipsToBounds = true
         self.bringSubviewToFront(pointsCircle)
         
         ActualPointsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -129,7 +126,8 @@ class BusinessForCustomerCell: UITableViewCell {
         
         bonusPointsCircle.rightAnchor.constraint(equalTo: pointsCircle.leftAnchor, constant: -20).isActive = true
         progressBarBackground.rightAnchor.constraint(equalTo: bonusPointsCircle.leftAnchor, constant: -40).isActive = true
-
+        BusinessName.rightAnchor.constraint(equalTo: pointsCircle.leftAnchor, constant: -20).isActive = true
+        
         
        
 
@@ -148,6 +146,10 @@ class BusinessForCustomerCell: UITableViewCell {
 
         
         
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     

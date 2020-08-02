@@ -76,6 +76,7 @@ class Info_BusinessCustomer: UIView {
         self.nameOfBusinessLabel.font = UIFont(name: "Poppins-Bold", size: 20)
         self.nameOfBusinessLabel.textColor = .white
         self.nameOfBusinessLabel.textAlignment = .center
+        self.nameOfBusinessLabel.numberOfLines = 0
         self.addSubview(nameOfBusinessLabel)
                
         

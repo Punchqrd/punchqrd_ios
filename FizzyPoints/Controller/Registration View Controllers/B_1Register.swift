@@ -81,7 +81,7 @@ class B_1Register : UIViewController {
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
        navigationItem.title = "Create an Account"
       
         setupToHideKeyboardOnTapOnView()
@@ -118,11 +118,6 @@ class B_1Register : UIViewController {
         containerView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: containerView.frame.size.height/1.3).isActive = true
         containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         containerView.backgroundColor = .white
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        containerView.layer.shadowRadius = 10
-        containerView.layer.shadowOpacity = 0.3
-        containerView.layer.cornerRadius = 20
         self.view.sendSubviewToBack(containerView)
         
         //setup the button
@@ -187,7 +182,7 @@ class B_1Register : UIViewController {
         
         //setup the date containers and textfields
         //setup the image of the cake next to the textfields
-        let cakeView = UIImageView(image: cakeImage!)
+        let cakeView = UIImageView(image: nil)
         cakeView.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.height, height: RegisterButton.frame.size.height)
         containerView.addSubview(cakeView)
         //        cakeView.center.x = cakeView.frame.size.width*1.5
@@ -334,9 +329,9 @@ class B_1Register : UIViewController {
         //setup the error label
         ErrorLabel.frame = CGRect(x: 0, y: 0, width: RegisterButton.frame.size.width, height: RegisterButton.frame.size.height/1.5)
         ErrorLabel.text = "Customer"
-        ErrorLabel.textColor = .systemPurple
-        ErrorLabel.font =  UIFont(name: "Poppins-Regular", size: 15)
-        ErrorLabel.textAlignment = .center
+        ErrorLabel.textColor = .black
+        ErrorLabel.font =  UIFont(name: "HelveticaNeue-Bold", size: 15)
+        ErrorLabel.textAlignment = .left
         ErrorLabel.center.x = self.view.center.x - 23
         ErrorLabel.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*7 + 70)
         ErrorLabel.numberOfLines = 0

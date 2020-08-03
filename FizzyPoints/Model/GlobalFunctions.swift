@@ -342,33 +342,33 @@ class GlobalFunctions {
     
     //MARK:- Employee login function to determine location
     static func employeeLocationForLogin(employeeEmployerBusinessName : String?, navigationController : UIViewController, errorLabel : UILabel!, animationView: AnimationView!) {
-        print("calling function for location")
-        let placesClient = GooglePlaces.GMSPlacesClient()
-        // Specify the place data types to return.
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-            UInt(GMSPlaceField.placeID.rawValue))!
-        placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: fields, callback: {
-            (placeLikelihoodList: Array<GMSPlaceLikelihood>?, error: Error?) in
-            if let error = error {
-                print("An error occurred: \(error.localizedDescription)")
-                return
-            }
-            
-            if let placeLikelihoodList = placeLikelihoodList {
-                print(placeLikelihoodList)
-                for likelihood in placeLikelihoodList {
-                    
-                    if likelihood.place.name != nil {
-                        print(likelihood.place.name!)
-                        if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
-                            print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
-                            print(likelihood.likelihood)
-                           
-                            
+//        print("calling function for location")
+//        let placesClient = GooglePlaces.GMSPlacesClient()
+//        // Specify the place data types to return.
+//        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+//            UInt(GMSPlaceField.placeID.rawValue))!
+//        placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: fields, callback: {
+//            (placeLikelihoodList: Array<GMSPlaceLikelihood>?, error: Error?) in
+//            if let error = error {
+//                print("An error occurred: \(error.localizedDescription)")
+//                return
+//            }
+//            
+//            if let placeLikelihoodList = placeLikelihoodList {
+//                print(placeLikelihoodList)
+//                for likelihood in placeLikelihoodList {
+//                    
+//                    if likelihood.place.name != nil {
+//                        print(likelihood.place.name!)
+//                        if String(describing: likelihood.place.name!) == employeeEmployerBusinessName! {
+//                            print("\(String(describing: likelihood.place.name!)) is a match with \(employeeEmployerBusinessName!)")
+//                            print(likelihood.likelihood)
+//                           
+//                            
                             
                             //MARK:- RESET LIKELIHOOD OF THIS VALUE TO 0.6 BEFORE FULL LAUNCH
                             
-                            if likelihood.likelihood >= 0.0 {
+//                            if likelihood.likelihood >= 0.0 {
                                 
                             //MARK:- END MARK
                                 
@@ -379,44 +379,43 @@ class GlobalFunctions {
                                 
                                 
                                 
-                                //print(likelihood.place.isOpen().rawValue) <- this always seems to be returning 0
-                                if likelihood.place.isOpen().rawValue != 1 {
+//                                if likelihood.place.isOpen().rawValue != 1 {
                                     animationView.removeFromSuperview()
                                     navigationController.performSegue(withIdentifier: GlobalVariables.SegueIDs.EmployeeLoginSegue, sender: navigationController.presentingViewController)
-                                    break
-                                } else {
-                                    
-                                    errorLabel.text = "\(employeeEmployerBusinessName!) is closed"
-                                    animationView.removeFromSuperview()
-                                    break
-                                }
-                            } else {
-                                animationView.removeFromSuperview()
-                                errorLabel.text = "Get closer to your business"
-                                break
-                            }
-                        }else {
-                            print("not the business")
-                        }
-                        
-                    }
-                    else {
-                        animationView.removeFromSuperview()
-                        errorLabel.text = "you might have to get closer \(employeeEmployerBusinessName!)"
-                        break
-                    }
-                }
-                
-                
-                
-            }
-            animationView.removeFromSuperview()
-            errorLabel.text = "\(employeeEmployerBusinessName!) is not in your area"
-            
-        })
+//                                    break
+//                                } else {
+//
+//                                    errorLabel.text = "\(employeeEmployerBusinessName!) is closed"
+//                                    animationView.removeFromSuperview()
+//                                    break
+//                                }
+//                            } else {
+//                                animationView.removeFromSuperview()
+//                                errorLabel.text = "Get closer to your business"
+//                                break
+//                            }
+//                        }else {
+//                            print("not the business")
+//                        }
+//
+//                    }
+//                    else {
+//                        animationView.removeFromSuperview()
+//                        errorLabel.text = "you might have to get closer \(employeeEmployerBusinessName!)"
+//                        break
+//                    }
+//                }
+//
+//
+//
+//            }
+//            animationView.removeFromSuperview()
+//            errorLabel.text = "\(employeeEmployerBusinessName!) is not in your area"
+//
+//        })
+//    }
+//
     }
-    
-    
     
 }
 

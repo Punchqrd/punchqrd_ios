@@ -96,6 +96,7 @@ class GlobalVariables {
         static let Promo_CellID = "Promo_CellID"
         static let Promo_NibCellFileName = "Promo_Cell"
         static let dateUploaded = "Date Uploaded"
+        static let newDate = "New Date"
         
     }
     

@@ -38,13 +38,13 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         
         addSubview(businessTitle)
         businessTitle.translatesAutoresizingMaskIntoConstraints = false
-        businessTitle.font = UIFont(name: "Poppins-Regular", size: 15)
+        businessTitle.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         businessTitle.textAlignment = .left
         businessTitle.textColor = .black
         businessTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         businessTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         businessTitle.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
-        businessTitle.heightAnchor.constraint(equalToConstant: 18).isActive = true
+        businessTitle.heightAnchor.constraint(equalToConstant: 19).isActive = true
         
         addSubview(businessDate)
         businessDate.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,7 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         businessDate.widthAnchor.constraint(equalToConstant: self.frame.size.width).isActive = true
 //        businessDate.heightAnchor.constraint(equalToConstant: 10).isActive = true
         businessDate.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
-        businessDate.topAnchor.constraint(equalTo: self.businessTitle.bottomAnchor, constant: 0).isActive = true
+        businessDate.topAnchor.constraint(equalTo: self.businessTitle.bottomAnchor, constant: 3).isActive = true
         
         
         addSubview(businessView)
@@ -63,7 +63,11 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         businessView.backgroundColor = .clear
         businessView.heightAnchor.constraint(equalToConstant: self.frame.size.width/3).isActive = true
         businessView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
-        businessView.topAnchor.constraint(equalTo: businessDate.bottomAnchor, constant: 5).isActive = true
+        businessView.topAnchor.constraint(equalTo: businessDate.bottomAnchor, constant: 10).isActive = true
+        businessView.layer.shadowColor = UIColor.lightGray.cgColor
+        businessView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        businessView.layer.shadowRadius = 10
+        businessView.layer.shadowOpacity = 0.3
         
         businessView.addSubview(businessImage)
         businessImage.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +106,7 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         businessMessage.textColor = .black
         businessMessage.translatesAutoresizingMaskIntoConstraints = false
         
-        businessMessage.topAnchor.constraint(equalTo: businessDate.bottomAnchor, constant: 0).isActive = true
+        businessMessage.topAnchor.constraint(equalTo: businessDate.bottomAnchor, constant: 10).isActive = true
         businessMessage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         businessMessage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         businessMessage.rightAnchor.constraint(equalTo: businessView.leftAnchor, constant: -5).isActive = true

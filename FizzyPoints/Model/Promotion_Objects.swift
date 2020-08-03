@@ -16,6 +16,8 @@ class Promotion_Objects: Equatable {
       var imageID: UIImage?
       var date: String
       var businessName: String
+      var newDate: String
+    
       
     
     static func == (lhs: Promotion_Objects, rhs: Promotion_Objects) -> Bool {
@@ -29,10 +31,13 @@ class Promotion_Objects: Equatable {
   
 
     
-    init(message: String, imageID: UIImage?, date: String, businessName: String) {
+    init(message: String, imageID: UIImage?, date: String, businessName: String, newDate: String) {
         self.message = message
         self.imageID = imageID
         self.businessName = businessName
         self.date = date
+        self.newDate = newDate
+        
     }
+    
 }

@@ -69,7 +69,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         self.PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         self.EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email:", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        
+        self.EmailTextField.keyboardType = .emailAddress
         //delegate initiations
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
@@ -103,7 +103,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
 
     
     override func viewWillAppear(_ animated: Bool) {
-        self.view.backgroundColor = .systemPurple
+        self.view.backgroundColor = .systemIndigo
         let isLoggedIn = defaults.bool(forKey: GlobalVariables.UserIDs.isUserLoggedIn)
         let isFirstTime = defaults.bool(forKey: GlobalVariables.UserIDs.isUserFirstTime)
         if isLoggedIn == true {
@@ -183,7 +183,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         LoginButton.center.y = containerView.frame.size.height/1.3
         LoginButton.backgroundColor = .systemBlue
         LoginButton.layer.cornerRadius = 25
-        LoginButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+        LoginButton.titleLabel?.font =  UIFont(name: "Poppins-Regular", size: 15)
         LoginButton.setTitleColor(.white, for: .normal)
         LoginButton.setTitle("Login", for: .normal)
         LoginButton.addTarget(self, action: #selector(LoginAction), for: .touchUpInside)
@@ -201,11 +201,11 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         PasswordTextField.center.x = passwordContainerView.frame.size.width/2
         PasswordTextField.center.y = passwordContainerView.frame.size.height/2
         PasswordTextField.isSecureTextEntry = true
-        PasswordTextField.textColor = .purple
-        PasswordTextField.tintColor = .purple
+        PasswordTextField.textColor = .black
+        PasswordTextField.tintColor = .black
         PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemIndigo])
-        PasswordTextField.font = UIFont(name: "Poppins", size: 16)
+        PasswordTextField.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         passwordContainerView.addSubview(PasswordTextField)
         
         emailContainerView.frame = passwordContainerView.frame
@@ -221,19 +221,19 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         EmailTextField.isSecureTextEntry = false
         EmailTextField.textContentType = .emailAddress
         EmailTextField.autocapitalizationType = .none
-        EmailTextField.textColor = .purple
-        EmailTextField.tintColor = .purple
+        EmailTextField.textColor = .black
+        EmailTextField.tintColor = .black
         EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemIndigo])
-        EmailTextField.font = UIFont(name: "Poppins", size: 16)
+        EmailTextField.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         emailContainerView.addSubview(EmailTextField)
         //setup the label
         ErrorLabel.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width/1.5, height: 30)
         ErrorLabel.center.x = containerView.frame.size.width/2
         ErrorLabel.center.y = containerView.frame.size.height/10
-        ErrorLabel.textColor = .purple
+        ErrorLabel.textColor = .black
         ErrorLabel.textAlignment = .center
-        ErrorLabel.font = UIFont(name: "Poppins", size: 10)
+        ErrorLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
         containerView.addSubview(ErrorLabel)
         
         
@@ -244,7 +244,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         RegisterButton.center.y = self.view.frame.size.height/1.1
         RegisterButton.backgroundColor = .clear
         RegisterButton.layer.cornerRadius = 25
-        RegisterButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+        RegisterButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Bold", size: 15)
         RegisterButton.setTitleColor(.white, for: .normal)
         RegisterButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
         RegisterButton.setTitle("Create Account", for: .normal)

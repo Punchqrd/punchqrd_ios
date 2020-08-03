@@ -260,7 +260,8 @@ class Customer_Feed: UIViewController {
                     } else {
                         
                         let nameOfBusiness = doc?.get(GlobalVariables.UserIDs.BusinessName) as! String
-                        let newObject = Promotion_Objects(message: inputArray[values]![GlobalVariables.UserIDs.Message] as! String, imageID: newImage, date: inputArray[values]![GlobalVariables.UserIDs.date] as! String, businessName: nameOfBusiness)
+                        let newDate = doc?.get(GlobalVariables.UserIDs.newDate) as! String
+                        let newObject = Promotion_Objects(message: inputArray[values]![GlobalVariables.UserIDs.Message] as! String, imageID: newImage, date: inputArray[values]![GlobalVariables.UserIDs.date] as! String, businessName: nameOfBusiness, newDate: newDate)
                         returnArray.append(newObject)
                         
                         
@@ -298,13 +299,16 @@ extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
         
 //        DispatchQueue.main.async {
         cell.parentView = self.view
-        cell.businessDate.text = self.returnArray[indexPath.row].date
+        cell.businessDate.text = self.returnArray[indexPath.row].newDate
         cell.businessMessage.numberOfLines = 0
         cell.businessImage.image = self.returnArray[indexPath.row].imageID
         cell.businessMessage.text = self.returnArray[indexPath.row].message
         cell.businessTitle.text = self.returnArray[indexPath.row].businessName
             
 //        }
+        
+        cell.selectionStyle = .none
+//        cell.textLabel.backgroundColor = uicol
         return cell
         
     }

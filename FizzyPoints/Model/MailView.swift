@@ -298,13 +298,22 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
                     let thirdDb = Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress)
                         thirdDb.getDocument { (document, error) in
                             if let document = document, document.exists {
-                                thirdDb.updateData([GlobalVariables.UserIDs.Message : self.textInputForMail.text!, GlobalVariables.UserIDs.BinaryID : randomID, GlobalVariables.UserIDs.dateUploaded: date])
+                               
+                                
+                                thirdDb.updateData([GlobalVariables.UserIDs.Message : self.textInputForMail.text!, GlobalVariables.UserIDs.BinaryID : randomID, GlobalVariables.UserIDs.dateUploaded: date, GlobalVariables.UserIDs.newDate: date])
                                 
                                 self.pushMailButton.setTitle("Posted!", for: .normal)
+                                self.pushMailButton.tintColor = UIColor.systemGreen
+                                
                                 
                                 //this is done at the end refresh the view or animate the view.
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
-                                    self.popToMain()
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+//                                    self.popToMain()
+                                    self.pushMailButton.setTitle("Post.", for: .normal)
+                                    self.pushMailButton.isEnabled = true
+                                    self.imageInputForMail.image = nil
+                                    self.textInputForMail.text = ""
+                                    self.pushMailButton.tintColor = .black
                                     return
                                 }
                                 

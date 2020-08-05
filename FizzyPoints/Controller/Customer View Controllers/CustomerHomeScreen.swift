@@ -28,7 +28,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         qrButton.backgroundColor = .black
         qrButton.setTitleColor(.white, for: .normal)
         qrButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        qrButton.setTitle("Card", for: .normal)
+        qrButton.setTitle("Your Card", for: .normal)
         qrButton.titleLabel?.adjustsFontSizeToFitWidth = true
         qrButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
       return qrButton
@@ -60,7 +60,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
             [NSAttributedString.Key.foregroundColor: UIColor.black,
              NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
         
-        self.navigationItem.title = "Your Places"
+        self.navigationItem.title = "Your Spots"
         refreshTableView()
         setupSideButton()
         setupQRButton()

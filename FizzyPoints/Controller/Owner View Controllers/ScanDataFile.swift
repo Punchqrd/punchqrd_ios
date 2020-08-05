@@ -494,7 +494,7 @@ class ScanDataFile : UIViewController {
         //setup the animation view
         
         
-        setupAnimation(parentView: totalScansView, animationView: animationView3, animationName: "BeerLoader")
+        setupAnimation(parentView: totalScansView, animationView: animationView3, animationName: GlobalVariables.animationTitles.mainLoader)
        
         parentView.addSubview(totalScansView)
         
@@ -573,7 +573,7 @@ class ScanDataFile : UIViewController {
         
         
         
-        setupAnimation(parentView: totalRevenueView, animationView: animationView2, animationName: "CoffeeLoader")
+        setupAnimation(parentView: totalRevenueView, animationView: animationView2, animationName:GlobalVariables.animationTitles.mainLoader)
 
 
         parentView.addSubview(totalRevenueView)
@@ -616,7 +616,7 @@ class ScanDataFile : UIViewController {
         
         
         
-        setupAnimation(parentView: averageRevenueView, animationView: animationView1, animationName: "CroissantLoader")
+        setupAnimation(parentView: averageRevenueView, animationView: animationView1, animationName: GlobalVariables.animationTitles.mainLoader)
 
         parentView.addSubview(averageRevenueView)
         

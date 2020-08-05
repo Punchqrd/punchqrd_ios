@@ -15,8 +15,6 @@
 		1714AA7724CF258500D17425 /* ScansTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1714AA7624CF258500D17425 /* ScansTable.swift */; };
 		1714AA7A24CF271100D17425 /* Individual_Scans_CellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */; };
 		1714AA7B24CF271100D17425 /* Individual_Scans_CellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1714AA7924CF271100D17425 /* Individual_Scans_CellTableViewCell.xib */; };
-		172224D1248F367B0063F0FC /* Loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D0248F367A0063F0FC /* Loader.json */; };
-		172224D3248F41420063F0FC /* Loader2.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D2248F41420063F0FC /* Loader2.json */; };
 		172224D5248F44D90063F0FC /* CroissantLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D4248F44D90063F0FC /* CroissantLoader.json */; };
 		172224D7248F45670063F0FC /* CoffeeLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D6248F45670063F0FC /* CoffeeLoader.json */; };
 		172224DA248F45A50063F0FC /* PizzaLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224D8248F45A10063F0FC /* PizzaLoader.json */; };
@@ -38,6 +36,8 @@
 		17839FB324C2125400B74AEF /* CustomerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17839FB224C2125400B74AEF /* CustomerClass.swift */; };
 		17839FB624C214FF00B74AEF /* CustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17839FB424C214FF00B74AEF /* CustomerCell.swift */; };
 		17839FB724C214FF00B74AEF /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17839FB524C214FF00B74AEF /* CustomerCell.xib */; };
+		1793292B24DAE1EE00F8EAED /* MainLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 1793292A24DAE1EE00F8EAED /* MainLoader.json */; };
+		1793292D24DAE91900F8EAED /* MainLoader2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1793292C24DAE91900F8EAED /* MainLoader2.json */; };
 		1796CB6B24894DFD00B227B2 /* B_2_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */; };
 		1796CB6F248957FD00B227B2 /* B_2_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB6E248957FD00B227B2 /* B_2_2Register.swift */; };
 		1796CB73248AB59E00B227B2 /* SecondAddEmployeeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */; };
@@ -61,7 +61,6 @@
 		17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */; };
 		17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */; };
 		17DC8B9824C3A5F8005589D2 /* LoaderAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC8B9724C3A5F8005589D2 /* LoaderAnimationView.swift */; };
-		17DC8B9A24C3A9CB005589D2 /* CoolLoader.json in Resources */ = {isa = PBXBuildFile; fileRef = 17DC8B9924C3A9CB005589D2 /* CoolLoader.json */; };
 		17DEEF4D24D9E6A5004C13B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */; };
 		17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF1969248851EE0040059C /* Poppins-Thin.ttf */; };
 		17DF196C2488773D0040059C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DF196B2488773C0040059C /* Assets.xcassets */; };
@@ -109,8 +108,6 @@
 		1714AA7624CF258500D17425 /* ScansTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScansTable.swift; sourceTree = "<group>"; };
 		1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual_Scans_CellTableViewCell.swift; sourceTree = "<group>"; };
 		1714AA7924CF271100D17425 /* Individual_Scans_CellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Individual_Scans_CellTableViewCell.xib; sourceTree = "<group>"; };
-		172224D0248F367A0063F0FC /* Loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader.json; sourceTree = "<group>"; };
-		172224D2248F41420063F0FC /* Loader2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader2.json; sourceTree = "<group>"; };
 		172224D4248F44D90063F0FC /* CroissantLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CroissantLoader.json; sourceTree = "<group>"; };
 		172224D6248F45670063F0FC /* CoffeeLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CoffeeLoader.json; sourceTree = "<group>"; };
 		172224D8248F45A10063F0FC /* PizzaLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PizzaLoader.json; sourceTree = "<group>"; };
@@ -132,6 +129,8 @@
 		17839FB224C2125400B74AEF /* CustomerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerClass.swift; sourceTree = "<group>"; };
 		17839FB424C214FF00B74AEF /* CustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCell.swift; sourceTree = "<group>"; };
 		17839FB524C214FF00B74AEF /* CustomerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
+		1793292A24DAE1EE00F8EAED /* MainLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MainLoader.json; path = ../../../../../Downloads/MainLoader.json; sourceTree = "<group>"; };
+		1793292C24DAE91900F8EAED /* MainLoader2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MainLoader2.json; path = ../../../../../Downloads/MainLoader2.json; sourceTree = "<group>"; };
 		1796CB6A24894DFD00B227B2 /* B_2_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_1Register.swift; sourceTree = "<group>"; };
 		1796CB6E248957FD00B227B2 /* B_2_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2_2Register.swift; sourceTree = "<group>"; };
 		1796CB72248AB59E00B227B2 /* SecondAddEmployeeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondAddEmployeeScreen.swift; sourceTree = "<group>"; };
@@ -158,7 +157,6 @@
 		17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHomeScreen.swift; sourceTree = "<group>"; };
 		17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints.release.xcconfig"; path = "Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints.release.xcconfig"; sourceTree = "<group>"; };
 		17DC8B9724C3A5F8005589D2 /* LoaderAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderAnimationView.swift; sourceTree = "<group>"; };
-		17DC8B9924C3A9CB005589D2 /* CoolLoader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CoolLoader.json; sourceTree = "<group>"; };
 		17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17DF1969248851EE0040059C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		17DF196B2488773C0040059C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,17 +238,16 @@
 		1740753E249465F30079D398 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				1793292A24DAE1EE00F8EAED /* MainLoader.json */,
 				17F1EF8324D25D1A00726C34 /* mailman.json */,
 				1712B57A24D1304200BB7150 /* 17216-your-app-developer.json */,
 				17B43B4824D0F21200DE05E1 /* SippingCoffee.json */,
 				1724587A24C5EBC10073D316 /* HomeAnimation.json */,
-				17DC8B9924C3A9CB005589D2 /* CoolLoader.json */,
-				172224D0248F367A0063F0FC /* Loader.json */,
-				172224D2248F41420063F0FC /* Loader2.json */,
 				172224D4248F44D90063F0FC /* CroissantLoader.json */,
 				172224D6248F45670063F0FC /* CoffeeLoader.json */,
 				172224D8248F45A10063F0FC /* PizzaLoader.json */,
 				172224D9248F45A50063F0FC /* BeerLoader.json */,
+				1793292C24DAE91900F8EAED /* MainLoader2.json */,
 				172224DC248F50A00063F0FC /* CheckMark.json */,
 				172224DE248F58020063F0FC /* CheckMark2.json */,
 				172224E0248F5C3D0063F0FC /* CheckMark3.json */,
@@ -510,21 +507,21 @@
 				17DF198C2488863C0040059C /* Poppins-ExtraLightItalic.ttf in Resources */,
 				1712B57B24D1304200BB7150 /* 17216-your-app-developer.json in Resources */,
 				17DF197E2488863C0040059C /* Poppins-MediumItalic.ttf in Resources */,
-				172224D1248F367B0063F0FC /* Loader.json in Resources */,
 				1796CB7C248AE58900B227B2 /* EmployeeCell.xib in Resources */,
 				17B43B4924D0F21300DE05E1 /* SippingCoffee.json in Resources */,
+				1793292D24DAE91900F8EAED /* MainLoader2.json in Resources */,
 				17839FB724C214FF00B74AEF /* CustomerCell.xib in Resources */,
 				172224DB248F45A50063F0FC /* BeerLoader.json in Resources */,
 				17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */,
 				17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */,
 				17F1EF9024D3CBA900726C34 /* Promo_Cell.xib in Resources */,
+				1793292B24DAE1EE00F8EAED /* MainLoader.json in Resources */,
 				172224DD248F50A10063F0FC /* CheckMark.json in Resources */,
 				17DF19852488863C0040059C /* Poppins-Bold.ttf in Resources */,
 				1714AA7B24CF271100D17425 /* Individual_Scans_CellTableViewCell.xib in Resources */,
 				17DF19872488863C0040059C /* Poppins-BoldItalic.ttf in Resources */,
 				17DF198A2488863C0040059C /* Poppins-Light.ttf in Resources */,
 				17DF19832488863C0040059C /* Poppins-Italic.ttf in Resources */,
-				172224D3248F41420063F0FC /* Loader2.json in Resources */,
 				17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */,
 				17DF19842488863C0040059C /* Poppins-LightItalic.ttf in Resources */,
 				17DF196C2488773D0040059C /* Assets.xcassets in Resources */,
@@ -536,7 +533,6 @@
 				172224D7248F45670063F0FC /* CoffeeLoader.json in Resources */,
 				17C81F20247ACA7F008DAAA2 /* LaunchScreen.storyboard in Resources */,
 				17C81F1B247ACA7B008DAAA2 /* Main.storyboard in Resources */,
-				17DC8B9A24C3A9CB005589D2 /* CoolLoader.json in Resources */,
 				1724587B24C5EBC10073D316 /* HomeAnimation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

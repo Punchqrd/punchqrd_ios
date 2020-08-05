@@ -179,6 +179,11 @@ class GlobalVariables {
        }
     
     
+    struct animationTitles {
+        static let mainLoader = "MainLoader"
+        
+    }
+    
     
     
     

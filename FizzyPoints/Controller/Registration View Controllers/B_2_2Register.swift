@@ -54,9 +54,8 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     
     
     func setupAnimation() {
-        let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
-        let randomNumber = Int.random(in: 0...3)
-        self.animationView.animation = Animation.named(animationNames[randomNumber])
+        
+        self.animationView.animation = Animation.named(GlobalVariables.animationTitles.mainLoader)
         self.animationView.frame.size.height = self.view.frame.height
         self.animationView.frame.size.width = self.view.frame.width
         self.animationView.contentMode = .center

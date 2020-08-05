@@ -16,9 +16,16 @@ import FirebaseFirestore
 class Customer_Feed: UIViewController {
     
     //variables
-    private lazy var animationView: AnimationView = {
-        let animationView = AnimationView()
+    private lazy var backDropView: UIView = {
+        let animationView = UIView()
+        animationView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        animationView.backgroundColor = .white
         return animationView
+    }()
+    
+    private lazy var animation: AnimationView = {
+        let animation = AnimationView()
+        return animation
     }()
     
     
@@ -36,9 +43,8 @@ class Customer_Feed: UIViewController {
         self.tableView.dataSource = self
         self.tableView.register(Promo_Cell.self, forCellReuseIdentifier: GlobalVariables.UserIDs.Promo_NibCellFileName)
         
-        let randomAnimations = ["BeerLoader", "PizzaLoader", "CoffeeLoader"]
-        let randomNum = Int.random(in: 0...2)
-        self.setupAnimation(parentView: self.view, animationView: animationView, animationName: randomAnimations[randomNum])
+       
+        self.setupAnimation(parentView: self.view, animationView: animation, animationName: GlobalVariables.animationTitles.mainLoader)
                     
      
         startSearch()
@@ -69,7 +75,8 @@ class Customer_Feed: UIViewController {
                    self.retrieveMessageDataFromBusiness { (true, response) in
                        
                        guard let names = response as? [String: [String: Any]] else {
-                           self.animationView.removeFromSuperview()
+                           self.backDropView.removeFromSuperview()
+                           self.presentReturnAction(withMessage: "Add some business to view their feed.")
                            return
                            
                        }
@@ -81,12 +88,14 @@ class Customer_Feed: UIViewController {
                            
                            
                            guard let dataForCell = response as? [Promotion_Objects] else {
-                               self.animationView.removeFromSuperview()
+
+                               self.backDropView.removeFromSuperview()
                                return
                            }
                            
                         self.secondtoFinalArray.append(contentsOf: dataForCell)
                         self.returnArray = self.secondtoFinalArray.uniqueElements()
+                        
                         
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -95,8 +104,8 @@ class Customer_Feed: UIViewController {
 
                         
                      
-                        
-                           self.animationView.removeFromSuperview()
+                            
+                           self.backDropView.removeFromSuperview()
 //                           self.tableView.reloadData()
                         
                         
@@ -110,7 +119,23 @@ class Customer_Feed: UIViewController {
     }
     
    
-    
+    func presentReturnAction(withMessage: String) {
+        let alert = UIAlertController(title: withMessage, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert: UIAlertAction) in
+             
+            let navigationController = self.navigationController
+            let transition = CATransition()
+            transition.duration = 0.3
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.moveIn
+            transition.subtype = CATransitionSubtype.fromRight
+            navigationController?.view.layer.add(transition, forKey: nil)
+            navigationController?.popViewController(animated: false)
+        }))
+        self.present(alert, animated: true, completion: {
+           print("ok")
+        })
+    }
    
     func setupView() {
         self.view.addSubview(tableView)
@@ -186,7 +211,13 @@ class Customer_Feed: UIViewController {
                 for business in businesses!.documents {
                     businessNamesINArray.append(business.get("ID") as! String)
                 }
-                completion(true, businessNamesINArray)
+                if businessNamesINArray.isEmpty {
+                    self.presentReturnAction(withMessage: "Add some business to view their feed.")
+                    return
+                } else {
+                    completion(true, businessNamesINArray)
+                }
+                
             }
         }
          
@@ -204,6 +235,7 @@ class Customer_Feed: UIViewController {
             else {
                 var businessDetails = [String: [String: Any]]()
                 for business in business!.documents {
+                    
                     for values in self.businessNamesOUT {
                         if values == business.documentID {
                             db.collection(GlobalVariables.UserIDs.existingBusinesses).document(values).getDocument { (documents, error) in
@@ -212,7 +244,10 @@ class Customer_Feed: UIViewController {
                                     return
                                 } else {
 //                                    for documents in documents!.documents {
-                                    guard documents!.get(GlobalVariables.UserIDs.Message) != nil else {return}
+                                    guard documents!.get(GlobalVariables.UserIDs.Message) != nil else {
+                                        return
+                                        
+                                    }
                                     guard documents!.get(GlobalVariables.UserIDs.BinaryID) != nil else {return}
                                     guard documents!.get(GlobalVariables.UserIDs.dateUploaded) != nil else {return}
                                     print(documents!.get(GlobalVariables.UserIDs.dateUploaded)!)
@@ -322,15 +357,17 @@ extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
         
         
         animationView.animation = Animation.named(animationName)
-        animationView.frame = parentView.frame
+        animationView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width/3, height: parentView.frame.size.width/3)
         animationView.center.x = parentView.frame.width/2
         animationView.center.y = parentView.frame.height/2
         animationView.contentMode = .scaleAspectFit
-        
         animationView.backgroundColor = .clear
         animationView.play()
         animationView.loopMode = .loop
-        parentView.addSubview(animationView)
+        
+        let backGroundView = backDropView
+        backGroundView.addSubview(animationView)
+        parentView.addSubview(backGroundView)
     }
     
     

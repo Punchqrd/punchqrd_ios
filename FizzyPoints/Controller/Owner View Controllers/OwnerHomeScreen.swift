@@ -52,7 +52,7 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
         navigationController?.navigationBar.tintColor = .systemPurple
         navigationItem.title = String(describing: "Owner Portal")
         
-        setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
+//        setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
         
         //check if the user is subscribed **
         SKPaymentQueue.default().add(self)
@@ -271,9 +271,8 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     
     
     func setupAnimation() {
-        let animationNames : [String] = ["CroissantLoader", "BeerLoader", "PizzaLoader", "CoffeeLoader"]
-        let randomNumber = Int.random(in: 0...3)
-        self.animationView1.animation = Animation.named(animationNames[randomNumber])
+        
+        self.animationView1.animation = Animation.named(GlobalVariables.animationTitles.mainLoader)
         self.animationView1.frame.size.height = self.view.frame.height
         self.animationView1.frame.size.width = self.view.frame.width
         self.animationView1.contentMode = .center

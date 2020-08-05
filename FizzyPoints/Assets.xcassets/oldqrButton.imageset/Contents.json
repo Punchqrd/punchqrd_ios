@@ -1,11 +1,15 @@
 {
   "images" : [
     {
+      "filename" : "qr-code-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "QR Button Home.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
       "idiom" : "universal",
       "scale" : "2x"
     },

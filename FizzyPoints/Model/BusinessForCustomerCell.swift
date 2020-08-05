@@ -44,7 +44,6 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         self.addSubview(BusinessName)
         BusinessName.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         BusinessName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
-//        BusinessName.heightAnchor.constraint(equalToConstant: 19).isActive = true
         BusinessName.textColor = .black
         BusinessName.font = UIFont(name: "Poppins-Normal", size: 18)
         BusinessName.textAlignment = .justified
@@ -56,14 +55,12 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         progressBarBackground.topAnchor.constraint(equalTo: BusinessName.bottomAnchor, constant: 15).isActive = true
         progressBarBackground.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         progressBarBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
-//        progressBarBackground.heightAnchor.constraint(equalToConstant: 35).isActive = true
         progressBarBackground.layer.cornerRadius = 13
         
         
         
         
         progressBarBackground.backgroundColor = .white
-//        progressBarBackground.layer.cornerRadius = self.frame.size.height/8
         progressBarBackground.layer.shadowColor = UIColor.lightGray.cgColor
         progressBarBackground.layer.shadowOffset = CGSize(width: 0, height: 0)
         progressBarBackground.layer.shadowRadius = 10
@@ -86,7 +83,7 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         
         bonusPointsCircle.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(bonusPointsCircle)
-        bonusPointsCircle.backgroundColor = .systemPurple
+        bonusPointsCircle.backgroundColor = .black
         
         bonusPointsCircle.leftAnchor.constraint(equalTo: progressBarBackground.rightAnchor, constant: 20).isActive = true
         bonusPointsCircle.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
@@ -112,7 +109,7 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         pointsCircle.heightAnchor.constraint(equalToConstant: 70).isActive = true
         pointsCircle.widthAnchor.constraint(equalToConstant: 70).isActive = true
         pointsCircle.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        pointsCircle.backgroundColor = .systemIndigo
+        pointsCircle.backgroundColor = .black
         pointsCircle.layer.cornerRadius = 35
         pointsCircle.clipsToBounds = true
         self.bringSubviewToFront(pointsCircle)

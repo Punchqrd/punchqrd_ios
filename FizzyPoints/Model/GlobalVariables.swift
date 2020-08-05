@@ -174,6 +174,7 @@ class GlobalVariables {
         static let toLoginScreen = "toLoginScreen"
         static let toPriceView = "priceview"
         static let toCameraScreen = "CameraSegue"
+        
            
        }
     

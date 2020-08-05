@@ -26,7 +26,7 @@ class CustomerCell: UITableViewCell {
     func setupLabel(nameofCustomer: String) {
         self.emailLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         self.emailLabel.text = nameofCustomer
-        self.emailLabel.font = UIFont(name: "Poppins", size: 14)
+        self.emailLabel.font = UIFont(name: "HelveticaNeue", size: 14)
         self.emailLabel.textAlignment = .center
         self.addSubview(emailLabel)
         

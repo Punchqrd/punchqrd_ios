@@ -34,7 +34,7 @@ class PromoteScreen: UIViewController, UIPopoverPresentationControllerDelegate{
     
     
     override func viewWillAppear(_ animated: Bool) {
-        setupRocketAnimation(parentView: self.view, animationView: rocketAnimation, animationName: "mailman")
+        viewPromotionsButtonSetp()
     }
     
     //main setup for viewcontroller
@@ -57,32 +57,17 @@ class PromoteScreen: UIViewController, UIPopoverPresentationControllerDelegate{
     
     
     //rocket animation for bottom of the screen
-    func setupRocketAnimation(parentView: UIView, animationView: AnimationView, animationName: String) {
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        animationView.animation = Animation.named(animationName)
-        animationView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width/2, height: parentView.frame.size.width/2)
-        parentView.addSubview(animationView)
-        parentView.sendSubviewToBack(animationView)
-        animationView.widthAnchor.constraint(equalToConstant: parentView.frame.size.width/2).isActive = true
-        animationView.heightAnchor.constraint(equalToConstant: parentView.frame.size.width/2).isActive = true
-        animationView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
-        animationView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
-        animationView.contentMode = .scaleAspectFit
-        animationView.layer.cornerRadius = 30
-        animationView.backgroundColor = .white
-        animationView.play()
-        animationView.loopMode = .autoReverse
-        
+    func viewPromotionsButtonSetp() {
         
         allPromotionsButton.translatesAutoresizingMaskIntoConstraints = false
-        allPromotionsButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
-        allPromotionsButton.setTitleColor(Global_Colors.colors.softBlue, for: .normal)
+        allPromotionsButton.titleLabel?.font =  UIFont(name: "Poppins-Regular", size: 15)
+        allPromotionsButton.setTitleColor(.black, for: .normal)
         allPromotionsButton.setTitle("View my promotions", for: .normal)
         allPromotionsButton.backgroundColor = .clear
         allPromotionsButton.addTarget(self, action: #selector(allPromosAction), for: .touchUpInside)
         self.view.addSubview(allPromotionsButton)
         self.view.bringSubviewToFront(allPromotionsButton)
-        allPromotionsButton.bottomAnchor.constraint(equalTo: animationView.topAnchor, constant: -15).isActive = true
+        allPromotionsButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
         allPromotionsButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 50).isActive = true
         allPromotionsButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         allPromotionsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true

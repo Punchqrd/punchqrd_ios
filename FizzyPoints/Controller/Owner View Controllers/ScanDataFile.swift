@@ -131,7 +131,7 @@ class ScanDataFile : UIViewController {
         //setup the data when the view loads.
         navigationController?.navigationBar.titleTextAttributes =
               [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-              NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+              NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
          
          navigationItem.title = "Your Business Analytics"
         navigationItem.largeTitleDisplayMode = .never
@@ -259,6 +259,7 @@ class ScanDataFile : UIViewController {
     
     //function to setup the views.
     //first view to setup is the middle view
+    //MARK:-middle view setup.
     func setupMiddleView() {
         //setup the middle container view
         middleView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/1.2, height: self.view.frame.size.height/1.4)
@@ -289,47 +290,14 @@ class ScanDataFile : UIViewController {
         
     }
     
-    func setupRightView() {
-        
-        rightView.frame = self.middleView.frame
-        rightView.center.x = self.view.frame.size.width + self.view.frame.size.width/2
-        rightView.backgroundColor = Global_Colors.colors.apricot
-        rightView.layer.cornerRadius = 30
-        rightView.center.y = self.view.frame.size.height/2
-        
-//        rightViewLabel.frame = CGRect(x: 0, y: 0, width: rightView.frame.size.width, height: 20)
-//        rightViewLabel.center.x =  self.view.frame.size.width + self.view.frame.size.width/2
-//        rightViewLabel.center.y = rightView.center.y - rightView.frame.size.height/2 - 40
-//        rightViewLabel.text = "Tickets"
-//        rightViewLabel.font = UIFont(name: "Poppins", size: 20)
-//        rightViewLabel.textAlignment = .center
-//        rightViewLabel.textColor = .systemPurple
-//        self.view.addSubview(rightViewLabel)
-        
-        
-        
-        let chartView = ScansTable(rightView: rightView, parentView: self.view, currentUserEmail: Auth.auth().currentUser?.email)
-        chartView.populateData()
-        self.rightView.addSubview(chartView)
-        self.view.addSubview(rightView)
-        let gesture = UISwipeGestureRecognizer(target: self, action:  #selector(transitionRightViewtoCenter))
-        gesture.direction = .right
-        chartView.addGestureRecognizer(gesture)
-
-        
-
-        
-        
-        
-        
-    }
-    
+ 
+    //MARK:- left view setup
     func setupSideView() {
     
         
         leftView.frame = self.middleView.frame
         leftView.center.x = -self.view.frame.size.width/2
-        leftView.backgroundColor = Global_Colors.colors.coolMint
+        leftView.backgroundColor = .black
         leftView.layer.cornerRadius = 30
         leftView.center.y = self.view.frame.size.height/2
       
@@ -372,6 +340,41 @@ class ScanDataFile : UIViewController {
     }
     
     //MARK:- right view setup
+    
+       func setupRightView() {
+            
+            rightView.frame = self.middleView.frame
+            rightView.center.x = self.view.frame.size.width + self.view.frame.size.width/2
+            rightView.backgroundColor = .black
+            rightView.layer.cornerRadius = 30
+            rightView.center.y = self.view.frame.size.height/2
+            
+    //        rightViewLabel.frame = CGRect(x: 0, y: 0, width: rightView.frame.size.width, height: 20)
+    //        rightViewLabel.center.x =  self.view.frame.size.width + self.view.frame.size.width/2
+    //        rightViewLabel.center.y = rightView.center.y - rightView.frame.size.height/2 - 40
+    //        rightViewLabel.text = "Tickets"
+    //        rightViewLabel.font = UIFont(name: "Poppins", size: 20)
+    //        rightViewLabel.textAlignment = .center
+    //        rightViewLabel.textColor = .systemPurple
+    //        self.view.addSubview(rightViewLabel)
+            
+            
+            
+            let chartView = ScansTable(rightView: rightView, parentView: self.view, currentUserEmail: Auth.auth().currentUser?.email)
+            chartView.populateData()
+            self.rightView.addSubview(chartView)
+            self.view.addSubview(rightView)
+            let gesture = UISwipeGestureRecognizer(target: self, action:  #selector(transitionRightViewtoCenter))
+            gesture.direction = .right
+            chartView.addGestureRecognizer(gesture)
+
+            
+
+            
+            
+            
+            
+        }
     func setupRightViewButton() {
         rightViewButton.translatesAutoresizingMaskIntoConstraints = false
         rightViewButton.frame = CGRect(x: 0, y: 0, width: 25, height: 35)
@@ -397,7 +400,7 @@ class ScanDataFile : UIViewController {
     
     @objc func transitionRightViewtoCenter() {
         if self.rightView.center.x == self.view.frame.size.width/2 {
-         UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
             self.rightView.center.x = self.view.frame.size.width + self.view.frame.size.width/2
 //            self.rightViewLabel.center.x = self.view.frame.size.width + self.view.frame.size.width/2
             self.rightViewButton.isHidden = false
@@ -406,7 +409,7 @@ class ScanDataFile : UIViewController {
                        
                    }, completion: nil)
         } else {
-            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {
                 self.rightView.center.x = self.view.frame.size.width/2
 //                self.rightViewLabel.center.x = self.view.frame.size.width/2
                 self.rightViewButton.isHidden = true
@@ -425,7 +428,7 @@ class ScanDataFile : UIViewController {
     //MARK:- other views and actions
     @objc func toggleView() {
         if toggleValue == true {
-            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
                 self.middleView.center.x = self.view.frame.size.width * 1.5
                 self.switchButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
 //                self.leftViewTitle.center.x =  self.view.frame.size.width/2
@@ -444,7 +447,7 @@ class ScanDataFile : UIViewController {
             }, completion: nil)
         } else {
             
-            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
                 self.middleView.center.x = self.view.frame.size.width/2
                 self.switchButton.transform = CGAffineTransform.identity
                 self.leftView.center.x = -self.view.frame.size.width/2

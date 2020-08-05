@@ -23,7 +23,16 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
-    @IBOutlet weak var qrButton: UIButton!
+    private lazy var qrButton: UIButton = {
+      let qrButton = UIButton()
+        qrButton.backgroundColor = .black
+        qrButton.setTitleColor(.white, for: .normal)
+        qrButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        qrButton.setTitle("Card", for: .normal)
+        qrButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        qrButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+      return qrButton
+    }()
     let viewFeedButton = UIButton()
     let BusinessList = UITableView()
     
@@ -41,8 +50,9 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .systemPurple
+        navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.prefersLargeTitles = false
         BusinessList.delegate = self
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
@@ -50,10 +60,10 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
             [NSAttributedString.Key.foregroundColor: UIColor.black,
              NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
         
-        self.navigationItem.title = "Your Subscriptions"
+        self.navigationItem.title = "Your Places"
         refreshTableView()
         setupSideButton()
-        
+        setupQRButton()
 
 
     }
@@ -66,13 +76,9 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
                    [NSAttributedString.Key.foregroundColor: UIColor.black,
                     NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
                
-        self.navigationItem.title = "Your Subscriptions"
-        self.refresher.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.8)
-        self.qrButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
-        self.qrButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.2)
-        self.qrButton.layer.shadowOpacity = 1.0
-        self.qrButton.layer.shadowRadius = 0.0
-        self.qrButton.layer.cornerRadius = qrButton.frame.size.width/2
+        self.navigationItem.title = "Your Spots"
+        self.refresher.backgroundColor = Global_Colors.colors.refresherColor
+        
         
         self.locationManager.delegate = self
         self.BusinessList.backgroundColor = .white
@@ -102,12 +108,12 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     //function to refresh the table view
     func refreshTableView() {
         //this is the refresh list variables to enable a refresh for the UITableView
-       
+        
         self.refresher = UIRefreshControl()
         refresher.tintColor = .white
         self.refresher.addTarget(self, action: #selector(CustomerHomeScreen.refresh), for: UIControl.Event.valueChanged)
         self.BusinessList.addSubview(self.refresher)
-        
+        self.refresher.backgroundColor = Global_Colors.colors.refresherColor
         
     }
     
@@ -125,10 +131,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     func refreshData() {
       
        
-        let colorHolder : [UIColor] = [.systemPurple]
-        let randomColor = 0
-        self.refresher.backgroundColor = colorHolder[randomColor].withAlphaComponent(0.8)
-        
+       
+        self.refresher.backgroundColor = Global_Colors.colors.refresherColor
         //self.BusinessList.reloadData()
         DispatchQueue.main.async {
             self.createBusinessList()
@@ -146,8 +150,22 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     
-    //MARK:- Table View logic and Setup
+    //MARK:- Table View logic and View Setup
     
+    //qr button setup
+    func setupQRButton() {
+        view.addSubview(qrButton)
+        qrButton.translatesAutoresizingMaskIntoConstraints = false
+        qrButton.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.4).isActive = true
+        qrButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        qrButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        qrButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        qrButton.layer.cornerRadius = 4
+        qrButton.addTarget(self, action: #selector(viewQRButton), for: .touchUpInside)
+        
+    }
+    
+    //side button setu[
     func setupSideButton() {
         let containerForButton = UIView()
         containerForButton.translatesAutoresizingMaskIntoConstraints = false
@@ -156,13 +174,13 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         containerForButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         containerForButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
         containerForButton.layer.cornerRadius = 35
-        containerForButton.backgroundColor = .systemPurple
+        containerForButton.backgroundColor = Global_Colors.colors.sideFeedButton
         containerForButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
         containerForButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: -35).isActive = true
         containerForButton.layer.shadowColor = UIColor.lightGray.cgColor
         containerForButton.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerForButton.layer.shadowRadius = 10
-        containerForButton.layer.shadowOpacity = 0.3
+        containerForButton.layer.shadowOpacity = 0.4
         
         
         
@@ -188,7 +206,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         BusinessList.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(BusinessList)
         BusinessList.widthAnchor.constraint(equalToConstant: self.view.frame.size.width).isActive = true
-        BusinessList.heightAnchor.constraint(equalToConstant: self.view.frame.size.height).isActive = true
+        BusinessList.bottomAnchor.constraint(equalTo: qrButton.topAnchor, constant: -50).isActive = true
         BusinessList.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         BusinessList.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         BusinessList.layer.shadowColor = UIColor.black.cgColor
@@ -241,8 +259,13 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     }
     
     
-    @IBAction func viewQRButton(_ sender: UIButton) {
+    @objc func viewQRButton() {
         
+        let qrCodeScreen = QRView()
+        
+        self.navigationController?.present(qrCodeScreen, animated: true, completion: nil)
+        
+
         
     }
     
@@ -351,7 +374,7 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.1)
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
 //        cell.PointsProgressBar.progressTintColor = UIColor(red: 123, green: 0, blue: 146)
-        cell.PointsProgressBar.progressTintColor = UIColor.systemPurple
+        cell.PointsProgressBar.progressTintColor = Global_Colors.colors.progressBarColor
         
      
         let backgroundView = UIView()
@@ -396,7 +419,6 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
             cell.animateCheckMark()
             cell.PointsProgressBar.progressTintColor = UIColor.systemGreen
         } else {
-            cell.pointsCircle.backgroundColor = .systemIndigo
             cell.ActualPointsLabel.isHidden = false
         }
         
@@ -447,30 +469,5 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-}
-
-//MARK:- Extension UIColor
-extension UIColor {
-    
-    /// Converts this `UIColor` instance to a 1x1 `UIImage` instance and returns it.
-    ///
-    /// - Returns: `self` as a 1x1 `UIImage`.
-    func as1ptImage() -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
-        setFill()
-        UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
-        let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
-        UIGraphicsEndImageContext()
-        return image
-    }
-    
-    func as4ptImage() -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: 1, height: 6))
-        setFill()
-        UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 6))
-        let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
-        UIGraphicsEndImageContext()
-        return image
-    }
 }
 

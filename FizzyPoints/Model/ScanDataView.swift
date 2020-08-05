@@ -175,7 +175,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
     @objc func checkAction() {
         
         
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
             self.center.y = -self.parentView!.frame.size.height
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {

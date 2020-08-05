@@ -54,7 +54,7 @@ class Customer_Feed: UIViewController {
              NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
-        navigationItem.title = String(describing: "Whats the news?")
+        navigationItem.title = String(describing: "What's new?")
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
         
@@ -130,13 +130,13 @@ class Customer_Feed: UIViewController {
         containerForButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         containerForButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
         containerForButton.layer.cornerRadius = 35
-        containerForButton.backgroundColor = .systemPurple
+        containerForButton.backgroundColor = Global_Colors.colors.sideFeedButton
         containerForButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
         containerForButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 35).isActive = true
         containerForButton.layer.shadowColor = UIColor.lightGray.cgColor
         containerForButton.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerForButton.layer.shadowRadius = 10
-        containerForButton.layer.shadowOpacity = 0.3
+        containerForButton.layer.shadowOpacity = 0.4
                
                
                

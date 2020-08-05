@@ -115,7 +115,7 @@ class B_1Register : UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.widthAnchor.constraint(equalToConstant: self.view.frame.size.width - 50).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / 2).isActive = true
-        containerView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: containerView.frame.size.height/1.3).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant:  self.view.center.y - self.containerView.frame.size.height / 4).isActive = true
         containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         containerView.backgroundColor = .white
         self.view.sendSubviewToBack(containerView)
@@ -344,13 +344,7 @@ class B_1Register : UIViewController {
         
         
         
-        
-        UIView.animate(withDuration: 1, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
-            //animate all of the containerviews elements to animate with it
-            self.containerView.center.y = self.view.center.y - self.containerView.frame.size.height / 4
-            
-        }, completion: nil)
-        
+      
         //  GlobalFunctions.setButtonRadius(button: self.RegisterButton)
         
         

@@ -23,7 +23,7 @@ import StoreKit
 
 class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
     
-    //Variable,Object,Constant Declarations
+    //MARK:- Variable,Object,Constant Declarations
     let newView = UIView()
     let animationView = AnimationView()
     let defaults = UserDefaults.standard
@@ -51,6 +51,9 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     
     var containerCenterXAnchor = NSLayoutConstraint()
+    var forgotPasswordCenterXAnchor = NSLayoutConstraint()
+    var isLoginShowing = false
+    
     
     
     
@@ -94,6 +97,17 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         // call the 'keyboardWillHide' function when the view controlelr receive notification that keyboard is going to be hidden
         NotificationCenter.default.addObserver(self, selector: #selector(LoginScreen.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        //right swipe to dismiss the login
+        let dismissGesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissLoginView))
+        dismissGesture.direction = .right
+        self.view.addGestureRecognizer(dismissGesture)
+        
+        //left swipe to view the login
+        let viewLoginGesture = UISwipeGestureRecognizer(target: self, action: #selector(setupView))
+        viewLoginGesture.direction = .left
+        self.view.addGestureRecognizer(viewLoginGesture)
+        
+        
         
     }
     
@@ -105,8 +119,10 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     override func viewDidDisappear(_ animated: Bool) {
         containerCenterXAnchor.constant =  self.view.frame.size.width/2 + 70
+        forgotPasswordCenterXAnchor.constant = self.view.frame.size.width/2 + 70
         self.PasswordTextField.isHidden = true
         self.EmailTextField.isHidden = true
+        isLoginShowing = false
 
 
     }
@@ -209,25 +225,28 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         containerCenterXAnchor.isActive = true
 //        containerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 220).isActive = true
         
-        containerView.addSubview(forgotPasswordButton)
+        self.view.addSubview(forgotPasswordButton)
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         forgotPasswordButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         forgotPasswordButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        forgotPasswordButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0).isActive = true
-        forgotPasswordButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
+        forgotPasswordCenterXAnchor = forgotPasswordButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0)
+        forgotPasswordCenterXAnchor.isActive = true
+        forgotPasswordButton.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: +20).isActive = true
         forgotPasswordButton.backgroundColor = .clear
         forgotPasswordButton.setTitle("Forgot Password", for: .normal)
         forgotPasswordButton.setTitleColor(UIColor.lightGray.withAlphaComponent(0.6), for: .normal)
         forgotPasswordButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 11)
         forgotPasswordButton.addTarget(self, action: #selector(ForgotPassword), for: .touchUpInside)
-        
+        self.view.bringSubviewToFront(forgotPasswordButton)
         
         //login button
         containerView.addSubview(LoginButton)
         LoginButton.translatesAutoresizingMaskIntoConstraints = false
         LoginButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         LoginButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        LoginButton.bottomAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: -20).isActive = true
+//        LoginButton.bottomAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: -20).isActive = true
+        LoginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20).isActive = true
+
         LoginButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0).isActive = true
         LoginButton.backgroundColor = .clear
         LoginButton.setTitle("Login", for: .normal)
@@ -238,7 +257,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         //email textfield
         containerView.addSubview(PasswordTextField)
         PasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        PasswordTextField.bottomAnchor.constraint(equalTo: LoginButton.topAnchor, constant: -5).isActive = true
+        PasswordTextField.bottomAnchor.constraint(equalTo: LoginButton.topAnchor, constant: -10).isActive = true
         PasswordTextField.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -20).isActive = true
         PasswordTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 40).isActive = true
         PasswordTextField.isSecureTextEntry = true
@@ -267,117 +286,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
     }
     
-    @objc func setupView() {
-        
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 6, options: .curveEaseOut, animations: {
-            
-            self.containerView.center.x = self.view.frame.size.width/2
-            self.PasswordTextField.isHidden = false
-            self.EmailTextField.isHidden = false
-
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.62) {
-                self.containerCenterXAnchor.constant = 0
-                
-            }
-            
-            
-
-            
-        }, completion: nil)
-        
-        
-        
-        
-        
-        //        //setup the buttons
-        //        LoginButton.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width - 60, height: containerView.frame.size.height/4)
-        //        LoginButton.center.x = containerView.frame.size.width/2
-        //        LoginButton.center.y = containerView.frame.size.height/1.3
-        //        LoginButton.backgroundColor = UIColor.clear
-        //        LoginButton.layer.cornerRadius = 25
-        //        LoginButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Bold", size: 15)
-        //        LoginButton.setTitleColor(.black, for: .normal)
-        //        LoginButton.setTitle("Login", for: .normal)
-        //        LoginButton.addTarget(self, action: #selector(LoginAction), for: .touchUpInside)
-        //        containerView.addSubview(LoginButton)
-        //
-        //        //setup the fields
-        //        passwordContainerView.frame = CGRect(x: 0, y: 0, width: LoginButton.frame.size.width, height: containerView.frame.size.height/4.8)
-        //        passwordContainerView.center.x = containerView.frame.size.width/2
-        //        passwordContainerView.center.y = containerView.frame.size.height/2
-        //        passwordContainerView.backgroundColor = .white
-        //        passwordContainerView.layer.cornerRadius = 25
-        ////        B_1Register.setupShadow(view: passwordContainerView)
-        //
-        //        containerView.addSubview(passwordContainerView)
-        //
-        //        PasswordTextField.frame = CGRect(x: 0, y: 0, width: passwordContainerView.frame.size.width - 30, height: passwordContainerView.frame.size.height - 10)
-        //        PasswordTextField.center.x = passwordContainerView.frame.size.width/2
-        //        PasswordTextField.center.y = passwordContainerView.frame.size.height/2
-        //        PasswordTextField.isSecureTextEntry = true
-        //        PasswordTextField.textColor = .black
-        //        PasswordTextField.tintColor = .black
-        //        PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-        //        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        //        PasswordTextField.font = UIFont(name: "HelveticaNeue", size: 16)
-        //        passwordContainerView.addSubview(PasswordTextField)
-        //
-        //        emailContainerView.frame = passwordContainerView.frame
-        //        emailContainerView.center.y = containerView.frame.size.height/3.7
-        //        emailContainerView.center.x = containerView.frame.size.width/2
-        //        emailContainerView.backgroundColor = .white
-        //        emailContainerView.layer.cornerRadius = 25
-        ////        B_1Register.setupShadow(view: emailContainerView)
-        //        containerView.addSubview(emailContainerView)
-        //
-        //
-        //        EmailTextField.frame = CGRect(x: 0, y: 0, width: emailContainerView.frame.size.width - 30, height: emailContainerView.frame.size.height - 10)
-        //        EmailTextField.center.x = emailContainerView.frame.size.width/2
-        //        EmailTextField.center.y = emailContainerView.frame.size.height/2
-        //        EmailTextField.isSecureTextEntry = false
-        //        EmailTextField.textContentType = .emailAddress
-        //        EmailTextField.autocapitalizationType = .none
-        //        EmailTextField.textColor = .black
-        //        EmailTextField.tintColor = .black
-        //        EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-        //        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        //        EmailTextField.font = UIFont(name: "HelveticaNeue", size: 16)
-        //        emailContainerView.addSubview(EmailTextField)
-        //        //setup the label
-        //        ErrorLabel.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width/1.5, height: 30)
-        //        ErrorLabel.center.x = containerView.frame.size.width/2
-        //        ErrorLabel.center.y = containerView.frame.size.height/10
-        //        ErrorLabel.textColor = .lightGray
-        //        ErrorLabel.textAlignment = .natural
-        //        ErrorLabel.font = UIFont(name: "HelveticaNeue", size: 10)
-        //        ErrorLabel.numberOfLines = 0
-        //        containerView.addSubview(ErrorLabel)
-        //
-        //
-        //
-        //
-        //
-        //        questionMarkButton.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-        //        questionMarkButton.center.x = containerView.frame.size.width - 20
-        //        questionMarkButton.center.y = containerView.frame.size.height - 20
-        //        questionMarkButton.backgroundColor = .black
-        //        questionMarkButton.layer.cornerRadius = 5
-        //        questionMarkButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 8)
-        //        questionMarkButton.setTitleColor(.white, for: .normal)
-        //        questionMarkButton.setTitle("?", for: .normal)
-        //        questionMarkButton.addTarget(self, action: #selector(showForgotPassword), for: .touchUpInside)
-        //        containerView.addSubview(questionMarkButton)
-        //
-        //
-        //
-        //        self.view.addSubview(RegisterButton)
-        //        self.view.addSubview(containerView)
-        //        self.view.sendSubviewToBack(containerView)
-        //        self.view.sendSubviewToBack(logoView)
-        //        self.view.sendSubviewToBack(RegisterButton)
-        
-        
-    }
+   
     
     //MARK:- FORGOT PASSWORD FUNCTION
     @objc func showForgotPassword() {
@@ -422,7 +331,10 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     //MARK: - Keyboard manipulation
     
+   
+    
     @objc func keyboardWillShow(notification: NSNotification) {
+        
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             // if keyboard size is not available for some reason, dont do anything
             return
@@ -448,6 +360,57 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     
     //MARK: - Actions and animations
+    
+    //setup the login view
+    @objc func dismissLoginView() {
+        if self.isLoginShowing == true {
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 6, options: .curveEaseOut, animations: {
+            self.containerView.center.x = self.view.frame.size.width/2 + self.view.frame.size.width/2 + 70
+            self.forgotPasswordButton.center.x = self.view.frame.size.width/2 + self.view.frame.size.width/2 + 70
+            self.PasswordTextField.isHidden = true
+            self.EmailTextField.isHidden = true
+
+           
+        }, completion: { complete in
+            self.containerCenterXAnchor.constant = self.view.frame.size.width/2 + 70
+            self.forgotPasswordCenterXAnchor.constant = self.view.frame.size.width/2 + 70
+            self.isLoginShowing = false
+        })
+    }
+    }
+    
+    
+    @objc func setupView() {
+              
+
+              UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 6, options: .curveEaseOut, animations: {
+               
+                  self.containerView.center.x = self.view.frame.size.width/2
+                  self.forgotPasswordButton.center.x = self.view.frame.size.width/2
+                  self.PasswordTextField.isHidden = false
+                  self.EmailTextField.isHidden = false
+
+              
+                  
+                  
+
+                  
+              }, completion: { complete in
+                    self.containerCenterXAnchor.constant = 0
+                    self.forgotPasswordCenterXAnchor.constant = 0
+                    //bool value being set to true to indicate that the login view is now showing
+                    self.isLoginShowing = true
+                
+              })
+              
+              
+        
+              
+              
+              
+    }
+    
+    
     @objc func LoginAction() {
         self.view.resignFirstResponder()
         self.view.endEditing(true)

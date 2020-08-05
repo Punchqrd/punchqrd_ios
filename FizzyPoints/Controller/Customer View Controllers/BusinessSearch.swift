@@ -85,11 +85,11 @@ class BusinessSearch: UIViewController {
         AddButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         AddButton.heightAnchor.constraint(equalToConstant: 120).isActive = true
         AddButton.layer.cornerRadius = 60
-        AddButton.titleLabel?.font = UIFont(name: "Poppins-Regular", size: 30)
+        AddButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
         AddButton.setTitle("+", for: .normal)
         AddButton.titleLabel?.textColor = .white
         AddButton.addTarget(self, action: #selector(AddBusiness), for: .touchUpInside)
-        AddButton.backgroundColor = .systemIndigo
+        AddButton.backgroundColor = Global_Colors.colors.refresherColor
         AddButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
         AddButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
     }
@@ -138,7 +138,7 @@ class BusinessSearch: UIViewController {
                     self.removeLoadingView()
                     //present alert saying that the business doesnt exist in the databaseyet.
                     
-                    let alert = UIAlertController(title: "Well...", message: "Looks like this business doesn't use fizzypoints yet.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Well...", message: "Looks like this business doesn't use Punchqrd yet.", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
                         alert.dismiss(animated: true, completion: nil)

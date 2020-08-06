@@ -16,9 +16,9 @@ class B_2_1Register : UIViewController, UITextFieldDelegate {
     let animationView = AnimationView()
     let db = Firestore.firestore()
     
-    @IBOutlet weak var ErrorLabel: UILabel!
-    @IBOutlet weak var CodeField: UITextField!
-    @IBOutlet weak var ConfirmButton: UIButton!
+    var ErrorLabel = UILabel()
+    var CodeField = UITextField()
+    var ConfirmButton = ActionButton(backgroundColor: .black, title: "Confirm", image: nil)
     
     //MARK:- View functions
     override func viewDidLoad() {
@@ -26,9 +26,14 @@ class B_2_1Register : UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setupToHideKeyboardOnTapOnView()
         self.CodeField.delegate = self
-        GlobalFunctions.setButtonRadius(button: self.ConfirmButton)
         navigationController?.navigationBar.setBackgroundImage(UIColor.clear.as1ptImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIColor.clear.as1ptImage()
+        setupButtonWithView()
+        
+        navigationController?.navigationBar.titleTextAttributes =
+             [NSAttributedString.Key.foregroundColor: UIColor.black,
+              NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
+        navigationItem.title = "So you're a business owner."
     }
     
     
@@ -38,12 +43,42 @@ class B_2_1Register : UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func setupButtonWithView() {
+        view.addSubview(ConfirmButton)
+        ConfirmButton.translatesAutoresizingMaskIntoConstraints = false
+        ConfirmButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        ConfirmButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        ConfirmButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        ConfirmButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        ConfirmButton.addTarget(self, action: #selector(CheckCodeAction), for: .touchUpInside)
+        
+        view.addSubview(CodeField)
+        CodeField.translatesAutoresizingMaskIntoConstraints = false
+        CodeField.widthAnchor.constraint(equalTo: ConfirmButton.widthAnchor).isActive = true
+        CodeField.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        CodeField.bottomAnchor.constraint(equalTo: ConfirmButton.topAnchor, constant: 10).isActive = true
+        CodeField.textColor = .black
+        CodeField.borderStyle = .none
+        CodeField.placeholder = "Code"
+        CodeField.textAlignment = .left
+        CodeField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
+        CodeField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        
+        
+        
+    }
+    
     
     //button action
-    @IBAction func CheckCodeAction(_ sender: UIButton) {
+     @objc func CheckCodeAction() {
         self.view.resignFirstResponder()
         self.view.endEditing(true)
-        if self.CodeField.text!.isEmpty == true {self.ErrorLabel.text = "Enter Code"}
+        if self.CodeField.text!.isEmpty == true {let alert = UIAlertController(title: "Enter a code.", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (alert: UIAlertAction) in
+                return
+            }))
+            self.present(alert, animated: true, completion: nil)}
         else{
             self.addLoadingView()
             let codeData = db.collection(GlobalVariables.UserIDs.AccessCodeCollectionTitle).document(self.CodeField.text!)
@@ -53,7 +88,11 @@ class B_2_1Register : UIViewController, UITextFieldDelegate {
                     self.removeLoadingView()
                 } else {
                     self.removeLoadingView()
-                    self.ErrorLabel.text = "No code exists."
+                    let alert = UIAlertController(title: "No code exists", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (alert: UIAlertAction) in
+                        return
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                     
                 }
             }

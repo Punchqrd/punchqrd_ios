@@ -57,7 +57,7 @@ class Customer_Feed: UIViewController {
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         navigationItem.title = String(describing: "What's new?")

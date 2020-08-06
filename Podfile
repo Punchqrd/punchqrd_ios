@@ -5,6 +5,12 @@ target 'FizzyPoints' do
   
   
   
+
+	target 'OneSignalNotificationServiceExtension' do
+		use_frameworks!
+ 		 #only copy below line
+ 		 pod 'OneSignal', '>= 2.11.2', '< 3.0'
+	end
   
   # Pods for FizzyPoints
   
@@ -17,7 +23,11 @@ target 'FizzyPoints' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'lottie-ios'
-  
-  
+  pod 'OneSignal', '>= 2.11.2', '< 3.0'
+
+
+
   
 end
+
+

@@ -30,6 +30,9 @@
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
 		174AED9524D5B55B00AF704C /* Customer_Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174AED9424D5B55B00AF704C /* Customer_Feed.swift */; };
+		17510AD824DB6D48002A2C82 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17510AD724DB6D48002A2C82 /* NotificationService.swift */; };
+		17510ADC24DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		17510AE524DB9713002A2C82 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17510AE424DB9713002A2C82 /* ActionButton.swift */; };
 		176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176AD81524901DAD00669202 /* StoreKit.framework */; };
 		1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771DB8324BB820500154CC1 /* PaymentScreen.swift */; };
 		1783789C24C8F5A800436D1F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783789B24C8F5A800436D1F /* OnboardingView.swift */; };
@@ -81,6 +84,17 @@
 		17DF198D2488863C0040059C /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */; };
 		17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */; };
 		17E2846824843D610035F7CA /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E2846724843D610035F7CA /* ScannerScreen.swift */; };
+		17E76B7C24DC588400063DB0 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E76B7B24DC588400063DB0 /* Fonts.swift */; };
+		17E76B8524DC594A00063DB0 /* Signika-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B7D24DC594A00063DB0 /* Signika-Semibold.ttf */; };
+		17E76B8624DC594A00063DB0 /* Signika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B7E24DC594A00063DB0 /* Signika-Bold.ttf */; };
+		17E76B8724DC594A00063DB0 /* Signika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B7F24DC594A00063DB0 /* Signika-Regular.ttf */; };
+		17E76B8824DC594A00063DB0 /* Signika-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B8024DC594A00063DB0 /* Signika-Light.ttf */; };
+		17E76B8924DC594A00063DB0 /* SignikaNegative-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B8124DC594A00063DB0 /* SignikaNegative-Regular.ttf */; };
+		17E76B8A24DC594A00063DB0 /* SignikaNegative-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B8224DC594A00063DB0 /* SignikaNegative-Light.ttf */; };
+		17E76B8B24DC594A00063DB0 /* SignikaNegative-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B8324DC594A00063DB0 /* SignikaNegative-Semibold.ttf */; };
+		17E76B8C24DC594A00063DB0 /* SignikaNegative-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B8424DC594A00063DB0 /* SignikaNegative-Bold.ttf */; };
+		17E76B8F24DC5DA300063DB0 /* Hanken-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B8D24DC5DA300063DB0 /* Hanken-Light.ttf */; };
+		17E76B9024DC5DA300063DB0 /* Hanken-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17E76B8E24DC5DA300063DB0 /* Hanken-Book.ttf */; };
 		17F0B9C624CBCF510050A3E4 /* SDCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0B9C524CBCF510050A3E4 /* SDCTextField.swift */; };
 		17F1EF8024D2021F00726C34 /* Global_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF7F24D2021F00726C34 /* Global_Colors.swift */; };
 		17F1EF8224D2562D00726C34 /* PromoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8124D2562D00726C34 /* PromoteScreen.swift */; };
@@ -97,7 +111,32 @@
 		17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEF248D750900041577 /* PlacesObject.swift */; };
 		17FDDE18248F0F6B008F5FF1 /* EmployeeHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */; };
 		188E6394833396A7121FAA10 /* Pods_FizzyPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */; };
+		34F5404145A10DBF910898AF /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E1018FA664298E44572413 /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		17510ADA24DB6D48002A2C82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17C81F08247ACA7A008DAAA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17510AD424DB6D48002A2C82;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		17510ADD24DB6D48002A2C82 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				17510ADC24DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessForCustomerCell.swift; sourceTree = "<group>"; };
@@ -118,11 +157,17 @@
 		1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info_BusinessCustomer.swift; sourceTree = "<group>"; };
 		1724587A24C5EBC10073D316 /* HomeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeAnimation.json; sourceTree = "<group>"; };
 		173A179A24C337D700ABAB10 /* CustomerInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInformationView.swift; sourceTree = "<group>"; };
+		173B08AC24DB62BB00E21D36 /* Punchqrd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Punchqrd.entitlements; sourceTree = "<group>"; };
 		173B49F1248B450E00056833 /* C_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_1Register.swift; sourceTree = "<group>"; };
 		173B49F3248B494000056833 /* C_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_2Register.swift; sourceTree = "<group>"; };
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
 		174AED9424D5B55B00AF704C /* Customer_Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer_Feed.swift; sourceTree = "<group>"; };
+		17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		17510AD724DB6D48002A2C82 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		17510AD924DB6D48002A2C82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17510AE124DB71EE002A2C82 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		17510AE424DB9713002A2C82 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		176AD81524901DAD00669202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1771DB8324BB820500154CC1 /* PaymentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentScreen.swift; sourceTree = "<group>"; };
 		1783789B24C8F5A800436D1F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -151,13 +196,13 @@
 		17C81F2D247ACE2E008DAAA2 /* A_Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A_Register.swift; sourceTree = "<group>"; };
 		17C81F2F247AD276008DAAA2 /* B_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_1Register.swift; sourceTree = "<group>"; };
 		17C81F31247AD2AB008DAAA2 /* B_2Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_2Register.swift; sourceTree = "<group>"; };
-		17C81F37247C3197008DAAA2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		17C81F37247C3197008DAAA2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalFunctions.swift; path = "../New Group1/GlobalFunctions.swift"; sourceTree = "<group>"; };
 		17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeScreen.swift; sourceTree = "<group>"; };
 		17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHomeScreen.swift; sourceTree = "<group>"; };
 		17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints.release.xcconfig"; path = "Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints.release.xcconfig"; sourceTree = "<group>"; };
 		17DC8B9724C3A5F8005589D2 /* LoaderAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderAnimationView.swift; sourceTree = "<group>"; };
-		17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "../New Group/Extensions.swift"; sourceTree = "<group>"; };
 		17DF1969248851EE0040059C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		17DF196B2488773C0040059C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17DF196D248885DA0040059C /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -177,6 +222,17 @@
 		17DF197C248886380040059C /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		17DF197D2488863C0040059C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		17E2846724843D610035F7CA /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
+		17E76B7B24DC588400063DB0 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		17E76B7D24DC594A00063DB0 /* Signika-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Signika-Semibold.ttf"; path = "../../../../Downloads/Signika/TTF/Signika-Semibold.ttf"; sourceTree = "<group>"; };
+		17E76B7E24DC594A00063DB0 /* Signika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Signika-Bold.ttf"; path = "../../../../Downloads/Signika/TTF/Signika-Bold.ttf"; sourceTree = "<group>"; };
+		17E76B7F24DC594A00063DB0 /* Signika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Signika-Regular.ttf"; path = "../../../../Downloads/Signika/TTF/Signika-Regular.ttf"; sourceTree = "<group>"; };
+		17E76B8024DC594A00063DB0 /* Signika-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Signika-Light.ttf"; path = "../../../../Downloads/Signika/TTF/Signika-Light.ttf"; sourceTree = "<group>"; };
+		17E76B8124DC594A00063DB0 /* SignikaNegative-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SignikaNegative-Regular.ttf"; path = "../../../../Downloads/Signika/TTF/SignikaNegative-Regular.ttf"; sourceTree = "<group>"; };
+		17E76B8224DC594A00063DB0 /* SignikaNegative-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SignikaNegative-Light.ttf"; path = "../../../../Downloads/Signika/TTF/SignikaNegative-Light.ttf"; sourceTree = "<group>"; };
+		17E76B8324DC594A00063DB0 /* SignikaNegative-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SignikaNegative-Semibold.ttf"; path = "../../../../Downloads/Signika/TTF/SignikaNegative-Semibold.ttf"; sourceTree = "<group>"; };
+		17E76B8424DC594A00063DB0 /* SignikaNegative-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SignikaNegative-Bold.ttf"; path = "../../../../Downloads/Signika/TTF/SignikaNegative-Bold.ttf"; sourceTree = "<group>"; };
+		17E76B8D24DC5DA300063DB0 /* Hanken-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hanken-Light.ttf"; path = "../../../../Downloads/hanken/Hanken-Light.ttf"; sourceTree = "<group>"; };
+		17E76B8E24DC5DA300063DB0 /* Hanken-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hanken-Book.ttf"; path = "../../../../Downloads/hanken/Hanken-Book.ttf"; sourceTree = "<group>"; };
 		17F0B9C524CBCF510050A3E4 /* SDCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDCTextField.swift; sourceTree = "<group>"; };
 		17F1EF7F24D2021F00726C34 /* Global_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Colors.swift; sourceTree = "<group>"; };
 		17F1EF8124D2562D00726C34 /* PromoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteScreen.swift; sourceTree = "<group>"; };
@@ -193,12 +249,23 @@
 		17F7BDEF248D750900041577 /* PlacesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesObject.swift; sourceTree = "<group>"; };
 		17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeHome.swift; sourceTree = "<group>"; };
 		181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FizzyPoints.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29E1018FA664298E44572413 /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		680972DBBF7EA40198E69AE6 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints.debug.xcconfig"; path = "Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints.debug.xcconfig"; sourceTree = "<group>"; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
+		FFA10C2BA1ED59D838AAB6C2 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		17510AD224DB6D48002A2C82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34F5404145A10DBF910898AF /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17C81F0D247ACA7B008DAAA2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,56 +331,19 @@
 			path = "Delegate Files";
 			sourceTree = "<group>";
 		};
-		177913C9247F447800FBEEDB /* Scrap Files */ = {
+		17510AD624DB6D48002A2C82 /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
+				17510AE124DB71EE002A2C82 /* OneSignalNotificationServiceExtension.entitlements */,
+				17510AD724DB6D48002A2C82 /* NotificationService.swift */,
+				17510AD924DB6D48002A2C82 /* Info.plist */,
 			);
-			path = "Scrap Files";
+			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
-		17C81F07247ACA7A008DAAA2 = {
+		17510AE224DB96EC002A2C82 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				17DF1967248845A30040059C /* Fonts */,
-				17C81F12247ACA7B008DAAA2 /* FizzyPoints */,
-				7060B761C14B6509BDB792EC /* Pods */,
-				C96DB8792DE1491CE077091E /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		17C81F11247ACA7B008DAAA2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				17C81F10247ACA7B008DAAA2 /* Punchqrd.app */,
-			);
-			name = Products;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		17C81F12247ACA7B008DAAA2 /* FizzyPoints */ = {
-			isa = PBXGroup;
-			children = (
-				17F55F1224942D8900F78E5F /* GoogleService-Info.plist */,
-				17C81F21247ACA7F008DAAA2 /* Info.plist */,
-				17DF196B2488773C0040059C /* Assets.xcassets */,
-				1740753F249466080079D398 /* Delegate Files */,
-				1740753E249465F30079D398 /* Animations */,
-				177913C9247F447800FBEEDB /* Scrap Files */,
-				17C81F27247ACA99008DAAA2 /* Model */,
-				17C81F28247ACAA9008DAAA2 /* View */,
-				17C81F29247ACAAE008DAAA2 /* Controller */,
-				17C81F11247ACA7B008DAAA2 /* Products */,
-			);
-			path = FizzyPoints;
-			sourceTree = "<group>";
-		};
-		17C81F27247ACA99008DAAA2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */,
-				17F1EF7F24D2021F00726C34 /* Global_Colors.swift */,
-				17C81F37247C3197008DAAA2 /* GlobalFunctions.swift */,
-				17C81F2B247ACB01008DAAA2 /* GlobalVariables.swift */,
 				17121856247EFA300060093A /* BusinessName.swift */,
 				17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */,
 				1796CB79248AE58900B227B2 /* EmployeeCell.swift */,
@@ -336,10 +366,94 @@
 				17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */,
 				17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */,
 			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		17510AE324DB96FC002A2C82 /* Generators */ = {
+			isa = PBXGroup;
+			children = (
+				17510AE424DB9713002A2C82 /* ActionButton.swift */,
+				17F1EF7F24D2021F00726C34 /* Global_Colors.swift */,
+				17E76B7B24DC588400063DB0 /* Fonts.swift */,
+			);
+			path = Generators;
+			sourceTree = "<group>";
+		};
+		17510AE624DC3F1B002A2C82 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		17510AE724DC3F51002A2C82 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				17C81F37247C3197008DAAA2 /* GlobalFunctions.swift */,
+				17C81F2B247ACB01008DAAA2 /* GlobalVariables.swift */,
+			);
+			path = Globals;
+			sourceTree = "<group>";
+		};
+		177913C9247F447800FBEEDB /* Scrap Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Scrap Files";
+			sourceTree = "<group>";
+		};
+		17C81F07247ACA7A008DAAA2 = {
+			isa = PBXGroup;
+			children = (
+				17DF1967248845A30040059C /* Fonts */,
+				17C81F12247ACA7B008DAAA2 /* FizzyPoints */,
+				7060B761C14B6509BDB792EC /* Pods */,
+				17510AD624DB6D48002A2C82 /* OneSignalNotificationServiceExtension */,
+				C96DB8792DE1491CE077091E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		17C81F11247ACA7B008DAAA2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17C81F10247ACA7B008DAAA2 /* Punchqrd.app */,
+				17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */,
+			);
+			name = Products;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		17C81F12247ACA7B008DAAA2 /* FizzyPoints */ = {
+			isa = PBXGroup;
+			children = (
+				173B08AC24DB62BB00E21D36 /* Punchqrd.entitlements */,
+				17F55F1224942D8900F78E5F /* GoogleService-Info.plist */,
+				17C81F21247ACA7F008DAAA2 /* Info.plist */,
+				17DF196B2488773C0040059C /* Assets.xcassets */,
+				1740753F249466080079D398 /* Delegate Files */,
+				1740753E249465F30079D398 /* Animations */,
+				177913C9247F447800FBEEDB /* Scrap Files */,
+				17C81F27247ACA99008DAAA2 /* Model */,
+				17C81F28247ACAA9008DAAA2 /* Storyboards */,
+				17C81F29247ACAAE008DAAA2 /* Controller */,
+				17C81F11247ACA7B008DAAA2 /* Products */,
+			);
+			path = FizzyPoints;
+			sourceTree = "<group>";
+		};
+		17C81F27247ACA99008DAAA2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				17510AE724DC3F51002A2C82 /* Globals */,
+				17510AE624DC3F1B002A2C82 /* Extensions */,
+				17510AE324DB96FC002A2C82 /* Generators */,
+				17510AE224DB96EC002A2C82 /* Views */,
+			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		17C81F28247ACAA9008DAAA2 /* View */ = {
+		17C81F28247ACAA9008DAAA2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				17C81F1E247ACA7F008DAAA2 /* LaunchScreen.storyboard */,
@@ -350,7 +464,7 @@
 				1714AA7924CF271100D17425 /* Individual_Scans_CellTableViewCell.xib */,
 				17F1EF8E24D3CBA900726C34 /* Promo_Cell.xib */,
 			);
-			path = View;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		17C81F29247ACAAE008DAAA2 /* Controller */ = {
@@ -368,9 +482,19 @@
 		17DF1967248845A30040059C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				17E76B8E24DC5DA300063DB0 /* Hanken-Book.ttf */,
+				17E76B8D24DC5DA300063DB0 /* Hanken-Light.ttf */,
 				17DF1969248851EE0040059C /* Poppins-Thin.ttf */,
 				17DF1971248885FA0040059C /* Poppins-Black.ttf */,
 				17DF196F248885EA0040059C /* Poppins-BlackItalic.ttf */,
+				17E76B7E24DC594A00063DB0 /* Signika-Bold.ttf */,
+				17E76B8024DC594A00063DB0 /* Signika-Light.ttf */,
+				17E76B7F24DC594A00063DB0 /* Signika-Regular.ttf */,
+				17E76B7D24DC594A00063DB0 /* Signika-Semibold.ttf */,
+				17E76B8424DC594A00063DB0 /* SignikaNegative-Bold.ttf */,
+				17E76B8224DC594A00063DB0 /* SignikaNegative-Light.ttf */,
+				17E76B8124DC594A00063DB0 /* SignikaNegative-Regular.ttf */,
+				17E76B8324DC594A00063DB0 /* SignikaNegative-Semibold.ttf */,
 				17DF19742488860B0040059C /* Poppins-Bold.ttf */,
 				17DF1976248886160040059C /* Poppins-BoldItalic.ttf */,
 				17DF196E248885E20040059C /* Poppins-ExtraBold.ttf */,
@@ -421,6 +545,8 @@
 				A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */,
 				9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */,
 				17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */,
+				680972DBBF7EA40198E69AE6 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				FFA10C2BA1ED59D838AAB6C2 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -430,6 +556,7 @@
 			children = (
 				176AD81524901DAD00669202 /* StoreKit.framework */,
 				181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */,
+				29E1018FA664298E44572413 /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -437,6 +564,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		17510AD424DB6D48002A2C82 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17510AE024DB6D48002A2C82 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				7BE3FC37D97984F37395122C /* [CP] Check Pods Manifest.lock */,
+				17510AD124DB6D48002A2C82 /* Sources */,
+				17510AD224DB6D48002A2C82 /* Frameworks */,
+				17510AD324DB6D48002A2C82 /* Resources */,
+				68E9BE3A2A147C42745EE1FA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		17C81F0F247ACA7B008DAAA2 /* FizzyPoints */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17C81F24247ACA7F008DAAA2 /* Build configuration list for PBXNativeTarget "FizzyPoints" */;
@@ -447,10 +593,12 @@
 				17C81F0E247ACA7B008DAAA2 /* Resources */,
 				A5144C44AEDFC3CD5FA75F02 /* [CP] Embed Pods Frameworks */,
 				232A54BB2418600FFA1FC96A /* [CP] Copy Pods Resources */,
+				17510ADD24DB6D48002A2C82 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				17510ADB24DB6D48002A2C82 /* PBXTargetDependency */,
 			);
 			name = FizzyPoints;
 			productName = "QR 2.0";
@@ -463,10 +611,13 @@
 		17C81F08247ACA7A008DAAA2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Sebastian Barry";
 				TargetAttributes = {
+					17510AD424DB6D48002A2C82 = {
+						CreatedOnToolsVersion = 11.6;
+					};
 					17C81F0F247ACA7B008DAAA2 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
@@ -486,11 +637,19 @@
 			projectRoot = "";
 			targets = (
 				17C81F0F247ACA7B008DAAA2 /* FizzyPoints */,
+				17510AD424DB6D48002A2C82 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		17510AD324DB6D48002A2C82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17C81F0E247ACA7B008DAAA2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,8 +658,11 @@
 				17DF197F2488863C0040059C /* Poppins-ExtraBold.ttf in Resources */,
 				172224DA248F45A50063F0FC /* PizzaLoader.json in Resources */,
 				172224DF248F58020063F0FC /* CheckMark2.json in Resources */,
+				17E76B8A24DC594A00063DB0 /* SignikaNegative-Light.ttf in Resources */,
+				17E76B8724DC594A00063DB0 /* Signika-Regular.ttf in Resources */,
 				172224D5248F44D90063F0FC /* CroissantLoader.json in Resources */,
 				17DF198B2488863C0040059C /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				17E76B8924DC594A00063DB0 /* SignikaNegative-Regular.ttf in Resources */,
 				17DF19802488863C0040059C /* Poppins-BlackItalic.ttf in Resources */,
 				17DF19862488863C0040059C /* Poppins-ExtraLight.ttf in Resources */,
 				17F1EF8424D25D1A00726C34 /* mailman.json in Resources */,
@@ -512,15 +674,22 @@
 				1793292D24DAE91900F8EAED /* MainLoader2.json in Resources */,
 				17839FB724C214FF00B74AEF /* CustomerCell.xib in Resources */,
 				172224DB248F45A50063F0FC /* BeerLoader.json in Resources */,
+				17E76B8C24DC594A00063DB0 /* SignikaNegative-Bold.ttf in Resources */,
 				17DF198E2488863C0040059C /* Poppins-ThinItalic.ttf in Resources */,
+				17E76B8F24DC5DA300063DB0 /* Hanken-Light.ttf in Resources */,
+				17E76B8524DC594A00063DB0 /* Signika-Semibold.ttf in Resources */,
 				17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */,
 				17F1EF9024D3CBA900726C34 /* Promo_Cell.xib in Resources */,
+				17E76B8624DC594A00063DB0 /* Signika-Bold.ttf in Resources */,
 				1793292B24DAE1EE00F8EAED /* MainLoader.json in Resources */,
 				172224DD248F50A10063F0FC /* CheckMark.json in Resources */,
+				17E76B8B24DC594A00063DB0 /* SignikaNegative-Semibold.ttf in Resources */,
 				17DF19852488863C0040059C /* Poppins-Bold.ttf in Resources */,
 				1714AA7B24CF271100D17425 /* Individual_Scans_CellTableViewCell.xib in Resources */,
 				17DF19872488863C0040059C /* Poppins-BoldItalic.ttf in Resources */,
+				17E76B8824DC594A00063DB0 /* Signika-Light.ttf in Resources */,
 				17DF198A2488863C0040059C /* Poppins-Light.ttf in Resources */,
+				17E76B9024DC5DA300063DB0 /* Hanken-Book.ttf in Resources */,
 				17DF19832488863C0040059C /* Poppins-Italic.ttf in Resources */,
 				17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */,
 				17DF19842488863C0040059C /* Poppins-LightItalic.ttf in Resources */,
@@ -579,6 +748,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		68E9BE3A2A147C42745EE1FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BE3FC37D97984F37395122C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FizzyPoints-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A5144C44AEDFC3CD5FA75F02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -599,6 +807,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		17510AD124DB6D48002A2C82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17510AD824DB6D48002A2C82 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17C81F0C247ACA7B008DAAA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -610,6 +826,7 @@
 				1796CB7B248AE58900B227B2 /* EmployeeCell.swift in Sources */,
 				17DC8B9824C3A5F8005589D2 /* LoaderAnimationView.swift in Sources */,
 				173B49F2248B450E00056833 /* C_1Register.swift in Sources */,
+				17E76B7C24DC588400063DB0 /* Fonts.swift in Sources */,
 				17F0B9C624CBCF510050A3E4 /* SDCTextField.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
 				17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */,
@@ -652,10 +869,19 @@
 				17839FB324C2125400B74AEF /* CustomerClass.swift in Sources */,
 				17839FB624C214FF00B74AEF /* CustomerCell.swift in Sources */,
 				17DEEF4D24D9E6A5004C13B9 /* Extensions.swift in Sources */,
+				17510AE524DB9713002A2C82 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		17510ADB24DB6D48002A2C82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17510AD424DB6D48002A2C82 /* OneSignalNotificationServiceExtension */;
+			targetProxy = 17510ADA24DB6D48002A2C82 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		17C81F19247ACA7B008DAAA2 /* Main.storyboard */ = {
@@ -677,6 +903,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		17510ADE24DB6D48002A2C82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 680972DBBF7EA40198E69AE6 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = M5F3GZ25TU;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17510ADF24DB6D48002A2C82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFA10C2BA1ED59D838AAB6C2 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = M5F3GZ25TU;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		17C81F22247ACA7F008DAAA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -795,7 +1067,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FizzyPoints/Punchqrd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
@@ -816,7 +1090,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FizzyPoints/Punchqrd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
@@ -836,6 +1112,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		17510AE024DB6D48002A2C82 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17510ADE24DB6D48002A2C82 /* Debug */,
+				17510ADF24DB6D48002A2C82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		17C81F0B247ACA7A008DAAA2 /* Build configuration list for PBXProject "FizzyPoints" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

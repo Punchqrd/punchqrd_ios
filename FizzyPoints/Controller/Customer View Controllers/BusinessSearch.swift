@@ -12,7 +12,16 @@ import FirebaseAuth
 import GooglePlaces
 import Lottie
 
+//try and set a protocol for notify the customer view controller when to setup a listener for the business added
+protocol BusinessSearchProtocol: class {
+    func isListening(BusinessName: String, businessAddress: String)
+}
+
+
+
 class BusinessSearch: UIViewController {
+    
+    var delegate : BusinessSearchProtocol?
     
     let animationView = AnimationView()
     var resultsViewController: GMSAutocompleteResultsViewController?
@@ -57,7 +66,7 @@ class BusinessSearch: UIViewController {
     }
     
     
-    //MARK:- Supplementary functions
+    //MARK:- View Setup
     func setupButtons() {
         BusinessNameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(BusinessNameLabel)
@@ -126,6 +135,18 @@ class BusinessSearch: UIViewController {
                             
                             
                             collection.setData([GlobalVariables.UserIDs.PointsString : 0, GlobalVariables.UserIDs.RedemptionNumberString : 0, GlobalVariables.UserIDs.BonusPointsString : "0", GlobalVariables.UserIDs.CustomerTotalSpent: 0, GlobalVariables.UserIDs.UserAddress: self.AddressLabel.text!])
+                            
+                            
+                            //we also want the user to subscribe to the business they added.
+                            let businessCollection = Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(self.AddressLabel.text!).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!)
+                            businessCollection.setData([GlobalVariables.UserIDs.isSubscribed: true, GlobalVariables.UserIDs.recieveAlerts: false])
+                            
+                            
+                            
+                            //also set a listener for that business to receive any sort of future notification
+                            ///at this point just pass back a value to the delegate of the class
+                            self.delegate?.isListening(BusinessName: self.businessName!, businessAddress: self.AddressLabel.text!)
+                             
                             self.removeLoadingView()
                             self.navigationController?.popViewController(animated: true)
                         }

@@ -167,7 +167,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         RegisterButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -60).isActive = true
         RegisterButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         RegisterButton.backgroundColor = .clear
-        RegisterButton.titleLabel?.font =  UIFont(name: "HelveticaNeue", size: 15)
+        RegisterButton.titleLabel?.font =  UIFont(name: Fonts.importFonts.subTitleFont, size: 15)
         RegisterButton.setTitleColor(.black, for: .normal)
         RegisterButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
         RegisterButton.setTitle("Create Account", for: .normal)
@@ -180,7 +180,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         firstLoginButton.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/2).isActive = true
         firstLoginButton.bottomAnchor.constraint(equalTo: RegisterButton.topAnchor, constant: -20).isActive = true
         firstLoginButton.backgroundColor = .clear
-        firstLoginButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-Bold", size: 15)
+        firstLoginButton.titleLabel?.font =  UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         firstLoginButton.setTitleColor(.black, for: .normal)
         firstLoginButton.setTitle("Login", for: .normal)
         firstLoginButton.addTarget(self, action: #selector(setupView), for: .touchUpInside)
@@ -606,7 +606,12 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                         
                     }
                         //if neither of the three, then the user does not exist.
-                    else {self.ErrorLabel.text = "User does not exist!"
+                    else {
+                        let alert = UIAlertController(title: "No account for this user.", message: nil, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (alert: UIAlertAction) in
+                            return
+                        }))
+                        self.present(alert, animated: true, completion: nil)
                         self.removeLoadingView()
                     }
                     

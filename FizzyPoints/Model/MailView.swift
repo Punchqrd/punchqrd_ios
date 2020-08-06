@@ -204,7 +204,7 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         
     }
     
-    func handleUpload() {
+    func handleUpload(completion: @escaping () -> Void) {
         
         //send the message logic
         self.pushMailButton.setTitle("Posting..", for: .normal)
@@ -242,7 +242,16 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
                                 self.pushMailButton.setTitle("Post.", for: .normal)
                                 
                                 //call this function recursively
-                                self.handleUpload()
+                                self.handleUpload {
+                                    //call a function to update all the users.
+                                    //
+                                    
+                                    
+                                    self.notifySubscribers()
+                                    
+                                    
+                                    //
+                                }
                                 
                                 
                                 return
@@ -314,6 +323,7 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
                                     self.imageInputForMail.image = nil
                                     self.textInputForMail.text = ""
                                     self.pushMailButton.tintColor = .black
+                                    completion()
                                     return
                                 }
                                 
@@ -380,7 +390,14 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
             let alert = UIAlertController(title: "Ready to Send?", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (alert: UIAlertAction) in
                 
-                self.handleUpload()
+                self.handleUpload {
+                    //call a function to uupdate all the usrs
+                    
+                    self.notifySubscribers()
+                    
+                    
+                    //
+                }
                 
                 
                 
@@ -425,9 +442,36 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         parentViewController.dismiss(animated: true, completion: nil)
     }
     
+    //MARK:- Notify users function
+    func notifySubscribers() {
+        let db = Firestore.firestore()
+        db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).getDocument { (document, err) in
+            guard err == nil else {return}//guard against nil
+            //find the users current email
+            let userBusiness = document?.get(GlobalVariables.UserIDs.UserZipCode) as! String
+            //rerout the user into the subscribers section
+            
+            db.collection(GlobalVariables.UserIDs.existingBusinesses).document(userBusiness).collection(GlobalVariables.UserIDs.subscriberCollection).getDocuments { (subscribers, err) in
+                guard err == nil else {return}
+                for each in subscribers!.documents {
+                    
+                    db.collection(GlobalVariables.UserIDs.existingBusinesses).document(userBusiness).collection(GlobalVariables.UserIDs.subscriberCollection).document(each.documentID).updateData([GlobalVariables.UserIDs.recieveAlerts : true])
+                    
+                    
+                    
+                }
+                
+                
+                
+                
+            }
+            
+            
+        }
+    }
     
     
-    //uitextview delegate function(s)
+    //MARK:- uitextview delegate function(s)
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.count

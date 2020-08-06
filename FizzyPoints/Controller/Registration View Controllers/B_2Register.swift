@@ -21,21 +21,17 @@ class B_2Register : UIViewController {
     let animationView = AnimationView()
     let db = Firestore.firestore()
     
-    var confirmedAddress : Bool?
-    var confirmedName : Bool?
+   
     var businessName : String?
     var businessAddress : String?
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
     var resultView: UITextView?
     
-    @IBOutlet weak var nameConfirmButton: UIButton!
-    @IBOutlet weak var addressConfirmButton: UIButton!
-    @IBOutlet weak var NameLabel : UILabel!
-    @IBOutlet weak var checkMarksLabel: UILabel!
-    @IBOutlet weak var AddressLabel: UILabel!
-    @IBOutlet weak var ConfirmButton: UIButton!
-    @IBOutlet weak var errorLabel: UILabel!
+    var NameLabel = UILabel()
+    var AddressLabel = UILabel()
+    var ConfirmButton = ActionButton(backgroundColor: .systemGreen, title: "Confirm.", image: nil)
+    var cancelButton = ActionButton(backgroundColor: .black, title: "Cancel", image: nil)
     
     
     //MARK:- View functions
@@ -62,28 +58,69 @@ class B_2Register : UIViewController {
         // Prevent the navigation bar from being hidden when searching.
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.searchBar.placeholder = "Lookup your business."
+        searchController?.searchBar.searchTextField.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         searchController?.searchBar.backgroundColor = .white
+        
+        //setup the view
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = true
-        GlobalFunctions.setButtonRadius(button: self.ConfirmButton)
         //instnatinate these as false when the user opens the screen
-        self.confirmedName = false
-        self.confirmedAddress = false
         self.ConfirmButton.isHidden = true
-        self.nameConfirmButton.isHidden = true
-        self.addressConfirmButton.isHidden = true
-        self.checkMarksLabel.isHidden = true
         self.searchController?.searchBar.text = nil
+        
+        
+    }
+    
+    func setupView() {
+        //bottom up
+        view.addSubview(cancelButton)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        cancelButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        cancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+        cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+        
+        view.addSubview(ConfirmButton)
+        ConfirmButton.translatesAutoresizingMaskIntoConstraints = false
+        ConfirmButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        ConfirmButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        ConfirmButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        ConfirmButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        ConfirmButton.addTarget(self, action: #selector(BusinessConfirm), for: .touchUpInside)
+
+        view.addSubview(AddressLabel)
+        AddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        AddressLabel.widthAnchor.constraint(equalTo: cancelButton.widthAnchor).isActive = true
+        AddressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 20).isActive = true
+        AddressLabel.bottomAnchor.constraint(equalTo: ConfirmButton.topAnchor, constant: -30).isActive = true
+        AddressLabel.numberOfLines = 0
+        AddressLabel.textColor = .lightGray
+        AddressLabel.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 18)
+            
+        view.addSubview(NameLabel)
+        NameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NameLabel.widthAnchor.constraint(equalTo: cancelButton.widthAnchor).isActive = true
+        NameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 20).isActive = true
+        NameLabel.bottomAnchor.constraint(equalTo: AddressLabel.topAnchor, constant: -10).isActive = true
+        NameLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 20)
+        NameLabel.textColor = .black
+        NameLabel.numberOfLines = 0
+        
+    
+        
+        
+
         
     }
     
     //MARK:- Actions
     
-    @IBAction func BusinessConfirm(_ sender: UIButton) {
-        if confirmedAddress == true && confirmedName == true {
-            
+    @objc func BusinessConfirm() {
+       
             
             let db = Firestore.firestore()
             let businessCollection = db.collection(GlobalVariables.UserIDs.existingBusinesses).document(self.businessAddress!)
@@ -108,35 +145,19 @@ class B_2Register : UIViewController {
                         
                     }
                        
-                   }
+                   
             
             
             
-        } else {self.errorLabel.text = "Please check the marks to confirm."}
-    }
-    
-    
-    @IBAction func ConfirmNameAction(_ sender: UIButton) {
-        self.nameConfirmButton.tintColor = .green
-        self.confirmedAddress = true
-        if self.confirmedName == true {
-            self.checkMarksLabel.textColor = .lightGray
-            self.ConfirmButton.isHidden = false
         }
     }
     
     
-    @IBAction func ConfirmAddress(_ sender: UIButton) {
-        self.addressConfirmButton.tintColor = .green
-        self.confirmedName = true
-        if self.confirmedAddress == true {
-            self.checkMarksLabel.textColor = .lightGray
-            self.ConfirmButton.isHidden = false
-        }
-    }
     
+    
+   
     //create the notification
-    @IBAction func CancelButton(_ sender: UIButton) {
+    @objc func cancelAction() {
         self.cancelAlert(title: "Cancel Process?", message: "This will take you back home")
     }
     
@@ -200,15 +221,9 @@ extension B_2Register: GMSAutocompleteResultsViewControllerDelegate {
         self.businessName = place.name
         self.AddressLabel.text = place.formattedAddress
         self.NameLabel.text = place.name
-        self.addressConfirmButton.tintColor = .gray
-        self.nameConfirmButton.tintColor = .gray
-        self.ConfirmButton.isHidden = true
-        self.confirmedName = false
-        self.confirmedAddress = false
-        self.addressConfirmButton.isHidden = false
-        self.nameConfirmButton.isHidden = false
-        self.checkMarksLabel.isHidden = false
-        self.checkMarksLabel.textColor = .black
+      
+        self.ConfirmButton.isHidden = false
+        
         
     }
     

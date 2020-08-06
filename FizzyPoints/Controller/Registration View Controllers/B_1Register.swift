@@ -19,22 +19,19 @@ class B_1Register : UIViewController {
     
     let newView = UIView()
     let homeAnimation = AnimationView()
-    //Constants, Variables, and Object Declaration
     let animationView = AnimationView()
     let db = Firestore.firestore()
     
-    //setup the bottom view
-    let bottomView = UIView()
-    let toggleButton = UIButton()
-    let businessRegisterButton = UIButton()
-    let employeeRegisterButton = UIButton()
+    
+    let businessRegisterButton = ActionButton(backgroundColor: .black, title: "Business Owner", image: nil)
+    let employeeRegisterButton = ActionButton(backgroundColor: .black, title: "Employee", image: nil)
     var toggleVariable = false
     
     //setup the main view.
     let containerView = UIView()
     
     
-    let RegisterButton = UIButton()
+    let RegisterButton = ActionButton(backgroundColor: .systemGreen, title: "Register", image: nil)
     //name fields and views
     let FirstName = UITextField()
     let firstNameTextFieldView = UIView()
@@ -76,14 +73,16 @@ class B_1Register : UIViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .systemPurple
+        navigationController?.navigationBar.tintColor = .black
         
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
-       navigationItem.title = "Create an Account"
-      
+             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
+        navigationItem.title = "Create Your Account"
+        //back bar button item reset.
+        
+        
         setupToHideKeyboardOnTapOnView()
         self.EmailTextField.delegate = self
         self.PasswordTextField.delegate = self
@@ -100,9 +99,10 @@ class B_1Register : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         //want to setup the toggle button and bottom view below
-        setupToggleView()
-        setupToggleButton()
         setupMainView()
+        addbottomButtons()
+        navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
     }
     
     
@@ -112,15 +112,15 @@ class B_1Register : UIViewController {
     func setupMainView() {
         
         let verticalSeperatorConstraint = -40.0
-        let widthAnchor = self.view.frame.size.width - 50
-        let registerButtonHeight = 50
+        let widthAnchor = self.view.frame.size.width/1.2
+        let registerButtonHeight = 80
         
         
         self.view.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.widthAnchor.constraint(equalToConstant: widthAnchor).isActive = true
+        containerView.widthAnchor.constraint(equalToConstant: CGFloat(widthAnchor)).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / 2).isActive = true
-        containerView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        containerView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
         containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         containerView.backgroundColor = .white
         containerView.layer.cornerRadius = 5
@@ -131,16 +131,8 @@ class B_1Register : UIViewController {
         RegisterButton.translatesAutoresizingMaskIntoConstraints = false
         RegisterButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0).isActive = true
         RegisterButton.heightAnchor.constraint(equalToConstant: CGFloat(registerButtonHeight)).isActive = true
-        RegisterButton.widthAnchor.constraint(equalToConstant: widthAnchor - 10).isActive = true
+        RegisterButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
         RegisterButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
-        RegisterButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        RegisterButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        RegisterButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        RegisterButton.setTitleColor(.black, for: .normal)
-        RegisterButton.setTitle("Done", for: .normal)
-        RegisterButton.setTitleColor(.white, for: .normal)
-        RegisterButton.backgroundColor = .black
-        RegisterButton.layer.cornerRadius = 5
         RegisterButton.addTarget(self, action: #selector(confirmData), for: .touchUpInside)
         
         
@@ -150,10 +142,10 @@ class B_1Register : UIViewController {
 
         containerView.addSubview(ConfirmPasswordTextField)
         ConfirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        ConfirmPasswordTextField.bottomAnchor.constraint(equalTo: RegisterButton.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        ConfirmPasswordTextField.bottomAnchor.constraint(equalTo: RegisterButton.topAnchor, constant: -60).isActive = true
         ConfirmPasswordTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
         ConfirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.6)])
-        ConfirmPasswordTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        ConfirmPasswordTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         ConfirmPasswordTextField.adjustsFontSizeToFitWidth = true
         ConfirmPasswordTextField.textColor = .black
         ConfirmPasswordTextField.isSecureTextEntry = true
@@ -166,7 +158,7 @@ class B_1Register : UIViewController {
         PasswordTextField.bottomAnchor.constraint(equalTo: ConfirmPasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
         PasswordTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
         PasswordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
-        PasswordTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        PasswordTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         PasswordTextField.adjustsFontSizeToFitWidth = true
         PasswordTextField.textColor = .black
         PasswordTextField.isSecureTextEntry = true
@@ -180,7 +172,7 @@ class B_1Register : UIViewController {
         birthYear.bottomAnchor.constraint(equalTo: PasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
         birthYear.widthAnchor.constraint(equalToConstant: 70).isActive = true
         birthYear.attributedPlaceholder = NSAttributedString(string:"YYYY", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
-        birthYear.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        birthYear.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         birthYear.textAlignment = .left
         birthYear.keyboardType = .numberPad
         birthYear.textColor = .black
@@ -194,7 +186,7 @@ class B_1Register : UIViewController {
         birthDay.widthAnchor.constraint(equalToConstant: 70).isActive = true
         birthDay.bottomAnchor.constraint(equalTo: PasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
         birthDay.attributedPlaceholder = NSAttributedString(string:"DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
-        birthDay.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        birthDay.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         birthDay.textAlignment = .left
         birthDay.keyboardType = .numberPad
         birthDay.textColor = .black
@@ -209,7 +201,7 @@ class B_1Register : UIViewController {
         birthMonth.widthAnchor.constraint(equalToConstant: 70).isActive = true
         birthMonth.bottomAnchor.constraint(equalTo: PasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
         birthMonth.attributedPlaceholder = NSAttributedString(string:"MM", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
-        birthMonth.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        birthMonth.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         birthMonth.textAlignment = .left
         birthMonth.keyboardType = .numberPad
         birthMonth.textColor = .black
@@ -225,7 +217,7 @@ class B_1Register : UIViewController {
         EmailTextField.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
         EmailTextField.bottomAnchor.constraint(equalTo: birthMonth.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
         EmailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
-        EmailTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        EmailTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         EmailTextField.textColor = .black
         EmailTextField.textContentType = .emailAddress
         EmailTextField.autocapitalizationType = .none
@@ -239,7 +231,7 @@ class B_1Register : UIViewController {
         FirstName.widthAnchor.constraint(equalToConstant: 150).isActive = true
         FirstName.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
         FirstName.attributedPlaceholder = NSAttributedString(string:"First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
-        FirstName.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        FirstName.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         FirstName.textColor = .black
         FirstName.autocapitalizationType = .words
         FirstName.textAlignment = .left
@@ -254,7 +246,7 @@ class B_1Register : UIViewController {
         LastName.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
          //need left anchor.
         LastName.attributedPlaceholder = NSAttributedString(string:"Last Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
-        LastName.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        LastName.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         LastName.textColor = .black
         LastName.autocapitalizationType = .words
         LastName.textAlignment = .left
@@ -287,6 +279,36 @@ class B_1Register : UIViewController {
         
         
     }
+    
+    
+    
+    func addbottomButtons() {
+        let widthAnchor = 300
+        
+        view.addSubview(employeeRegisterButton)
+        employeeRegisterButton.translatesAutoresizingMaskIntoConstraints = false
+        employeeRegisterButton.widthAnchor.constraint(equalToConstant: CGFloat(widthAnchor)).isActive = true
+        employeeRegisterButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        employeeRegisterButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        employeeRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        employeeRegisterButton.addTarget(self, action: #selector(toEmployeeView), for: .touchUpInside)
+        
+        view.addSubview(businessRegisterButton)
+        businessRegisterButton.translatesAutoresizingMaskIntoConstraints = false
+        businessRegisterButton.widthAnchor.constraint(equalToConstant: CGFloat(widthAnchor)).isActive = true
+        businessRegisterButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        businessRegisterButton.bottomAnchor.constraint(equalTo: employeeRegisterButton.topAnchor, constant: -10).isActive = true
+        businessRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        businessRegisterButton.addTarget(self, action: #selector(toOwnerView), for: .touchUpInside)
+        
+//        view.addSubview(ownerOrEmployeeLabel)
+//        ownerOrEmployeeLabel.translatesAutoresizingMaskIntoConstraints = false
+//        ownerOrEmployeeLabel.leftAnchor.constraint(equalTo: businessRegisterButton.leftAnchor, constant: 15).isActive = true
+//        ownerOrEmployeeLabel.rightAnchor.constraint(equalTo: businessRegisterButton.rightAnchor, constant: 0).isActive = true
+//        ownerOrEmployeeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//        ownerOrEmployeeLabel.bottomAnchor.constraint(equalTo: businessRegisterButton.topAnchor, constant: -30).isActive = true
+    }
+    
     
     static func setupShadow(view: UIView){
         view.layer.shadowColor = UIColor.black.cgColor
@@ -462,64 +484,9 @@ class B_1Register : UIViewController {
         
     }
     
-    func setupToggleView() {
-        bottomView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/4)
-        bottomView.center.x = self.view.center.x
-        bottomView.center.y = self.view.frame.height + bottomView.frame.size.height/2
-        bottomView.backgroundColor = UIColor.black.withAlphaComponent(1)
-        bottomView.layer.shadowColor = UIColor.black.cgColor
-        bottomView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        bottomView.layer.shadowRadius = 8
-        bottomView.layer.shadowOpacity = 0.33
-        bottomView.layer.cornerRadius = 20
-        
-        employeeRegisterButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/3, height: 60)
-        employeeRegisterButton.backgroundColor = .clear
-        employeeRegisterButton.center.x = self.bottomView.center.x - self.bottomView.center.x/2.5
-        employeeRegisterButton.center.y = self.bottomView.center.y
-        employeeRegisterButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        employeeRegisterButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        employeeRegisterButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        employeeRegisterButton.setTitleColor(.white, for: .normal)
-        employeeRegisterButton.setTitle("Employee", for: .normal)
-        employeeRegisterButton.addTarget(self, action: #selector(toEmployeeView), for: .touchUpInside)
-        
-        
-        businessRegisterButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/3, height: 60)
-        businessRegisterButton.backgroundColor = .clear
-        businessRegisterButton.center.x = self.bottomView.center.x + self.bottomView.center.x/2.5
-        businessRegisterButton.center.y = self.bottomView.center.y
-        businessRegisterButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        businessRegisterButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        businessRegisterButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        businessRegisterButton.setTitleColor(.white, for: .normal)
-        businessRegisterButton.setTitle("Owner", for: .normal)
-        businessRegisterButton.addTarget(self, action: #selector(toOwnerView), for: .touchUpInside)
-        
-        self.view.addSubview(employeeRegisterButton)
-        self.view.addSubview(businessRegisterButton)
-        
-        self.view.addSubview(bottomView)
-        self.view.sendSubviewToBack(bottomView)
-        
-        
-        
-    }
+   
     
-    func setupToggleButton() {
-        
-        let backGroundImage = UIImage(systemName: "chevron.down")
-        let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
-        self.toggleVariable = true
-        self.toggleButton.frame = CGRect(x: 0, y: 0, width: 25, height: 15)
-        self.toggleButton.center.x = self.view.center.x
-        self.toggleButton.center.y = self.view.center.y + self.view.center.y/1.3
-        self.toggleButton.setBackgroundImage(tintedImage, for: .normal)
-        self.toggleButton.tintColor = .systemPurple
-        self.toggleButton.addTarget(self, action: #selector(showToggleView), for: .touchUpInside)
-        self.view.addSubview(toggleButton)
-    }
-    
+   
     
     //MARK:- @objc functions called
     
@@ -533,32 +500,7 @@ class B_1Register : UIViewController {
         self.performSegue(withIdentifier: GlobalVariables.SegueIDs.B_1RegisterSeque, sender: self)
     }
     
-    @objc func showToggleView() {
-        if self.toggleVariable == true {
-            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
-                
-                self.toggleButton.center.y = self.view.center.y + self.bottomView.frame.size.height/1.3
-                self.toggleButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-                self.bottomView.center.y = self.view.frame.height - self.bottomView.frame.size.height/2
-                self.employeeRegisterButton.center.y = self.bottomView.center.y
-                self.businessRegisterButton.center.y = self.bottomView.center.y
-                self.toggleVariable = false
-                
-            }, completion: nil)
-        } else if self.toggleVariable ==  false {
-            
-            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
-                self.toggleButton.center.y = self.view.center.y + self.view.center.y/1.5
-                self.toggleButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
-                self.bottomView.center.y = self.view.frame.height + self.bottomView.frame.size.height/2
-                self.employeeRegisterButton.center.y = self.bottomView.center.y
-                self.businessRegisterButton.center.y = self.bottomView.center.y
-                self.toggleVariable = true
-                
-            }, completion: nil)
-        }
-    }
-    
+  
     
     
     
@@ -592,5 +534,6 @@ extension B_1Register: UITextFieldDelegate {
         }
     }
 }
+
 
 

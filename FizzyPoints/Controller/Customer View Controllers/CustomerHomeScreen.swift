@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import GooglePlaces
 import GoogleMaps
+import UserNotifications
 
 
 class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
@@ -20,21 +21,18 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     var BusinessNamesArray : [BusinessName] = []
     let locationManager = CLLocationManager()
     let defaults = UserDefaults.standard
-    
+    let current = UNUserNotificationCenter.current()
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
-    private lazy var qrButton: UIButton = {
-      let qrButton = UIButton()
-        qrButton.backgroundColor = .black
-        qrButton.setTitleColor(.white, for: .normal)
-        qrButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        qrButton.setTitle("Your Card", for: .normal)
-        qrButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        qrButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-      return qrButton
-    }()
+    
+    
+    let qrButton = ActionButton(backgroundColor: .black, title: "Your Card", image: nil)
+    
     let viewFeedButton = UIButton()
     let BusinessList = UITableView()
+    
+    let businessCollection = Firestore.firestore()
+    
     
     //MARK:- Preliminary setup
     
@@ -51,6 +49,18 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         
         super.viewDidLoad()
         
+        
+    
+        
+    
+    
+    
+        
+        
+        
+        
+        
+        
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -58,7 +68,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         
         self.navigationItem.title = "Your Spots"
         refreshTableView()
@@ -68,13 +78,30 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
 
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.largeTitleDisplayMode = .never
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.titleTextAttributes =
+         self.navigationController?.navigationBar.titleTextAttributes =
                    [NSAttributedString.Key.foregroundColor: UIColor.black,
-                    NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
+                    NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
                
         self.navigationItem.title = "Your Spots"
         self.refresher.backgroundColor = Global_Colors.colors.refresherColor
@@ -160,13 +187,12 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         qrButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
         qrButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
         qrButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        qrButton.layer.cornerRadius = 4
         qrButton.addTarget(self, action: #selector(viewQRButton), for: .touchUpInside)
         
     }
     
     //side button setu[
-    func setupSideButton() {
+    private func setupSideButton() {
         let containerForButton = UIView()
         containerForButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(containerForButton)
@@ -202,22 +228,22 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         
     }
     
-    func setupTable() {
+    private func setupTable() {
         BusinessList.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(BusinessList)
+        view.addSubview(BusinessList)
         BusinessList.widthAnchor.constraint(equalToConstant: self.view.frame.size.width).isActive = true
-        BusinessList.bottomAnchor.constraint(equalTo: qrButton.topAnchor, constant: -50).isActive = true
-        BusinessList.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        BusinessList.bottomAnchor.constraint(equalTo: qrButton.topAnchor, constant: -30).isActive = true
+        BusinessList.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
         BusinessList.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         BusinessList.layer.shadowColor = UIColor.black.cgColor
         BusinessList.layer.shadowOffset = CGSize(width: 0, height: 0)
         BusinessList.layer.shadowRadius = 10
         BusinessList.layer.shadowOpacity = 0.3
         BusinessList.separatorStyle = .none
-        self.view.sendSubviewToBack(BusinessList)
+        view.sendSubviewToBack(BusinessList)
     }
     //functuon to create a business list and show it on the screen
-    func showList() {
+    private func showList() {
         createBusinessList()
         BusinessList.dataSource = self
         BusinessList.register(BusinessForCustomerCell.self, forCellReuseIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID)
@@ -239,6 +265,14 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
             else {
                 for businessNames in Businesses!.documents {
                     //this is where you can add all the businesses to the tableview
+                    
+                    //call the listener function
+                    
+                    
+                    
+                    
+                    
+                    
                     let newBusinessAdded = BusinessName(inputName: businessNames.documentID, pointsAdded: businessNames.get(GlobalVariables.UserIDs.PointsString) as? Float ?? 0, redemptionCode: businessNames.get(GlobalVariables.UserIDs.RedemptionNumberString) as? Int ?? 0, bonusPoints: businessNames.get(GlobalVariables.UserIDs.BonusPointsString) as? Int ?? 0, address: businessNames.get(GlobalVariables.UserIDs.UserAddress) as! String)
                     //add a new business to the array
                     
@@ -246,10 +280,43 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
                     //setup this when reloading the data
                 }
                 self.BusinessList.reloadData()
+                
+                self.setListenerForRevenue(business: self.BusinessNamesArray) { (businessName) in
+                    let content = UNMutableNotificationContent()
+                    content.title = "\(businessName) just posted!"
+                    let date = Date().addingTimeInterval(0)
+                    let dateComponents = Calendar.current.dateComponents([.day, .hour], from: date)
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                    let uuidString = UUID().uuidString
+                    let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                    self.current.add(request)
+                }
+
+                
                 self.refresher.endRefreshing()            }
         }
     }
     
+
+    func setListenerForRevenue(business: [BusinessName], completion: @escaping (String) -> Void) {
+        let db = Firestore.firestore()
+        for values in business {
+            let thebusiness = db.collection(GlobalVariables.UserIDs.existingBusinesses).document(values.address).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!)
+        thebusiness.addSnapshotListener { (doc, err) in
+            if let doc = doc, doc.exists {
+                //during the listening phase, these values will keep updating and listening/fetching values from the database if they have been changed.
+                let notify = doc.get(GlobalVariables.UserIDs.recieveAlerts) as! Bool
+                print(notify)
+                if notify == true {
+                    completion(values.name)
+                }
+
+
+            }
+        }
+
+    }
+    }
     
     //MARK:- Actions
     
@@ -343,6 +410,8 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     }
     
     
+    
+ 
     
     //MARK:- Supplimentary functions
     
@@ -470,4 +539,59 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK:- Business Search Protocol Extension
+extension CustomerHomeScreen: BusinessSearchProtocol {
+    
+    
+    
+    func isListening(BusinessName: String, businessAddress: String) {
+        
+        print("this is being called")
+        setupListener(businessAddress: businessAddress) { (didChangeValue) in
+            guard didChangeValue == nil else {return}
+            let alert = UIAlertController(title: "\(BusinessName) just posted.", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert: UIAlertAction) in
+                return
+            }))
+            self.present(alert, animated: true, completion: nil)
+                                      
+                                
+        }
+    }
+    
+    
+    
+    
+    //setup the listener function to return a value to the function above.
+    func setupListener(businessAddress: String, completion: @escaping (Any) -> Void) {
+        
+        Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).addSnapshotListener { (document, error) in
+            guard error == nil else {return}
+            let returnValue = document?.get(GlobalVariables.UserIDs.recieveAlerts) as! Bool
+            completion(returnValue)
+            
+        }
+    }
+    
+    
+    
+}
+
+
 

@@ -133,7 +133,7 @@ class ScanDataFile : UIViewController {
               [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
               NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
          
-         navigationItem.title = "Your Business Analytics"
+        navigationItem.title = "Your Business Analytics"
         navigationItem.largeTitleDisplayMode = .never
         
     }
@@ -172,7 +172,6 @@ class ScanDataFile : UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-      
         
         
     }

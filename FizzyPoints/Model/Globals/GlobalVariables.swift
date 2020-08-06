@@ -98,6 +98,11 @@ class GlobalVariables {
         static let dateUploaded = "Date Uploaded"
         static let newDate = "New Date"
         
+        //subscribers
+        static let subscriberCollection = "Subscribed Customers"
+        static let isSubscribed = "Is Subscribed"
+        static let recieveAlerts = "Notify"
+        
     }
     
     

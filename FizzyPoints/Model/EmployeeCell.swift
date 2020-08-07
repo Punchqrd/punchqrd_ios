@@ -32,7 +32,7 @@ class EmployeeCell: UITableViewCell {
         NameLabel.widthAnchor.constraint(equalToConstant: self.frame.size.width).isActive = true
         NameLabel.heightAnchor.constraint(equalToConstant: self.frame.size.height/4).isActive = true
         NameLabel.textColor = .systemPurple
-        NameLabel.font = UIFont(name: "Poppins", size: 20)
+        NameLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 20)
         NameLabel.textAlignment = .center
         
         //email label
@@ -45,7 +45,7 @@ class EmployeeCell: UITableViewCell {
         EmailLabel.topAnchor.constraint(equalTo: NameLabel.bottomAnchor, constant: 0).isActive = true
         EmailLabel.textColor = .black
         EmailLabel.textAlignment = .left
-        EmailLabel.font = UIFont(name: "Poppins-Light", size: 15)
+        EmailLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         
         PasswordLabel.translatesAutoresizingMaskIntoConstraints = false
         PasswordLabel.frame = CGRect(x: 0, y: 0, width: EmailLabel.frame.size.width, height: EmailLabel.frame.size.height)
@@ -56,7 +56,7 @@ class EmployeeCell: UITableViewCell {
         PasswordLabel.topAnchor.constraint(equalTo: NameLabel.bottomAnchor, constant: 25).isActive = true
         PasswordLabel.textAlignment = .left
         PasswordLabel.textColor = .black
-        PasswordLabel.font = UIFont(name: "Poppins-Light", size: 15)
+        PasswordLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         
     }
 

@@ -33,6 +33,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     let businessCollection = Firestore.firestore()
     
+    var delegate : BusinessSearchProtocol?
     
     //MARK:- Preliminary setup
     
@@ -68,7 +69,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         navigationController?.navigationBar.shadowImage = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).as4ptImage()
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 23)!]
         
         self.navigationItem.title = "Your Spots"
         refreshTableView()
@@ -101,7 +102,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     override func viewWillAppear(_ animated: Bool) {
          self.navigationController?.navigationBar.titleTextAttributes =
                    [NSAttributedString.Key.foregroundColor: UIColor.black,
-                    NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
+                    NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 26)!]
                
         self.navigationItem.title = "Your Spots"
         self.refresher.backgroundColor = Global_Colors.colors.refresherColor
@@ -117,8 +118,9 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         self.setupDefault()
         showList()
         setupTable()
+        
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .systemPurple
+        navigationController?.navigationBar.tintColor = .black
         
         //swipe gestures
         let viewNewsFeedGesture = UISwipeGestureRecognizer(target: self, action: #selector(didTapSideButton))
@@ -177,21 +179,44 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     
-    //MARK:- Table View logic and View Setup
+    //MARK:- View
     
     //qr button setup
     func setupQRButton() {
         view.addSubview(qrButton)
         qrButton.translatesAutoresizingMaskIntoConstraints = false
         qrButton.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.4).isActive = true
-        qrButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        qrButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        qrButton.heightAnchor.constraint(equalToConstant: view.frame.size.width/1.4).isActive = true
+        qrButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: (view.frame.size.width/1.4)/2).isActive = true
         qrButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        qrButton.setTitle("", for: .normal)
         qrButton.addTarget(self, action: #selector(viewQRButton), for: .touchUpInside)
+        qrButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        qrButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0)
+        ///potential colors for the button.
+//        qrButton.backgroundColor = UIColor(red: 247, green: 119, blue: 84)
+//        qrButton.backgroundColor = UIColor(red: 116, green: 105, blue: 140)
+        
+        //add a title view above it
+        let titleLabel = UILabel()
+        qrButton.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.rightAnchor.constraint(equalTo: qrButton.rightAnchor, constant: -30).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: qrButton.leftAnchor, constant: 30).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: qrButton.centerYAnchor, constant: -40).isActive = true
+        titleLabel.text = "Your Card"
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont(name: Fonts.importFonts.headerFont, size: 20)
+        
+        
+        view.bringSubviewToFront(qrButton)
         
     }
     
-    //side button setu[
+    
+    
+    //side button setup
     private func setupSideButton() {
         let containerForButton = UIView()
         containerForButton.translatesAutoresizingMaskIntoConstraints = false
@@ -232,7 +257,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         BusinessList.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(BusinessList)
         BusinessList.widthAnchor.constraint(equalToConstant: self.view.frame.size.width).isActive = true
-        BusinessList.bottomAnchor.constraint(equalTo: qrButton.topAnchor, constant: -30).isActive = true
+        BusinessList.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         BusinessList.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
         BusinessList.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         BusinessList.layer.shadowColor = UIColor.black.cgColor
@@ -260,7 +285,10 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         let db = Firestore.firestore()
         //specify the correct path to the collection set
         db.collection(GlobalVariables.UserIDs.CollectionTitle).document((Auth.auth().currentUser?.email)!).collection(GlobalVariables.UserIDs.CustomerBusinessCollection).getDocuments { (Businesses, error) in
-            if let error = error {print(error)}
+            if let error = error {print(error)
+                return
+                
+            }
                 
             else {
                 for businessNames in Businesses!.documents {
@@ -281,42 +309,44 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
                 }
                 self.BusinessList.reloadData()
                 
-                self.setListenerForRevenue(business: self.BusinessNamesArray) { (businessName) in
-                    let content = UNMutableNotificationContent()
-                    content.title = "\(businessName) just posted!"
-                    let date = Date().addingTimeInterval(0)
-                    let dateComponents = Calendar.current.dateComponents([.day, .hour], from: date)
-                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                    let uuidString = UUID().uuidString
-                    let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-                    self.current.add(request)
+//                Setting up the listener for each business for any sort of notification.
+                DispatchQueue.main.async {
+                    for values in self.BusinessNamesArray {
+                        self.setupListener(businessAddress: values.address) { (businessName) in
+                            let content = UNMutableNotificationContent()
+                            content.title = "\(values.name.self)"
+                            content.subtitle = "Just updated their feed."
+                            content.sound = UNNotificationSound.default
+
+                            // show this notification five seconds from now
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+
+                            // choose a random identifier
+                            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+                            // add our notification request
+                            UNUserNotificationCenter.current().add(request)
+
+                            let alert = UIAlertController(title: "\(values.name) just posted.", message: nil, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert: UIAlertAction) in
+
+                                Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(values.address).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).updateData([GlobalVariables.UserIDs.recieveAlerts : false])
+
+                                return
+
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
                 }
 
-                
+
                 self.refresher.endRefreshing()            }
         }
     }
     
 
-    func setListenerForRevenue(business: [BusinessName], completion: @escaping (String) -> Void) {
-        let db = Firestore.firestore()
-        for values in business {
-            let thebusiness = db.collection(GlobalVariables.UserIDs.existingBusinesses).document(values.address).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!)
-        thebusiness.addSnapshotListener { (doc, err) in
-            if let doc = doc, doc.exists {
-                //during the listening phase, these values will keep updating and listening/fetching values from the database if they have been changed.
-                let notify = doc.get(GlobalVariables.UserIDs.recieveAlerts) as! Bool
-                print(notify)
-                if notify == true {
-                    completion(values.name)
-                }
 
-
-            }
-        }
-
-    }
-    }
     
     //MARK:- Actions
     
@@ -338,6 +368,16 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     @IBAction func searchBusinessButton(_ sender: UIBarButtonItem) {
+        let promoteScreen = BusinessSearch()
+        promoteScreen.delegate = self
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromRight
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(promoteScreen, animated: false)
         
     }
     
@@ -442,8 +482,14 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.parentView = self.view
         cell.PointsProgressBar.trackTintColor = UIColor.lightGray.withAlphaComponent(0.1)
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
-//        cell.PointsProgressBar.progressTintColor = UIColor(red: 123, green: 0, blue: 146)
         cell.PointsProgressBar.progressTintColor = Global_Colors.colors.progressBarColor
+        
+        
+        //random colors for the points
+        let randomNumber = Int.random(in: 0...1)
+        let randomColorArray = [Global_Colors.colors.puncchardColor1, Global_Colors.colors.puncchardColor2]
+        cell.pointsCircle.backgroundColor = randomColorArray[randomNumber]
+        
         
      
         let backgroundView = UIView()
@@ -461,23 +507,18 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.CheckMarkImage.isHidden = true
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         cell.BusinessName.numberOfLines = 0
-//        GlobalFunctions.setPointProgressBarRadius(bar: cell.PointsProgressBar)
         
         
         if self.BusinessNamesArray[indexPath.row].bonusPoints != 0 {
             self.delay(0.2) {
                 cell.bonusPointsCircle.isHidden = false
                 cell.BonusPointsLabel.text = String(describing: self.BusinessNamesArray[indexPath.row].bonusPoints)
-//                cell.bonusPointsCircle.sendSubviewToBack(cell.BonusPointsLabel)
 
               
             }
             self.delay(3.0) {
                 cell.bonusPointsCircle.isHidden = true
-                //show the bonus points, then delete them forever
                 
-                //this is a little buggy when one or more business are added to the users profile
-                //could be connectivity issues.?
                 GlobalFunctions.deleteBonusPoint(user: Auth.auth().currentUser?.email, business: self.BusinessNamesArray[indexPath.row].name)
             }
         }
@@ -558,16 +599,40 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
 //MARK:- Business Search Protocol Extension
 extension CustomerHomeScreen: BusinessSearchProtocol {
     
+    ///this again is just a test function that is used to see if the protocol is actually doing its job.
+    func printThisTest(value: String) {
+        print(value)
+    }
+    
+    
     
     
     func isListening(BusinessName: String, businessAddress: String) {
         
         print("this is being called")
         setupListener(businessAddress: businessAddress) { (didChangeValue) in
-            guard didChangeValue == nil else {return}
+            
+            let content = UNMutableNotificationContent()
+            content.title = "\(BusinessName)"
+            content.subtitle = "Just updated their feed."
+            content.sound = UNNotificationSound.default
+
+            // show this notification five seconds from now
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+
+            // choose a random identifier
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+            // add our notification request
+            UNUserNotificationCenter.current().add(request)
+            
             let alert = UIAlertController(title: "\(BusinessName) just posted.", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert: UIAlertAction) in
+                
+                Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).updateData([GlobalVariables.UserIDs.recieveAlerts : false])
+                
                 return
+                
             }))
             self.present(alert, animated: true, completion: nil)
                                       
@@ -584,11 +649,18 @@ extension CustomerHomeScreen: BusinessSearchProtocol {
         Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).addSnapshotListener { (document, error) in
             guard error == nil else {return}
             let returnValue = document?.get(GlobalVariables.UserIDs.recieveAlerts) as! Bool
-            completion(returnValue)
+            if returnValue == true {
+                completion(returnValue)
+            } else {
+                return
+            }
+            
             
         }
     }
     
+    
+   
     
     
 }

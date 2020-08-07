@@ -55,7 +55,7 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         
          navigationController?.navigationBar.titleTextAttributes =
                     [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-                    NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+                     NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         self.parent?.title = String(describing: Auth.auth().currentUser?.email!)
         self.navigationItem.title = String(describing: Auth.auth().currentUser?.email!)
             
@@ -75,7 +75,7 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         
         navigationController?.navigationBar.titleTextAttributes =
              [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-             NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+              NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         
         self.navigationItem.title = String(describing: Auth.auth().currentUser?.email!)
         
@@ -88,8 +88,8 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
     func setupView() {
         ScanButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width/3, height: 100)
         ScanButton.center = self.view.center
-        ScanButton.backgroundColor = .purple
-        ScanButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 15)
+        ScanButton.backgroundColor = Global_Colors.colors.refresherColor
+        ScanButton.titleLabel?.font =  UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         ScanButton.setTitleColor(.white, for: .normal)
         ScanButton.setTitle("Scan", for: .normal)
         B_1Register.setupShadow(view: ScanButton)

@@ -55,7 +55,7 @@ class Info_BusinessCustomer: UIView {
         self.totalSpentLabel.center.x = self.frame.size.width/2
         self.totalSpentLabel.center.y = self.frame.size.height/3
         self.totalSpentLabel.text = "$ Spent: $\(String(describing: self.totalSpent!))"
-        self.totalSpentLabel.font = UIFont(name: "Poppins-Light", size: 20)
+        self.totalSpentLabel.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         self.totalSpentLabel.textColor = .white
         self.totalSpentLabel.textAlignment = .center
         self.addSubview(totalSpentLabel)
@@ -64,7 +64,7 @@ class Info_BusinessCustomer: UIView {
         self.totalScansLabel.center.x = self.frame.size.width/2
         self.totalScansLabel.center.y = self.frame.size.height/2
         self.totalScansLabel.text = "Total Scans: \(String(describing: self.totalScans!))"
-        self.totalScansLabel.font = UIFont(name: "Poppins-Light", size: 20)
+        self.totalScansLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 20)
         self.totalScansLabel.textColor = .white
         self.totalScansLabel.textAlignment = .center
         self.addSubview(totalScansLabel)
@@ -73,7 +73,7 @@ class Info_BusinessCustomer: UIView {
         self.nameOfBusinessLabel.center.x = self.frame.size.width/2
         self.nameOfBusinessLabel.center.y = self.frame.size.height/6
         self.nameOfBusinessLabel.text = "\(String(describing: self.nameOfBusiness!))"
-        self.nameOfBusinessLabel.font = UIFont(name: "Poppins-Bold", size: 20)
+        self.nameOfBusinessLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 20)
         self.nameOfBusinessLabel.textColor = .white
         self.nameOfBusinessLabel.textAlignment = .center
         self.nameOfBusinessLabel.numberOfLines = 0

@@ -186,8 +186,9 @@ class B_2Register : UIViewController {
     
     func setupAnimation() {
         
-        
-        self.animationView.animation = Animation.named(GlobalVariables.animationTitles.mainLoader)
+        let animationTitle = ["CroissantLoader", "CoffeeLoader", "BeerLoader"]
+        let randomNumber = Int.random(in: 0...2)
+        self.animationView.animation = Animation.named(animationTitle[randomNumber])
         self.animationView.frame.size.height = self.view.frame.height
         self.animationView.frame.size.width = self.view.frame.width
         self.animationView.contentMode = .center

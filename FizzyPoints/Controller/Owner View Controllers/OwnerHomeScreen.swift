@@ -20,11 +20,11 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     let animationView1 = AnimationView()
     let productID = "com.SebastianBarry.FizzyPoints.BusinessPack"
     
-    @IBOutlet weak var RemoveEmployeeButton: UIButton!
+    var RemoveEmployeeButton = ActionButton(backgroundColor: Global_Colors.colors.refresherColor, title: "Manage Employees", image: nil)
     @IBOutlet weak var logoutButton: UIBarButtonItem!
-    @IBOutlet weak var AddEmployeeButton: UIButton!
-    @IBOutlet weak var ScanDataButton: UIButton!
-    @IBOutlet weak var PromotButton: UIButton!
+    var AddEmployeeButton = ActionButton(backgroundColor: Global_Colors.colors.refresherColor, title: "Add Employee", image: nil)
+    var ScanDataButton = ActionButton(backgroundColor: Global_Colors.colors.refresherColor, title: "Data", image: nil)
+    var PromotButton = ActionButton(backgroundColor: .systemPurple, title: "Promote", image: nil)
     
     private lazy var animationView2: AnimationView = {
         let view = AnimationView()
@@ -43,16 +43,20 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     
         
         navigationItem.hidesBackButton = true
-        
+        navigationController?.navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-             NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         navigationItem.title = String(describing: "Owner Portal")
         
-//        setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
+        
+        
+        
+        
+        
         
         //check if the user is subscribed **
         SKPaymentQueue.default().add(self)
@@ -84,84 +88,110 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
         
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-             NSAttributedString.Key.font: UIFont(name: "Poppins", size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         navigationItem.title = String(describing: "Owner Portal")
         
-        setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
-        self.buttonLoadingAnimation.removeFromSuperview()
+//        setupAnimation2(parentView: self.view, animationView: animationView2, animationName: "SippingCoffee")
+//        self.buttonLoadingAnimation.removeFromSuperview()
     }
     
     func setupConstraintsForButtons() {
+        view.addSubview(RemoveEmployeeButton)
         RemoveEmployeeButton.translatesAutoresizingMaskIntoConstraints = false
         RemoveEmployeeButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
         RemoveEmployeeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
         RemoveEmployeeButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
         RemoveEmployeeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         RemoveEmployeeButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        RemoveEmployeeButton.addTarget(self, action: #selector(RemoveEmployeeAction), for: .touchUpInside)
         
         
+        
+        view.addSubview(AddEmployeeButton)
         AddEmployeeButton.translatesAutoresizingMaskIntoConstraints = false
         AddEmployeeButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
         AddEmployeeButton.topAnchor.constraint(equalTo: RemoveEmployeeButton.bottomAnchor, constant: 50).isActive = true
         AddEmployeeButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
         AddEmployeeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         AddEmployeeButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-
+        AddEmployeeButton.addTarget(self, action: #selector(AddEmployeeAction), for: .touchUpInside)
         
         
+        
+        view.addSubview(ScanDataButton)
         ScanDataButton.translatesAutoresizingMaskIntoConstraints = false
         ScanDataButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
         ScanDataButton.topAnchor.constraint(equalTo: AddEmployeeButton.bottomAnchor, constant: 50).isActive = true
         ScanDataButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
         ScanDataButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         ScanDataButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-
+        ScanDataButton.addTarget(self, action: #selector(ScanDataAction), for: .touchUpInside)
         
         
+        
+        view.addSubview(PromotButton)
         PromotButton.translatesAutoresizingMaskIntoConstraints = false
         PromotButton.frame = CGRect(x: 0, y: 0, width: 330, height: 55)
         PromotButton.topAnchor.constraint(equalTo: ScanDataButton.bottomAnchor, constant: 50).isActive = true
         PromotButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
         PromotButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         PromotButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-
+        PromotButton.addTarget(self, action: #selector(PromotAction), for: .touchUpInside)
         
         
-        //radius set for button.
-        GlobalFunctions.setButtonRadius(button: self.AddEmployeeButton)
-        GlobalFunctions.setButtonRadius(button: self.RemoveEmployeeButton)
-        GlobalFunctions.setButtonRadius(button: self.ScanDataButton)
-        GlobalFunctions.setButtonRadius(button: self.PromotButton)
+        
+       
         
     }
     
     //MARK:- Actions
-    @IBAction func AddEmployeeAction(_ sender: UIButton) {
-        
+    @objc func AddEmployeeAction() {
+        let promoteScreen = SecondAddEmployeeScreen()
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromRight
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(promoteScreen, animated: false)
     }
     
-    @IBAction func RemoveEmployeeAction(_ sender: UIButton) {
-        
+    @objc func RemoveEmployeeAction() {
+        let promoteScreen = RemoveEmployeesScreen()
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromRight
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(promoteScreen, animated: false)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
+    
+    @objc func ScanDataAction() {
+        let promoteScreen = ScanDataFile()
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = CATransitionSubtype.fromRight
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(promoteScreen, animated: false)
     }
     
-    @IBAction func ScanDataAction(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func PromotAction(_ sender: UIButton) {
+    @objc func PromotAction() {
         let promoteScreen = PromoteScreen()
         let navigationController = self.navigationController
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
+        transition.type = CATransitionType.reveal
         transition.subtype = CATransitionSubtype.fromBottom
         navigationController?.view.layer.add(transition, forKey: nil)
         navigationController?.pushViewController(promoteScreen, animated: false)
@@ -272,7 +302,9 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     
     func setupAnimation() {
         
-        self.animationView1.animation = Animation.named(GlobalVariables.animationTitles.mainLoader)
+        let animationTitle = ["CroissantLoader", "CoffeeLoader", "BeerLoader"]
+        let randomNumber = Int.random(in: 0...2)
+        self.animationView1.animation = Animation.named(animationTitle[randomNumber])
         self.animationView1.frame.size.height = self.view.frame.height
         self.animationView1.frame.size.width = self.view.frame.width
         self.animationView1.contentMode = .center

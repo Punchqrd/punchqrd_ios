@@ -33,6 +33,8 @@
 		17510AD824DB6D48002A2C82 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17510AD724DB6D48002A2C82 /* NotificationService.swift */; };
 		17510ADC24DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		17510AE524DB9713002A2C82 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17510AE424DB9713002A2C82 /* ActionButton.swift */; };
+		175711C124DC753000D94B37 /* Indigo Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 175711C024DC753000D94B37 /* Indigo Regular.otf */; };
+		175711C324DC766700D94B37 /* Anson-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 175711C224DC766700D94B37 /* Anson-Regular.otf */; };
 		176AD81624901DAD00669202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176AD81524901DAD00669202 /* StoreKit.framework */; };
 		1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771DB8324BB820500154CC1 /* PaymentScreen.swift */; };
 		1783789C24C8F5A800436D1F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783789B24C8F5A800436D1F /* OnboardingView.swift */; };
@@ -168,6 +170,8 @@
 		17510AD924DB6D48002A2C82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17510AE124DB71EE002A2C82 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		17510AE424DB9713002A2C82 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		175711C024DC753000D94B37 /* Indigo Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Indigo Regular.otf"; path = "../../../../Downloads/indigo/Indigo Regular.otf"; sourceTree = "<group>"; };
+		175711C224DC766700D94B37 /* Anson-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Anson-Regular.otf"; path = "../../../../Downloads/AnsonFont-1/Anson-Regular.otf"; sourceTree = "<group>"; };
 		176AD81524901DAD00669202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1771DB8324BB820500154CC1 /* PaymentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentScreen.swift; sourceTree = "<group>"; };
 		1783789B24C8F5A800436D1F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -482,6 +486,7 @@
 		17DF1967248845A30040059C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				175711C024DC753000D94B37 /* Indigo Regular.otf */,
 				17E76B8E24DC5DA300063DB0 /* Hanken-Book.ttf */,
 				17E76B8D24DC5DA300063DB0 /* Hanken-Light.ttf */,
 				17DF1969248851EE0040059C /* Poppins-Thin.ttf */,
@@ -504,6 +509,7 @@
 				17DF1972248886010040059C /* Poppins-Italic.ttf */,
 				17DF1979248886280040059C /* Poppins-Light.ttf */,
 				17DF1973248886060040059C /* Poppins-LightItalic.ttf */,
+				175711C224DC766700D94B37 /* Anson-Regular.otf */,
 				17DF19772488861D0040059C /* Poppins-Medium.ttf */,
 				17DF196D248885DA0040059C /* Poppins-MediumItalic.ttf */,
 				17DF1970248885F40040059C /* Poppins-Regular.ttf */,
@@ -663,6 +669,7 @@
 				172224D5248F44D90063F0FC /* CroissantLoader.json in Resources */,
 				17DF198B2488863C0040059C /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				17E76B8924DC594A00063DB0 /* SignikaNegative-Regular.ttf in Resources */,
+				175711C124DC753000D94B37 /* Indigo Regular.otf in Resources */,
 				17DF19802488863C0040059C /* Poppins-BlackItalic.ttf in Resources */,
 				17DF19862488863C0040059C /* Poppins-ExtraLight.ttf in Resources */,
 				17F1EF8424D25D1A00726C34 /* mailman.json in Resources */,
@@ -689,6 +696,7 @@
 				17DF19872488863C0040059C /* Poppins-BoldItalic.ttf in Resources */,
 				17E76B8824DC594A00063DB0 /* Signika-Light.ttf in Resources */,
 				17DF198A2488863C0040059C /* Poppins-Light.ttf in Resources */,
+				175711C324DC766700D94B37 /* Anson-Regular.otf in Resources */,
 				17E76B9024DC5DA300063DB0 /* Hanken-Book.ttf in Resources */,
 				17DF19832488863C0040059C /* Poppins-Italic.ttf in Resources */,
 				17121855247EFA0C0060093A /* BusinessForCustomerCell.xib in Resources */,

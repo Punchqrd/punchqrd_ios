@@ -55,7 +55,7 @@ class OnboardingView: UIView {
         titleLabel.center.x = self.frame.size.width/2
         titleLabel.center.y = self.frame.size.height/5
         titleLabel.text = "Ready For Simple Perks?"
-        titleLabel.font = UIFont(name: "Poppins-Bold", size: 15)
+        titleLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         titleLabel.textAlignment = .center
         self.addSubview(titleLabel)
         
@@ -65,7 +65,7 @@ class OnboardingView: UIView {
         instructionLabel.center.y = self.frame.size.height/1.5
         instructionLabel.textContainer.maximumNumberOfLines = 15
         instructionLabel.textContainer.lineBreakMode = .byTruncatingTail
-        instructionLabel.font = UIFont(name: "Poppins-Light", size: 14)
+        instructionLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 14)
         instructionLabel.text = "Go show your local businesses some love! Every time you purchase something, they'll scan your app, and you'll earn redemption points. Cash in and get a free perk the business provides. Then do it all again. That simple. That easy. No hassle."
         instructionLabel.isUserInteractionEnabled = false
         self.addSubview(instructionLabel)

@@ -81,6 +81,8 @@ class B_1Register : UIViewController {
              NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         navigationItem.title = "Create Your Account"
         //back bar button item reset.
+        self.navigationController!.navigationBar.topItem!.title = ""
+
         
         
         setupToHideKeyboardOnTapOnView()
@@ -324,8 +326,9 @@ class B_1Register : UIViewController {
     
     //this can stay
     func setupAnimation() {
-        
-        self.animationView.animation = Animation.named(GlobalVariables.animationTitles.mainLoader)
+        let animationTitle = ["CroissantLoader", "CoffeeLoader", "BeerLoader"]
+        let randomNumber = Int.random(in: 0...2)
+        self.animationView.animation = Animation.named(animationTitle[randomNumber])
         self.animationView.frame.size.height = self.view.frame.height
         self.animationView.frame.size.width = self.view.frame.width
         self.animationView.contentMode = .center

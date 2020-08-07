@@ -15,6 +15,7 @@ import Lottie
 //try and set a protocol for notify the customer view controller when to setup a listener for the business added
 protocol BusinessSearchProtocol: class {
     func isListening(BusinessName: String, businessAddress: String)
+    func printThisTest(value: String)
 }
 
 
@@ -58,6 +59,7 @@ class BusinessSearch: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        view.backgroundColor = .white
         setupButtons()
         searchController!.searchBar.barStyle = .default
         searchController!.searchBar.searchTextField.leftView?.tintColor = .black
@@ -145,9 +147,12 @@ class BusinessSearch: UIViewController {
                             
                             //also set a listener for that business to receive any sort of future notification
                             ///at this point just pass back a value to the delegate of the class
-                            self.delegate?.isListening(BusinessName: self.businessName!, businessAddress: self.AddressLabel.text!)
-                             
                             self.removeLoadingView()
+
+                            self.delegate?.isListening(BusinessName: self.businessName!, businessAddress: self.AddressLabel.text!)
+                            self.delegate?.printThisTest(value: self.businessName!)///this is just a test function in the delegate to see if its working.
+                            
+                            
                             self.navigationController?.popViewController(animated: true)
                         }
                         
@@ -185,8 +190,9 @@ class BusinessSearch: UIViewController {
     }
     
     func setupAnimation() {
-        
-        self.animationView.animation = Animation.named(GlobalVariables.animationTitles.mainLoader)
+        let animationTitle = ["CroissantLoader", "CoffeeLoader", "BeerLoader"]
+        let randomNumber = Int.random(in: 0...2)
+        self.animationView.animation = Animation.named(animationTitle[randomNumber])
         self.animationView.frame.size.height = self.view.frame.height
         self.animationView.frame.size.width = self.view.frame.width
         self.animationView.contentMode = .center

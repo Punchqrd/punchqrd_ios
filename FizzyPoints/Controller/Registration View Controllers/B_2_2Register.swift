@@ -20,11 +20,10 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     let animationView = AnimationView()
     let db = Firestore.firestore()
     
-    @IBOutlet weak var EmailTextField: UITextField!
-    @IBOutlet weak var PasswordTextField: UITextField!
-    @IBOutlet weak var ConfirmPasswordTextField: UITextField!
-    @IBOutlet weak var SetupButton: UIButton!
-    @IBOutlet weak var ErrorLabel : UILabel!
+    var EmailTextField = UITextField()
+    var PasswordTextField = UITextField()
+    var ConfirmPasswordTextField = UITextField()
+    var SetupButton = ActionButton(backgroundColor: .black, title: "Setup", image: nil)
     
     
     //MARK:- View functions
@@ -35,16 +34,83 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
         setupToHideKeyboardOnTapOnView()
 
         super.viewDidLoad()
+        setupView()
+        
+        navigationController?.navigationBar.titleTextAttributes =
+             [NSAttributedString.Key.foregroundColor: UIColor.black,
+              NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
+        navigationItem.title = "One more step."
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        GlobalFunctions.setButtonRadius(button: self.SetupButton)
-        self.navigationItem.backBarButtonItem?.tintColor = .black
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.removeLoadingView()
     }
+    
+    
+    //MARK:- setup view
+    func setupView() {
+        //bottom up seutp
+        
+        //button setup
+        view.addSubview(SetupButton)
+        SetupButton.translatesAutoresizingMaskIntoConstraints = false
+        SetupButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        SetupButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        SetupButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        SetupButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+        SetupButton.addTarget(self, action: #selector(ConfirmBusiness), for: .touchUpInside)
+        
+        //confirm password textfield
+        view.addSubview(ConfirmPasswordTextField)
+        ConfirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        ConfirmPasswordTextField.widthAnchor.constraint(equalTo: SetupButton.widthAnchor).isActive = true
+        ConfirmPasswordTextField.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        ConfirmPasswordTextField.bottomAnchor.constraint(equalTo: SetupButton.topAnchor, constant: 10).isActive = true
+        ConfirmPasswordTextField.textColor = .black
+        ConfirmPasswordTextField.borderStyle = .none
+        ConfirmPasswordTextField.placeholder = "Confirm Password"
+        ConfirmPasswordTextField.textAlignment = .left
+        ConfirmPasswordTextField.isSecureTextEntry = true
+        ConfirmPasswordTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
+        ConfirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        
+        //password textfield
+        view.addSubview(PasswordTextField)
+        PasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        PasswordTextField.widthAnchor.constraint(equalTo: SetupButton.widthAnchor).isActive = true
+        PasswordTextField.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        PasswordTextField.bottomAnchor.constraint(equalTo: ConfirmPasswordTextField.topAnchor, constant: 10).isActive = true
+        PasswordTextField.textColor = .black
+        PasswordTextField.borderStyle = .none
+        PasswordTextField.placeholder = "Password"
+        PasswordTextField.textAlignment = .left
+        PasswordTextField.isSecureTextEntry = true
+        PasswordTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
+        PasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
+        
+        //email textfield
+        view.addSubview(EmailTextField)
+        EmailTextField.translatesAutoresizingMaskIntoConstraints = false
+        EmailTextField.widthAnchor.constraint(equalTo: SetupButton.widthAnchor).isActive = true
+        EmailTextField.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        EmailTextField.bottomAnchor.constraint(equalTo: PasswordTextField.topAnchor, constant: 10).isActive = true
+        EmailTextField.textColor = .black
+        EmailTextField.borderStyle = .none
+        EmailTextField.placeholder = "Email"
+        EmailTextField.textAlignment = .left
+        EmailTextField.autocapitalizationType = .none
+        EmailTextField.autocorrectionType = .no
+        EmailTextField.keyboardType = .emailAddress
+        EmailTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
+        EmailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+    }
+    
     
     
     //MARK:- Animation functions
@@ -54,8 +120,9 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     
     
     func setupAnimation() {
-        
-        self.animationView.animation = Animation.named(GlobalVariables.animationTitles.mainLoader)
+        let animationTitle = ["CroissantLoader", "CoffeeLoader", "BeerLoader"]
+        let randomNumber = Int.random(in: 0...2)
+        self.animationView.animation = Animation.named(animationTitle[randomNumber])
         self.animationView.frame.size.height = self.view.frame.height
         self.animationView.frame.size.width = self.view.frame.width
         self.animationView.contentMode = .center
@@ -83,8 +150,14 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     func SetupNewUser () {
         self.addLoadingView()
         Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
-            if let error = error {self.ErrorLabel.text = (error.localizedDescription)
+            
+            if let error = error {  let alert = UIAlertController(title: String(describing: error.localizedDescription), message: nil, preferredStyle: .alert)
                 self.removeLoadingView()
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+                            alert.dismiss(animated: true, completion: nil)
+                    }))
+                                      
+                self.present(alert, animated: true)
                 
             }
             else {
@@ -147,7 +220,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     }
     
     //MARK:- Actions
-    @IBAction func ConfirmBusiness(_ sender: UIButton) {
+    @objc func ConfirmBusiness() {
         //the next few lines set the global data variables as the textfield user inputted data for use in data set.
         self.view.endEditing(true)
         if let text = self.ConfirmPasswordTextField.text, !text.isEmpty
@@ -159,12 +232,24 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
                 
             }
             else {
-                self.ErrorLabel.text = "Make sure both passwords are the same."
+                  let alert = UIAlertController(title: "Make sure both passwords match.", message: nil, preferredStyle: .alert)
+                                         
+                                         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+                                             alert.dismiss(animated: true, completion: nil)
+                                         }))
+                                      
+                                              self.present(alert, animated: true)
             }
             
         }
         else {
-            self.ErrorLabel.text = "Confirm your password"
+              let alert = UIAlertController(title: "Confirm your password!", message: nil, preferredStyle: .alert)
+                                     
+                                     alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { (action) in
+                                         alert.dismiss(animated: true, completion: nil)
+                                     }))
+                                  
+                                          self.present(alert, animated: true)
         }
         
         

@@ -23,7 +23,7 @@ class RemoveEmployeesScreen : UIViewController, UITableViewDelegate {
         EmployeeTable.delegate = self
         navigationController?.navigationBar.titleTextAttributes =
                      [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-                     NSAttributedString.Key.font: UIFont(name: "Poppins-Regular", size: 25)!]
+                     NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
                 
         navigationItem.title = "Employee List"
         

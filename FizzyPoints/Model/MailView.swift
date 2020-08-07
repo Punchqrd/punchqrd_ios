@@ -63,7 +63,7 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         
         //setup the push button
         pushMailButton.translatesAutoresizingMaskIntoConstraints = false
-        pushMailButton.titleLabel?.font =  UIFont(name: "Poppins-Normal", size: 20)
+        pushMailButton.titleLabel?.font =  UIFont(name: Fonts.importFonts.mainTitleFont, size: 20)
         pushMailButton.setTitleColor(.black, for: .normal)
         pushMailButton.setTitle("Post.", for: .normal)
         pushMailButton.backgroundColor = .clear
@@ -96,7 +96,7 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         
         textInputForMail.translatesAutoresizingMaskIntoConstraints = false
         textInputForMail.textColor = .lightGray
-        textInputForMail.font = UIFont(name: "Poppins", size: 14)
+        textInputForMail.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 14)
         textInputForMail.text = "Type your message here. Short and sweet!"
         textInputForMail.isUserInteractionEnabled = true
         textInputForMail.keyboardType = UIKeyboardType.default
@@ -117,7 +117,7 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         characterCountLabel.text = "\(characterCount)/500"
         characterCountLabel.textAlignment = .right
         characterCountLabel.textColor = .lightGray
-        characterCountLabel.font = UIFont(name: "Poppins", size: 14)
+        characterCountLabel.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 14)
         textInputBackGroundView.addSubview(characterCountLabel)
         textInputBackGroundView.bringSubviewToFront(characterCountLabel)
         characterCountLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
@@ -142,7 +142,7 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
         
         
         uploadPhotoButton.translatesAutoresizingMaskIntoConstraints = false
-        uploadPhotoButton.titleLabel?.font =  UIFont(name: "Poppins-Bold", size: 20)
+        uploadPhotoButton.titleLabel?.font =  UIFont(name: Fonts.importFonts.mainTitleFont, size: 20)
         uploadPhotoButton.setTitleColor(.systemPurple, for: .normal)
         uploadPhotoButton.setTitle("+", for: .normal)
         uploadPhotoButton.addTarget(self, action: #selector(uploadPhoto), for: .touchUpInside)

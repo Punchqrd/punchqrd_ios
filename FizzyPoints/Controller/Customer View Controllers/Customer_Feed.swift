@@ -43,8 +43,9 @@ class Customer_Feed: UIViewController {
         self.tableView.dataSource = self
         self.tableView.register(Promo_Cell.self, forCellReuseIdentifier: GlobalVariables.UserIDs.Promo_NibCellFileName)
         
-       
-        self.setupAnimation(parentView: self.view, animationView: animation, animationName: GlobalVariables.animationTitles.mainLoader)
+        let animationTitle = ["CroissantLoader", "CoffeeLoader", "BeerLoader"]
+        let randomNumber = Int.random(in: 0...2)
+        self.setupAnimation(parentView: self.view, animationView: animation, animationName: animationTitle[randomNumber])
                     
      
         startSearch()
@@ -57,7 +58,7 @@ class Customer_Feed: UIViewController {
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
+             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = .systemPurple
         navigationItem.title = String(describing: "What's new?")
@@ -357,7 +358,7 @@ extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
         
         
         animationView.animation = Animation.named(animationName)
-        animationView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width/3, height: parentView.frame.size.width/3)
+        animationView.frame = CGRect(x: 0, y: 0, width: parentView.frame.size.width/2, height: parentView.frame.size.width/2)
         animationView.center.x = parentView.frame.width/2
         animationView.center.y = parentView.frame.height/2
         animationView.contentMode = .scaleAspectFit
@@ -377,7 +378,7 @@ extension Customer_Feed: UITableViewDelegate, UITableViewDataSource {
 extension Array where Element: Equatable {
   func uniqueElements() -> [Element] {
     var out = [Element]()
-
+    
     for element in self {
       if !out.contains(element) {
         out.append(element)

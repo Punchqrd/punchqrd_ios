@@ -45,7 +45,7 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         BusinessName.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         BusinessName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         BusinessName.textColor = .black
-        BusinessName.font = UIFont(name: "Poppins-Normal", size: 18)
+        BusinessName.font = UIFont(name: "HelveticaNeue", size: 18)
         BusinessName.textAlignment = .justified
         
         
@@ -95,7 +95,7 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         BonusPointsLabel.translatesAutoresizingMaskIntoConstraints = false
         bonusPointsCircle.addSubview(BonusPointsLabel)
         bonusPointsCircle.bringSubviewToFront(BonusPointsLabel)
-        BonusPointsLabel.font = UIFont(name: "Poppins-Regular", size: 13)
+        BonusPointsLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 13)
         BonusPointsLabel.backgroundColor = .clear
         BonusPointsLabel.textColor = .white
         BonusPointsLabel.centerXAnchor.constraint(equalTo: bonusPointsCircle.centerXAnchor).isActive = true
@@ -116,7 +116,7 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         
         ActualPointsLabel.translatesAutoresizingMaskIntoConstraints = false
         pointsCircle.addSubview(ActualPointsLabel)
-        ActualPointsLabel.font = UIFont(name: "Poppins-Regular", size: 15)
+        ActualPointsLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         ActualPointsLabel.centerYAnchor.constraint(equalTo: pointsCircle.centerYAnchor).isActive = true
         ActualPointsLabel.centerXAnchor.constraint(equalTo: pointsCircle.centerXAnchor).isActive = true
         

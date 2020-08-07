@@ -85,10 +85,8 @@ class ScanDataFile : UIViewController {
     //MARK:-View functions
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-//        let newAnimation = graphAnimation
-//        self.setupAnimationGraph(parentView: self.view, animationView: newAnimation, animationName: "17216-your-app-developer")
-              
+        
+        self.view.backgroundColor = .white
         setupMiddleView()
         setupRightViewButton()
         
@@ -96,7 +94,6 @@ class ScanDataFile : UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.setupSideView()
             self.setupRightView()
-//            self.setupSwipes()
             
         }
  

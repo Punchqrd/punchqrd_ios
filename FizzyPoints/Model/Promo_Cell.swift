@@ -38,9 +38,10 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         
         addSubview(businessTitle)
         businessTitle.translatesAutoresizingMaskIntoConstraints = false
-        businessTitle.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+        businessTitle.font = UIFont(name: "HelveticaNeue", size: 16)
         businessTitle.textAlignment = .left
         businessTitle.textColor = .black
+        businessTitle.backgroundColor = .clear
         businessTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         businessTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         businessTitle.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
@@ -48,9 +49,10 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         
         addSubview(businessDate)
         businessDate.translatesAutoresizingMaskIntoConstraints = false
-        businessDate.font = UIFont(name: "Poppins-Light", size: 13)
+        businessDate.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 13)
         businessDate.textAlignment = .left
         businessDate.textColor = .lightGray
+        businessTitle.backgroundColor = .clear
         businessDate.widthAnchor.constraint(equalToConstant: self.frame.size.width).isActive = true
 //        businessDate.heightAnchor.constraint(equalToConstant: 10).isActive = true
         businessDate.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
@@ -72,6 +74,7 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         businessView.addSubview(businessImage)
         businessImage.translatesAutoresizingMaskIntoConstraints = false
         businessImage.layer.cornerRadius = (self.frame.size.width/3)/2
+        businessImage.backgroundColor = .clear
         businessImage.clipsToBounds = true
         businessImage.heightAnchor.constraint(equalToConstant: self.frame.size.width/3).isActive = true
         businessImage.widthAnchor.constraint(equalToConstant: self.frame.size.width/3).isActive = true
@@ -100,9 +103,9 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         
         
         addSubview(businessMessage)
-        businessMessage.font = UIFont(name: "Poppins-Normal", size: 14)
+        businessMessage.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 14)
         businessMessage.textAlignment = .left
-        businessMessage.backgroundColor = .white
+        businessMessage.backgroundColor = .clear
         businessMessage.textColor = .black
         businessMessage.translatesAutoresizingMaskIntoConstraints = false
         

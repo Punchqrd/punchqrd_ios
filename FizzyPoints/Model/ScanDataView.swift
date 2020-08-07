@@ -88,7 +88,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         titleLabel.text = String(describing: "Ticket: \(ticket+1)")
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
-        titleLabel.font = UIFont(name: "Poppins-Bold", size: 16)
+        titleLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 16)
         self.addSubview(titleLabel)
         
         
@@ -98,7 +98,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         priceLabel.text = String(describing: "For $\(priceValue)")
         priceLabel.textAlignment = .left
         priceLabel.textColor = .white
-        priceLabel.font = UIFont(name: "Poppins", size: 15)
+        priceLabel.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 15)
         self.addSubview(priceLabel)
         
         dateLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width/1.15, height: 20)
@@ -107,7 +107,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         dateLabel.text = String(describing: "On: \(dateValue)")
         dateLabel.textAlignment = .left
         dateLabel.textColor = .white
-        dateLabel.font = UIFont(name: "Poppins", size: 15)
+        dateLabel.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 15)
         self.addSubview(dateLabel)
         
         customerScannedLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width/1.15, height: 20)
@@ -116,7 +116,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         customerScannedLabel.text = String(describing: "Customer: \(customerScanned)")
         customerScannedLabel.textAlignment = .left
         customerScannedLabel.textColor = .white
-        customerScannedLabel.font = UIFont(name: "Poppins", size: 15)
+        customerScannedLabel.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 15)
         self.addSubview(customerScannedLabel)
         
         employeeScannedLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width/1.15, height: 20)
@@ -125,7 +125,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         employeeScannedLabel.text = String(describing: "Employee: \(employeeScanned)")
         employeeScannedLabel.textAlignment = .left
         employeeScannedLabel.textColor = .white
-        employeeScannedLabel.font = UIFont(name: "Poppins", size: 15)
+        employeeScannedLabel.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 15)
         self.addSubview(employeeScannedLabel)
         //then add button to change the value in the database ///might have to create an extra funtion that displays another view
         ///can be a single textfield and a button that allows the new inputted value to change the values in the database.
@@ -135,7 +135,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         changeButton.center.x = self.frame.size.width/2
         changeButton.center.y = self.frame.size.height - 100
         changeButton.addTarget(self, action: #selector(changeToNewValue), for: .touchUpInside)
-        changeButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
+        changeButton.titleLabel?.font =  UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         changeButton.setTitleColor(.white, for: .normal)
         changeButton.setTitle("Update", for: .normal)
         changeButton.backgroundColor = .clear
@@ -154,7 +154,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
         textFieldInput.tintColor = .systemGreen
         textFieldInput.textColor = .black
         textFieldInput.backgroundColor = .clear
-        textFieldInput.font =  UIFont(name: "Poppins", size: 15)
+        textFieldInput.font =  UIFont(name: Fonts.importFonts.paragraphFont, size: 15)
         textFieldInput.delegate = self
         textFieldInput.attributedPlaceholder = NSAttributedString(string: "Update Ticket $",
                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -252,7 +252,7 @@ class ScanDataView: UIView, UITextFieldDelegate {
                         self.changeButton.tintColor = .green
                         self.priceValue = inputValue!
                         self.priceLabel.text = String(describing: "For $\(inputValue!)")
-                        self.changeButton.titleLabel?.font =  UIFont(name: "Poppins", size: 15)
+                        self.changeButton.titleLabel?.font =  UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
                         self.changeButton.setTitleColor(.white, for: .normal)
                         self.changeButton.setTitle("Updated!", for: .normal)
                         DispatchQueue.main.async {    self.parentTableView.reloadData()}

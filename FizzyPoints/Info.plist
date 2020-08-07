@@ -34,6 +34,8 @@
 	<string>Use to find local business</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Anson-Regular.otf</string>
+		<string>Indigo Regular.otf</string>
 		<string>Hanken-Light.ttf</string>
 		<string>Hanken-Book.ttf</string>
 		<string>Signika-Black.ttf</string>

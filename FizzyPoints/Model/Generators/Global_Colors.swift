@@ -17,8 +17,13 @@ class Global_Colors {
         static let coolMint = UIColor(red: 153, green: 184, blue: 152)
         static let apricot = UIColor(red: 246, green: 158, blue: 123)
         static let progressBarColor = UIColor.systemPurple.withAlphaComponent(1)
-        static let refresherColor = UIColor.systemPurple//UIColor(red: 30, green: 227, blue: 207)
-        static let sideFeedButton = UIColor.black//UIColor(red: 107, green: 72, blue: 255)
+        static let refresherColor = UIColor(red: 116, green: 105, blue: 140)
+        static let sideFeedButton = UIColor.black
+       
+        
+        //colors for punchcard points the customer sees in their homefeed
+        static let puncchardColor1 = UIColor(red: 186, green: 121, blue: 103)
+        static let puncchardColor2 = UIColor(red: 255, green: 222, blue: 207)
         
 
     }

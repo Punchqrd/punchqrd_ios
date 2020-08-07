@@ -185,6 +185,8 @@ class GlobalVariables {
     
     
     struct animationTitles {
+        let animationTitle = ["CroissantLoader", "CoffeeLoader", "BeerLoader"]
+        var randomNumber = Int.random(in: 0...2)
         static let mainLoader = "MainLoader"
         
     }

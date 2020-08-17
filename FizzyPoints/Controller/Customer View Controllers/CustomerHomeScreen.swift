@@ -234,7 +234,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         containerForButton.bringSubviewToFront(viewFeedButton)
         viewFeedButton.translatesAutoresizingMaskIntoConstraints = false
         viewFeedButton.setImage(tintedImage, for: .normal)
-        viewFeedButton.tintColor = .lightGray
+        viewFeedButton.tintColor = .black
         viewFeedButton.backgroundColor = .clear
         viewFeedButton.addTarget(self, action: #selector(didTapSideButton), for: .touchUpInside)
         viewFeedButton.rightAnchor.constraint(equalTo: containerForButton.rightAnchor, constant: -15).isActive = true
@@ -485,30 +485,30 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         cell.BusinessName.numberOfLines = 0
         
-        
+            
         if self.BusinessNamesArray[indexPath.row].bonusPoints != 0 {
             self.delay(0.1) {
-//                //this is where the user will see a notification regarding the points they'e accrued.
-//                cell.bonusPointsCircle.isHidden = false
-//                cell.BonusPointsLabel.text = String(describing: self.BusinessNamesArray[indexPath.row].bonusPoints)
+                print(self.BusinessNamesArray[indexPath.row].bonusPoints)
                 
                 //the user will see this notification when recieving a bonus point.
                 let content = UNMutableNotificationContent()
-                content.title = "+\(String(describing: self.BusinessNamesArray[indexPath.row].bonusPoints))"
-                content.subtitle = "At \(String(describing: self.BusinessNamesArray[indexPath.row].name))"
+                content.subtitle = "+\(String(describing: self.BusinessNamesArray[indexPath.row].bonusPoints))"
+                content.title = "\(String(describing: self.BusinessNamesArray[indexPath.row].name))"
                 content.sound = UNNotificationSound.default
                 
                 // show this notification five seconds from now
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+
                 // choose a random identifier
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                
+                let notificationCenter = UNUserNotificationCenter.current()
                 // add our notification request
-                UNUserNotificationCenter.current().add(request)
+                notificationCenter.add(request)
+             
+                cell.bonusPointsCircle.isHidden = false
+                cell.BonusPointsLabel.text = "+\(String(describing: self.BusinessNamesArray[indexPath.row].bonusPoints))"
+                cell.BonusPointsLabel.textColor = .systemGray3
                 
-                
-                    
                 
             }
             self.delay(3.0) {
@@ -610,7 +610,7 @@ extension CustomerHomeScreen: BusinessSearchProtocol {
             content.title = "\(BusinessName)"
             content.subtitle = "Just updated their feed."
             content.sound = UNNotificationSound.default
-            
+       
             // show this notification five seconds from now
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
             
@@ -687,6 +687,7 @@ extension CustomerHomeScreen {
             print("Notification settings: \(settings)")
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
+                print("This is working.111")
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }

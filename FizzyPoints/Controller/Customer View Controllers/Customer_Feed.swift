@@ -36,6 +36,7 @@ class Customer_Feed: UIViewController {
     var returnArray = [Promotion_Objects]()
     var tableView = UITableView()
     var backButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -178,8 +179,6 @@ class Customer_Feed: UIViewController {
         backButton.leftAnchor.constraint(equalTo: containerForButton.leftAnchor, constant: 15).isActive = true
         backButton.centerYAnchor.constraint(equalTo: containerForButton.centerYAnchor, constant: 0).isActive = true
               
-        
-        //animate the view upon entry
         
         
         

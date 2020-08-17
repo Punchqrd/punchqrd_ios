@@ -31,29 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        //this is the onesignal api
-//
-//        //Remove this method to stop OneSignal Debugging
-//         OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
-//
-//         //START OneSignal initialization code
-//         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: false]
-//
-//         // Replace 'YOUR_ONESIGNAL_APP_ID' with your OneSignal App ID.
-//         OneSignal.initWithLaunchOptions(launchOptions,
-//           appId: "43730b8f-3990-4fa5-a5b7-13dbed5bd63e",
-//           handleNotificationAction: nil,
-//           settings: onesignalInitSettings)
-//
-//         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-//
-//         // The promptForPushNotifications function code will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
-//         OneSignal.promptForPushNotifications(userResponse: { accepted in
-//           print("User accepted notifications: \(accepted)")
-//         })
-//         //END OneSignal initializataion code
-
-        
+      
         
         return true
     }
@@ -81,28 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     
-    
-    
-//    func registerForPushNotifications() {
-//      UNUserNotificationCenter.current() // 1
-//        .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
-//          granted, error in
-//            print("Permission granted: \(granted)")
-//            guard granted else { return }
-//            self.getNotificationSettings()
-//      }
-//    }
-//
-//    func getNotificationSettings() {
-//      UNUserNotificationCenter.current().getNotificationSettings { settings in
-//        print("Notification settings: \(settings)")
-//        guard settings.authorizationStatus == .authorized else { return }
-//        DispatchQueue.main.async {
-//          UIApplication.shared.registerForRemoteNotifications()
-//        }
-//      }
-//    }
-//
 
     
           func application(

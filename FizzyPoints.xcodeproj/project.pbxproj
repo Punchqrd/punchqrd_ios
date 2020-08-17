@@ -24,14 +24,13 @@
 		172224E1248F5C3D0063F0FC /* CheckMark3.json in Resources */ = {isa = PBXBuildFile; fileRef = 172224E0248F5C3D0063F0FC /* CheckMark3.json */; };
 		1724123B24C4C88200C048D0 /* Info_BusinessCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */; };
 		1724587B24C5EBC10073D316 /* HomeAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 1724587A24C5EBC10073D316 /* HomeAnimation.json */; };
+		17325AAB24E1DBCA005A1A4E /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17325AAA24E1DBCA005A1A4E /* MailView.swift */; };
 		173A179B24C337D700ABAB10 /* CustomerInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A179A24C337D700ABAB10 /* CustomerInformationView.swift */; };
 		173B49F2248B450E00056833 /* C_1Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F1248B450E00056833 /* C_1Register.swift */; };
 		173B49F4248B494000056833 /* C_2Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173B49F3248B494000056833 /* C_2Register.swift */; };
 		173F1701247DB44B00C67812 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1700247DB44B00C67812 /* QRView.swift */; };
 		173F1705247DB8AB00C67812 /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F1704247DB8AB00C67812 /* BusinessSearch.swift */; };
 		174AED9524D5B55B00AF704C /* Customer_Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174AED9424D5B55B00AF704C /* Customer_Feed.swift */; };
-		17510AD824DB6D48002A2C82 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17510AD724DB6D48002A2C82 /* NotificationService.swift */; };
-		17510ADC24DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		17510AE524DB9713002A2C82 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17510AE424DB9713002A2C82 /* ActionButton.swift */; };
 		175711C124DC753000D94B37 /* Indigo Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 175711C024DC753000D94B37 /* Indigo Regular.otf */; };
 		175711C324DC766700D94B37 /* Anson-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 175711C224DC766700D94B37 /* Anson-Regular.otf */; };
@@ -101,7 +100,6 @@
 		17F1EF8024D2021F00726C34 /* Global_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF7F24D2021F00726C34 /* Global_Colors.swift */; };
 		17F1EF8224D2562D00726C34 /* PromoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8124D2562D00726C34 /* PromoteScreen.swift */; };
 		17F1EF8424D25D1A00726C34 /* mailman.json in Resources */ = {isa = PBXBuildFile; fileRef = 17F1EF8324D25D1A00726C34 /* mailman.json */; };
-		17F1EF8824D3063B00726C34 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8724D3063B00726C34 /* MailView.swift */; };
 		17F1EF8A24D3C13600726C34 /* AllPromotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8924D3C13600726C34 /* AllPromotions.swift */; };
 		17F1EF8C24D3CA6600726C34 /* Promotion_Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */; };
 		17F1EF8F24D3CBA900726C34 /* Promo_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */; };
@@ -113,18 +111,7 @@
 		17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F7BDEF248D750900041577 /* PlacesObject.swift */; };
 		17FDDE18248F0F6B008F5FF1 /* EmployeeHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */; };
 		188E6394833396A7121FAA10 /* Pods_FizzyPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */; };
-		34F5404145A10DBF910898AF /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E1018FA664298E44572413 /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		17510ADA24DB6D48002A2C82 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17C81F08247ACA7A008DAAA2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 17510AD424DB6D48002A2C82;
-			remoteInfo = OneSignalNotificationServiceExtension;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		17510ADD24DB6D48002A2C82 /* Embed App Extensions */ = {
@@ -133,7 +120,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				17510ADC24DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +127,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1704B9276593781FEEB737F9 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		17121852247EFA0C0060093A /* BusinessForCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessForCustomerCell.swift; sourceTree = "<group>"; };
 		17121853247EFA0C0060093A /* BusinessForCustomerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessForCustomerCell.xib; sourceTree = "<group>"; };
 		17121856247EFA300060093A /* BusinessName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessName.swift; sourceTree = "<group>"; };
@@ -158,6 +145,7 @@
 		172224E0248F5C3D0063F0FC /* CheckMark3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckMark3.json; sourceTree = "<group>"; };
 		1724123A24C4C88200C048D0 /* Info_BusinessCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info_BusinessCustomer.swift; sourceTree = "<group>"; };
 		1724587A24C5EBC10073D316 /* HomeAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeAnimation.json; sourceTree = "<group>"; };
+		17325AAA24E1DBCA005A1A4E /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		173A179A24C337D700ABAB10 /* CustomerInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInformationView.swift; sourceTree = "<group>"; };
 		173B08AC24DB62BB00E21D36 /* Punchqrd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Punchqrd.entitlements; sourceTree = "<group>"; };
 		173B49F1248B450E00056833 /* C_1Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C_1Register.swift; sourceTree = "<group>"; };
@@ -165,7 +153,6 @@
 		173F1700247DB44B00C67812 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		173F1704247DB8AB00C67812 /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
 		174AED9424D5B55B00AF704C /* Customer_Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer_Feed.swift; sourceTree = "<group>"; };
-		17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		17510AD724DB6D48002A2C82 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		17510AD924DB6D48002A2C82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17510AE124DB71EE002A2C82 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
@@ -241,7 +228,6 @@
 		17F1EF7F24D2021F00726C34 /* Global_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Colors.swift; sourceTree = "<group>"; };
 		17F1EF8124D2562D00726C34 /* PromoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteScreen.swift; sourceTree = "<group>"; };
 		17F1EF8324D25D1A00726C34 /* mailman.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mailman.json; path = ../../../../../Downloads/mailman.json; sourceTree = "<group>"; };
-		17F1EF8724D3063B00726C34 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MailView.swift; path = "/Users/sebastianbarry/Documents/FizzyPoints/Fizzy Source Code/FizzyPoints/Model/MailView.swift"; sourceTree = "<absolute>"; };
 		17F1EF8924D3C13600726C34 /* AllPromotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPromotions.swift; sourceTree = "<group>"; };
 		17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion_Objects.swift; sourceTree = "<group>"; };
 		17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promo_Cell.swift; sourceTree = "<group>"; };
@@ -253,23 +239,14 @@
 		17F7BDEF248D750900041577 /* PlacesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesObject.swift; sourceTree = "<group>"; };
 		17FDDE17248F0F6B008F5FF1 /* EmployeeHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeHome.swift; sourceTree = "<group>"; };
 		181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FizzyPoints.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		29E1018FA664298E44572413 /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		680972DBBF7EA40198E69AE6 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		3355A231C595A0E8C300CA77 /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints.debug.xcconfig"; path = "Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints.debug.xcconfig"; sourceTree = "<group>"; };
 		A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.release.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.release.xcconfig"; sourceTree = "<group>"; };
 		C28E2D88B8204B97030479CE /* Pods-QR 2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR 2.0.debug.xcconfig"; path = "Target Support Files/Pods-QR 2.0/Pods-QR 2.0.debug.xcconfig"; sourceTree = "<group>"; };
-		FFA10C2BA1ED59D838AAB6C2 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		C82DDF09B8522B26AE6584D5 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		17510AD224DB6D48002A2C82 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				34F5404145A10DBF910898AF /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		17C81F0D247ACA7B008DAAA2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,7 +343,7 @@
 				1714AA7624CF258500D17425 /* ScansTable.swift */,
 				1714AA7824CF271100D17425 /* Individual_Scans_CellTableViewCell.swift */,
 				179B9EBD24CF556500FD8A43 /* ScanDataView.swift */,
-				17F1EF8724D3063B00726C34 /* MailView.swift */,
+				17325AAA24E1DBCA005A1A4E /* MailView.swift */,
 				17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */,
 				17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */,
 			);
@@ -422,7 +399,6 @@
 			isa = PBXGroup;
 			children = (
 				17C81F10247ACA7B008DAAA2 /* Punchqrd.app */,
-				17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			path = ..;
@@ -551,8 +527,8 @@
 				A9C7D562CD953F1F6522B54B /* Pods-QR 2.0.release.xcconfig */,
 				9A86A384F8F7408E4E172EBB /* Pods-FizzyPoints.debug.xcconfig */,
 				17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */,
-				680972DBBF7EA40198E69AE6 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				FFA10C2BA1ED59D838AAB6C2 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig */,
+				C82DDF09B8522B26AE6584D5 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				1704B9276593781FEEB737F9 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -562,7 +538,7 @@
 			children = (
 				176AD81524901DAD00669202 /* StoreKit.framework */,
 				181504E9D76AA4D35D7D29DC /* Pods_FizzyPoints.framework */,
-				29E1018FA664298E44572413 /* Pods_FizzyPoints_OneSignalNotificationServiceExtension.framework */,
+				3355A231C595A0E8C300CA77 /* Pods_OneSignalNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -570,25 +546,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		17510AD424DB6D48002A2C82 /* OneSignalNotificationServiceExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 17510AE024DB6D48002A2C82 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
-			buildPhases = (
-				7BE3FC37D97984F37395122C /* [CP] Check Pods Manifest.lock */,
-				17510AD124DB6D48002A2C82 /* Sources */,
-				17510AD224DB6D48002A2C82 /* Frameworks */,
-				17510AD324DB6D48002A2C82 /* Resources */,
-				68E9BE3A2A147C42745EE1FA /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = OneSignalNotificationServiceExtension;
-			productName = OneSignalNotificationServiceExtension;
-			productReference = 17510AD524DB6D48002A2C82 /* OneSignalNotificationServiceExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		17C81F0F247ACA7B008DAAA2 /* FizzyPoints */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17C81F24247ACA7F008DAAA2 /* Build configuration list for PBXNativeTarget "FizzyPoints" */;
@@ -597,14 +554,13 @@
 				17C81F0C247ACA7B008DAAA2 /* Sources */,
 				17C81F0D247ACA7B008DAAA2 /* Frameworks */,
 				17C81F0E247ACA7B008DAAA2 /* Resources */,
-				A5144C44AEDFC3CD5FA75F02 /* [CP] Embed Pods Frameworks */,
-				232A54BB2418600FFA1FC96A /* [CP] Copy Pods Resources */,
 				17510ADD24DB6D48002A2C82 /* Embed App Extensions */,
+				B5D1E03633FE98156DC5A0BC /* [CP] Embed Pods Frameworks */,
+				20C70F393C85BD3E2681C876 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				17510ADB24DB6D48002A2C82 /* PBXTargetDependency */,
 			);
 			name = FizzyPoints;
 			productName = "QR 2.0";
@@ -621,9 +577,6 @@
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Sebastian Barry";
 				TargetAttributes = {
-					17510AD424DB6D48002A2C82 = {
-						CreatedOnToolsVersion = 11.6;
-					};
 					17C81F0F247ACA7B008DAAA2 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
@@ -643,19 +596,11 @@
 			projectRoot = "";
 			targets = (
 				17C81F0F247ACA7B008DAAA2 /* FizzyPoints */,
-				17510AD424DB6D48002A2C82 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		17510AD324DB6D48002A2C82 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		17C81F0E247ACA7B008DAAA2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -717,7 +662,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		232A54BB2418600FFA1FC96A /* [CP] Copy Pods Resources */ = {
+		20C70F393C85BD3E2681C876 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -756,46 +701,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		68E9BE3A2A147C42745EE1FA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints-OneSignalNotificationServiceExtension/Pods-FizzyPoints-OneSignalNotificationServiceExtension-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7BE3FC37D97984F37395122C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FizzyPoints-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A5144C44AEDFC3CD5FA75F02 /* [CP] Embed Pods Frameworks */ = {
+		B5D1E03633FE98156DC5A0BC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -815,14 +721,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		17510AD124DB6D48002A2C82 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17510AD824DB6D48002A2C82 /* NotificationService.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		17C81F0C247ACA7B008DAAA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -838,12 +736,12 @@
 				17F0B9C624CBCF510050A3E4 /* SDCTextField.swift in Sources */,
 				17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */,
 				17F7BDF0248D750900041577 /* PlacesObject.swift in Sources */,
+				17325AAB24E1DBCA005A1A4E /* MailView.swift in Sources */,
 				17121854247EFA0C0060093A /* BusinessForCustomerCell.swift in Sources */,
 				1796CB7E248AE73700B227B2 /* EmployeeObject.swift in Sources */,
 				1796CB75248AE3B200B227B2 /* RemoveEmployeesScreen.swift in Sources */,
 				173B49F4248B494000056833 /* C_2Register.swift in Sources */,
 				17F7BDEA248C346300041577 /* RedeemConfirm.swift in Sources */,
-				17F1EF8824D3063B00726C34 /* MailView.swift in Sources */,
 				17C81F32247AD2AB008DAAA2 /* B_2Register.swift in Sources */,
 				17C81F2E247ACE2E008DAAA2 /* A_Register.swift in Sources */,
 				17F1EF8224D2562D00726C34 /* PromoteScreen.swift in Sources */,
@@ -883,14 +781,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		17510ADB24DB6D48002A2C82 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 17510AD424DB6D48002A2C82 /* OneSignalNotificationServiceExtension */;
-			targetProxy = 17510ADA24DB6D48002A2C82 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		17C81F19247ACA7B008DAAA2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -911,52 +801,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		17510ADE24DB6D48002A2C82 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 680972DBBF7EA40198E69AE6 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = M5F3GZ25TU;
-				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints.OneSignalNotificationServiceExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		17510ADF24DB6D48002A2C82 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFA10C2BA1ED59D838AAB6C2 /* Pods-FizzyPoints-OneSignalNotificationServiceExtension.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = M5F3GZ25TU;
-				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints.OneSignalNotificationServiceExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		17C81F22247ACA7F008DAAA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1079,7 +923,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FizzyPoints/Punchqrd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1102,7 +946,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FizzyPoints/Punchqrd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1120,15 +964,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		17510AE024DB6D48002A2C82 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				17510ADE24DB6D48002A2C82 /* Debug */,
-				17510ADF24DB6D48002A2C82 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		17C81F0B247ACA7A008DAAA2 /* Build configuration list for PBXProject "FizzyPoints" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -54,17 +54,20 @@ class BusinessSearch: UIViewController {
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.searchBar.placeholder = ""
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: "Back"), style: .plain, target: self, action:#selector(back))
-        
+        self.navigationController?.navigationBar.isTranslucent = false
+
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         view.backgroundColor = .white
         setupButtons()
+        navigationController?.navigationBar.tintColor = Global_Colors.colors.apricot
+        navigationController?.navigationBar.barTintColor = .white
         searchController!.searchBar.barStyle = .default
-        searchController!.searchBar.searchTextField.leftView?.tintColor = .black
+        searchController!.searchBar.searchTextField.leftView?.tintColor = .white
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.black
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.white
     }
     
     
@@ -108,7 +111,14 @@ class BusinessSearch: UIViewController {
     
     //MARK:- Actions
     @objc func back() {
-        self.navigationController?.popViewController(animated: true)
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromLeft
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.popViewController(animated: false)
     }
   
     

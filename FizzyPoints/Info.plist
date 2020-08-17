@@ -2,10 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>OneSignal_app_groups_key</key>
-	<string>com.SebastianBarry.FizzyPoints</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.SebastianBarry.FizzyPoints.refresh</string>
+		<string>com.SebastianBarry.FizzyPoints.cleaning</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -32,6 +37,8 @@
 	<string>Determine an employees location </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Use to find local business</string>
+	<key>OneSignal_app_groups_key</key>
+	<string>com.SebastianBarry.FizzyPoints</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Anson-Regular.otf</string>
@@ -66,6 +73,7 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
 		<string>processing</string>
 		<string>remote-notification</string>

@@ -10,12 +10,12 @@ import Foundation
 
 class Fonts {
     struct importFonts {
-        static var mainTitleFont = "Hanken-Book"
-        static var subTitleFont = "Hanken-Light"
+        static var mainTitleFont = "Helvetica-Bold"
+        static var subTitleFont = "Helvetica-Light"
         
+//        "Hanken-Light"
         
-        
-        static var paragraphFont = "Hanken-Light"
+        static var paragraphFont = "Helvetica-Light"
         static var headerFont = "Signika-Bold"
     }
 }

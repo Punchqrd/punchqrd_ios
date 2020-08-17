@@ -105,7 +105,7 @@ class CustomerInformationView: UIView {
         totalScansLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 40)
         totalScansLabel.center.x = self.frame.width/1.5
         totalScansLabel.center.y = self.frame.size.height/8 + 160
-        totalScansLabel.font = UIFont(name: "Poppins", size: 15)
+        totalScansLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         totalScansLabel.textColor = .white
         
         self.addSubview(totalScansLabel)
@@ -114,7 +114,7 @@ class CustomerInformationView: UIView {
         totalSpentLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 40)
         totalSpentLabel.center.x = self.frame.width/1.5
         totalSpentLabel.center.y = self.frame.size.height/8 + 120
-        totalSpentLabel.font = UIFont(name: "Poppins", size: 15)
+        totalSpentLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         totalSpentLabel.textColor = .white
         
         self.addSubview(totalSpentLabel)
@@ -123,7 +123,7 @@ class CustomerInformationView: UIView {
         customerNameLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 40)
         customerNameLabel.center.x = self.frame.width/1.5
         customerNameLabel.center.y = self.frame.size.height/8
-        customerNameLabel.font = UIFont(name: "Poppins", size: 15)
+        customerNameLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         customerNameLabel.textColor = .white
         
         self.addSubview(customerNameLabel)
@@ -132,7 +132,7 @@ class CustomerInformationView: UIView {
         customerEmailLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 40)
         customerEmailLabel.center.x = self.frame.width/1.5
         customerEmailLabel.center.y = self.frame.size.height/8 + 40
-        customerEmailLabel.font = UIFont(name: "Poppins", size: 15)
+        customerEmailLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         customerEmailLabel.textColor = .white
         
         self.addSubview(customerEmailLabel)
@@ -141,7 +141,7 @@ class CustomerInformationView: UIView {
         customerBirthDateLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 40)
         customerBirthDateLabel.center.x = self.frame.width/1.5
         customerBirthDateLabel.center.y = self.frame.size.height/8 + 80
-        customerBirthDateLabel.font = UIFont(name: "Poppins", size: 15)
+        customerBirthDateLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 15)
         customerBirthDateLabel.textColor = .white
         
         self.addSubview(customerBirthDateLabel)

@@ -103,7 +103,7 @@ class Promo_Cell: UITableViewCell, UITextFieldDelegate {
         
         
         addSubview(businessMessage)
-        businessMessage.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 14)
+        businessMessage.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 14)
         businessMessage.textAlignment = .left
         businessMessage.backgroundColor = .clear
         businessMessage.textColor = .black

@@ -38,14 +38,14 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
           super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        self.backgroundColor = .white
         //business title setup
         BusinessName.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(BusinessName)
         BusinessName.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         BusinessName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
-        BusinessName.textColor = .black
-        BusinessName.font = UIFont(name: "HelveticaNeue", size: 18)
+        BusinessName.textColor = .systemGray4
+        BusinessName.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         BusinessName.textAlignment = .justified
         
         
@@ -60,11 +60,11 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         
         
         
-        progressBarBackground.backgroundColor = .white
-        progressBarBackground.layer.shadowColor = UIColor.lightGray.cgColor
-        progressBarBackground.layer.shadowOffset = CGSize(width: 0, height: 0)
-        progressBarBackground.layer.shadowRadius = 10
-        progressBarBackground.layer.shadowOpacity = 0.3
+//        progressBarBackground.backgroundColor = .clear
+//        progressBarBackground.layer.shadowColor = UIColor.lightGray.cgColor
+//        progressBarBackground.layer.shadowOffset = CGSize(width: 0, height: 0)
+//        progressBarBackground.layer.shadowRadius = 10
+//        progressBarBackground.layer.shadowOpacity = 0.3
         
         
         PointsProgressBar.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +83,7 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         
         bonusPointsCircle.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(bonusPointsCircle)
-        bonusPointsCircle.backgroundColor = .black
+        bonusPointsCircle.backgroundColor = .white
         
         bonusPointsCircle.leftAnchor.constraint(equalTo: progressBarBackground.rightAnchor, constant: 20).isActive = true
         bonusPointsCircle.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
@@ -97,7 +97,7 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         bonusPointsCircle.bringSubviewToFront(BonusPointsLabel)
         BonusPointsLabel.font = UIFont(name: Fonts.importFonts.mainTitleFont, size: 13)
         BonusPointsLabel.backgroundColor = .clear
-        BonusPointsLabel.textColor = .white
+        BonusPointsLabel.textColor = Global_Colors.colors.apricot
         BonusPointsLabel.centerXAnchor.constraint(equalTo: bonusPointsCircle.centerXAnchor).isActive = true
         BonusPointsLabel.centerYAnchor.constraint(equalTo: bonusPointsCircle.centerYAnchor).isActive = true
      

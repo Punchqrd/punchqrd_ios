@@ -56,11 +56,9 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
          navigationController?.navigationBar.titleTextAttributes =
                     [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
                      NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
-        self.parent?.title = String(describing: Auth.auth().currentUser?.email!)
-        self.navigationItem.title = String(describing: Auth.auth().currentUser?.email!)
             
-               navigationController?.navigationBar.barTintColor = .white
-               navigationController?.navigationBar.tintColor = .systemPurple
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemPurple
         
     }
     
@@ -77,7 +75,6 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
              [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
               NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         
-        self.navigationItem.title = String(describing: Auth.auth().currentUser?.email!)
         
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.tintColor = .systemPurple

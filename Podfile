@@ -1,19 +1,12 @@
 # Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
 target 'FizzyPoints' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  
-  
-  
 
-	target 'OneSignalNotificationServiceExtension' do
-		use_frameworks!
- 		 #only copy below line
- 		 pod 'OneSignal', '>= 2.11.2', '< 3.0'
-	end
-  
   # Pods for FizzyPoints
-  
+
   
   
   pod 'Firebase/Analytics'
@@ -23,11 +16,8 @@ target 'FizzyPoints' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'lottie-ios'
-  pod 'OneSignal', '>= 2.11.2', '< 3.0'
 
 
 
-  
 end
-
 

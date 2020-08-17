@@ -97,9 +97,9 @@ class GlobalFunctions {
         if incrementPoints! <= 4.99 {
             actualPoints = 1
         } else if incrementPoints! > 4.99 && incrementPoints! < 9.99 {
-            actualPoints = 2
+            actualPoints = 1
         } else if incrementPoints! >= 9.99 {
-            actualPoints = 3
+            actualPoints = 2
         }
         
         let db = Firestore.firestore()

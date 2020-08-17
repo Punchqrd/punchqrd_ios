@@ -107,7 +107,6 @@ class Customer_Feed: UIViewController {
                      
                             
                            self.backDropView.removeFromSuperview()
-//                           self.tableView.reloadData()
                         
                         
                            

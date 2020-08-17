@@ -192,6 +192,10 @@ class GlobalVariables {
     }
     
     
+    struct deviceToken {
+        static var token : String?
+        static var tokenCollectionTitle = "Device Token"
+    }
     
     
 }

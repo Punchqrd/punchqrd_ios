@@ -235,7 +235,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         forgotPasswordButton.backgroundColor = .clear
         forgotPasswordButton.setTitle("Forgot Password", for: .normal)
         forgotPasswordButton.setTitleColor(UIColor.lightGray.withAlphaComponent(0.6), for: .normal)
-        forgotPasswordButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 11)
+        forgotPasswordButton.titleLabel?.font = UIFont(name:  Fonts.importFonts.mainTitleFont, size: 11)
         forgotPasswordButton.addTarget(self, action: #selector(ForgotPassword), for: .touchUpInside)
         self.view.bringSubviewToFront(forgotPasswordButton)
         
@@ -251,7 +251,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         LoginButton.backgroundColor = .clear
         LoginButton.setTitle("Login", for: .normal)
         LoginButton.setTitleColor(.white, for: .normal)
-        LoginButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        LoginButton.titleLabel?.font = UIFont(name:  Fonts.importFonts.mainTitleFont, size: 15)
         LoginButton.addTarget(self, action: #selector(LoginAction), for: .touchUpInside)
         
         //email textfield
@@ -265,7 +265,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         PasswordTextField.tintColor = .white
         PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        PasswordTextField.font = UIFont(name: "Poppins-Light", size: 13)
+        PasswordTextField.font = UIFont(name:  Fonts.importFonts.paragraphFont, size: 13)
         PasswordTextField.isHidden = true
         
         
@@ -278,7 +278,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         EmailTextField.tintColor = .white
         EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email:",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        EmailTextField.font = UIFont(name: "Poppins-Light", size: 13)
+        EmailTextField.font = UIFont(name:  Fonts.importFonts.paragraphFont, size: 13)
         EmailTextField.isHidden = true
         EmailTextField.textContentType = .emailAddress
         EmailTextField.autocapitalizationType = .none

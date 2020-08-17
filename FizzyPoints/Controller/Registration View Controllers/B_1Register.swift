@@ -104,7 +104,7 @@ class B_1Register : UIViewController {
         setupMainView()
         addbottomButtons()
         navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-
+        view.backgroundColor = .white
     }
     
     

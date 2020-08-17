@@ -24,7 +24,7 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     var AddEmployeeButton = ActionButton(backgroundColor: Global_Colors.colors.refresherColor, title: "Add Employee", image: nil)
     var ScanDataButton = ActionButton(backgroundColor: Global_Colors.colors.refresherColor, title: "Data", image: nil)
-    var PromotButton = ActionButton(backgroundColor: .systemPurple, title: "Promote", image: nil)
+    var PromotButton = ActionButton(backgroundColor: Global_Colors.colors.refresherColor, title: "Promote", image: nil)
     
     private lazy var animationView2: AnimationView = {
         let view = AnimationView()
@@ -87,7 +87,7 @@ class OwnerHomeScreen : UIViewController, SKPaymentTransactionObserver {
         
         
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
+            [NSAttributedString.Key.foregroundColor: UIColor.black,
              NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         
         navigationController?.navigationBar.barTintColor = .white

@@ -1,10 +1,17 @@
 //
 //  MailView.swift
-//  
+//  FizzyPoints
+//
+//  Created by Sebastian Barry on 8/10/20.
+//  Copyright © 2020 Sebastian Barry. All rights reserved.
+//
+
+//
+//  MailView.swift
+//
 //
 //  Created by Sebastian Barry on 7/30/20.
 //
-
 import Foundation
 import UIKit
 import FirebaseAuth
@@ -491,6 +498,4 @@ class MailView: UIView, UITextViewDelegate, UIImagePickerControllerDelegate, UIN
     
     
 }
-
-
 

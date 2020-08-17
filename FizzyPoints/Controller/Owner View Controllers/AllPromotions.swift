@@ -35,7 +35,6 @@ class AllPromotions: UIViewController {
             [NSAttributedString.Key.foregroundColor: UIColor.black,
              NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 25)!]
         self.navigationItem.largeTitleDisplayMode = .always
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "All Promotions"
         self.navigationController?.navigationBar.barTintColor = .white
         setupTableView()
@@ -275,7 +274,6 @@ extension AllPromotions: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.Promo_NibCellFileName, for: indexPath) as! Promo_Cell
         
-//        if let image = promotionsObjectsArray[indexPath.row].imageID {
             
             cell.businessDate.text = promotionsObjectsArray[indexPath.row].date
             cell.businessDate.numberOfLines = 0
@@ -285,21 +283,7 @@ extension AllPromotions: UITableViewDelegate, UITableViewDataSource {
             cell.businessTitle.text = promotionsObjectsArray[indexPath.row].businessName
             cell.parentView = self.view
         
-        
-//        } else {
-//            cell.businessImage.removeFromSuperview()
-//            cell.parentView = self.view
-//            cell.businessDate.text = promotionsObjectsArray[indexPath.row].date
-//            cell.businessDate.numberOfLines = 0
-//            cell.businessMessage.topAnchor.constraint(equalTo: cell.businessDate.bottomAnchor, constant: 5).isActive = true
-//            cell.businessMessage.rightAnchor.constraint(equalTo: cell.rightAnchor, constant: -30).isActive = true
-//            cell.businessMessage.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 30).isActive = true
-//            cell.businessMessage.text = promotionsObjectsArray[indexPath.row].message
-//            cell.businessMessage.numberOfLines = 0
-//            cell.businessTitle.text = promotionsObjectsArray[indexPath.row].businessName
-//        }
-//
-        
+
         
         
         let backgroundView = UIView()

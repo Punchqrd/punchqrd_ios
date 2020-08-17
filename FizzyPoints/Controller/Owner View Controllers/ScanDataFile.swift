@@ -127,8 +127,8 @@ class ScanDataFile : UIViewController {
         
         //setup the data when the view loads.
         navigationController?.navigationBar.titleTextAttributes =
-              [NSAttributedString.Key.foregroundColor: UIColor.systemPurple,
-              NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!]
+            [NSAttributedString.Key.foregroundColor: UIColor.black,
+              NSAttributedString.Key.font: UIFont(name:  Fonts.importFonts.mainTitleFont, size: 25)!]
          
         navigationItem.title = "Your Business Analytics"
         navigationItem.largeTitleDisplayMode = .never
@@ -296,17 +296,7 @@ class ScanDataFile : UIViewController {
         leftView.backgroundColor = .black
         leftView.layer.cornerRadius = 30
         leftView.center.y = self.view.frame.size.height/2
-      
-//        leftViewTitle.frame = CGRect(x: 0, y: 0, width: leftView.frame.size.width, height: 20)
-//        leftViewTitle.center.x =  -self.view.frame.size.width/2
-//        leftViewTitle.center.y = leftView.center.y - leftView.frame.size.height/2 - 40
-//        leftViewTitle.text = "Customers"
-//        leftViewTitle.font = UIFont(name: "Poppins", size: 20)
-//        leftViewTitle.textAlignment = .center
-//        leftViewTitle.textColor = .systemPurple
-//        self.view.addSubview(leftViewTitle)
-        
-        
+
         
         let chartView = CustomerTable(currentUserEmail: Auth.auth().currentUser?.email!, leftView: leftView, superView: self.view!)
         chartView.populateData()
@@ -344,18 +334,7 @@ class ScanDataFile : UIViewController {
             rightView.backgroundColor = .black
             rightView.layer.cornerRadius = 30
             rightView.center.y = self.view.frame.size.height/2
-            
-    //        rightViewLabel.frame = CGRect(x: 0, y: 0, width: rightView.frame.size.width, height: 20)
-    //        rightViewLabel.center.x =  self.view.frame.size.width + self.view.frame.size.width/2
-    //        rightViewLabel.center.y = rightView.center.y - rightView.frame.size.height/2 - 40
-    //        rightViewLabel.text = "Tickets"
-    //        rightViewLabel.font = UIFont(name: "Poppins", size: 20)
-    //        rightViewLabel.textAlignment = .center
-    //        rightViewLabel.textColor = .systemPurple
-    //        self.view.addSubview(rightViewLabel)
-            
-            
-            
+
             let chartView = ScansTable(rightView: rightView, parentView: self.view, currentUserEmail: Auth.auth().currentUser?.email)
             chartView.populateData()
             self.rightView.addSubview(chartView)
@@ -473,7 +452,7 @@ class ScanDataFile : UIViewController {
         totalLabel.center.y = totalScansView.frame.size.height/3.5
         totalLabel.text = "Total Scans"
         totalLabel.textColor = .white
-        totalLabel.font =  UIFont(name: "Poppins-Bold", size: 15)
+        totalLabel.font =  UIFont(name:  Fonts.importFonts.mainTitleFont, size: 15)
         totalLabel.textAlignment = .center
         totalScansView.addSubview(totalLabel)
         
@@ -481,7 +460,7 @@ class ScanDataFile : UIViewController {
         totalScansValue.center.x = totalScansView.frame.size.width/2
         totalScansValue.center.y = totalScansView.frame.size.height - totalScansView.frame.size.height/2.2
         totalScansValue.textColor = .white
-        totalScansValue.font =  UIFont(name: "Poppins-Bold", size: 30)
+        totalScansValue.font =  UIFont(name:  Fonts.importFonts.paragraphFont, size: 30)
         totalScansValue.textAlignment = .center
         totalScansView.addSubview(totalScansValue)
 //        setupShadow(view: totalLabel)
@@ -551,7 +530,7 @@ class ScanDataFile : UIViewController {
         totalLabel.center.y = totalRevenueView.frame.size.height/3.5
         totalLabel.text = "Total Revenue"
         totalLabel.textColor = .white
-        totalLabel.font =  UIFont(name: "Poppins-Bold", size: 15)
+        totalLabel.font =  UIFont(name:  Fonts.importFonts.mainTitleFont, size: 15)
         totalLabel.textAlignment = .center
         totalRevenueView.addSubview(totalLabel)
         
@@ -559,7 +538,7 @@ class ScanDataFile : UIViewController {
         totalRevenueLabel.center.x = totalRevenueView.frame.size.width/2
         totalRevenueLabel.center.y = totalRevenueView.frame.size.height - totalRevenueView.frame.size.height/2.2
         totalRevenueLabel.textColor = .white
-        totalRevenueLabel.font =  UIFont(name: "Poppins-Bold", size: 25)
+        totalRevenueLabel.font =  UIFont(name:  Fonts.importFonts.paragraphFont, size: 25)
         totalRevenueLabel.textAlignment = .center
         totalRevenueView.addSubview(totalRevenueLabel)
 //        setupShadow(view: totalLabel)
@@ -595,7 +574,7 @@ class ScanDataFile : UIViewController {
         totalLabel.center.y = averageRevenueView.frame.size.height/3.5
         totalLabel.text = "Average $/Scan"
         totalLabel.textColor = .white
-        totalLabel.font =  UIFont(name: "Poppins-Bold", size: 15)
+        totalLabel.font =  UIFont(name:  Fonts.importFonts.mainTitleFont, size: 15)
         totalLabel.textAlignment = .center
         averageRevenueView.addSubview(totalLabel)
         
@@ -603,7 +582,7 @@ class ScanDataFile : UIViewController {
         averageRevenueLabel.center.x = averageRevenueView.frame.size.width/2
         averageRevenueLabel.center.y = averageRevenueView.frame.size.height - averageRevenueView.frame.size.height/2.2
         averageRevenueLabel.textColor = .white
-        averageRevenueLabel.font =  UIFont(name: "Poppins-Bold", size: 25)
+        averageRevenueLabel.font =  UIFont(name:  Fonts.importFonts.paragraphFont, size: 25)
         averageRevenueLabel.textAlignment = .center
         averageRevenueView.addSubview(averageRevenueLabel)
 //        setupShadow(view: totalLabel)

@@ -36,7 +36,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="LnV-R9-k00" firstAttribute="top" secondItem="eRi-Il-mav" secondAttribute="top" constant="261.33333333333331" id="b28-tl-qhv"/>
                             <constraint firstItem="eRi-Il-mav" firstAttribute="trailing" secondItem="LnV-R9-k00" secondAttribute="trailing" constant="47" id="cfp-bo-cfg"/>
@@ -135,19 +134,18 @@
                     <view key="view" contentMode="scaleToFill" id="1VY-cq-duv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Jt3-Eo-G0D"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="XYX-3c-uYY">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="circle" catalog="system" style="plain" id="qIY-vW-1Il">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="Logout:" destination="Pjb-C6-ViW" id="3oM-zu-eNL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="uxk-GK-NmT">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="searchBusinessButton:" destination="Pjb-C6-ViW" id="Qek-Ew-fI9"/>
                             </connections>
@@ -394,7 +392,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9fG-FZ-rSy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

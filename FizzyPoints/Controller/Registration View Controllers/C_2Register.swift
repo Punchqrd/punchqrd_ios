@@ -142,7 +142,7 @@ class C_2Register : UIViewController, UITextFieldDelegate {
     func createNewEmployeeAsUser() {
         
         self.addLoadingView()
-        Auth.auth().createUser(withEmail: self.EmailField.text!, password: self.PasswordField.text!) { (user, error) in
+        Auth.auth().createUser(withEmail: self.EmailField.text!.lowercased(), password: self.PasswordField.text!) { (user, error) in
             if let error = error {
                 
                 
@@ -158,7 +158,7 @@ class C_2Register : UIViewController, UITextFieldDelegate {
             }
             else {
                 
-                GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.EmployerBusinessEmail!, employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!)
+                GlobalFunctions.addEmployee(nameofUser: GlobalVariables.ActualIDs.EmployerBusinessEmail!.lowercased(), employeeName: self.NameField.text!, employeeEmail: self.EmailField.text!, employeePassword: self.PasswordField.text!)
                 //after creating the user, destroy the code
                 GlobalFunctions.deleteEmployeeAccessCode(codeValue: GlobalVariables.ActualIDs.employeeAccessCode)
                 //send a verificiation email

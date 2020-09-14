@@ -64,7 +64,9 @@
 		17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F39247C7BA1008DAAA2 /* LoginScreen.swift */; };
 		17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */; };
 		17C81F3E247D5E44008DAAA2 /* OwnerHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */; };
+		17D3FB482502F7F9003EAE6A /* OnBoardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D3FB472502F7F9003EAE6A /* OnBoardingCell.swift */; };
 		17DC8B9824C3A5F8005589D2 /* LoaderAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DC8B9724C3A5F8005589D2 /* LoaderAnimationView.swift */; };
+		17DE16AB2502A21200FE9EA8 /* InstructionalPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE16AA2502A21200FE9EA8 /* InstructionalPage.swift */; };
 		17DEEF4D24D9E6A5004C13B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */; };
 		17DF196A248851EE0040059C /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17DF1969248851EE0040059C /* Poppins-Thin.ttf */; };
 		17DF196C2488773D0040059C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DF196B2488773C0040059C /* Assets.xcassets */; };
@@ -192,7 +194,9 @@
 		17C81F3B247C7FF5008DAAA2 /* CustomerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeScreen.swift; sourceTree = "<group>"; };
 		17C81F3D247D5E44008DAAA2 /* OwnerHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHomeScreen.swift; sourceTree = "<group>"; };
 		17CAD385BE4D4BB40CF8B12E /* Pods-FizzyPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FizzyPoints.release.xcconfig"; path = "Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints.release.xcconfig"; sourceTree = "<group>"; };
+		17D3FB472502F7F9003EAE6A /* OnBoardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCell.swift; sourceTree = "<group>"; };
 		17DC8B9724C3A5F8005589D2 /* LoaderAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderAnimationView.swift; sourceTree = "<group>"; };
+		17DE16AA2502A21200FE9EA8 /* InstructionalPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionalPage.swift; sourceTree = "<group>"; };
 		17DEEF4C24D9E6A5004C13B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "../New Group/Extensions.swift"; sourceTree = "<group>"; };
 		17DF1969248851EE0040059C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		17DF196B2488773C0040059C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 				173F1704247DB8AB00C67812 /* BusinessSearch.swift */,
 				173F1700247DB44B00C67812 /* QRView.swift */,
 				174AED9424D5B55B00AF704C /* Customer_Feed.swift */,
+				17DE16AA2502A21200FE9EA8 /* InstructionalPage.swift */,
 			);
 			path = "Customer View Controllers";
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				17325AAA24E1DBCA005A1A4E /* MailView.swift */,
 				17F1EF8B24D3CA6600726C34 /* Promotion_Objects.swift */,
 				17F1EF8D24D3CBA900726C34 /* Promo_Cell.swift */,
+				17D3FB472502F7F9003EAE6A /* OnBoardingCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -555,8 +561,8 @@
 				17C81F0D247ACA7B008DAAA2 /* Frameworks */,
 				17C81F0E247ACA7B008DAAA2 /* Resources */,
 				17510ADD24DB6D48002A2C82 /* Embed App Extensions */,
-				B26A3EF763908C70DB00B632 /* [CP] Embed Pods Frameworks */,
-				C38290C11E3A24E48FF57D4C /* [CP] Copy Pods Resources */,
+				028EFD7A70690962B369EB7D /* [CP] Embed Pods Frameworks */,
+				9D4500E9C793F8594953815E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -662,6 +668,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		028EFD7A70690962B369EB7D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5105951C68CBABB91B15BDDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -684,24 +707,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B26A3EF763908C70DB00B632 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FizzyPoints/Pods-FizzyPoints-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C38290C11E3A24E48FF57D4C /* [CP] Copy Pods Resources */ = {
+		9D4500E9C793F8594953815E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -759,10 +765,12 @@
 				17C81F3C247C7FF5008DAAA2 /* CustomerHomeScreen.swift in Sources */,
 				173F1701247DB44B00C67812 /* QRView.swift in Sources */,
 				17F1EF8C24D3CA6600726C34 /* Promotion_Objects.swift in Sources */,
+				17DE16AB2502A21200FE9EA8 /* InstructionalPage.swift in Sources */,
 				17121857247EFA300060093A /* BusinessName.swift in Sources */,
 				17F1EF8A24D3C13600726C34 /* AllPromotions.swift in Sources */,
 				17F7BDEC248D369F00041577 /* ScanDataFile.swift in Sources */,
 				17B930B724C2041E00D73FBB /* CustomerTable.swift in Sources */,
+				17D3FB482502F7F9003EAE6A /* OnBoardingCell.swift in Sources */,
 				1771DB8424BB820500154CC1 /* PaymentScreen.swift in Sources */,
 				17C81F3A247C7BA1008DAAA2 /* LoginScreen.swift in Sources */,
 				17C81F16247ACA7B008DAAA2 /* SceneDelegate.swift in Sources */,
@@ -923,14 +931,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FizzyPoints/Punchqrd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints;
 				PRODUCT_NAME = Punchqrd;
 				SWIFT_VERSION = 5.0;
@@ -946,14 +955,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FizzyPoints/Punchqrd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = M5F3GZ25TU;
 				INFOPLIST_FILE = FizzyPoints/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SebastianBarry.FizzyPoints;
 				PRODUCT_NAME = Punchqrd;
 				SWIFT_VERSION = 5.0;

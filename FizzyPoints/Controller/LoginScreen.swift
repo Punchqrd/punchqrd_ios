@@ -27,7 +27,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     let newView = UIView()
     let animationView = AnimationView()
     let defaults = UserDefaults.standard
-    let locationManager = CLLocationManager()
+//    let locationManager = CLLocationManager()
     let db = Firestore.firestore()
     
     //Outlet Declarations
@@ -68,7 +68,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         basicSetup()
-
+        
         
         
         setupToHideKeyboardOnTapOnView()
@@ -79,16 +79,16 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         //delegate initiations
         self.PasswordTextField.delegate = self
         self.EmailTextField.delegate = self
-        self.locationManager.delegate = self
+//        self.locationManager.delegate = self
         
-        //location manager
-        if CLLocationManager.authorizationStatus() == .notDetermined
-        {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.delegate = self
-            locationManager.startUpdatingLocation()
-        }
-        
+//        //location manager
+//        if CLLocationManager.authorizationStatus() == .notDetermined
+//        {
+//            locationManager.requestWhenInUseAuthorization()
+//            locationManager.delegate = self
+//            locationManager.startUpdatingLocation()
+//        }
+//
         
         //Keyboard functions
         // call the 'keyboardWillShow' function when the view controller receive the notification that a keyboard is going to be shown
@@ -123,8 +123,8 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         self.PasswordTextField.isHidden = true
         self.EmailTextField.isHidden = true
         isLoginShowing = false
-
-
+        
+        
     }
     
     
@@ -147,7 +147,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
             print("OK")
         }
         
-        self.locationManager.delegate = self
+//        self.locationManager.delegate = self
         self.navigationController?.navigationBar.isHidden = true
         PasswordTextField.text = nil
         EmailTextField.text = nil
@@ -223,7 +223,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
         containerCenterXAnchor = containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: self.view.frame.size.width/2 + 70)
         containerCenterXAnchor.isActive = true
-//        containerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 220).isActive = true
+        //        containerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 220).isActive = true
         
         self.view.addSubview(forgotPasswordButton)
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
@@ -244,9 +244,9 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         LoginButton.translatesAutoresizingMaskIntoConstraints = false
         LoginButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         LoginButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        LoginButton.bottomAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: -20).isActive = true
+        //        LoginButton.bottomAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: -20).isActive = true
         LoginButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20).isActive = true
-
+        
         LoginButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0).isActive = true
         LoginButton.backgroundColor = .clear
         LoginButton.setTitle("Login", for: .normal)
@@ -264,7 +264,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         PasswordTextField.textColor = .white
         PasswordTextField.tintColor = .white
         PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         PasswordTextField.font = UIFont(name:  Fonts.importFonts.paragraphFont, size: 13)
         PasswordTextField.isHidden = true
         
@@ -277,7 +277,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         EmailTextField.textColor = .white
         EmailTextField.tintColor = .white
         EmailTextField.attributedPlaceholder = NSAttributedString(string: "Email:",
-        attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         EmailTextField.font = UIFont(name:  Fonts.importFonts.paragraphFont, size: 13)
         EmailTextField.isHidden = true
         EmailTextField.textContentType = .emailAddress
@@ -286,7 +286,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
     }
     
-   
+    
     
     //MARK:- FORGOT PASSWORD FUNCTION
     @objc func showForgotPassword() {
@@ -331,7 +331,7 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     //MARK: - Keyboard manipulation
     
-   
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         
@@ -364,50 +364,50 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     //setup the login view
     @objc func dismissLoginView() {
         if self.isLoginShowing == true {
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 6, options: .curveEaseOut, animations: {
-            self.containerView.center.x = self.view.frame.size.width/2 + self.view.frame.size.width/2 + 70
-            self.forgotPasswordButton.center.x = self.view.frame.size.width/2 + self.view.frame.size.width/2 + 70
-            self.PasswordTextField.isHidden = true
-            self.EmailTextField.isHidden = true
-
-           
-        }, completion: { complete in
-            self.containerCenterXAnchor.constant = self.view.frame.size.width/2 + 70
-            self.forgotPasswordCenterXAnchor.constant = self.view.frame.size.width/2 + 70
-            self.isLoginShowing = false
-        })
-    }
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 6, options: .curveEaseOut, animations: {
+                self.containerView.center.x = self.view.frame.size.width/2 + self.view.frame.size.width/2 + 70
+                self.forgotPasswordButton.center.x = self.view.frame.size.width/2 + self.view.frame.size.width/2 + 70
+                self.PasswordTextField.isHidden = true
+                self.EmailTextField.isHidden = true
+                
+                
+            }, completion: { complete in
+                self.containerCenterXAnchor.constant = self.view.frame.size.width/2 + 70
+                self.forgotPasswordCenterXAnchor.constant = self.view.frame.size.width/2 + 70
+                self.isLoginShowing = false
+            })
+        }
     }
     
     
     @objc func setupView() {
-              
-
-              UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 6, options: .curveEaseOut, animations: {
-               
-                  self.containerView.center.x = self.view.frame.size.width/2
-                  self.forgotPasswordButton.center.x = self.view.frame.size.width/2
-                  self.PasswordTextField.isHidden = false
-                  self.EmailTextField.isHidden = false
-
-              
-                  
-                  
-
-                  
-              }, completion: { complete in
-                    self.containerCenterXAnchor.constant = 0
-                    self.forgotPasswordCenterXAnchor.constant = 0
-                    //bool value being set to true to indicate that the login view is now showing
-                    self.isLoginShowing = true
-                
-              })
-              
-              
         
-              
-              
-              
+        
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 6, options: .curveEaseOut, animations: {
+            
+            self.containerView.center.x = self.view.frame.size.width/2
+            self.forgotPasswordButton.center.x = self.view.frame.size.width/2
+            self.PasswordTextField.isHidden = false
+            self.EmailTextField.isHidden = false
+            
+            
+            
+            
+            
+            
+        }, completion: { complete in
+            self.containerCenterXAnchor.constant = 0
+            self.forgotPasswordCenterXAnchor.constant = 0
+            //bool value being set to true to indicate that the login view is now showing
+            self.isLoginShowing = true
+            
+        })
+        
+        
+        
+        
+        
+        
     }
     
     
@@ -536,8 +536,10 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     func login () {
         self.addLoadingView()
-        Auth.auth().signIn(withEmail: EmailTextField.text!, password: PasswordTextField.text!) { (user, error) in
-            
+        let textEmail = EmailTextField.text!.lowercased()
+        Auth.auth().signIn(withEmail: textEmail, password: PasswordTextField.text!) { (user, error) in
+            print(textEmail)
+            print(self.PasswordTextField.text!)
             if error != nil {
                 self.removeLoadingView()
                 let alert = UIAlertController(title: error?.localizedDescription, message: nil, preferredStyle: .alert)
@@ -551,83 +553,83 @@ class LoginScreen : UIViewController, UITextFieldDelegate, CLLocationManagerDele
                 
                 
                 
-                //MARK:- UNCOMMENT THIS FOR EMAIL VERIFICATION
-                //                let user = Auth.auth().currentUser
-                //                switch user!.isEmailVerified {
-                //
-                //                case true:
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                //fetch the document array for the user.
-                let document = self.db.collection(GlobalVariables.UserIDs.CollectionTitle).document(self.EmailTextField.text!)
-                //we not have a document
-                document.getDocument { (dataPiece, error) in
-                    if let dataPiece = dataPiece, dataPiece.exists {
-                        GlobalVariables.ActualIDs.CurrentUser = self.EmailTextField.text!
-                        let data = dataPiece.get(GlobalVariables.UserIDs.UserType) as! String
-                        if data == GlobalVariables.UserIDs.UserDeletedType {
-                            let user = Auth.auth().currentUser
-                            user?.delete(completion: { (error) in
-                                if let error = error { print(error.localizedDescription)}
-                                else {
-                                    
-                                    self.logoutAlert(title: "Your employee \(self.EmailTextField.text!) has been deleted from your list", message: nil)
-                                    self.EmailTextField.text = nil
-                                    self.PasswordTextField.text = nil
-                                    self.removeLoadingView()
-                                }
-                            })
+                let user = Auth.auth().currentUser
+                switch user!.isEmailVerified {
+                    
+                case true:
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //fetch the document array for the user.
+                    let emailAddress = self.EmailTextField.text!.lowercased()
+                    print(emailAddress)
+                    let document = self.db.collection(GlobalVariables.UserIDs.CollectionTitle).document(emailAddress)
+                    //we not have a document
+                    document.getDocument { (dataPiece, error) in
+                        if let dataPiece = dataPiece, dataPiece.exists {
+                            GlobalVariables.ActualIDs.CurrentUser = self.EmailTextField.text!
+                            let data = dataPiece.get(GlobalVariables.UserIDs.UserType) as! String
+                            if data == GlobalVariables.UserIDs.UserDeletedType {
+                                let user = Auth.auth().currentUser
+                                user?.delete(completion: { (error) in
+                                    if let error = error { print(error.localizedDescription)}
+                                    else {
+                                        
+                                        self.logoutAlert(title: "Your employee \(self.EmailTextField.text!) has been deleted from your list", message: nil)
+                                        self.EmailTextField.text = nil
+                                        self.PasswordTextField.text = nil
+                                        self.removeLoadingView()
+                                    }
+                                })
+                            }
+                            
+                            //customer?
+                            if data == GlobalVariables.UserIDs.UserCustomer {
+                                self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
+                                
+                            }
+                            //employee?
+                            if data == GlobalVariables.UserIDs.UserEmployee {
+                                print("Employee")
+                                let businessName = dataPiece.get(GlobalVariables.UserIDs.EmployerString) as! String
+                                print(businessName)
+                                GlobalFunctions.employeeLocationForLogin(employeeEmployerBusinessName: businessName, navigationController: self, errorLabel: self.ErrorLabel, animationView: self.animationView)
+                                
+                            }
+                            //owner?
+                            if data == GlobalVariables.UserIDs.UserOwner {
+                                self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)
+                                
+                            }
+                            
+                        }
+                            //if neither of the three, then the user does not exist.
+                        else {
+                            let alert = UIAlertController(title: "No account for this user.", message: nil, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (alert: UIAlertAction) in
+                                return
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                            self.removeLoadingView()
                         }
                         
-                        //customer?
-                        if data == GlobalVariables.UserIDs.UserCustomer {
-                            self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToCustomerHomeScreen, sender: self)
-                            
-                        }
-                        //employee?
-                        if data == GlobalVariables.UserIDs.UserEmployee {
-                            print("Employee")
-                            let businessName = dataPiece.get(GlobalVariables.UserIDs.EmployerString) as! String
-                            print(businessName)
-                            GlobalFunctions.employeeLocationForLogin(employeeEmployerBusinessName: businessName, navigationController: self, errorLabel: self.ErrorLabel, animationView: self.animationView)
-                            
-                        }
-                        //owner?
-                        if data == GlobalVariables.UserIDs.UserOwner {
-                            self.performSegue(withIdentifier: GlobalVariables.SegueIDs.ToOwnerHomeScreen, sender: self)
-                            
-                        }
                         
-                    }
-                        //if neither of the three, then the user does not exist.
-                    else {
-                        let alert = UIAlertController(title: "No account for this user.", message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Back", style: .default, handler: { (alert: UIAlertAction) in
-                            return
-                        }))
-                        self.present(alert, animated: true, completion: nil)
-                        self.removeLoadingView()
                     }
                     
                     
+                    
+                    
+                case false:
+                    self.removeLoadingView()
+                    self.verifyEmailAlert(title: "Psst", message: "Verify your account before logging in", currentuser : user!)
                 }
                 
-                
-                
-                
-                //                case false:
-                //                    self.removeLoadingView()
-                //                    self.verifyEmailAlert(title: "Psst", message: "Verify your account before logging in", currentuser : user!)
-                //                }
-                
-                //MARK:- END MARK
                 
                 
                 

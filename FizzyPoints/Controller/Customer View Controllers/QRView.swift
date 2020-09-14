@@ -21,12 +21,17 @@ class QRView: UIViewController {
         return qrImageView
     }()
     
+    let backButton = ActionButton(backgroundColor: Global_Colors.colors.apricot, title: "", image: nil)
+    
+    
+    
     
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,22 +42,34 @@ class QRView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setupCodeAndView()
+        navigationItem.hidesBackButton = true
+
     }
     
     
     //MARK:- Suplimentary functions
     /// QR code image setup.
     func setupCodeAndView() {
-        //generate a string of random numbers
-//        var randomNumberArray : [Int] = []
-//        for _ in 1...10 {
-//            let randomNumber = Int.random(in: 0...9)
-//            randomNumberArray.append(randomNumber)
-//        }
-//        var finalValue = ""
-//        for values in randomNumberArray {
-//            finalValue.append(String(values))
-//        }
+       
+        //setup the back button
+        view.addSubview(backButton)
+        backButton.translatesAutoresizingMaskIntoConstraints = false 
+        backButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        backButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40).isActive = true
+        backButton.addTarget(self, action: #selector(backHome), for: .touchUpInside)
+        let backGroundImage = UIImage(systemName: "chevron.up")
+              let tintedImage = backGroundImage?.withRenderingMode(.alwaysTemplate)
+        backButton.setImage(tintedImage, for: .normal)
+        backButton.tintColor = .white
+        backButton.layer.shadowColor = UIColor.gray.cgColor
+        backButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        backButton.layer.shadowRadius = 8
+        backButton.layer.shadowOpacity = 0.4
+        
+        
+        //setup the qr code view
         let id = UUID().uuidString
         GlobalVariables.ActualIDs.userCustomerCode = id
         GlobalFunctions.appendRandomCode(customerEmail: Auth.auth().currentUser?.email!, codeValue: GlobalVariables.ActualIDs.userCustomerCode!)
@@ -76,6 +93,19 @@ class QRView: UIViewController {
         
         return nil
         
+    }
+    
+    
+    @objc func backHome() {
+//        let homeScreen = CustomerHomeScreen()
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromBottom
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.popViewController(animated: false)
     }
     
     

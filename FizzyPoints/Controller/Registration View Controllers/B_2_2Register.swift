@@ -149,7 +149,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     //setup a new user function
     func SetupNewUser () {
         self.addLoadingView()
-        Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
+        Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!.lowercased(), password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
             
             if let error = error {  let alert = UIAlertController(title: String(describing: error.localizedDescription), message: nil, preferredStyle: .alert)
                 self.removeLoadingView()
@@ -180,7 +180,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
         
         let NewUser = [
             
-            GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail, //(0)
+            GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail?.lowercased(), //(0)
             GlobalVariables.UserIDs.BusinessName : GlobalVariables.ActualIDs.ActualBusinessName, //(1)
             GlobalVariables.UserIDs.UserPassword: GlobalVariables.ActualIDs.ActualPassword, //(2)
             GlobalVariables.UserIDs.UserType: GlobalVariables.ActualIDs.ActualUserType, //(3)
@@ -194,8 +194,8 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
     
     //setup the firebase for the new owner with a list of owner variables
     func SetupFirebaseData () {
-        db.collection(GlobalVariables.UserIDs.existingBusinesses).document((GlobalVariables.ActualIDs.ActualZipCode)!).setData(["Owner" : GlobalVariables.ActualIDs.ActualEmail!, "Business Name": GlobalVariables.ActualIDs.ActualBusinessName!])
-        db.collection(GlobalVariables.UserIDs.CollectionTitle).document("\(GlobalVariables.ActualIDs.ActualEmail!)").setData(InstantiateOwnerList()) { err in
+        db.collection(GlobalVariables.UserIDs.existingBusinesses).document((GlobalVariables.ActualIDs.ActualZipCode)!).setData(["Owner" : GlobalVariables.ActualIDs.ActualEmail!.lowercased(), "Business Name": GlobalVariables.ActualIDs.ActualBusinessName!])
+        db.collection(GlobalVariables.UserIDs.CollectionTitle).document("\(GlobalVariables.ActualIDs.ActualEmail!.lowercased())").setData(InstantiateOwnerList()) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
@@ -226,7 +226,7 @@ class B_2_2Register : UIViewController, UITextFieldDelegate {
         if let text = self.ConfirmPasswordTextField.text, !text.isEmpty
         {
             if self.ConfirmPasswordTextField.text! == self.PasswordTextField.text! {
-                GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
+                GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text?.lowercased()
                 GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
                 SetupNewUser()
                 

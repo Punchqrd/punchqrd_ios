@@ -56,6 +56,9 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         progressBarBackground.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30).isActive = true
         progressBarBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         progressBarBackground.layer.cornerRadius = 13
+        self.progressBarBackground.clipsToBounds = true
+        progressBarBackground.backgroundColor = .white
+        
         
         
         
@@ -69,12 +72,15 @@ class BusinessForCustomerCell: UITableViewCell, UITextFieldDelegate {
         
         PointsProgressBar.translatesAutoresizingMaskIntoConstraints = false
         progressBarBackground.addSubview(PointsProgressBar)
-        progressBarBackground.bringSubviewToFront(PointsProgressBar)
+        progressBarBackground.sendSubviewToBack(PointsProgressBar)
         PointsProgressBar.centerXAnchor.constraint(equalTo: progressBarBackground.centerXAnchor).isActive = true
         PointsProgressBar.centerYAnchor.constraint(equalTo: progressBarBackground.centerYAnchor).isActive = true
         PointsProgressBar.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        PointsProgressBar.rightAnchor.constraint(equalTo: progressBarBackground.rightAnchor, constant: -20).isActive = true
-        PointsProgressBar.leftAnchor.constraint(equalTo: progressBarBackground.leftAnchor, constant: 20).isActive = true
+        PointsProgressBar.rightAnchor.constraint(equalTo: progressBarBackground.rightAnchor, constant: -20).isActive = true //-20
+        PointsProgressBar.leftAnchor.constraint(equalTo: progressBarBackground.leftAnchor, constant: 20).isActive = true //20
+        PointsProgressBar.layer.cornerRadius = 7.5
+        self.PointsProgressBar.clipsToBounds = true
+
         
         
         

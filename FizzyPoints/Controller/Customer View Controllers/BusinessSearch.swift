@@ -38,6 +38,11 @@ class BusinessSearch: UIViewController {
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = true
         //this is the code from google api
         resultsViewController = GMSAutocompleteResultsViewController()
@@ -54,12 +59,7 @@ class BusinessSearch: UIViewController {
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.searchBar.placeholder = ""
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: "Back"), style: .plain, target: self, action:#selector(back))
-        self.navigationController?.navigationBar.isTranslucent = false
 
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
         view.backgroundColor = .white
         setupButtons()
         navigationController?.navigationBar.tintColor = Global_Colors.colors.apricot
@@ -67,7 +67,7 @@ class BusinessSearch: UIViewController {
         searchController!.searchBar.barStyle = .default
         searchController!.searchBar.searchTextField.leftView?.tintColor = .white
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.black
     }
     
     
@@ -163,7 +163,7 @@ class BusinessSearch: UIViewController {
                             self.delegate?.printThisTest(value: self.businessName!)///this is just a test function in the delegate to see if its working.
                             
                             
-                            self.navigationController?.popViewController(animated: true)
+                            self.back()
                         }
                         
                     }
@@ -233,10 +233,7 @@ extension BusinessSearch: GMSAutocompleteResultsViewControllerDelegate {
         self.businessName = place.name
         self.BusinessNameLabel.text = place.name
         self.AddressLabel.text = place.formattedAddress
-        // Do something with the selected place.
-        //print("Place name: \(place.name)")
-        //print("Place address: \(place.formattedAddress)")
-        //print("Place attributions: \(place.attributions)")
+        
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

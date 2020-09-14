@@ -10,21 +10,22 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+
 import GooglePlaces
 import MapKit
 
 class EmployeeHome: UIViewController, CLLocationManagerDelegate{
 
-    
-    var coordinatesArray : [CLLocationCoordinate2D] = []
-    private lazy var locationManager: CLLocationManager = {
-       let manager = CLLocationManager()
-       manager.desiredAccuracy = kCLLocationAccuracyBest
-       manager.delegate = self
-       manager.requestAlwaysAuthorization()
-       manager.allowsBackgroundLocationUpdates = true
-       return manager
-     }()
+//
+//    var coordinatesArray : [CLLocationCoordinate2D] = []
+//    private lazy var locationManager: CLLocationManager = {
+//       let manager = CLLocationManager()
+//       manager.desiredAccuracy = kCLLocationAccuracyBest
+//       manager.delegate = self
+//       manager.requestAlwaysAuthorization()
+//       manager.allowsBackgroundLocationUpdates = true
+//       return manager
+//     }()
 
     
     
@@ -36,20 +37,20 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         
         
-        if CLLocationManager.authorizationStatus() == .notDetermined
-               {
-                   locationManager.requestWhenInUseAuthorization()
-                   locationManager.delegate = self
-                   locationManager.startUpdatingLocation()
-                   locationManager.requestAlwaysAuthorization()
-                   
-               }
-               
+//        if CLLocationManager.authorizationStatus() == .notDetermined
+//               {
+//                   locationManager.requestWhenInUseAuthorization()
+//                   locationManager.delegate = self
+//                   locationManager.startUpdatingLocation()
+//                   locationManager.requestAlwaysAuthorization()
+//
+//               }
+//
         
-        self.locationManager.delegate = self
-        let firstLocation = self.locationManager.location!.coordinate
-        self.coordinatesArray.append(firstLocation)
-        self.locationManager.startUpdatingLocation()
+//        self.locationManager.delegate = self
+//        let firstLocation = self.locationManager.location!.coordinate
+//        self.coordinatesArray.append(firstLocation)
+//        self.locationManager.startUpdatingLocation()
         setupView()
         
         
@@ -64,7 +65,7 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.coordinatesArray.append(self.locationManager.location!.coordinate)
+//        self.coordinatesArray.append(self.locationManager.location!.coordinate)
         GlobalFunctions.setButtonRadius(button: self.ScanButton)
         self.navigationItem.hidesBackButton = true
        
@@ -131,53 +132,54 @@ class EmployeeHome: UIViewController, CLLocationManagerDelegate{
     
     
     
-    //MARK: - Supplimentary functions
-    func logoutProximity() {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            self.navigationController?.popToRootViewController(animated: false)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-    }
-    
+//    //MARK: - Supplimentary functions
+//    func logoutProximity() {
+//        let firebaseAuth = Auth.auth()
+//        do {
+//            try firebaseAuth.signOut()
+//            self.navigationController?.popToRootViewController(animated: false)
+//        } catch let signOutError as NSError {
+//            print ("Error signing out: %@", signOutError)
+//        }
+//    }
+//
     
     //function to update the users current location
     //if the user has changed locations then log him/her out
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      guard let mostRecentLocation = locations.last else {
-        return
-      }
-        //.001
-        
-        ///when the user first logs in, he/she will only be able to do so IF they are close to their business.
-        ///once the user has left the proximity from which he/she has logged into, they will automatically be logged off.
-        
-        
-        ///these values below: - .0003 might need ot be changed.
-        ///they represent the users safety zone in which they can still be logged in.
-        ///in other words, if they leave a zone of .0003 by .0003 in coordinate points, they will be logged off.
-        switch mostRecentLocation.coordinate.longitude {
-            
-        case self.coordinatesArray.first!.longitude - 0.0003 ... self.coordinatesArray.first!.longitude + 0.0003:
-            //print(self.coordinatesArray.first!.longitude - mostRecentLocation.coordinate.longitude)
-            return
-            
-        default:
-            self.locationManager.stopUpdatingLocation()
-            self.logoutProximity()
-            
-        }
-            
-      
- 
-      if UIApplication.shared.applicationState == .active {
-      } else {
-        print("App is backgrounded. New location is %@", mostRecentLocation)
-      }
-        
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//      guard let mostRecentLocation = locations.last else {
+//        return
+//      }
+//        //.001
+//
+//        ///when the user first logs in, he/she will only be able to do so IF they are close to their business.
+//        ///once the user has left the proximity from which he/she has logged into, they will automatically be logged off.
+//
+//
+//        ///these values below: - .0003 might need ot be changed.
+//        ///they represent the users safety zone in which they can still be logged in.
+//        ///in other words, if they leave a zone of .0003 by .0003 in coordinate points, they will be logged off.
+//        switch mostRecentLocation.coordinate.longitude {
+//
+//        case self.coordinatesArray.first!.longitude - 0.0006 ... self.coordinatesArray.first!.longitude + 0.0006:
+//            //print(self.coordinatesArray.first!.longitude - mostRecentLocation.coordinate.longitude)
+//            return
+//
+//        default:
+//            self.locationManager.stopUpdatingLocation()
+//            self.logoutProximity()
+//            print("this is being called")
+//
+//        }
+//
+//
+//
+//      if UIApplication.shared.applicationState == .active {
+//      } else {
+//        print("App is backgrounded. New location is %@", mostRecentLocation)
+//      }
+//
+//    }
   
 }
     

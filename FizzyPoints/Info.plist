@@ -13,6 +13,8 @@
 	<string></string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -31,12 +33,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to scan QR Codes</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>If using as an employee, this apps need to monitor your location.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Determine an employees location </string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Use to find local business</string>
 	<key>OneSignal_app_groups_key</key>
 	<string>com.SebastianBarry.FizzyPoints</string>
 	<key>UIAppFonts</key>
@@ -74,7 +70,6 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
-		<string>location</string>
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>

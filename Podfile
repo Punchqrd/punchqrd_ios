@@ -8,10 +8,10 @@ target 'FizzyPoints' do
   # Pods for FizzyPoints
 
   
-  
   pod 'Firebase/Analytics'
-  pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
+
   pod 'Firebase/Auth'
   pod 'GoogleMaps'
   pod 'GooglePlaces'

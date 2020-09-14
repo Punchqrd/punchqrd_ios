@@ -16,13 +16,16 @@ import UserNotifications
 
 
 
-class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
+class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate, InstructionalPageProtocol{
     
+    
+    var didViewInstructionDec = false
     var refresher : UIRefreshControl!
     var BusinessNamesArray : [BusinessName] = []
     let locationManager = CLLocationManager()
     let defaults = UserDefaults.standard
     let current = UNUserNotificationCenter.current()
+    let instructionalViewController = InstructionalPage()
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
@@ -49,13 +52,13 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
         //calling the methods that will ask the user for their token id.
         registerForPushNotifications()
         
         
-
+        
         
         
         
@@ -63,8 +66,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         view.backgroundColor = Global_Colors.colors.mainQRButtonColor
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.isTranslucent = false
-
+        
         
         
         
@@ -88,22 +90,22 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.largeTitleDisplayMode = .never
-        view.backgroundColor = Global_Colors.colors.mainQRButtonColor
     }
     
     
     
     
     override func viewWillAppear(_ animated: Bool) {
-
-        view.backgroundColor = .white
+        self.view.backgroundColor = .white
         navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = false
+
         
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.black,
-                   NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 26)!]
+             NSAttributedString.Key.font: UIFont(name: Fonts.importFonts.mainTitleFont, size: 26)!]
         navigationController?.navigationBar.barTintColor = .white
-
+        
         self.navigationItem.title = "Your Spots"
         self.refresher.backgroundColor = .white
         
@@ -120,7 +122,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         showList()
         setupTable()
         
-      
+        
         
         //swipe gestures
         let viewNewsFeedGesture = UISwipeGestureRecognizer(target: self, action: #selector(didTapSideButton))
@@ -192,18 +194,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         qrButton.layer.shadowRadius = 8
         qrButton.layer.shadowOpacity = 0.4
         
-//        let titleLabel = UILabel()
-//        qrButton.addSubview(titleLabel)
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        titleLabel.rightAnchor.constraint(equalTo: qrButton.rightAnchor, constant: -30).isActive = true
-//        titleLabel.leftAnchor.constraint(equalTo: qrButton.leftAnchor, constant: 30).isActive = true
-//        titleLabel.centerYAnchor.constraint(equalTo: qrButton.centerYAnchor, constant: 0).isActive = true
-//        titleLabel.text = "Your Card"
-//        titleLabel.textColor = .white
-//        titleLabel.textAlignment = .center
-//        titleLabel.font = UIFont(name: "Helvetica-Bold", size: 25)
-//
-//
+        
         view.bringSubviewToFront(qrButton)
         
     }
@@ -222,7 +213,7 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         containerForButton.backgroundColor = .clear
         containerForButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
         containerForButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: -35).isActive = true
-      
+        
         
         
         
@@ -301,6 +292,23 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
                     //setup this when reloading the data
                 }
                 self.BusinessList.reloadData()
+                if self.BusinessNamesArray.isEmpty && self.didViewInstructionDec == false {
+                    
+                    let navigationController = self.navigationController
+                    let transition = CATransition()
+                    transition.duration = 0.2
+                    transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                    transition.type = CATransitionType.moveIn
+                    transition.subtype = CATransitionSubtype.fromTop
+                    navigationController?.view.layer.add(transition, forKey: nil)
+                    self.instructionalViewController.delegate = self
+                    navigationController?.pushViewController(self.instructionalViewController, animated: false)
+                    
+                }
+                
+                
+                
+                
                 
                 //                Setting up the listener for each business for any sort of notification.
                 //                DispatchQueue.main.async {
@@ -338,7 +346,10 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
         }
     }
     
-    
+    //MARK:- Protocol Declarations
+    func didViewInstructions() {
+        didViewInstructionDec = true
+    }
     
     
     //MARK:- Actions
@@ -350,13 +361,21 @@ class CustomerHomeScreen : UIViewController, CLLocationManagerDelegate{
     
     @objc func viewQRButton() {
         let qrCodeScreen = QRView()
-        self.navigationController?.present(qrCodeScreen, animated: true, completion: nil)
+        let navigationController = self.navigationController
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromTop
+        navigationController?.view.layer.add(transition, forKey: nil)
+        navigationController?.pushViewController(qrCodeScreen, animated: false)
+        
     }
     
     
     @IBAction func searchBusinessButton(_ sender: UIBarButtonItem) {
         let promoteScreen = BusinessSearch()
-        promoteScreen.delegate = self
+        //        promoteScreen.delegate = self
         let navigationController = self.navigationController
         let transition = CATransition()
         transition.duration = 0.5
@@ -447,19 +466,19 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     //how many cells should be present
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-         
         
-            return BusinessNamesArray.count
-       
+        
+        
+        return BusinessNamesArray.count
+        
     }
     
     //what will be show in each cell in the table view? : (name, points, progressbar updates, etc) Return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         let cell = BusinessList.dequeueReusableCell(withIdentifier: GlobalVariables.UserIDs.CustomerTableViewCellID, for: indexPath) as! BusinessForCustomerCell
         cell.parentView = self.view
-        cell.PointsProgressBar.trackTintColor = .white
+        cell.PointsProgressBar.trackTintColor = .white //UIColor.systemGray6.withAlphaComponent(0.3)
         cell.PointsProgressBar.setProgress((self.BusinessNamesArray[indexPath.row].points/10), animated: true)
         cell.PointsProgressBar.progressTintColor = Global_Colors.colors.apricot
         //random colors for the points
@@ -485,7 +504,10 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
         cell.BusinessName.text = self.BusinessNamesArray[indexPath.row].name
         cell.BusinessName.numberOfLines = 0
         
-            
+        //        if self.BusinessNamesArray[indexPath.row].points == 0 {
+        //            cell.PointsProgressBar.trackTintColor = .clear
+        //        }
+        
         if self.BusinessNamesArray[indexPath.row].bonusPoints != 0 {
             self.delay(0.1) {
                 print(self.BusinessNamesArray[indexPath.row].bonusPoints)
@@ -498,13 +520,13 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
                 
                 // show this notification five seconds from now
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-
+                
                 // choose a random identifier
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                 let notificationCenter = UNUserNotificationCenter.current()
                 // add our notification request
                 notificationCenter.add(request)
-             
+                
                 cell.bonusPointsCircle.isHidden = false
                 cell.BonusPointsLabel.text = "+\(String(describing: self.BusinessNamesArray[indexPath.row].bonusPoints))"
                 cell.BonusPointsLabel.textColor = .systemGray3
@@ -589,78 +611,79 @@ extension CustomerHomeScreen: UITableViewDataSource, UITableViewDelegate {
 
 
 
-
-//MARK:- Business Search Protocol Extension
-extension CustomerHomeScreen: BusinessSearchProtocol {
-    
-    ///this again is just a test function that is used to see if the protocol is actually doing its job.
-    func printThisTest(value: String) {
-        print(value)
-    }
-    
-    
-    
-    
-    func isListening(BusinessName: String, businessAddress: String) {
-        
-        print("this is being called")
-        setupListener(businessAddress: businessAddress) { (didChangeValue) in
-            
-            let content = UNMutableNotificationContent()
-            content.title = "\(BusinessName)"
-            content.subtitle = "Just updated their feed."
-            content.sound = UNNotificationSound.default
-       
-            // show this notification five seconds from now
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-            
-            // choose a random identifier
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            
-            // add our notification request
-            UNUserNotificationCenter.current().add(request)
-            
-            let alert = UIAlertController(title: "\(BusinessName) just posted.", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert: UIAlertAction) in
-                
-                Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).updateData([GlobalVariables.UserIDs.recieveAlerts : false])
-                
-                return
-                
-            }))
-            self.present(alert, animated: true, completion: nil)
-            
-            
-        }
-    }
-    
-    
-    
-    
-    //setup the listener function to return a value to the function above.
-    func setupListener(businessAddress: String, completion: @escaping (Any) -> Void) {
-        
-        Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).addSnapshotListener { (document, error) in
-            guard error == nil else {return}
-            let returnValue = document?.get(GlobalVariables.UserIDs.recieveAlerts) as! Bool
-            if returnValue == true {
-                completion(returnValue)
-            } else {
-                return
-            }
-            
-            
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-}
-
+//
+////MARK:- Business Search Protocol Extension
+//extension CustomerHomeScreen: BusinessSearchProtocol {
+//    
+//    ///this again is just a test function that is used to see if the protocol is actually doing its job.
+//    func printThisTest(value: String) {
+//        print(value)
+//    }
+//    
+//    
+//    
+//    
+//    func isListening(BusinessName: String, businessAddress: String) {
+//        
+//        print("this is being called")
+//        setupListener(businessAddress: businessAddress) { (didChangeValue) in
+//            
+//            let content = UNMutableNotificationContent()
+//            content.title = "\(BusinessName)"
+//            content.subtitle = "Just updated their feed."
+//            content.sound = UNNotificationSound.default
+//       
+//            // show this notification five seconds from now
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+//            
+//            // choose a random identifier
+//            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+//            
+//            // add our notification request
+//            UNUserNotificationCenter.current().add(request)
+//            
+//            let alert = UIAlertController(title: "Added: \(BusinessName)", message: nil, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert: UIAlertAction) in
+//                
+//                Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).updateData([GlobalVariables.UserIDs.recieveAlerts : false])
+//                
+//                return
+//                
+//            }))
+//            self.present(alert, animated: true, completion: nil)
+//            
+//            
+//        }
+//    }
+//    
+//    
+//    
+//    
+//    //setup the listener function to return a value to the function above.
+//    func setupListener(businessAddress: String, completion: @escaping (Any) -> Void) {
+//        
+//        Firestore.firestore().collection(GlobalVariables.UserIDs.existingBusinesses).document(businessAddress).collection(GlobalVariables.UserIDs.subscriberCollection).document((Auth.auth().currentUser?.email)!).addSnapshotListener { (document, error) in
+//            
+//            guard error == nil else {return}
+//            let returnValue = ((document?.get(GlobalVariables.UserIDs.recieveAlerts)) != nil) as Bool
+//            if returnValue == true {
+//                completion(returnValue)
+//            } else {
+//                return
+//            }
+//            
+//            
+//        }
+//    }
+//    
+//    
+//    
+//    
+//    
+//    
+//    
+//}
+//
 
 
 

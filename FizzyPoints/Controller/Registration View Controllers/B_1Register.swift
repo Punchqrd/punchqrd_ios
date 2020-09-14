@@ -28,48 +28,38 @@ class B_1Register : UIViewController {
     var toggleVariable = false
     
     //setup the main view.
-    let containerView = UIView()
     
     
-    let RegisterButton = ActionButton(backgroundColor: .systemGreen, title: "Register", image: nil)
+    let RegisterButton = ActionButton(backgroundColor: Global_Colors.colors.apricot, title: "Register", image: nil)
     //name fields and views
     let FirstName = UITextField()
-    let firstNameTextFieldView = UIView()
     
     let LastName = UITextField()
-    let lastNameTextFieldView = UIView()
     //email.
     let EmailTextField = UITextField()
-    let emailTextFieldView = UIView()
     //password fields and views
     let PasswordTextField = UITextField()
-    let passwordTextFieldView = UIView()
     //confirm password fields and views
     let ConfirmPasswordTextField = UITextField()
-    let confirmpasswordTextFieldView = UIView()
     
     //birth date input and views
     let birthMonth = SDCTextField()
-    let birthMonthView = UIView()
     
     let birthDay = SDCTextField()
-    let birthDayView = UIView()
     
     let birthYear = SDCTextField()
-    let birthYearView = UIView()
-    
-    let cakeImage = UIImage(named: "birthday")
     
     
-    //labels
-    let ErrorLabel = UILabel()
-    //setup gender images in this array
+    
     
     
     
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(view.bounds.width)
+        print(view.bounds.height)
+        
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.barTintColor = .white
@@ -82,7 +72,7 @@ class B_1Register : UIViewController {
         navigationItem.title = "Create Your Account"
         //back bar button item reset.
         self.navigationController!.navigationBar.topItem!.title = ""
-
+        
         
         
         setupToHideKeyboardOnTapOnView()
@@ -97,6 +87,8 @@ class B_1Register : UIViewController {
         self.birthDay.maxLength = 2
         self.birthMonth.delegate = self
         self.birthMonth.maxLength = 2
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,52 +105,87 @@ class B_1Register : UIViewController {
     
     func setupMainView() {
         
-        let verticalSeperatorConstraint = -40.0
-        let widthAnchor = self.view.frame.size.width/1.2
+        let verticalSeperatorConstraint = 20.0
+        let rightAnchor = -20
+        let leftAnchor = 20
         let registerButtonHeight = 80
         
         
-        self.view.addSubview(containerView)
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.widthAnchor.constraint(equalToConstant: CGFloat(widthAnchor)).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / 2).isActive = true
-        containerView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150).isActive = true
-        containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        containerView.backgroundColor = .white
-        containerView.layer.cornerRadius = 5
+        view.addSubview(LastName)
+        LastName.translatesAutoresizingMaskIntoConstraints = false
+        LastName.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(100)).isActive = true
+        LastName.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        
+        view.addSubview(FirstName)
+        FirstName.translatesAutoresizingMaskIntoConstraints = false
+        FirstName.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(100)).isActive = true
+        FirstName.leftAnchor.constraint(equalTo: LastName.rightAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        FirstName.widthAnchor.constraint(equalToConstant: self.view.frame.size.width/2).isActive = true
+        FirstName.rightAnchor.constraint(equalTo: view.rightAnchor, constant: CGFloat(rightAnchor)).isActive = true
+        LastName.rightAnchor.constraint(equalTo: FirstName.leftAnchor, constant: CGFloat(rightAnchor)).isActive = true
         
         
-        //setup the button
-        self.containerView.addSubview(RegisterButton)
+        view.addSubview(EmailTextField)
+        EmailTextField.translatesAutoresizingMaskIntoConstraints = false
+        EmailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        EmailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: CGFloat(rightAnchor)).isActive = true
+        EmailTextField.topAnchor.constraint(equalTo: LastName.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        
+        
+        view.addSubview(birthMonth)
+        birthMonth.translatesAutoresizingMaskIntoConstraints = false
+        birthMonth.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        birthMonth.topAnchor.constraint(equalTo: EmailTextField.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        
+        
+        view.addSubview(birthDay)
+        birthDay.translatesAutoresizingMaskIntoConstraints = false
+        birthDay.topAnchor.constraint(equalTo: EmailTextField.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        birthDay.leftAnchor.constraint(equalTo: birthMonth.rightAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        birthMonth.rightAnchor.constraint(equalTo: birthDay.leftAnchor, constant: CGFloat(rightAnchor)).isActive = true
+        
+        view.addSubview(birthYear)
+        birthYear.translatesAutoresizingMaskIntoConstraints = false
+        birthYear.topAnchor.constraint(equalTo: EmailTextField.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        birthYear.leftAnchor.constraint(equalTo: birthDay.rightAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        birthYear.rightAnchor.constraint(equalTo: view.rightAnchor, constant: CGFloat(rightAnchor)).isActive = true
+        
+        
+        view.addSubview(PasswordTextField)
+        PasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        PasswordTextField.topAnchor.constraint(equalTo: birthMonth.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        PasswordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        PasswordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: CGFloat(rightAnchor)).isActive = true
+        
+        view.addSubview(ConfirmPasswordTextField)
+        ConfirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        ConfirmPasswordTextField.topAnchor.constraint(equalTo: PasswordTextField.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        ConfirmPasswordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(leftAnchor)).isActive = true
+        ConfirmPasswordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: CGFloat(rightAnchor)).isActive = true
+        
+        
+        view.addSubview(RegisterButton)
         RegisterButton.translatesAutoresizingMaskIntoConstraints = false
-        RegisterButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: 0).isActive = true
+        RegisterButton.topAnchor.constraint(equalTo: ConfirmPasswordTextField.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
         RegisterButton.heightAnchor.constraint(equalToConstant: CGFloat(registerButtonHeight)).isActive = true
-        RegisterButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        RegisterButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        RegisterButton.widthAnchor.constraint(equalToConstant: CGFloat(300)).isActive = true
+        RegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        
         RegisterButton.addTarget(self, action: #selector(confirmData), for: .touchUpInside)
         
         
         
         
-
-
-        containerView.addSubview(ConfirmPasswordTextField)
-        ConfirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        ConfirmPasswordTextField.bottomAnchor.constraint(equalTo: RegisterButton.topAnchor, constant: -60).isActive = true
-        ConfirmPasswordTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
+        
         ConfirmPasswordTextField.attributedPlaceholder = NSAttributedString(string:"Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.6)])
         ConfirmPasswordTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         ConfirmPasswordTextField.adjustsFontSizeToFitWidth = true
         ConfirmPasswordTextField.textColor = .black
         ConfirmPasswordTextField.isSecureTextEntry = true
-//
-
-
-//
-        containerView.addSubview(PasswordTextField)
-        PasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        PasswordTextField.bottomAnchor.constraint(equalTo: ConfirmPasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
-        PasswordTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
+        //
+        
+        
+        
         PasswordTextField.attributedPlaceholder = NSAttributedString(string:"Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         PasswordTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         PasswordTextField.adjustsFontSizeToFitWidth = true
@@ -166,118 +193,70 @@ class B_1Register : UIViewController {
         PasswordTextField.isSecureTextEntry = true
         
         
-
-
-
-        containerView.addSubview(birthYear)
-        birthYear.translatesAutoresizingMaskIntoConstraints = false
-        birthYear.bottomAnchor.constraint(equalTo: PasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
-        birthYear.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        
         birthYear.attributedPlaceholder = NSAttributedString(string:"YYYY", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         birthYear.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         birthYear.textAlignment = .left
         birthYear.keyboardType = .numberPad
         birthYear.textColor = .black
-
-
-
-        containerView.addSubview(birthDay)
-        birthDay.translatesAutoresizingMaskIntoConstraints = false
-        birthDay.rightAnchor.constraint(equalTo: birthYear.leftAnchor, constant: 0).isActive = true
-        birthYear.leftAnchor.constraint(equalTo: birthDay.rightAnchor, constant: 0).isActive = true
-        birthDay.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        birthDay.bottomAnchor.constraint(equalTo: PasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        
+        
+        
         birthDay.attributedPlaceholder = NSAttributedString(string:"DD", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         birthDay.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         birthDay.textAlignment = .left
         birthDay.keyboardType = .numberPad
         birthDay.textColor = .black
-
-
-
-
-        containerView.addSubview(birthMonth)
-        birthMonth.translatesAutoresizingMaskIntoConstraints = false
-        birthMonth.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
-        birthDay.leftAnchor.constraint(equalTo: birthMonth.rightAnchor, constant: 0).isActive = true
-        birthMonth.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        birthMonth.bottomAnchor.constraint(equalTo: PasswordTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        
+        
+        
+        
+        
         birthMonth.attributedPlaceholder = NSAttributedString(string:"MM", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         birthMonth.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         birthMonth.textAlignment = .left
         birthMonth.keyboardType = .numberPad
         birthMonth.textColor = .black
-
-
-
-
-
-        //setup the email field
-        containerView.addSubview(EmailTextField)
-        EmailTextField.translatesAutoresizingMaskIntoConstraints = false
-        EmailTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
-        EmailTextField.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
-        EmailTextField.bottomAnchor.constraint(equalTo: birthMonth.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
+        
+        
+        
+        
+        
+        
         EmailTextField.attributedPlaceholder = NSAttributedString(string:"Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         EmailTextField.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         EmailTextField.textColor = .black
         EmailTextField.textContentType = .emailAddress
         EmailTextField.autocapitalizationType = .none
         
-
-
-
-        containerView.addSubview(FirstName)
-        FirstName.translatesAutoresizingMaskIntoConstraints = false
-        FirstName.bottomAnchor.constraint(equalTo: EmailTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
-        FirstName.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        FirstName.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
+        
+        
+        
+        
         FirstName.attributedPlaceholder = NSAttributedString(string:"First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         FirstName.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         FirstName.textColor = .black
         FirstName.autocapitalizationType = .words
         FirstName.textAlignment = .left
-
-
-        containerView.addSubview(LastName)
-        LastName.translatesAutoresizingMaskIntoConstraints = false
-        LastName.bottomAnchor.constraint(equalTo: EmailTextField.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
-        LastName.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        FirstName.leftAnchor.constraint(equalTo: LastName.rightAnchor, constant: 0).isActive = true
-        LastName.rightAnchor.constraint(equalTo: FirstName.leftAnchor, constant: 0).isActive = true
-        LastName.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true
-         //need left anchor.
+        
+        
+        
         LastName.attributedPlaceholder = NSAttributedString(string:"Last Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         LastName.font = UIFont(name: Fonts.importFonts.paragraphFont, size: 20)
         LastName.textColor = .black
         LastName.autocapitalizationType = .words
         LastName.textAlignment = .left
-
-
-        //setup the error label
-        containerView.addSubview(ErrorLabel)
-        ErrorLabel.translatesAutoresizingMaskIntoConstraints = false
-        ErrorLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
-        ErrorLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 0).isActive = true
-        ErrorLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        ErrorLabel.bottomAnchor.constraint(equalTo: FirstName.topAnchor, constant: CGFloat(verticalSeperatorConstraint)).isActive = true
-        ErrorLabel.text = ""
-        ErrorLabel.textColor = .black
-        ErrorLabel.font =  UIFont(name: "HelveticaNeue-Bold", size: 15)
-        ErrorLabel.textAlignment = .center
-        ErrorLabel.center.x = self.view.center.x - 23
-        ErrorLabel.center.y = self.containerView.frame.size.height - ((self.RegisterButton.frame.size.height)*7 + 70)
-        ErrorLabel.numberOfLines = 0
-        containerView.addSubview(ErrorLabel)
-
-
-
-
-
-
         
         
-      
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     }
@@ -303,12 +282,12 @@ class B_1Register : UIViewController {
         businessRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         businessRegisterButton.addTarget(self, action: #selector(toOwnerView), for: .touchUpInside)
         
-//        view.addSubview(ownerOrEmployeeLabel)
-//        ownerOrEmployeeLabel.translatesAutoresizingMaskIntoConstraints = false
-//        ownerOrEmployeeLabel.leftAnchor.constraint(equalTo: businessRegisterButton.leftAnchor, constant: 15).isActive = true
-//        ownerOrEmployeeLabel.rightAnchor.constraint(equalTo: businessRegisterButton.rightAnchor, constant: 0).isActive = true
-//        ownerOrEmployeeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        ownerOrEmployeeLabel.bottomAnchor.constraint(equalTo: businessRegisterButton.topAnchor, constant: -30).isActive = true
+        //        view.addSubview(ownerOrEmployeeLabel)
+        //        ownerOrEmployeeLabel.translatesAutoresizingMaskIntoConstraints = false
+        //        ownerOrEmployeeLabel.leftAnchor.constraint(equalTo: businessRegisterButton.leftAnchor, constant: 15).isActive = true
+        //        ownerOrEmployeeLabel.rightAnchor.constraint(equalTo: businessRegisterButton.rightAnchor, constant: 0).isActive = true
+        //        ownerOrEmployeeLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        //        ownerOrEmployeeLabel.bottomAnchor.constraint(equalTo: businessRegisterButton.topAnchor, constant: -30).isActive = true
     }
     
     
@@ -365,23 +344,56 @@ class B_1Register : UIViewController {
                                             GlobalVariables.ActualIDs.ActualName = "\(String(describing: FirstName.text!)) \(LastName.text!)"
                                             GlobalVariables.ActualIDs.ActualEmail = EmailTextField.text
                                             GlobalVariables.ActualIDs.ActualPassword = PasswordTextField.text
-                                            GlobalVariables.ActualIDs.ActualMonth = Int(birthMonth.text!)
-                                            GlobalVariables.ActualIDs.ActualDay = Int(birthDay.text!)
-                                            GlobalVariables.ActualIDs.ActualYear = Int(birthYear.text!)
-                                            ///add full name as a result of first and last name.
+                                            if Int(birthMonth.text!)! > 12 || Int(birthMonth.text!)! == 0 || Int(birthMonth.text!)! == 00 {
+                                                let alert = UIAlertController(title: "Enter a valid Birth Month", message: nil, preferredStyle: .alert)
+                                                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+                                                    return
+                                                }))
+                                                self.present(alert, animated: true, completion: nil)
+                                                return
+                                            } else {
+                                                
+                                                GlobalVariables.ActualIDs.ActualMonth = Int(birthMonth.text!)
+                                            }
                                             
-                                            
-                                            //add more of the inputs to the this field must first create new global variables
+                                            if Int(birthDay.text!)! > 31 || Int(birthDay.text!)! == 00 || Int(birthDay.text!)! == 0 {
+                                                
+                                                let alert = UIAlertController(title: "Enter a valid Birth Day", message: nil, preferredStyle: .alert)
+                                                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+                                                    return
+                                                }))
+                                                self.present(alert, animated: true, completion: nil)
+                                                return
+                                            } else {
+                                                GlobalVariables.ActualIDs.ActualDay = Int(birthDay.text!)
+                                            }
+                                           
+                                            let date = Date()
+                                            let calendar = Calendar.current
+                                            let year = calendar.component(.year, from: date)
+                                            if Int(birthYear.text!)! > year || Int(birthYear.text!)! < year-100 {
+                                                let alert = UIAlertController(title: "Enter a valid Birth Year", message: nil, preferredStyle: .alert)
+                                                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+                                                    return
+                                                }))
+                                                self.present(alert, animated: true, completion: nil)
+                                                return
+                                            } else {
+                                                GlobalVariables.ActualIDs.ActualYear = Int(birthYear.text!)
+                                            }
+                                     
                                             
                                             SetupNewUser()
                                             
                                             
                                         } else {
+                                           
                                             let alert = UIAlertController(title: "Make sure both passwords match.", message: nil, preferredStyle: .alert)
                                             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
                                                 return
                                             }))
                                             self.present(alert, animated: true, completion: nil)
+                                            return
                                         }
                                         
                                         
@@ -403,6 +415,7 @@ class B_1Register : UIViewController {
                 return
             }))
             self.present(alert, animated: true, completion: nil)
+            return
         }
         
     }
@@ -412,8 +425,8 @@ class B_1Register : UIViewController {
     func InstantiateCustomerList() -> [String : Any] {
         //this is the new list that will be created.
         let NewUser = [
-            GlobalVariables.UserIDs.UserName : GlobalVariables.ActualIDs.ActualName!, //(1) get rid of this and split into two
-            GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail!,
+            GlobalVariables.UserIDs.UserName : GlobalVariables.ActualIDs.ActualName!,
+            GlobalVariables.UserIDs.UserEmail: GlobalVariables.ActualIDs.ActualEmail!.lowercased(),
             GlobalVariables.UserIDs.UserPassword: GlobalVariables.ActualIDs.ActualPassword!,
             GlobalVariables.UserIDs.UserBirthMonth: GlobalVariables.ActualIDs.ActualMonth!,
             GlobalVariables.UserIDs.UserBirthDay: GlobalVariables.ActualIDs.ActualDay!,
@@ -432,7 +445,7 @@ class B_1Register : UIViewController {
     
     //sets up the firebase data with the new list, creating a new document for a new customer user.
     func SetupFirebaseData () {
-        db.collection(GlobalVariables.UserIDs.CollectionTitle).document("\(GlobalVariables.ActualIDs.ActualEmail!)").setData(InstantiateCustomerList()) { err in
+        db.collection(GlobalVariables.UserIDs.CollectionTitle).document("\(GlobalVariables.ActualIDs.ActualEmail!.lowercased())").setData(InstantiateCustomerList()) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
@@ -446,7 +459,7 @@ class B_1Register : UIViewController {
     func SetupNewUser () {
         self.addLoadingView()
         
-        Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!, password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
+        Auth.auth().createUser(withEmail: GlobalVariables.ActualIDs.ActualEmail!.lowercased(), password: GlobalVariables.ActualIDs.ActualPassword!) { (user, error) in
             
             if let error = error {
                 
@@ -487,9 +500,9 @@ class B_1Register : UIViewController {
         
     }
     
-   
     
-   
+    
+    
     
     //MARK:- @objc functions called
     
@@ -503,7 +516,7 @@ class B_1Register : UIViewController {
         self.performSegue(withIdentifier: GlobalVariables.SegueIDs.B_1RegisterSeque, sender: self)
     }
     
-  
+    
     
     
     
